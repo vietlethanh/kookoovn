@@ -1,0 +1,50 @@
+<ion-view title="Weekly Ad" id="WeeklyAd" ng-controller="WeeklyAdCtrl as vm">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+  	<button class="button button-icon icon ion-wa-dept" ng-click="vm.goToDeptList()"></button>
+	<button class="button button-icon icon ion-wa-flyer" ng-click="goTo('app.weeklyadflyer')"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header page-wrap">
+	<div class="page-wrap">
+		<div class="header row row-center">
+			<div class="col store-info" ng-if="vm.weeklyAd">
+				<div>{{vm.weeklyAd.Store.Address1}} - {{vm.weeklyAd.Store.City}}</div>
+				<div>Prices Effective: {{vm.weeklyAd.StartDate| date: 'MM/dd'}} - {{vm.weeklyAd.EndDate| date: 'MM/dd'}}</div>
+				<div ng-if="vm.dept">Department: {{vm.dept.CategoryName}}</div>
+			</div>
+			<div class="col store-info" ng-if="!vm.weeklyAd && vm.currentStore">
+				<div>{{vm.currentStore.Address1}} - {{vm.currentStore.City}}</div>
+			</div>
+		</div>
+		<ul class="list weeklyad-list" ng-if="vm.sitems.length>0">
+			
+			<li class="item" collection-repeat="item in vm.sitems" collection-item-width="'100%'" collection-item-height="200">
+			<!--
+			<li class="item" ng-repeat="item in vm.sitems">
+			-->
+				<div class="row">
+				<div class="row">
+					<div class="image">
+						<img ng-src="{{item.ImageUrl}}"/>
+						<button class="button button-small button-positive" ng-click="vm.addToShoppingList(item)" ng-if="!item.IsAdded">Add To List</button>
+						<button class="button button-small button-calm" ng-click="vm.addToShoppingList(item)" ng-if="item.IsAdded">Added To List</button>	
+						
+					</div>
+					<div class="col info">
+						<div class="name"  ng-bind-html="item.Name"></div>
+						<div class="desc" ng-bind-html="item.Description"></div>
+						<div class="price" ng-bind-html="item.Price"></div>
+						
+					</div>
+				</div>
+			</li>
+		</ul >
+		<ion-infinite-scroll ng-if="vm.hasMore" icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%"> </ion-infinite-scroll>
+		<div class="row noitems" ng-if="vm.sitems.length <=0">
+			No items
+		<div>
+	</div>
+  </ion-content>
+</ion-view>

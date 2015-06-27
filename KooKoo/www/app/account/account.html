@@ -1,0 +1,68 @@
+<ion-view title="My Info">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  	</ion-nav-buttons>
+     <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="logout()" >Logout</button>
+      </ion-nav-buttons>
+    
+  	<ion-content class="has-header">
+  		<div class="list account-list">
+  			<div class="item item-button-right">
+  				<div class="label">Name</div>
+  				<div class="value">{{user.FirstName}} {{user.LastName}}</div>
+  				<button class="button button-positive button-small" ng-click="edit('name')">Edit</button>
+  			</div>
+  			<div class="item item-button-right">
+  				<div class="label">Address</div>
+  				<div class="value">{{user.Address}}</br>{{user.City}}, {{user.State}} {{user.ZipCode}}</div>
+  				<button class="button button-positive button-small" ng-click="edit('address')">Edit</button>
+  			</div>
+  			<div class="item item-button-right">
+  				<div class="label">Username</div>
+  				<div class="value">{{user.Email}}</div>
+  			</div>
+  			<div class="item item-button-right">
+  				<div class="label not-phone">Rewards Account Number</div>
+  				<div class="value">{{user.SRCardID}}</div>
+  			</div>
+  			<div class="item item-button-right">
+  				<div class="label">Primary Phone/AltID</div>
+  				<div class="value"><a href="tel:{{user.Phone}}">{{user.Phone | tel}}</a></div>
+  				<button class="button button-positive button-small" ng-click="edit('phone')">Edit</button>
+  			</div>
+  			<div class="item item-button-right">
+  				<div class="label">Primary Mobile/AltID</div>
+  				<div class="value"><a href="tel:{{user.CellPhone}}">{{user.CellPhone | tel}}</a></div>
+  				<button class="button button-positive button-small" ng-click="edit('cellphone')">Edit</button>
+  			</div>
+        <div class="item item-button-right">
+          <div class="label">Secondary Mobile Phone</div>
+          <div class="value"><a href="tel:{{user.SecondaryCellPhone}}">{{user.SecondaryCellPhone | tel}}</a></div>
+          <button class="button button-positive button-small" ng-click="edit('seccellphone')">Edit</button>
+        </div>
+  			<div class="item item-button-right">
+  				<div class="label">Email Address</div>
+  				<div class="value">{{user.UserEmail}}</div>
+  				<button class="button button-positive button-small" ng-click="edit('email')">Edit</button>
+  			</div>
+  			<div class="item item-button-right">
+  				<div class="label">Password</div>
+  				<div class="value">**********</div>
+  				<button class="button button-positive button-small" ng-click="edit('password')">Edit</button>
+  			</div>
+        <div class="item item-button-right">
+          <div class="label">Communication</div>
+          <div class="value">Opted in to Receive...</div>
+          <div class="value" ng-if="user.ReceiveEmail == true">&raquo; Email</div>
+          <div class="value" ng-if="user.ReceiveTextMessage == true">&raquo; Text Messages</div>
+          <button type="button" class="button button-positive button-small" ng-click="edit('communications')">Edit</button>
+        </div>
+  			<div class="item item-button-right">
+  				<div class="label">Preferred Store</div>
+  				<div class="value" ng-if="userStore">{{userStore.StoreName}}<br/>{{userStore.Address1}}, {{userStore.City}} {{userStore.State}}<br/>{{userStore.Zipcode}}</div>
+  				<button class="button button-positive button-small" ng-click="changeStore()">Edit</button>
+  			</div>
+  		</div>
+  	</ion-content>
+</ion-view>
