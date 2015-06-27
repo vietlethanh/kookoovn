@@ -153,16 +153,16 @@ angular.module('MCMRelationshop.Resource.ShoppingList', [
 				deferred.resolve({data: true});
 				return deferred.promise;
 			},
-			updateNote: function(note, userid){
+			updateNote: function(snote, userid){
 				var deferred, notes, note;
 				deferred= $q.defer();
 				notes = this._getNotes(this.userid);
-				note = _.find(notes, { 'CS_ShoppingListNoteID': note.CS_ShoppingListNoteID});
+				note = _.find(notes, { 'CS_ShoppingListNoteID': snote.CS_ShoppingListNoteID});
 				if(!note){
 					deferred.reject({data: {message: 'Not found'}})
 				}
 				else{
-					note.Quantity = note.Quantity;
+					note.Quantity = snote.Quantity;
 					this.updateNotes(notes);
 					deferred.resolve({data: true});
 				}

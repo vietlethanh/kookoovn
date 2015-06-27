@@ -8376,11 +8376,12 @@ input[type="date"]:focus:before, input[type="date"]:valid:before,  {
   padding: 10px;
   left: 0;
   right: 0;
-  height: 200px; }
+  height: auto;
+  border-bottom: none; }
 .weeklyad-list .image {
   width: 110px;
   position: relative;
-  height: 170px; }
+  height: 180px; }
   .weeklyad-list .image img {
     display: block;
     max-width: 108px;

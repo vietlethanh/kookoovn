@@ -35,13 +35,14 @@
 		padding: 10px;
 		left: 0;
 		right: 0;
-		height: 200px;
+		height: auto;
+		border-bottom: none;
 	}
 	
 	.image {
 		width: 110px;
 		position: relative;
-		height: 170px;
+		height: 180px;
 		img {
 			display:block;
 			max-width: 108px;

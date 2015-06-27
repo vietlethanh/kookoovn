@@ -2,8 +2,9 @@ angular.module('MCMRelationshop.WeeklyAd', [
 	'MCMRelationshop.Resource.Store',
 	'MCMRelationshop.Resource.ShoppingList'
 ])
-.controller('WeeklyAdCtrl', ['$scope','$state','$stateParams', '$q', 'security', 'Store','ShoppingList','DSCacheFactory','$ionicLoading', 'toaster','MCMTracker','$ionicPopup','APP_CONFIG','$ionicViewService',
-	function($scope, $state, $stateParams, $q, security, store,shoppinglist, DSCacheFactory, $ionicLoading, toaster, MCMTracker, $ionicPopup,APP_CONFIG, $ionicViewService ) {  
+.controller('WeeklyAdCtrl', ['$scope','$state','$stateParams', '$q', 'security', 'Store','ShoppingList','DSCacheFactory','$ionicLoading', 'toaster','MCMTracker','$ionicPopup','APP_CONFIG','$ionicViewService','$timeout',
+	function($scope, $state, $stateParams, $q, security, store,shoppinglist, DSCacheFactory, $ionicLoading, toaster, MCMTracker, $ionicPopup,APP_CONFIG, $ionicViewService,$timeout
+	 ) {  
 		//Store.ge
 		var vm = this;
 		// private properties -------------------------------------------------------------
@@ -26,6 +27,34 @@ angular.module('MCMRelationshop.WeeklyAd', [
 			totalResult: 0
 		};
 		// private method -------------------------------------------------------------
+		var viewportWidth = window.innerWidth;
+		var colInfoWidth = viewportWidth -110 -55,
+			tCharPerLine = Math.ceil(colInfoWidth/9.6),
+			dCharPerLine = Math.ceil(colInfoWidth/7.3),
+			pCharPerLine = Math.ceil(colInfoWidth/7.75);
+
+		function calHeight(text,charPerLine, lineHeight){
+			if(!text || text.length ==0){
+				return 0;
+			}
+			var reg, m, lines, lineCount, line, cline, cleanReg;
+			reg = /<br>|<br\/>/g;
+			cleanReg = /<\/?[^>]+(>|$)/g;
+			lines = text.split(reg);
+			lineCount = lines.length;
+			for(var i = 0; i < lines.length;i++){
+				line  = lines[i];
+				// remove html tag
+				line = line.replace(cleanReg,'');
+				cline = Math.ceil(line.length/charPerLine);
+				
+				if(cline>1){
+					lineCount+= (cline-1);
+				}
+			} 
+			var height = lineCount*lineHeight;
+			return height;
+		}
 		function getPage(){
 			var start, end, page, totalResult, pageSize, items;
 			page = $scope.pageInfo.page;
@@ -40,6 +69,21 @@ angular.module('MCMRelationshop.WeeklyAd', [
 				if(find){
 					find.IsAdded = true;
 				}
+			});
+			// cal height
+			_.forEach(items, function(item){
+				item.cheight = null;
+				if(item.height){
+					return;
+				}
+				var height = 212, reg=/<br/g, tlineHeight= 20, dLineHeight = 20, tLine, dLine, pLine;
+				var nameHeight  = calHeight(item.Name, tCharPerLine, tlineHeight),
+					descHeight  = calHeight(item.Description, dCharPerLine, dLineHeight),
+					priceHeight = calHeight(item.Price, pCharPerLine, dLineHeight);
+
+				height = Math.max(height, (nameHeight+descHeight+priceHeight+30+2));
+				//console.log(height);
+				item.height = height;
 			});
 			
 			return items;
@@ -154,6 +198,11 @@ angular.module('MCMRelationshop.WeeklyAd', [
 		
 		$scope.$watch('pageInfo', function(pi){
 			vm.hasMore = pi.page * pi.pageSize < pi.totalResult; 
+			// cheat for last item
+			if(!vm.hasMore && vm.sitems && vm.sitems.length>0){
+				var lastItem = vm.sitems[vm.sitems.length-1];
+				lastItem.cheight = lastItem.height+70;
+			}
 		}, true);
 		
 		loadWeeklyAd(currentStore.CS_StoreID,deptParam, (currentUser?currentUser.SRCardID: null));
@@ -237,8 +286,42 @@ angular.module('MCMRelationshop.WeeklyAd', [
 				if(find){
 					find.IsAdded = true;
 				}
-			})
-			
+			});
+			/*
+			// cal height
+			_.forEach(items, function(item){
+				item.cheight = null;
+				if(item.height){
+					return;
+				}
+				var height = 200, reg=/<br/g, tlineHeight= 20, dLineHeight = 20, tLine, dLine, pLine;
+				if(!item.Name || item.Name.length == 0){
+					tLine = 0;
+				}
+				else{
+					var m  = item.Name.match(reg); 
+					tLine = m ? m.length +1: 1;
+				}
+				if(!item.Description || item.Description.length == 0){
+					dLine = 0;
+				}
+				else {
+					m = item.Description.match(reg);
+					dLine = m ? m.length+1: 1;
+				}
+				if(!item.Price || item.Price.length == 0){
+					pLine = 0;
+				}
+				else {
+					m = item.Price.match(reg);
+					pLine = m ? m.length+1: 1;
+				}
+
+				height = Math.max(height, (tLine*tlineHeight +dLine*dLineHeight+ pLine*dLineHeight+30));
+				item.height = height;
+
+			});
+			*/
 			return items;
 		};
 		function loadWeeklyAd(storeId, deptId, SRCardID){

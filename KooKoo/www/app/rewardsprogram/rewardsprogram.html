@@ -22,7 +22,7 @@
 		<div ng-if= "!showUnactive">
 			<div ng-if="currentUser && currentUser.SRCardID && !showWatingCardView">
 				<div class="header"></div>
-				<div class="section points" ng-if="cardInfo.PilotPoint">
+				<div class="section points" ng-if="cardInfo.PilotPoint!=null && cardInfo.PilotPoint!=undefined">
 					<div class="header-bar row">
 						<div class="col col-center btn ">
 							<button class="button icon " ng-click="toggle('pShow')" ng-class="{'ion-plus': !switchs.pShow,'ion-minus': switchs.pShow}"></button>

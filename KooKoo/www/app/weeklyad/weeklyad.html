@@ -20,11 +20,10 @@
 		</div>
 		<ul class="list weeklyad-list" ng-if="vm.sitems.length>0">
 			
-			<li class="item" collection-repeat="item in vm.sitems" collection-item-width="'100%'" collection-item-height="200">
+			<li class="item" collection-repeat="item in vm.sitems" collection-item-width="'100%'" collection-item-height="item.cheight || item.height">
 			<!--
 			<li class="item" ng-repeat="item in vm.sitems">
 			-->
-				<div class="row">
 				<div class="row">
 					<div class="image">
 						<img ng-src="{{item.ImageUrl}}"/>
