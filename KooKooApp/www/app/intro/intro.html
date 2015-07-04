@@ -1,0 +1,35 @@
+
+<div class="nav-title-slide-ios7 bar bar-header nav-bar disable-user-behavior  no-animation intro-bar">
+  	<div class="buttons">		
+		<button class="button button-clear" ng-click="skip()">&raquo; Skip For Now</button>
+	</div>
+	<h1 class="title"></h1>
+	<div class="buttons">		
+		<button class="button button-clear" ng-click="dontshow()">&raquo; Don't Show Again</button>
+	</div>
+</div>
+<ion-view id="Intro">
+  <ion-content class="has-header">
+   	<ion-slide-box on-slide-changed="slideHasChanged($index)">
+	  <ion-slide>
+	  	<div class="intro-slide col">
+	    	<img src="img/intro-1.jpg"></img>
+		</div>
+	  </ion-slide>
+	  <ion-slide>
+	  	<div class="intro-slide col">
+	    	<img src="img/intro-2.jpg"></img>
+	    </div>
+	  </ion-slide>
+	  <ion-slide>
+	  	<div class="intro-slide intro-slide-3 ">
+	  		<img src="img/intro-3.jpg"></img>
+	    	<div class="row">
+	    		<div class="col">
+	    			<button class="button button-energized" ng-click="begin()">Begin Using App</button>
+	    		</div>
+	    </div>
+	  </ion-slide>
+	</ion-slide-box>
+  </ion-content>
+</ion-view>

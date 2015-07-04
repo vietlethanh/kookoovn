@@ -38,6 +38,7 @@
 	<script src="lib/bwip-js/lib/canvas-toblob.js"></script>
 	
 	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular-cookie/angular-cookie.min.js"></script>
 	<script src="lib/angular-animate/angular-animate.min.js"></script>
 	<script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
 	<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -66,6 +67,9 @@
 	<!-- your app's js -->
 	<script src="app/app.js"></script>
 	<script src="app/config.js"></script>
+	<script src="js/oauthController.js"></script>
+	<script src="js/openfb.js"></script>
+	<script src="js/ngopenfb.js"></script>
 	<script src="common/security/security.js"></script>
 	<script src="common/security/info.js"></script>
 	<script src="common/security/interceptor.js"></script>
@@ -108,8 +112,51 @@
 	<script src="app/info/info.js"></script>
 	<script src="app/search/search.js"></script>
 	<script src="app/search/searchcoupons.js"></script>
+	<script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
 
+<script>
+            // Facebbok OAuth init
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1529225140628860', // Replace the App ID with yours
+                    status: true, // check login status
+                    cookie: true, // enable cookies to allow the server to access the session
+                    xfbml: true  // parse XFBML
+                });
+            };
 
+            // Load the SDK asynchronously
+            (function (d) {
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement('script');
+                js.id = id;
+                js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            }(document));
+            // Facebbok OAuth init - END
+            
+            // Google OAuth Init
+            (function () {
+                var po = document.createElement('script');
+                po.type = 'text/javascript';
+                po.async = true;
+                po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(po, s);
+            })();
+
+            function onLoadCallback() {
+                // Replace the API key with yours
+                gapi.client.setApiKey('AIzaSyC5JgBIrjOGKDAIZLcsVHvgkjjGkkrZTqk');
+                gapi.client.load('plus', 'v1', function () {
+                });
+            }
+            // Google Oauth Init - END
+        </script>
   </head>
 
   <body ng-app="MCMRelationshop" >

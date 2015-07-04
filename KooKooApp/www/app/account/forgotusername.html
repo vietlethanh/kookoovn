@@ -1,0 +1,30 @@
+<ion-view title="Forgot User Name" id="ForgotUsername">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<form id="forgotForm" name="forgotForm" novalidate ng-submit="send(forgotForm)">
+			
+	  		<div class="item" style="text-align:center;">
+	  			Please enter your email below.</br>
+	  			You will receive a user name by email.
+	  		</div>
+		  	<label class="item item-input">
+				<input name="email" type="email" placeholder="Email" ng-model="form.email" required />
+				<span class="help-block" ng-show="showInvalid && forgotForm.email.$error.required">This field is required</span>
+				<span class="help-block" ng-show="showInvalid && forgotForm.email.$error.email">That is not valid email</span>
+		  	</label>
+			
+			<div class="row" >	
+				<div class="col" style="text-align: center">
+					<button class="button button-long button-positive" type="button" ng-click="goTo('app.login')">
+						Cancel
+					</button>
+					<button class="button button-long button-positive" ng-disabled="forgotForm.$invalid" type="submit" >
+						Send Request
+					</button>
+				</div>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
