@@ -1,0 +1,64 @@
+<ion-view title="Create Account" id="Register">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<form id="registerForm"name="registerForm" novalidate ng-submit="create(registerForm)">
+			<div class="list">
+				<label class="item item-input">
+					<input type="text" placeholder="User Name" name="username" ng-model="user.Email" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.username.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="firstname" type="text" placeholder="First Name" ng-model="user.FirstName" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.firstname.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="lastname" type="text" placeholder="Last Name" ng-model="user.LastName" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.lastname.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="address" type="text" placeholder="Address" ng-model="user.Address" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.address.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="city" type="text" placeholder="City" ng-model="user.City" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.city.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item ">
+					<select name="state" ng-model="user.State">
+						<option ng-repeat="state in states" value="{{state.value}}" ng-selected="state.value == user.State">{{state.text}}</option>
+					</select>
+					
+					<span class="help-block" ng-show="showInvalid && registerForm.state.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="zip" type="text" placeholder="Zip" ng-model="user.ZipCode" required ng-pattern="zipcodeRegx"  ng-maxlength="5" />
+					<span class="help-block" ng-show="showInvalid && registerForm.zip.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="email" type="email" placeholder="Email" ng-model="user.UserEmail" required ng-pattern="emailRegx"/>
+					<span class="help-block" ng-show="showInvalid && registerForm.email.$error.required">This field is required</span>
+					<span class="help-block" ng-show="showInvalid && registerForm.email.$error.email">That is not valid email</span>
+			  	</label>
+			  	<label class="item item-input">
+					<input name="phone" type="text" placeholder="Phone Number" ng-model="user.Phone" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.phone.$error.required">This field is required</span>
+			  	</label>
+			  	<label class="item item-input">
+			  		<input name="cellphone" type="text" placeholder="Cell Phone Number" ng-model="user.CellPhone" required />
+					<span class="help-block" ng-show="showInvalid && registerForm.cellphone.$error.required">This field is required</span>
+			  	</label>
+			</div>
+			
+			<div class="row" >	
+				<div class="col" style="text-align: center">
+					<!-- ng-disabled="registerForm.$invalid"-->
+					<button class="button button-long button-positive" type="submit" ng-disabled="registerForm.$invalid">
+						Create Account
+					</button>
+				</div>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>

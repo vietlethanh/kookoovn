@@ -125,20 +125,29 @@ angular.module('MCMRelationshop.Login', [
 	        });
 	    };
 	    $scope.twitterlogin = function() {
-	     	$cordovaOauth.twitter("5Z9AGmXCunGKxt3iq3dexDGzu", "zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO").then(function(result) {
-                    oauth_token = result.oauth_token;
-                    oauth_token_secret = result.oauth_token_secret;
-                    user_id = result.user_id;
-                    screen_name = result.screen_name;
-                    
-                    alert(screen_name);
-                    alert(user_id);
-                    alert(oauth_token);
-                    alert(oauth_token_secret);
-                }, function(error) {
-                    alert("Error: " + error);
-                });
-	 	}
+	    	alert("Click twitterlogin");
+	    	try
+	    	{
+				$cordovaOauth.twitter("5Z9AGmXCunGKxt3iq3dexDGzu", "zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO").then(function(result) {
+			                    oauth_token = result.oauth_token;
+			                    oauth_token_secret = result.oauth_token_secret;
+			                    user_id = result.user_id;
+			                    screen_name = result.screen_name;
+			                    
+			                    alert(screen_name);
+			                    alert(user_id);
+			                    alert(oauth_token);
+			                    alert(oauth_token_secret);
+			                }, function(error) {
+			                    alert("Error: " + error);
+			                });
+				 	}
+	    	}
+	    	catch
+	    	{
+				alert("catch Click twitterlogin");
+	    	}
+	     
 	    // END FB Login
 
 	    // Google Plus Login

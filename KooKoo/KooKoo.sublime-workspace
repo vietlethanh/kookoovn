@@ -39,48 +39,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "www/app/app.js",
-			"settings":
-			{
-				"buffer_size": 15284,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 677 files for \"isGuestMode\"\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\app.js:\n  541  		$scope.loginData = {};\n  542  		$scope.currentUser = security.getCurrentUser();\n  543: 		$scope.isGuestMode = security.isGuestMode();\n  544  		$scope.logout = function(){\n  545  			$ionicViewService.nextViewOptions({\n  ...\n  547  			});\n  548  			security.logout();\n  549: 			$scope.isGuestMode=true;\n  550  		}\n  551  		$scope.openLink = AppUtil.openNewWindow;\n  ...\n  567  			//console.log(args);\n  568  			$scope.socialWeb = args;\n  569: 			$scope.isGuestMode = security.isGuestMode();\n  570  \n  571  		});\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\digitalcoupon\\digitalcoupon.js:\n   12  		$scope.defaultImage = APP_CONFIG.DefaultImage;\n   13  		$scope.digitalcoupons = [];\n   14: 		$scope.isGuest = security.isGuestMode();\n   15  		$scope.predicate = sortby == 'savings' ? 'Value': 'Brand';\n   16  		$scope.reverse = sortby == 'savings' ? true : false;\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\recipe\\recipe.js:\n  337  	};\n  338  	$scope.email= function(){\n  339: 		if(security.isGuestMode()){\n  340  			var alertPopup = $ionicPopup.alert({\n  341  				title: APP_CONFIG.AlertTitle,\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\recipe\\recipedetail.html:\n    5    <ion-nav-buttons side=\"right\">\n    6    	<button class=\"button button-icon icon-recipe-box\" ng-click=\"goTo('app.recipebox')\"></button>\n    7: 	<button class=\"button button-icon ion-ios7-email-outline\" ng-click=\"email()\" ng-if=\"!isGuestMode\"></button>\n    8    </ion-nav-buttons>\n    9    <ion-content class=\"has-header\">\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\rewardsprogram\\rewardsprogram.js:\n   12  		// public properties -------------------------------------------------------------\n   13  		// scope properties -------------------------------------------------------------\n   14: 		$scope.isGuest = security.isGuestMode();\n   15  		$scope.currentUser = security.getCurrentUser();\n   16  		$scope.currentStore  = security.getCurrentStore();\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\shoppinglist\\shoppinglist.html:\n    6  	<h1 class=\"title\">Shopping List</h1>\n    7  	<div class=\"buttons\">\n    8: 		<button class=\"button button-small button-clear\" ng-click=\"goTo('app.shoppinglists')\" ng-if=\"!isGuestMode\">Lists &raquo;</button>\n    9  	</div>\n   10  	<!--\n   11    	<div class=\"buttons\" ng-if=\"mode != 'edit'\">		\n   12: 		<button class=\"button small-nav-button button-icon ion-ios7-email-outline\" ng-click=\"email()\" ng-if=\"!isGuestMode\"></button>\n   13  		<button class=\"button small-nav-button button-icon ion-plus\" ng-click=\"openAddForm()\"></button>\n   14  		<button class=\"button small-nav-button button-icon icon ion-edit\" ng-click=\"edit()\"></button>\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\shoppinglist\\shoppinglist.js:\n   13  		var shoppinglistGateWay = ShoppingList.getGateway();\n   14  		// public properties -------------------------------------------------------------\n   15: 		$scope.isGuest = security.isGuestMode();\n   16  		$scope.cats = null;\n   17  		$scope.notes = [];\n   ..\n   23  		};\n   24  		$scope.mode = \"view\";\n   25: 		$scope.enableShoppingList = !security.isGuestMode();\n   26  		$scope.userShoppingListName = null;\n   27  		// scope properties -------------------------------------------------------------\n   ..\n   50  			noteReq = ShoppingList.getGateway().getNotes(userId);\n   51  			reqs = [itemReq, noteReq];\n   52: 			if(!$scope.isGuestMode){\n   53  				var getActiveInfoReq = shoppinglistGateWay.getAllShoppingList(userId).then(function(res){\n   54  					//Update user shopping list name when it has a default shopping list\n   ..\n  139  		};\n  140  		$scope.email = function(){\n  141: 			if(security.isGuestMode()){\n  142  				var alertPopup = $ionicPopup.alert({\n  143  					title: APP_CONFIG.AlertTitle,\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\common\\resources\\recipebox.js:\n   78  			getGateway: function(){\n   79  				// guest\n   80: 				if(security.isGuestMode()){\n   81  					return GuestRecipeBox;\n   82  				}\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\common\\resources\\shoppinglist.js:\n  486  			getGateway: function(){\n  487  				// guest\n  488: 				if(security.isGuestMode()){\n  489  					return GuestShoppingList;\n  490  				}\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\common\\security\\security.js:\n  128  				return infoCache;\n  129  			},\n  130: 			isGuestMode: function(){\n  131  				return this.getCurrentUser() == null;\n  132  			},\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\templates\\menu.html:\n   59  					<i class='icon ion-clock'></i>Histories\n   60  				</ion-item>       \n   61: 				<ion-item nav-clear menu-close href=\"#/app/login\" ng-if=\"isGuestMode\">\n   62  					<i class='icon ion-log-in'></i>Log In\n   63  				</ion-item> \n   64: 				<ion-item nav-clear menu-close href=\"#/app/account\" ng-if=\"!isGuestMode\">\n   65  					<i class='icon ion-person'></i>Account\n   66  				</ion-item>\n   67  			\n   68: 				<ion-item nav-clear menu-close  href=\"\" ng-if=\"!isGuestMode\" ng-click=\"logout()\">\n   69  					<i class='icon ion-log-out'></i>Logout\n   70  				</ion-item> \n\n21 matches across 11 files\n\n\nSearching 677 files for \"getOfflineAppCache\"\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\app.js:\n  526  		});\n  527  		*/\n  528: 		var didIntro = CacheUtil.getAppCache().get('didIntro') || CacheUtil.getOfflineAppCache().get('didIntro');\n  529  		if(navigator.splashscreen){\n  530  			$timeout(function(){\n  ...\n  536  		}\n  537  		else{\n  538: 			CacheUtil.getOfflineAppCache().touch('didIntro');\n  539  		}\n  540  		\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\app\\intro\\intro.js:\n    5  	function($scope, $state, CacheUtil,MCMTracker, $ionicViewService) {  \n    6  		//public function\n    7: 		var offCache = CacheUtil.getOfflineAppCache(),\n    8  			appCache = CacheUtil.getAppCache();\n    9  		$scope.skip = function(){\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\common\\security\\security.js:\n   91  				//return info.currentUser;\n   92  				var cache;\n   93: 				cache = CacheUtil.getOfflineAppCache();\n   94  				console.log(cache);\n   95  				\n   ..\n  102  				//console.log(user);\n  103  				info.currentUser = user;\n  104: 				var cache = CacheUtil.getOfflineAppCache();\n  105  				cache.put('/security/info', info);\n  106  \n  ...\n  115  			setCurrentStore: function(store){\n  116  				info.currentStore = store;\n  117: 				var cache = CacheUtil.getOfflineAppCache();\n  118  				cache.put('/security/info', info);\n  119  			},\n  120  			loadSecurityFromCache: function(){\n  121  				var cache;\n  122: 				cache = CacheUtil.getOfflineAppCache();\n  123  				var infoCache = cache.get('/security/info');\n  124  				/*\n\nD:\\Desktop\\KooKooApp\\KooKoo\\www\\common\\utils\\utils.js:\n  268  			return cache;\n  269  		},\n  270: 		getOfflineAppCache: function(){\n  271  			var cache = DSCacheFactory.get('off_app');\n  272  			if(!cache){\n  ...\n  298  				this.getOfflineHttpCache(), \n  299  				this.getAppCache(),\n  300: 				this.getOfflineAppCache(),\n  301  				this.getGuestCache()\n  302  			];\n\n9 matches across 4 files\n",
-			"settings":
-			{
-				"buffer_size": 6940,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "www/common/utils/utils.js",
-			"settings":
-			{
-				"buffer_size": 9697,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/common/security/security.js",
-			"settings":
-			{
-				"buffer_size": 3809,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "gulpfile.js",
-			"settings":
-			{
-				"buffer_size": 1353,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -106,22 +64,22 @@
 	},
 	"file_history":
 	[
-		"/D/Desktop/KooKooApp/KooKoo/www/js/app.js",
-		"/D/Desktop/KooKooApp/KooKoo/www/js/oauthController.js",
-		"/D/Desktop/KooKooApp/KooKoo/www/app/login/login.js",
-		"/D/Desktop/KooKooApp/KooKoo/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KooKoo/www/app/app.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/common/utils/utils.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/common/security/security.js",
+		"/D/Desktop/KooKooApp/KooKoo/gulpfile.js",
+		"/D/Desktop/KooKooApp/KooKoo/www/app/login/login.js",
+		"/D/Desktop/KooKooApp/KooKoo/www/js/app.js",
+		"/D/Desktop/KooKooApp/KooKoo/www/js/oauthController.js",
+		"/D/Desktop/KooKooApp/KooKoo/www/common/services/analytic.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/index.html",
 		"/D/Desktop/KooKooApp/KooKoo/www/app/login/login.html",
 		"/D/Desktop/KooKooApp/KooKoo/www/app/config.js",
-		"/D/Desktop/KooKooApp/KooKoo/gulpfile.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/common/security/info.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/app/account/account.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/app/account/account.html",
 		"/D/Desktop/KooKooApp/KooKoo/www/app/storelocator/storelocator.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/templates/menu.html",
-		"/D/Desktop/KooKooApp/KooKoo/www/app/app.js",
 		"/D/Desktop/KooKooApp/KooKoo/config.xml",
 		"/D/Desktop/KooKooApp/KooKoo/www/common/resources/user.js",
 		"/D/Desktop/KooKooApp/KooKoo/www/common/security/interceptor.js",
@@ -275,277 +233,8 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "www/app/app.js",
-					"settings":
-					{
-						"buffer_size": 15284,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								13664,
-								13675
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 9454.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"settings":
-					{
-						"buffer_size": 6940,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										188,
-										199
-									],
-									[
-										211,
-										222
-									],
-									[
-										375,
-										386
-									],
-									[
-										543,
-										554
-									],
-									[
-										566,
-										577
-									],
-									[
-										799,
-										810
-									],
-									[
-										1065,
-										1076
-									],
-									[
-										1469,
-										1480
-									],
-									[
-										1851,
-										1862
-									],
-									[
-										2230,
-										2241
-									],
-									[
-										2462,
-										2473
-									],
-									[
-										2949,
-										2960
-									],
-									[
-										3117,
-										3128
-									],
-									[
-										3396,
-										3407
-									],
-									[
-										3668,
-										3679
-									],
-									[
-										3915,
-										3926
-									],
-									[
-										4123,
-										4134
-									],
-									[
-										4304,
-										4315
-									],
-									[
-										4595,
-										4606
-									],
-									[
-										4754,
-										4765
-									],
-									[
-										4912,
-										4923
-									],
-									[
-										5243,
-										5261
-									],
-									[
-										5401,
-										5419
-									],
-									[
-										5654,
-										5672
-									],
-									[
-										5908,
-										5926
-									],
-									[
-										6080,
-										6098
-									],
-									[
-										6277,
-										6295
-									],
-									[
-										6454,
-										6472
-									],
-									[
-										6647,
-										6665
-									],
-									[
-										6847,
-										6865
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								6667,
-								6667
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"output_tag": 2,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2952.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/common/utils/utils.js",
-					"settings":
-					{
-						"buffer_size": 9697,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7823,
-								7826
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4531.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/common/security/security.js",
-					"settings":
-					{
-						"buffer_size": 3809,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2710,
-								2710
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 368.0,
-						"translation.y": 1471.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "gulpfile.js",
-					"settings":
-					{
-						"buffer_size": 1353,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								498,
-								498
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

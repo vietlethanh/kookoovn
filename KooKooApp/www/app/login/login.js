@@ -106,26 +106,64 @@ angular.module('MCMRelationshop.Login', [
 	            });
 	        }
 	    };
+	    
+		$scope.fbLogin = function () {
+		    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+		        function (response) {
+		            if (response.status === 'connected') {
+
+				            security.setCurrentUser(
+				            	{
+				            		SocialWeb:APP_CONFIG.SocialWeb.Facebook
+				            	}
+		            		);
+		            	
+		            	console.log('Facebook login succeeded');
+		            	console.log(response);
+						$rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
+		                //console.log('Facebook login succeeded');
+		                //$scope.closeLogin();
+		            } else {
+		                alert('Facebook login failed');
+		            }
+		        });
+		};
+
+
+	    //Login FB with oauth2
+	    $scope.facebooklogin = function() {
+	        $cordovaOauth.facebook("117244345278368", ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
+	            //$localStorage.accessToken = result.access_token;
+	            //$location.path("/profile");
+	            console.log(JSON.stringify(result));
+	            security.setCurrentUser(
+				            	{
+				            		SocialWeb:APP_CONFIG.SocialWeb.Facebook
+				            	}
+		            		);
+		            	
+	        }, function(error) {
+	            alert("There was a problem signing in!  See the console for logs");
+	            console.log(error);
+	        });
+	    };
+	    
+	    //Login Google with oauth2
 	    $scope.googleLogin = function() {
 	        $cordovaOauth.google("1026812135759-eikn3a5n8qut3du9ujov51onc3p8h68a.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+	            alert('googleLogin');
 	            console.log(JSON.stringify(result));
 	        }, function(error) {
 	        	console.log('Error googleLogin');
 	            console.log(error);
 	        });
     	}
-    	$scope.facebooklogin = function() {
-	        $cordovaOauth.facebook("117244345278368", ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
-	            //$localStorage.accessToken = result.access_token;
-	            //$location.path("/profile");
-	             console.log(JSON.stringify(result));
-	        }, function(error) {
-	            alert("There was a problem signing in!  See the console for logs");
-	            console.log(error);
-	        });
-	    };
+    	
+    	//Login Twitter with oauth2
 	    $scope.twitterlogin = function() {
-	     	$cordovaOauth.twitter("5Z9AGmXCunGKxt3iq3dexDGzu", "zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO").then(function(result) {
+	     	$cordovaOauth.twitter("5Z9AGmXCunGKxt3iq3dexDGzu", 
+	     		"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO").then(function(result) {
+                    alert('twitterlogin');
                     oauth_token = result.oauth_token;
                     oauth_token_secret = result.oauth_token_secret;
                     user_id = result.user_id;
@@ -186,27 +224,6 @@ angular.module('MCMRelationshop.Login', [
 	    };
 	    // END Google Plus Login
 
-		$scope.fbLogin = function () {
-		    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
-		        function (response) {
-		            if (response.status === 'connected') {
-
-				            security.setCurrentUser(
-				            	{
-				            		SocialWeb:APP_CONFIG.SocialWeb.Facebook
-				            	}
-		            		);
-		            	
-		            	console.log('Facebook login succeeded');
-		            	console.log(response);
-						$rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
-		                //console.log('Facebook login succeeded');
-		                //$scope.closeLogin();
-		            } else {
-		                alert('Facebook login failed');
-		            }
-		        });
-		};
 		vm.login = function(form){
 			if(form.$invalid){
 				vm.showInvalid = true;
