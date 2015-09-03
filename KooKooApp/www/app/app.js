@@ -31,7 +31,7 @@ angular.module('MCMRelationshop', [
 	//Angular Utils
 	'ui.utils',
 	'MCMRelationshop.Filter',
-	'ngOpenFB'
+	'ngOpenFB','uiGmapgoogle-maps'
 ])
 .config(function($sceDelegateProvider, $compileProvider) {
   $sceDelegateProvider.resourceUrlWhitelist([

@@ -49,7 +49,9 @@ var socialAppID =
 				{
 					FacebookAppID:'117244345278368', //vietlethanh1988@yahoo.com
 					TwitterAppID:'5Z9AGmXCunGKxt3iq3dexDGzu', //vietlethanh.dev@gmail.com
+					TwitterSecretKey:"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO",//vietlethanh.dev@gmail.com
 					GoogleAppID:'1026812135759-eikn3a5n8qut3du9ujov51onc3p8h68a.apps.googleusercontent.com', //vvietlethanh.dev@gmail.com
+
 				}
 var unitedAppCfg = {
 	ShowSmartReward : true,
@@ -64,8 +66,8 @@ var unitedAppCfg = {
 	PPLink : 'http://www.unitedtexas.com/privacypolicy',
 	FullSiteLink : 'http://www.unitedtexas.com',
 	StoreSearchDefaultKey:'',
-	StoreMapCenterPointDefault:[32.808053,-96.771812],//dallas
-	StoreMapZoomDefault:5,
+	StoreMapCenterPointDefault:[10.771557,106.705818],//Quan 1
+	StoreMapZoomDefault:12,
 	EnablePushnotification : false,
 	AppName:'UnitedRelationshop',
 	AppVersion :'3.0.2',

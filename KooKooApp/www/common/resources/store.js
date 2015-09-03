@@ -9,8 +9,10 @@ angular.module('MCMRelationshop.Resource.Store', [
 				var opts = HttpUtil.opts({
 					cache: true,
 					offcache: true,
+					intercetorParams: {api: false}
 				})
-				var p  = $http.get('/stores/'+storeid, opts).then(function(res){
+				return $http.get('http://kookoo.local:8080/store.php?id='+storeid);
+				/*var p  = $http.get('http://kookoo.local:8080/store.php?id='+storeid, opts).then(function(res){
 					if(!res.data.Services){
 						return res;
 					}
@@ -18,12 +20,15 @@ angular.module('MCMRelationshop.Resource.Store', [
 					return res;
 
 				});
-				return p;
+				return p;*/
 			},
 			searchStore: function(keyword){				
 				keyword = keyword == undefined ? '': keyword;
-				var opts = HttpUtil.opts();
-				return $http.get('/stores?'+ HttpUtil.encodeUrl({keyword: keyword}),opts);
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});
+				return $http.get('http://kookoo.local:8080/store.php?'+ HttpUtil.encodeUrl({keyword: keyword}));
 			},
 			searchNearByStore: function(latlng){
 				var opts = HttpUtil.opts();

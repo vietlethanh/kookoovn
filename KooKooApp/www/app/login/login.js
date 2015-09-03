@@ -108,6 +108,8 @@ angular.module('MCMRelationshop.Login', [
 	    };
 	    
 		$scope.fbLogin = function () {
+			alert(ionic.Platform.isAndroid());
+			console.log(ionic.Platform.device());
 		    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
 		        function (response) {
 		            if (response.status === 'connected') {
@@ -132,7 +134,7 @@ angular.module('MCMRelationshop.Login', [
 
 	    //Login FB with oauth2
 	    $scope.facebooklogin = function() {
-	        $cordovaOauth.facebook("117244345278368", ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
+	        $cordovaOauth.facebook(APP_CONFIG.SocialAppID.FacebookAppID, ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
 	            //$localStorage.accessToken = result.access_token;
 	            //$location.path("/profile");
 	            console.log(JSON.stringify(result));
@@ -150,8 +152,11 @@ angular.module('MCMRelationshop.Login', [
 	    
 	    //Login Google with oauth2
 	    $scope.googleLogin = function() {
-	        $cordovaOauth.google("1026812135759-eikn3a5n8qut3du9ujov51onc3p8h68a.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
-	            alert('googleLogin');
+	    	alert('googleLogin');
+	        $cordovaOauth.google(APP_CONFIG.SocialAppID.GoogleAppID,
+	         ["https://www.googleapis.com/auth/urlshortener", 
+	         "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+	            
 	            console.log(JSON.stringify(result));
 	        }, function(error) {
 	        	console.log('Error googleLogin');
@@ -161,9 +166,10 @@ angular.module('MCMRelationshop.Login', [
     	
     	//Login Twitter with oauth2
 	    $scope.twitterlogin = function() {
-	     	$cordovaOauth.twitter("5Z9AGmXCunGKxt3iq3dexDGzu", 
-	     		"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO").then(function(result) {
-                    alert('twitterlogin');
+	    	//alert('twitterlogin');
+	     	$cordovaOauth.twitter(APP_CONFIG.SocialAppID.TwitterAppID, 
+	     		APP_CONFIG.SocialAppID.TwitterSecretKey).then(function(result) {
+                  
                     oauth_token = result.oauth_token;
                     oauth_token_secret = result.oauth_token_secret;
                     user_id = result.user_id;
@@ -181,8 +187,7 @@ angular.module('MCMRelationshop.Login', [
 
 	    // Google Plus Login
 	    $scope.gplusLogin = function () {
-
-	        console.log('gplusLogin');
+	        //console.log('gplusLogin');
 	        var myParams = {
 	            // Replace client id with yours
 	            'clientid': '18301237550-3vlqoed2en4lvq6uuhh88o2h1l9m70tr.apps.googleusercontent.com',

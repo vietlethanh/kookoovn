@@ -1,84 +1,81 @@
 <ion-view title="Store Locator" id="StoreLocator">
-	<ion-nav-buttons side="left">
-		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-	</ion-nav-buttons>
-	<ion-nav-buttons side="right">
-		<button class="button button-icon icon ion-grid" ng-click="switchMode('list')" ng-if="mode!='list'"></button>
-		<button class="button button-icon icon ion-map" ng-click="switchMode('map')" ng-if="mode!='map'"></button>
-	</ion-nav-buttons>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-grid" ng-click="switchMode('list')" ng-if="mode!='list'"></button>
+        <button class="button button-icon icon ion-map" ng-click="switchMode('map')" ng-if="mode!='map'"></button>
+    </ion-nav-buttons>
 
-  	<ion-content class="has-header">
-  		<!--div class="list search">
-  			<div class="item item-divider">
-	  			<form novalidate class="item-input-inset store-search-form " ng-submit="searchStore()">
-					<button ng-click="nearBy()"class="button button-clear icon icon-right fa fa-angle-double-right nearby-btn" type="button">Nearby</button>
-					<label class="item item-input">
-						<input type="text" placeholder="Search Zip or City" ng-model="sc.keyword"/>
-					</label>
-					<button class="button button-clear icon fa fa-angle-double-right search-btn" type="submit"></button>
-	  			</form>
-	  		</div>
-  		</div-->	
-		
-		<div style="width: 100%; height: 100%" data-tap-disabled="true" ng-if="mode == 'map'"> 
-		<google-map draggable="true" center="map.center" zoom="map.zoom" >
-			<marker ng-repeat="store in stores" coords="{latitude: store.Latitude,longitude: store.Longitude}" idKey="store.CS_StoreID" icon="store.StoreIconURL">
-				<window show="show">
-					<div class="MapStoreInfo" ng-controller="SelectStoreCtrl">
-						<h3>{{store.StoreName}}</h3>
-						{{store.Address1}}<br/>
-						{{store.City}}, {{store.State}} {{store.Zipcode}}<br/>
-						<h4>Store Hours: </h4>
-						<div>{{store.StoreHours}}</div>						
-						<a ng-click="selectStore(this.$parent.$parent.store)">Choose store</a>
-					</div>
-				</window>
-			</marker>
-			<marker coords="map.center" idKey="hereKey" ng-if="showHere" >
-				<marker-label content="hereTitle"></marker-label>
-			</marker>
-		</google-map> 
-		</div>
-	
-	
-		<ul class="list" ng-if="mode == 'list'">
-			<li class="item store-list" ng-repeat="store in stores" >
-				<div class="row">
-					<div class="col image">
-						<img ng-src="{{getLogo(store)}}"/>
-						<div>{{store.Address1}}</div>
-						<div ng-if="store.Address2">{{store.Address2}}</div>
-						<div>{{store.City}}, {{store.State}} {{store.Zipcode}}</div>
-					</div>
-					<div class="col info">
-						<button class="button button-small  button-positive" ng-click="store.selectStore(store)">
-							Select Store
-						</button>
-						<button class="button button-small  button-positive" ng-click="goTo('app.storeinfo', {id: store.CS_StoreID})">
-							More Info
-						</button>
-					</div>
-				</div>
-			</li>
-			<li class="item store-list noitems" ng-if="stores && stores.length == 0">
-				No results found.
-			</li>
+    <ion-content class="has-header">
+        <!--div class="list search">
+            <div class="item item-divider">
+                <form novalidate class="item-input-inset store-search-form " ng-submit="searchStore()">
+                    <button ng-click="nearBy()"class="button button-clear icon icon-right fa fa-angle-double-right nearby-btn" type="button">Nearby</button>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Search Zip or City" ng-model="sc.keyword"/>
+                    </label>
+                    <button class="button button-clear icon fa fa-angle-double-right search-btn" type="submit"></button>
+                </form>
+            </div>
+        </div-->    
+        
+        <div style="width: 100%; height: 100%" data-tap-disabled="true" ng-if="mode == 'map'"> 
+        <ui-gmap-google-map id="mainGmap" draggable="true" center="map.center" zoom="map.zoom" bounds="map.bounds" click="onMarkerClicked">
+             <ui-gmap-marker ng-repeat="store in stores" coords="{latitude: store.Latitude,longitude: store.Longitude}" icon='store.icon'  idkey='store.StoreID'>
+                    <ui-gmap-window >
+                        <div class="MapStoreInfo" ng-controller="SelectStoreCtrl">
+                            <h3>{{store.Name}}</h3>
+                            {{store.Address}}<br/>
+                            {{store.DistrictName}}, {{store.CityName}}<br/>                          
+                            <div>Post:Tặng quà khi mua hàng...</div>
+                            <a ng-click="goTo('app.storeinfo', {id: store.StoreID})">Xem</a>
+                        </div>
+                    </ui-gmap-window>
+                </ui-gmap-marker>
+            
+        </ui-gmap-google-map> 
+        </div>
+    
+    
+        <ul class="list" ng-if="mode == 'list'">
+            <li class="item store-list" ng-repeat="store in stores" >
+                <div class="row">
+                    <div class="col image">
+                        <img ng-src="{{getLogo(store)}}"/>
+                        <div>{{store.Address}}</div>
+                        
+                        <div>{{store.DistrictName}}, {{store.CityName}} </div>
+                    </div>
+                    <div class="col info">
+                        <button class="button button-small  button-positive" ng-click="store.selectStore(store)">
+                            Select Store
+                        </button>
+                        <button class="button button-small  button-positive" ng-click="goTo('app.storeinfo', {id: store.CS_StoreID})">
+                            More Info
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li class="item store-list noitems" ng-if="stores && stores.length == 0">
+                No results found.
+            </li>
 
-		</ul>
-		
-  	</ion-content>
-  	<div class="tabs tabs-icon-top ">
-		<a class="tab-item"  ng-class="{selected: selectedTab == 'favorite'}" ng-click="switchStoreType('favorite')">
-			<i class="icon ion-heart"></i>
-			Favorite Brands
-		</a>
-		<a class="tab-item" ng-class="{selected: selectedTab == 'lucky'}" ng-click="switchStoreType('lucky')">
-			<i class="icon ion-star"></i>
-			Lucky Day
-		</a>
-		<a class="tab-item" ng-class="{selected: selectedTab == 'history'}" ng-click="switchStoreType('history')">
-			<i class="icon ion-clock" ></i>
-			Histories
-		</a>
-  	</div>
+        </ul>
+        
+    </ion-content>
+    <div class="tabs tabs-icon-top ">
+        <a class="tab-item"  ng-class="{selected: selectedTab == 'favorite'}" ng-click="switchStoreType('favorite')">
+            <i class="icon ion-heart"></i>
+            Favorite Brands
+        </a>
+        <a class="tab-item" ng-class="{selected: selectedTab == 'lucky'}" ng-click="switchStoreType('lucky')">
+            <i class="icon ion-star"></i>
+            Lucky Day
+        </a>
+        <a class="tab-item" ng-class="{selected: selectedTab == 'history'}" ng-click="switchStoreType('history')">
+            <i class="icon ion-clock" ></i>
+            Histories
+        </a>
+    </div>
 </ion-view>

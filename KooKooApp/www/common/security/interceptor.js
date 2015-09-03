@@ -39,18 +39,20 @@ angular.module('security.interceptor', [
 					config.cache = CacheUtil.getOfflineHttpCache();	
 				}
 				// end handle Offline
-
+				//Temp
+				
 					
 				if(config.intercetorParams && config.intercetorParams.api){
 					config.url = config.secure ? appConfig.SecureHost+config.url : appConfig.Host+config.url;
 					delete config.intercetorParams.api;
 				}
 				// end handle interceptor params
+
 				if(info.apiKey && info.apiKey.AccessToken){
-					config.headers['X-MCMAccessToken'] = info.apiKey.AccessToken;
+					//config.headers['X-MCMAccessToken'] = info.apiKey.AccessToken;
 					config.headers['Content-Type'] = 'application/json';
 				}
-							
+						
 				return config || q.when(config);
 			},
 
@@ -91,6 +93,7 @@ angular.module('security.interceptor', [
 			},
 
 			responseError: function(rejection) {
+				return;
 				if(rejection.status === 401) {
 					
 					if (rejection.config.url.indexOf(appConfig.Host) > -1) {

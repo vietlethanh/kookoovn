@@ -1,0 +1,1162 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"con",
+				"controlMap"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "www/app/config.js",
+			"settings":
+			{
+				"buffer_size": 4530,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/storelocator/storelocator.js",
+			"settings":
+			{
+				"buffer_size": 10431,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/recipe/recipe.js",
+			"settings":
+			{
+				"buffer_size": 12402,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/app/storelocator/storelocator.html",
+			"settings":
+			{
+				"buffer_size": 4074,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 508 files for \"onMarkerClicked\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator - Copy.html:\n   23  		<div style=\"width: 100%; height: 100%\" data-tap-disabled=\"true\" ng-if=\"mode == 'map'\"> \n   24  		<ui-gmap-google-map id=\"mainGmap\" draggable=\"true\" center=\"map.center\" zoom=\"map.zoom\" bounds=\"map.bounds\" >\n   25: 			 <ui-gmap-marker ng-repeat=\"store in stores\" coords=\"{latitude: store.Latitude,longitude: store.Longitude}\" icon='store.icon' ng-click='onMarkerClicked(m)'\n   26  	                             idkey='store.StoreID'>\n   27  	                <ui-gmap-window >\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator.html:\n   23          <div style=\"width: 100%; height: 100%\" data-tap-disabled=\"true\" ng-if=\"mode == 'map'\"> \n   24          <ui-gmap-google-map id=\"mainGmap\" draggable=\"true\" center=\"map.center\" zoom=\"map.zoom\" bounds=\"map.bounds\" >\n   25:              <ui-gmap-marker ng-repeat=\"store in stores\" coords=\"{latitude: store.Latitude,longitude: store.Longitude}\" icon='store.icon' ng-click='onMarkerClicked(m)'\n   26                                   idkey='store.StoreID'>\n   27                      <ui-gmap-window >\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample\\storelocator.html:\n   88          </ui-gmap-marker>\n   89  \n   90:         <ui-gmap-markers models=\"map.randomMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\"\n   91                      doCluster=\"map.doClusterRandomMarkers\" clusterOptions=\"map.clusterOptions\" modelsbyref=\"true\">\n   92          </ui-gmap-markers>\n   93  \n   94:         <ui-gmap-markers models=\"map.markers2\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" options=\"'options'\" events=\"map.markers2Events\">\n   95              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n   96                  <div>\n   ..\n  110          </ui-gmap-markers>\n  111  \n  112:         <ui-gmap-markers models=\"map.dynamicMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" fit='true'>\n  113              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n  114                  <div>\n  ...\n  122          </ui-gmap-markers>\n  123  \n  124:         <ui-gmap-markers idKey=\"map.mexiIdKey\" models=\"map.mexiMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" >\n  125              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n  126                  <div>\n  ...\n  134          <!-- predefined markers -->\n  135          <!-- rendering via ng-repear, HIGH OVERHEAD via DOM Manipulation -->\n  136:         <ui-gmap-marker ng-repeat=\"m in map.markers\" coords=\"m\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\" options=\"m.options\">\n  137              <ui-gmap-window ng-cloak  coords=\"map.infoWindowWithCustomClass.coords\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n  138                      <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample\\storelocator.js:\n  139    });\n  140  \n  141:   var onMarkerClicked = function (marker) {\n  142      marker.showWindow = true;\n  143      $scope.$apply();\n  ...\n  577      };\n  578      marker.onClicked = function () {\n  579:       onMarkerClicked(marker);\n  580      };\n  581    });\n  ...\n  583    $scope.map.markers2.forEach( function (marker) {\n  584      marker.onClicked = function () {\n  585:       onMarkerClicked(marker);\n  586      };\n  587      marker.closeClick = function () {\n  ...\n  649      }\n  650    };\n  651:   $scope.onMarkerClicked = onMarkerClicked;\n  652  \n  653    $scope.clackMarker = function (gMarker,eventName, model) {\n  ...\n  718        };\n  719        marker.onClicked = function () {\n  720:         onMarkerClicked(marker);\n  721        };\n  722      });\n\n13 matches across 4 files\n\n\nSearching 14613 files for \"onMarkerClicked\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\example.html:\n  133          <!--<!-- predefined markers -->-->\n  134          <!--<!-- rendering via ng-repear, HIGH OVERHEAD via DOM Manipulation -->-->\n  135:         <marker ng-repeat=\"m in map.markers\" coords=\"m\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\" options=\"m.options\">\n  136              <marker-label content=\"m.title\" anchor=\"22 0\" class=\"marker-labels\"/>\n  137              <window ng-cloak  coords=\"map.infoWindowWithCustomClass.coords\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\geojson.html:\n  123          <!-- predefined markers -->\n  124          <!-- rendering via ng-repeat, HIGH OVERHEAD via DOM Manipulation -->\n  125:         <marker ng-repeat=\"m in map.markers\" coords=\"m.geometry\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\">\n  126              <marker-label content=\"m.title\" anchor=\"22 0\" class=\"marker-labels\"/>\n  127              <window ng-cloak  coords=\"map.infoWindowWithCustomClass.geometry\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\issue-154-marker-fit.html:\n   43                      draggable=\"true\"\n   44                      control=\"map.control\">\n   45:             <marker ng-repeat=\"m in map.dynamicMarkers\"  coords='m' icon='m.icon' ng-click='onMarkerClicked(m)' fit=\"true\" idkey='m.id'>\n   46                  <window show=\"m.showWindow\"  closeClick=\"'closeClick'\" ng-cloak>\n   47                      <div ng-controller=\"InfoController\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\issue-157-ng-click.html:\n   43                      draggable=\"true\"\n   44                      control=\"map.control\">\n   45:             <marker ng-repeat=\"m in map.markers2\"  coords='m' icon='m.icon' ng-click='onMarkerClicked(m)' idkey='m.id'>\n   46                  <window show=\"m.showWindow\"  closeClick=\"'closeClick'\" ng-cloak>\n   47                      <div ng-controller=\"InfoController\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\example.js:\n   35    });\n   36  \n   37:   var onMarkerClicked = function (marker) {\n   38      marker.showWindow = true;\n   39      $scope.$apply();\n   ..\n  470      };\n  471      marker.onClicked = function () {\n  472:       onMarkerClicked(marker);\n  473      };\n  474    });\n  ...\n  480      };\n  481      marker.onClicked = function () {\n  482:       onMarkerClicked(marker);\n  483      };\n  484    });\n  ...\n  554      }\n  555    }\n  556:   $scope.onMarkerClicked = onMarkerClicked;\n  557  \n  558    $scope.clackMarker = function ($markerModel) {\n  ...\n  622        };\n  623        marker.onClicked = function () {\n  624:         onMarkerClicked(marker);\n  625        };\n  626      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\geojson.js:\n   21    });\n   22  \n   23:   var onMarkerClicked = function (marker) {\n   24      marker.showWindow = true;\n   25      //window.alert(\"Marker: lat: \" + marker.latitude + \", lon: \" + marker.longitude + \" clicked!!\")\n   ..\n  375      };\n  376      marker.onClicked = function () {\n  377:       onMarkerClicked(marker);\n  378      };\n  379    });\n  ...\n  385      };\n  386      marker.onClicked = function () {\n  387:       onMarkerClicked(marker);\n  388      };\n  389    });\n  ...\n  452      }\n  453    }\n  454:   $scope.onMarkerClicked = onMarkerClicked;\n  455  \n  456    $timeout(function () {\n  ...\n  511        };\n  512        marker.onClicked = function () {\n  513:         onMarkerClicked(marker);\n  514        };\n  515      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-154-marker-fit.js:\n   88  //    };\n   89  //    marker.onClicked = function () {\n   90: //      $scope.onMarkerClicked(marker);\n   91  //    };\n   92  //  });\n   ..\n   98  //    };\n   99  //    marker.onClicked = function () {\n  100: //      $scope.onMarkerClicked(marker);\n  101  //    };\n  102  //  });\n  ...\n  127    var markerToClose = null;\n  128  \n  129:   $scope.onMarkerClicked = function (marker) {\n  130  //    if (markerToClose) {\n  131  //      markerToClose.showWindow = false;\n  ...\n  165        };\n  166        marker.onClicked = function () {\n  167:         $scope.onMarkerClicked(marker);\n  168        };\n  169      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-157-ng-click.js:\n   88  //    };\n   89  //    marker.onClicked = function () {\n   90: //      $scope.onMarkerClicked(marker);\n   91  //    };\n   92  //  });\n   ..\n   98  //    };\n   99  //    marker.onClicked = function () {\n  100: //      $scope.onMarkerClicked(marker);\n  101  //    };\n  102  //  });\n  ...\n  127    var markerToClose = null;\n  128  \n  129:   $scope.onMarkerClicked = function (marker) {\n  130  //    if (markerToClose) {\n  131  //      markerToClose.showWindow = false;\n  ...\n  165        };\n  166        marker.onClicked = function () {\n  167:         $scope.onMarkerClicked(marker);\n  168        };\n  169      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-322.js:\n   88      };\n   89      marker.onClicked = function () {\n   90:       $scope.onMarkerClicked(marker);\n   91      };\n   92    });\n   ..\n   98      };\n   99      marker.onClicked = function () {\n  100:       $scope.onMarkerClicked(marker);\n  101      };\n  102    });\n  ...\n  127    var markerToClose = null;\n  128  \n  129:   $scope.onMarkerClicked = function (marker) {\n  130      if (markerToClose) {\n  131        markerToClose.showWindow = false;\n  ...\n  161        };\n  162        marker.onClicked = function () {\n  163:         $scope.onMarkerClicked(marker);\n  164        };\n  165      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-393-cluster-events-mapped.js:\n   99    var markerToClose = null;\n  100  \n  101:   $scope.onMarkerClicked = function (marker) {\n  102  //    if (markerToClose) {\n  103  //      markerToClose.showWindow = false;\n  ...\n  137        };\n  138        marker.onClicked = function () {\n  139:         $scope.onMarkerClicked(marker);\n  140        };\n  141      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-432-markers-fit-clustering.js:\n   99    var markerToClose = null;\n  100  \n  101:   $scope.onMarkerClicked = function (marker) {\n  102  //    if (markerToClose) {\n  103  //      markerToClose.showWindow = false;\n  ...\n  143        };\n  144        marker.onClicked = function () {\n  145:         $scope.onMarkerClicked(marker);\n  146        };\n  147      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-482-markers-animation-clustering.js:\n   47  \n   48  //  var oldMarker = null;\n   49:   $scope.onMarkerClicked = function (marker) {\n   50  //    if(oldMarker){\n   51  ////      oldMarker.options = {animation:google.maps.Animation.DROP}; // or 2\n   ..\n   96        };\n   97        marker.onClicked = function () {\n   98:         $scope.onMarkerClicked(marker);\n   99        };\n  100      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-482-markers-animation.js:\n   92  \n   93  //  var oldMarker = null;\n   94:   $scope.onMarkerClicked = function (marker) {\n   95  //    if(oldMarker){\n   96  ////      oldMarker.options = {animation:google.maps.Animation.DROP}; // or 2\n   ..\n  134        };\n  135        marker.onClicked = function () {\n  136:         $scope.onMarkerClicked(marker);\n  137        };\n  138      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-484-markers-self.js:\n  100        };\n  101        marker.onClicked = function () {\n  102:         $scope.onMarkerClicked(marker);\n  103        };\n  104      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-498-marker-move-loaded.js:\n   52        title: ''\n   53      },\n   54:     onMarkerClicked: function (marker) {\n   55        marker.showWindow = true;\n   56        $scope.$apply();\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-534-markers-child-destroy.js:\n   71  \n   72  //  var oldMarker = null;\n   73:   $scope.onMarkerClicked = function (marker) {\n   74      $scope.$apply();\n   75    };\n   ..\n   99      _.each(markers, function (marker) {\n  100        marker.onClicked = function () {\n  101:         $scope.onMarkerClicked(marker);\n  102        };\n  103      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\assets\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-74-markers-events.js:\n  102    var markerToClose = null;\n  103  \n  104:   $scope.onMarkerClicked = function (marker) {\n  105  //    if (markerToClose) {\n  106  //      markerToClose.showWindow = false;\n  ...\n  140        };\n  141        marker.onClicked = function () {\n  142:         $scope.onMarkerClicked(marker);\n  143        };\n  144      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\example.html:\n  133          <!--<!-- predefined markers -->-->\n  134          <!--<!-- rendering via ng-repear, HIGH OVERHEAD via DOM Manipulation -->-->\n  135:         <marker ng-repeat=\"m in map.markers\" coords=\"m\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\" options=\"m.options\">\n  136              <marker-label content=\"m.title\" anchor=\"22 0\" class=\"marker-labels\"/>\n  137              <window ng-cloak  coords=\"map.infoWindowWithCustomClass.coords\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\geojson.html:\n  123          <!-- predefined markers -->\n  124          <!-- rendering via ng-repeat, HIGH OVERHEAD via DOM Manipulation -->\n  125:         <marker ng-repeat=\"m in map.markers\" coords=\"m.geometry\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\">\n  126              <marker-label content=\"m.title\" anchor=\"22 0\" class=\"marker-labels\"/>\n  127              <window ng-cloak  coords=\"map.infoWindowWithCustomClass.geometry\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\issue-154-marker-fit.html:\n   43                      draggable=\"true\"\n   44                      control=\"map.control\">\n   45:             <marker ng-repeat=\"m in map.dynamicMarkers\"  coords='m' icon='m.icon' ng-click='onMarkerClicked(m)' fit=\"true\" idkey='m.id'>\n   46                  <window show=\"m.showWindow\"  closeClick=\"'closeClick'\" ng-cloak>\n   47                      <div ng-controller=\"InfoController\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\issue-157-ng-click.html:\n   43                      draggable=\"true\"\n   44                      control=\"map.control\">\n   45:             <marker ng-repeat=\"m in map.markers2\"  coords='m' icon='m.icon' ng-click='onMarkerClicked(m)' idkey='m.id'>\n   46                  <window show=\"m.showWindow\"  closeClick=\"'closeClick'\" ng-cloak>\n   47                      <div ng-controller=\"InfoController\">\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\example.js:\n   35    });\n   36  \n   37:   var onMarkerClicked = function (marker) {\n   38      marker.showWindow = true;\n   39      $scope.$apply();\n   ..\n  470      };\n  471      marker.onClicked = function () {\n  472:       onMarkerClicked(marker);\n  473      };\n  474    });\n  ...\n  480      };\n  481      marker.onClicked = function () {\n  482:       onMarkerClicked(marker);\n  483      };\n  484    });\n  ...\n  554      }\n  555    }\n  556:   $scope.onMarkerClicked = onMarkerClicked;\n  557  \n  558    $scope.clackMarker = function ($markerModel) {\n  ...\n  622        };\n  623        marker.onClicked = function () {\n  624:         onMarkerClicked(marker);\n  625        };\n  626      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\geojson.js:\n   21    });\n   22  \n   23:   var onMarkerClicked = function (marker) {\n   24      marker.showWindow = true;\n   25      //window.alert(\"Marker: lat: \" + marker.latitude + \", lon: \" + marker.longitude + \" clicked!!\")\n   ..\n  375      };\n  376      marker.onClicked = function () {\n  377:       onMarkerClicked(marker);\n  378      };\n  379    });\n  ...\n  385      };\n  386      marker.onClicked = function () {\n  387:       onMarkerClicked(marker);\n  388      };\n  389    });\n  ...\n  452      }\n  453    }\n  454:   $scope.onMarkerClicked = onMarkerClicked;\n  455  \n  456    $timeout(function () {\n  ...\n  511        };\n  512        marker.onClicked = function () {\n  513:         onMarkerClicked(marker);\n  514        };\n  515      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-154-marker-fit.js:\n   88  //    };\n   89  //    marker.onClicked = function () {\n   90: //      $scope.onMarkerClicked(marker);\n   91  //    };\n   92  //  });\n   ..\n   98  //    };\n   99  //    marker.onClicked = function () {\n  100: //      $scope.onMarkerClicked(marker);\n  101  //    };\n  102  //  });\n  ...\n  127    var markerToClose = null;\n  128  \n  129:   $scope.onMarkerClicked = function (marker) {\n  130  //    if (markerToClose) {\n  131  //      markerToClose.showWindow = false;\n  ...\n  165        };\n  166        marker.onClicked = function () {\n  167:         $scope.onMarkerClicked(marker);\n  168        };\n  169      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-157-ng-click.js:\n   88  //    };\n   89  //    marker.onClicked = function () {\n   90: //      $scope.onMarkerClicked(marker);\n   91  //    };\n   92  //  });\n   ..\n   98  //    };\n   99  //    marker.onClicked = function () {\n  100: //      $scope.onMarkerClicked(marker);\n  101  //    };\n  102  //  });\n  ...\n  127    var markerToClose = null;\n  128  \n  129:   $scope.onMarkerClicked = function (marker) {\n  130  //    if (markerToClose) {\n  131  //      markerToClose.showWindow = false;\n  ...\n  165        };\n  166        marker.onClicked = function () {\n  167:         $scope.onMarkerClicked(marker);\n  168        };\n  169      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-322.js:\n   88      };\n   89      marker.onClicked = function () {\n   90:       $scope.onMarkerClicked(marker);\n   91      };\n   92    });\n   ..\n   98      };\n   99      marker.onClicked = function () {\n  100:       $scope.onMarkerClicked(marker);\n  101      };\n  102    });\n  ...\n  127    var markerToClose = null;\n  128  \n  129:   $scope.onMarkerClicked = function (marker) {\n  130      if (markerToClose) {\n  131        markerToClose.showWindow = false;\n  ...\n  161        };\n  162        marker.onClicked = function () {\n  163:         $scope.onMarkerClicked(marker);\n  164        };\n  165      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-393-cluster-events-mapped.js:\n   99    var markerToClose = null;\n  100  \n  101:   $scope.onMarkerClicked = function (marker) {\n  102  //    if (markerToClose) {\n  103  //      markerToClose.showWindow = false;\n  ...\n  137        };\n  138        marker.onClicked = function () {\n  139:         $scope.onMarkerClicked(marker);\n  140        };\n  141      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-432-markers-fit-clustering.js:\n   99    var markerToClose = null;\n  100  \n  101:   $scope.onMarkerClicked = function (marker) {\n  102  //    if (markerToClose) {\n  103  //      markerToClose.showWindow = false;\n  ...\n  143        };\n  144        marker.onClicked = function () {\n  145:         $scope.onMarkerClicked(marker);\n  146        };\n  147      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-482-markers-animation-clustering.js:\n   47  \n   48  //  var oldMarker = null;\n   49:   $scope.onMarkerClicked = function (marker) {\n   50  //    if(oldMarker){\n   51  ////      oldMarker.options = {animation:google.maps.Animation.DROP}; // or 2\n   ..\n   96        };\n   97        marker.onClicked = function () {\n   98:         $scope.onMarkerClicked(marker);\n   99        };\n  100      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-482-markers-animation.js:\n   92  \n   93  //  var oldMarker = null;\n   94:   $scope.onMarkerClicked = function (marker) {\n   95  //    if(oldMarker){\n   96  ////      oldMarker.options = {animation:google.maps.Animation.DROP}; // or 2\n   ..\n  134        };\n  135        marker.onClicked = function () {\n  136:         $scope.onMarkerClicked(marker);\n  137        };\n  138      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-484-markers-self.js:\n  100        };\n  101        marker.onClicked = function () {\n  102:         $scope.onMarkerClicked(marker);\n  103        };\n  104      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-498-marker-move-loaded.js:\n   52        title: ''\n   53      },\n   54:     onMarkerClicked: function (marker) {\n   55        marker.showWindow = true;\n   56        $scope.$apply();\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-534-markers-child-destroy.js:\n   71  \n   72  //  var oldMarker = null;\n   73:   $scope.onMarkerClicked = function (marker) {\n   74      $scope.$apply();\n   75    };\n   ..\n   99      _.each(markers, function (marker) {\n  100        marker.onClicked = function () {\n  101:         $scope.onMarkerClicked(marker);\n  102        };\n  103      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\platforms\\android\\build\\intermediates\\assets\\debug\\www\\lib\\angular-google-maps\\example\\assets\\scripts\\controllers\\issue-74-markers-events.js:\n  102    var markerToClose = null;\n  103  \n  104:   $scope.onMarkerClicked = function (marker) {\n  105  //    if (markerToClose) {\n  106  //      markerToClose.showWindow = false;\n  ...\n  140        };\n  141        marker.onClicked = function () {\n  142:         $scope.onMarkerClicked(marker);\n  143        };\n  144      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator - Copy.html:\n   23  		<div style=\"width: 100%; height: 100%\" data-tap-disabled=\"true\" ng-if=\"mode == 'map'\"> \n   24  		<ui-gmap-google-map id=\"mainGmap\" draggable=\"true\" center=\"map.center\" zoom=\"map.zoom\" bounds=\"map.bounds\" >\n   25: 			 <ui-gmap-marker ng-repeat=\"store in stores\" coords=\"{latitude: store.Latitude,longitude: store.Longitude}\" icon='store.icon' ng-click='onMarkerClicked(m)'\n   26  	                             idkey='store.StoreID'>\n   27  	                <ui-gmap-window >\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator.js:\n   58          $scope.switchMode = this.switchMode.bind(this);\n   59          $scope.switchStoreType = this.switchStoreType.bind(this);\n   60:         $scope.onMarkerClicked = this.onMarkerClicked();\n   61          $scope.nearBy = this.nearBy.bind(this);\n   62          $scope.searchStore = function(){\n   ..\n  102          \n  103        },\n  104:       onMarkerClicked : function(scope,stores) {   \n  105        }\n  106        addMarkers : function(scope,stores) {   \n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample\\storelocator.html:\n   88          </ui-gmap-marker>\n   89  \n   90:         <ui-gmap-markers models=\"map.randomMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\"\n   91                      doCluster=\"map.doClusterRandomMarkers\" clusterOptions=\"map.clusterOptions\" modelsbyref=\"true\">\n   92          </ui-gmap-markers>\n   93  \n   94:         <ui-gmap-markers models=\"map.markers2\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" options=\"'options'\" events=\"map.markers2Events\">\n   95              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n   96                  <div>\n   ..\n  110          </ui-gmap-markers>\n  111  \n  112:         <ui-gmap-markers models=\"map.dynamicMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" fit='true'>\n  113              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n  114                  <div>\n  ...\n  122          </ui-gmap-markers>\n  123  \n  124:         <ui-gmap-markers idKey=\"map.mexiIdKey\" models=\"map.mexiMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" >\n  125              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n  126                  <div>\n  ...\n  134          <!-- predefined markers -->\n  135          <!-- rendering via ng-repear, HIGH OVERHEAD via DOM Manipulation -->\n  136:         <ui-gmap-marker ng-repeat=\"m in map.markers\" coords=\"m\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\" options=\"m.options\">\n  137              <ui-gmap-window ng-cloak  coords=\"map.infoWindowWithCustomClass.coords\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n  138                      <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample\\storelocator.js:\n  139    });\n  140  \n  141:   var onMarkerClicked = function (marker) {\n  142      marker.showWindow = true;\n  143      $scope.$apply();\n  ...\n  577      };\n  578      marker.onClicked = function () {\n  579:       onMarkerClicked(marker);\n  580      };\n  581    });\n  ...\n  583    $scope.map.markers2.forEach( function (marker) {\n  584      marker.onClicked = function () {\n  585:       onMarkerClicked(marker);\n  586      };\n  587      marker.closeClick = function () {\n  ...\n  649      }\n  650    };\n  651:   $scope.onMarkerClicked = onMarkerClicked;\n  652  \n  653    $scope.clackMarker = function (gMarker,eventName, model) {\n  ...\n  718        };\n  719        marker.onClicked = function () {\n  720:         onMarkerClicked(marker);\n  721        };\n  722      });\n\n99 matches across 38 files\n\n\nSearching 2 files for \"onMarkerClicked\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample\\storelocator.html:\n   88          </ui-gmap-marker>\n   89  \n   90:         <ui-gmap-markers models=\"map.randomMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\"\n   91                      doCluster=\"map.doClusterRandomMarkers\" clusterOptions=\"map.clusterOptions\" modelsbyref=\"true\">\n   92          </ui-gmap-markers>\n   93  \n   94:         <ui-gmap-markers models=\"map.markers2\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" options=\"'options'\" events=\"map.markers2Events\">\n   95              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n   96                  <div>\n   ..\n  110          </ui-gmap-markers>\n  111  \n  112:         <ui-gmap-markers models=\"map.dynamicMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" fit='true'>\n  113              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n  114                  <div>\n  ...\n  122          </ui-gmap-markers>\n  123  \n  124:         <ui-gmap-markers idKey=\"map.mexiIdKey\" models=\"map.mexiMarkers\" coords=\"'self'\" icon=\"'icon'\" click=\"onMarkerClicked\" >\n  125              <ui-gmap-windows show=\"'showWindow'\" closeClick=\"'closeClick'\" ng-cloak>\n  126                  <div>\n  ...\n  134          <!-- predefined markers -->\n  135          <!-- rendering via ng-repear, HIGH OVERHEAD via DOM Manipulation -->\n  136:         <ui-gmap-marker ng-repeat=\"m in map.markers\" coords=\"m\" icon=\"m.icon\" click=\"onMarkerClicked(m)\" idKey=\"m.id\" options=\"m.options\">\n  137              <ui-gmap-window ng-cloak  coords=\"map.infoWindowWithCustomClass.coords\" isIconVisibleOnClick=\"false\" options=\"map.infoWindowWithCustomClass.options\">\n  138                      <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample\\storelocator.js:\n  139    });\n  140  \n  141:   var onMarkerClicked = function (marker) {\n  142      marker.showWindow = true;\n  143      $scope.$apply();\n  ...\n  577      };\n  578      marker.onClicked = function () {\n  579:       onMarkerClicked(marker);\n  580      };\n  581    });\n  ...\n  583    $scope.map.markers2.forEach( function (marker) {\n  584      marker.onClicked = function () {\n  585:       onMarkerClicked(marker);\n  586      };\n  587      marker.closeClick = function () {\n  ...\n  649      }\n  650    };\n  651:   $scope.onMarkerClicked = onMarkerClicked;\n  652  \n  653    $scope.clackMarker = function (gMarker,eventName, model) {\n  ...\n  718        };\n  719        marker.onClicked = function () {\n  720:         onMarkerClicked(marker);\n  721        };\n  722      });\n\n11 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 30441,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "www/app/storelocator/storelocator_sample/storelocator.js",
+			"settings":
+			{
+				"buffer_size": 18852,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "platforms/android/build/intermediates/assets/debug/www/lib/angular-google-maps/example/example.html",
+			"settings":
+			{
+				"buffer_size": 24856,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/app/storelocator/storelocator_sample.rar",
+			"settings":
+			{
+				"buffer_size": 22925,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/app/storelocator/storelocator_sample/storelocator.html",
+			"settings":
+			{
+				"buffer_size": 27456,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\nangular.module('MCMRelationshop.StoreLocator', function(){\n  if(isOnline()){\n    return [\n      'uiGmapgoogle-maps',\n      'MCMRelationshop.Resource.Store',\n      'MCMRelationshop.Utils'\n    ]\n  }\n  else {\n    return [\n      'MCMRelationshop.Resource.Store',\n      'MCMRelationshop.Utils'\n    ]\n  }\n}()/*  \n[\n  'google-maps',\n  'MCMRelationshop.Resource.Store',\n  'MCMRelationshop.Utils'\n]*/)\n.factory('BaseStoreLocatorCtrl',['APP_CONFIG', 'Store','AppUtil','$ionicLoading','MCMTracker','$ionicScrollDelegate','$timeout',\n  function(APP_CONFIG, Store,AppUtil,$ionicLoading,MCMTracker, $ionicScrollDelegate,$timeout){\n    var cls = Class.extend({\n      logos: {\n        '13': 'img/store-logo-united.png',\n        '14': 'img/store-logo-mktstreet.png',\n        '22': 'img/store-logo-mktstreet.png',\n        '23': 'img/store-logo-Albertsons.png',\n        '15': 'img/store-logo-amigos.png'\n      },\n      init: function($scope){\n        var self = this;\n        this.$scope = $scope;\n        $scope.mode= APP_CONFIG.MapMode.map;// 'map'; /*map, list*/\n        $scope.selectedTab='favorite'; /*map, list*/\n        $scope.sc = {\n          keyword: '',\n        }\n        $scope.map ={\n          center: {\n            latitude:APP_CONFIG.StoreMapCenterPointDefault[0],\n            longitude: APP_CONFIG.StoreMapCenterPointDefault[1]\n          },\n          zoom: APP_CONFIG.StoreMapZoomDefault,\n          bounds: {},\n        };\n        //$scope.gmap = new google.maps.Map(document.getElementById(\"mainGmap\"));\n        $scope.showHere = false;\n        $scope.hereKey = 'here';\n        $scope.hereTitle = 'Here i am';\n        $scope.stores = null;\n        //public methodP\n        $scope.getLogo =  function(store){\n          return self.logos[store.CS_BannerID+''];\n        }\n        $scope.switchMode = this.switchMode.bind(this);\n        $scope.switchStoreType = this.switchStoreType.bind(this);\n        $scope.onMarkerClicked = this.onMarkerClicked;\n        $scope.nearBy = this.nearBy.bind(this);\n        $scope.searchStore = function(){\n          self.loadData($scope.sc.keyword);\n        };\n        $scope.info = function(store){\n          $scope.goTo('app.storeinfo', {id: store.CS_StoreID})\n        };\n        this.loadData();\n        //MCMTracker.trackView('StoreLocator');\n       //  alert(\"You have Map Instance of\" + this.$scope.map.control.getGMap().toString());\n\n      },//init\n      loadData: function(keyword){\n        //console.log('loadData keyword');\n        var self = this;\n        $ionicLoading.show();\n        this.$scope.showHere = false;\n        Store.searchStore(keyword).then(this._sucessLoadData.bind(this))//\n        .then(function(){\n          \n          var sumlat = 0, \n            sumlng = 0,\n            stores = self.$scope.stores,\n            length = stores.length;\n          if(length <=0){\n            return;\n          }\n          console.log(stores);\n          _.forEach(stores, function(store){\n            sumlat += store.Latitude;\n            sumlng += store.Longitude;\n          });\n          // cal map center\n          self.$scope.map.center = {\n            latitude: sumlat/length,\n            longitude: sumlng/length,\n          }\n          \n          // self.addMarkers(self.$scope,stores);\n\n        });\n        \n      },\n      onMarkerClicked : function(marker) {   \n          console.log('onMarkerClicked');\n          marker.showWindow = true;\n          $scope.$apply();\n      },\n      \n      addMarkers : function(scope,stores) {   \n           \n        //console.log(map);\n            var bounds = new google.maps.LatLngBounds();\n\n            for (var i = 0; i < stores.length; i++) {\n              //console.log(stores[i]);\n               var latlng = new google.maps.LatLng(stores[i].Latitude, stores[i].Longitude);\n                bounds.extend(latlng);\n                //map.bounds.push(bounds);\n            }\n            //map.bounds = bounds;\n          \n        \n        /*scope.$on('mapInitialized', function(event, map) {\n          console.log(map);\n                map.setCenter(bounds.getCenter());\n                map.fitBounds(bounds);\n          });\n        */\n           // map.bounds = bounds;\n\n            //console.log(map.bounds);\n            \n            //console.log( bounds.getCenter());\n           // console.log(google.maps);\n           // var amap = new google.maps.Map(document.getElementById('mainGmap'));\n            //amap.fitBounds(bounds);\n           // map.center = bounds.getCenter();\n            //map.fitBounds(bounds);\n            //remove one zoom level to ensure no marker is on the edge.\n           //map.zoom = (map.zoom - 1);\n\n            // set a minimum zoom\n            // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n            if (scope.map.zoom > 15) {\n                scope.map.zoom = 15;\n            }\n        },\n\n      nearBy: function(){\n        $ionicLoading.show();\n        AppUtil.getCurrentPosition().then(function(res){\n          var latlgn = res.data.latitude+','+res.data.longitude;\n          this.$scope.map.center=res.data;\n          this.$scope.showHere  = true;\n          //$ionicLoading.show();\n          Store.searchNearByStore(latlgn).then(this._sucessLoadData.bind(this));\n\n        }.bind(this), function(error){\n          $ionicLoading.hide();\n          if(error){\n            alert(error.message);\n          }\n          else {\n            alert('Please enable location service.');\n          }\n          \n        });\n      },\n      _sucessLoadData: function(res){\n        //console.log(res);\n        var self = this;\n        console.log(res);\n        var stores = res.data;\n        //console.log(stores);\n        _.forEach(stores, function(store){\n          store.selectStore = self.onSelectStore;\n          store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];\n          if(store.PharmacyPhone){\n            var match = store.PharmacyPhone.match(/\\d+/g);\n            if(match == null){\n              store.PharmacyPhone = null;\n            }\n          }\n          //store.logo = self.[store.CS_BannerID+'']\n\n        });\n\n        this.$scope.stores = stores;\n        $ionicLoading.hide();\n      },\n      onSelectStore: function(store){\n        //console.log('lam gi the lam');\n      },\n      switchMode: function(mode){\n        this.$scope.mode = mode;\n        $timeout(function(){\n          $ionicScrollDelegate.scrollTop(true);\n        }, 500);  \n      },\n      switchStoreType: function(type){\n        this.$scope.mode = APP_CONFIG.MapMode.list;\n        this.$scope.selectedTab = type;\n        $timeout(function(){\n          $ionicScrollDelegate.scrollTop(true);\n        }, 500);  \n      }\n    });\n    \n    return cls;\n  },\n  \n])\n.controller('RegisterStoreCtrl', ['$scope','$state', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','CacheUtil',\n  function($scope, $state, APP_CONFIG, Store,BaseStoreLocatorCtrl, security, CacheUtil) {  \n    var controllerCls = BaseStoreLocatorCtrl.extend({\n      onSelectStore: function(store){\n        delete store.selectStore;\n        //security.setCurrentStore(store);\n        CacheUtil.getAppCache().put('/register/store', store);\n        $state.go('app.register', {step: 2});\n      }\n    });\n    var controller = new controllerCls($scope);\n  }\n])\n.controller('StoreLocatorCtrl', ['$scope','$state', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security',\n  function($scope, $state, APP_CONFIG, Store,BaseStoreLocatorCtrl, security) {  \n    var controllerCls = BaseStoreLocatorCtrl.extend({\n      onSelectStore: function(store){\n        delete store.selectStore;\n        security.setCurrentStore(store);\n        $state.go('app.weeklyad');\n      }\n    });\n    var controller = new controllerCls($scope);\n  }\n])\n.controller('SelectStoreCtrl', ['$scope',\n  function($scope) {  \n    $scope.selectStore = function(store){\n      store.selectStore(store);\n    }\n  }\n])\n.controller('StoreInfoCtrl',['$scope', '$state', '$stateParams', 'APP_CONFIG', 'security', 'Store','AppUtil','$ionicLoading','MCMTracker','$ionicScrollDelegate','$timeout',\n  function($scope, $state, $stateParams,APP_CONFIG, security, Store,AppUtil,$ionicLoading,MCMTracker, $ionicScrollDelegate,$timeout){\n\n    // private properties -------------------------------------------------------------\n    var id = $stateParams.id;\n    var logos =  {\n      '13': 'img/store-logo-united.png',\n      '14': 'img/store-logo-mktstreet.png',\n      '22': 'img/store-logo-mktstreet.png',\n      '23': 'img/store-logo-Albertsons.png',\n      '15': 'img/store-logo-amigos.png'\n    };\n    // scope properties -------------------------------------------------------------\n    $scope.map ={\n      center: {\n        latitude:APP_CONFIG.StoreMapCenterPointDefault[0],\n        longitude: APP_CONFIG.StoreMapCenterPointDefault[1]\n      },\n      zoom: APP_CONFIG.StoreMapZoomDefault\n    };\n    $scope.store = {};\n    $scope.showP = false;\n    $scope.showS = false;\n\n    // private method -------------------------------------------------------------\n    function loadData(){\n      $ionicLoading.show();\n      var req = Store.getStore(id).then(function(res){\n        $ionicLoading.hide();\n        var store = res.data;\n        store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];\n        store.mapLink = AppUtil.mapLink(store.Latitude, store.Longitude);\n        if(store.PharmacyPhone){\n          var match = store.PharmacyPhone.match(/\\d+/g);\n          if(match == null){\n            store.PharmacyPhone = null;\n          }\n        }\n        $scope.store = store;\n        $scope.map.center = {\n          latitude: $scope.store.Latitude,\n          longitude: $scope.store.Longitude\n        }\n        $scope.map.zoom = 10;\n      });\n      return req;\n    };\n    //public method -------------------------------------------------------------\n    $scope.goLocator = function(){\n      $scope.map.center = {\n        latitude: $scope.store.Latitude,\n        longitude: $scope.store.Longitude\n      }\n      $ionicScrollDelegate.scrollTop();\n    };\n    $scope.getLogo =  function(store){\n      return logos[store.CS_BannerID+''];\n    };\n    $scope.toggle = function(field){\n      $scope[field] = !$scope[field];\n    };\n    $scope.select = function(store){\n      security.setCurrentStore(store);\n      $state.go('app.weeklyad');\n    }\n    // Init -------------------------------------------------------------\n    loadData();\n  }\n]);\n",
+			"file": "www/app/storelocator/storedetail.js",
+			"file_size": 10743,
+			"file_write_time": 130857670108921787,
+			"settings":
+			{
+				"buffer_size": 10428,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 6937,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/storelocator/info.html",
+			"settings":
+			{
+				"buffer_size": 2584,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/common/resources/store.js",
+			"settings":
+			{
+				"buffer_size": 4162,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storeinfo.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/example/example.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/dist/angular-google-maps.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/angular-google-maps.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipe.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - 20150901.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - Copy.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/utils/utils.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/config.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/resources/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/resources/ads.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/interceptor.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/js/app.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/security/interceptor.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/info.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample",
+			"",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
+			"",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app,D:\\Desktop\\KooKooApp\\KooKooApp\\www\\common",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"track",
+			"recipedetail",
+			"onMarkerClicked",
+			"init",
+			"google.maps.Map",
+			"oogle.maps.Map",
+			"BaseStoreLocatorCtrl",
+			"marker",
+			"lati",
+			"lat",
+			"gMarker.key ",
+			"'keyword'",
+			"keyword",
+			"$scope.stores",
+			" $http.",
+			"DistributeHost",
+			"HttpUtil",
+			"DistributeHost",
+			"SecureHost",
+			"DistributeHost",
+			"SecureHost",
+			"searchStore"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "www/app/config.js",
+					"settings":
+					{
+						"buffer_size": 4530,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3250,
+								3250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1458.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/app/storelocator/storelocator.js",
+					"settings":
+					{
+						"buffer_size": 10431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7902,
+								7902
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4142.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/app/recipe/recipe.js",
+					"settings":
+					{
+						"buffer_size": 12402,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6420,
+								6444
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3080.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/app/storelocator/storelocator.html",
+					"settings":
+					{
+						"buffer_size": 4074,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1617,
+								1617
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 648.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"settings":
+					{
+						"buffer_size": 30441,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										482,
+										497
+									],
+									[
+										1058,
+										1073
+									],
+									[
+										1415,
+										1430
+									],
+									[
+										1687,
+										1702
+									],
+									[
+										2019,
+										2034
+									],
+									[
+										2333,
+										2348
+									],
+									[
+										2698,
+										2713
+									],
+									[
+										3164,
+										3179
+									],
+									[
+										3344,
+										3359
+									],
+									[
+										3517,
+										3532
+									],
+									[
+										3648,
+										3663
+									],
+									[
+										3666,
+										3681
+									],
+									[
+										3842,
+										3857
+									],
+									[
+										4303,
+										4318
+									],
+									[
+										4934,
+										4949
+									],
+									[
+										5533,
+										5548
+									],
+									[
+										6035,
+										6050
+									],
+									[
+										6387,
+										6402
+									],
+									[
+										6567,
+										6582
+									],
+									[
+										6696,
+										6711
+									],
+									[
+										6794,
+										6809
+									],
+									[
+										6812,
+										6827
+									],
+									[
+										6976,
+										6991
+									],
+									[
+										7198,
+										7213
+									],
+									[
+										7457,
+										7472
+									],
+									[
+										7586,
+										7601
+									],
+									[
+										7684,
+										7699
+									],
+									[
+										7702,
+										7717
+									],
+									[
+										7842,
+										7857
+									],
+									[
+										8127,
+										8142
+									],
+									[
+										8273,
+										8288
+									],
+									[
+										8394,
+										8409
+									],
+									[
+										8605,
+										8620
+									],
+									[
+										8888,
+										8903
+									],
+									[
+										9034,
+										9049
+									],
+									[
+										9155,
+										9170
+									],
+									[
+										9366,
+										9381
+									],
+									[
+										9634,
+										9649
+									],
+									[
+										9770,
+										9785
+									],
+									[
+										9887,
+										9902
+									],
+									[
+										10094,
+										10109
+									],
+									[
+										10365,
+										10380
+									],
+									[
+										10576,
+										10591
+									],
+									[
+										10848,
+										10863
+									],
+									[
+										11059,
+										11074
+									],
+									[
+										11335,
+										11350
+									],
+									[
+										11576,
+										11591
+									],
+									[
+										11841,
+										11856
+									],
+									[
+										12082,
+										12097
+									],
+									[
+										12369,
+										12384
+									],
+									[
+										12626,
+										12641
+									],
+									[
+										12945,
+										12960
+									],
+									[
+										13144,
+										13159
+									],
+									[
+										13407,
+										13422
+									],
+									[
+										13618,
+										13633
+									],
+									[
+										14032,
+										14047
+									],
+									[
+										14689,
+										14704
+									],
+									[
+										15314,
+										15329
+									],
+									[
+										15842,
+										15857
+									],
+									[
+										16220,
+										16235
+									],
+									[
+										16400,
+										16415
+									],
+									[
+										16529,
+										16544
+									],
+									[
+										16627,
+										16642
+									],
+									[
+										16645,
+										16660
+									],
+									[
+										16809,
+										16824
+									],
+									[
+										17057,
+										17072
+									],
+									[
+										17316,
+										17331
+									],
+									[
+										17445,
+										17460
+									],
+									[
+										17543,
+										17558
+									],
+									[
+										17561,
+										17576
+									],
+									[
+										17701,
+										17716
+									],
+									[
+										18012,
+										18027
+									],
+									[
+										18158,
+										18173
+									],
+									[
+										18279,
+										18294
+									],
+									[
+										18490,
+										18505
+									],
+									[
+										18799,
+										18814
+									],
+									[
+										18945,
+										18960
+									],
+									[
+										19066,
+										19081
+									],
+									[
+										19277,
+										19292
+									],
+									[
+										19571,
+										19586
+									],
+									[
+										19707,
+										19722
+									],
+									[
+										19824,
+										19839
+									],
+									[
+										20031,
+										20046
+									],
+									[
+										20328,
+										20343
+									],
+									[
+										20539,
+										20554
+									],
+									[
+										20837,
+										20852
+									],
+									[
+										21048,
+										21063
+									],
+									[
+										21350,
+										21365
+									],
+									[
+										21591,
+										21606
+									],
+									[
+										21882,
+										21897
+									],
+									[
+										22123,
+										22138
+									],
+									[
+										22436,
+										22451
+									],
+									[
+										22719,
+										22734
+									],
+									[
+										23064,
+										23079
+									],
+									[
+										23263,
+										23278
+									],
+									[
+										23552,
+										23567
+									],
+									[
+										23763,
+										23778
+									],
+									[
+										24259,
+										24274
+									],
+									[
+										24609,
+										24624
+									],
+									[
+										24632,
+										24647
+									],
+									[
+										24805,
+										24820
+									],
+									[
+										25149,
+										25164
+									],
+									[
+										25421,
+										25436
+									],
+									[
+										25753,
+										25768
+									],
+									[
+										26067,
+										26082
+									],
+									[
+										26432,
+										26447
+									],
+									[
+										26898,
+										26913
+									],
+									[
+										27078,
+										27093
+									],
+									[
+										27251,
+										27266
+									],
+									[
+										27382,
+										27397
+									],
+									[
+										27400,
+										27415
+									],
+									[
+										27576,
+										27591
+									],
+									[
+										27931,
+										27946
+									],
+									[
+										28203,
+										28218
+									],
+									[
+										28535,
+										28550
+									],
+									[
+										28849,
+										28864
+									],
+									[
+										29214,
+										29229
+									],
+									[
+										29680,
+										29695
+									],
+									[
+										29860,
+										29875
+									],
+									[
+										30033,
+										30048
+									],
+									[
+										30164,
+										30179
+									],
+									[
+										30182,
+										30197
+									],
+									[
+										30358,
+										30373
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								29676,
+								29911
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 3,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 13914.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/app/storelocator/storelocator_sample/storelocator.js",
+					"settings":
+					{
+						"buffer_size": 18852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3409,
+								3607
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2234.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "platforms/android/build/intermediates/assets/debug/www/lib/angular-google-maps/example/example.html",
+					"settings":
+					{
+						"buffer_size": 24856,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6921,
+								6936
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2398.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "www/app/storelocator/storelocator_sample.rar",
+					"settings":
+					{
+						"buffer_size": 22925,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/app/storelocator/storelocator_sample/storelocator.html",
+					"settings":
+					{
+						"buffer_size": 27456,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5084,
+								5107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1728.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "www/app/storelocator/storedetail.js",
+					"settings":
+					{
+						"buffer_size": 10428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								303,
+								303
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "www/index.html",
+					"settings":
+					{
+						"buffer_size": 6937,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2754.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "www/app/storelocator/info.html",
+					"settings":
+					{
+						"buffer_size": 2584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								221,
+								221
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "www/common/resources/store.js",
+					"settings":
+					{
+						"buffer_size": 4162,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								774,
+								774
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 244.0,
+	"status_bar_visible": true
+}
