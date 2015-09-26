@@ -6,16 +6,22 @@
     "angular-resource": "~1.2.25",
     "angular-cache": "~3.1.1",
     "lodash": "~2.4.1",
-    "angular-google-maps": "~1.2.2"
+    "angular-google-maps": "~ 2.2.1"
   },
   "dependencies": {
+    "angular-animate": "~1.4.6",
+    "angular-cookie": "~4.0.8",
+    "angular-simple-logger": "~0.0.2",
+    "angular-ui-utils": "~3.0.0",
+    "angularjs-scope.safeapply": "*",
     "AngularJS-Toaster": "~0.4.8",
     "components-font-awesome": "~4.2.0",
-    "angular-cookie": "~4.0.8",
+    "ionic-ratings": "~0.2.0",
+    "lodash": "~3.10.1",
     "ng-cordova-oauth": "~0.1.4"
   },
   "resolutions": {
-    "angular": ">=1.2.0",
+    "angular": ">=1.4.0",
     "angular-ui-utils": "~0.1.1"
   },
   "version": "0.0.0",

@@ -1,12 +1,14 @@
-
-.map {
+map
+{
 	display: block;
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100% !important;
 }
-.scroll {
-	height: 100%;
+
+.scroll, .mapWrap {
+  height: 100%;
 }
+
 .angular-google-map-container {
 	display: block;
 	width: 100%;
@@ -155,7 +157,26 @@
  		}
  		.sub {
 			color: #929497;
-			font-size: 14px;
+			font-size: 15px;
+			.html-content{   
+				display: block;
+				img{
+					display:block;    
+				}
+			}
+		}
+		.check-in
+		{
+			.total-checkin
+			{
+				    right: 11px;
+				    display: flex;
+				    position: absolute;
+			}
+			.button-checkin
+			{
+				    float: left;
+			}
 		}
 		.merge {
  			border-top: none;
