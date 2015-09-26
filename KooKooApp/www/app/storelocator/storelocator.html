@@ -21,23 +21,22 @@
         </div-->    
         
         <div style="width: 100%; height: 100%" data-tap-disabled="true" ng-if="mode == 'map'"> 
-        <ui-gmap-google-map id="mainGmap" draggable="true" center="map.center" zoom="map.zoom" bounds="map.bounds" click="onMarkerClicked">
-             <ui-gmap-marker ng-repeat="store in stores" coords="{latitude: store.Latitude,longitude: store.Longitude}" icon='store.icon'  idkey='store.StoreID'>
-                    <ui-gmap-window >
-                        <div class="MapStoreInfo" ng-controller="SelectStoreCtrl">
-                            <h3>{{store.Name}}</h3>
-                            {{store.Address}}<br/>
-                            {{store.DistrictName}}, {{store.CityName}}<br/>                          
-                            <div>Post:Tặng quà khi mua hàng...</div>
-                            <a ng-click="goTo('app.storeinfo', {id: store.StoreID})">Xem</a>
-                        </div>
-                    </ui-gmap-window>
-                </ui-gmap-marker>
-            
-        </ui-gmap-google-map> 
-        </div>
-    
-    
+            <map id="mainGmap" draggable="true" center="[{{lat}}, {{lng}}]" zoom="{{map.zoom}}" zoom-to-include-markers="auto"  >
+                    <marker ng-repeat="store in stores" position="{{store.Latitude}},{{store.Longitude}}"   idkey='{{store.StoreID}}'>
+                    <!--ng-controller=""-->
+                        <!--window   show="store.ShowWindow" ng-controller="StoreInfoCtrl">
+                            <div class="MapStoreInfo" >
+                                <h3>{{store.Name}}</h3>
+                                {{store.Address}}<br/>
+                                {{store.DistrictName}}, {{store.CityName}}<br/>
+                                <div>Post:Tặng quà khi mua hàng...</div>
+                                <a ng-click="info({{store}})">Xem</a>
+                            </div>
+                        </window-->
+                    </marker>
+                    
+            </map>
+        </div>    
         <ul class="list" ng-if="mode == 'list'">
             <li class="item store-list" ng-repeat="store in stores" >
                 <div class="row">

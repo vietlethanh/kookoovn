@@ -1,56 +1,80 @@
+ <!-- path to ionic/angularjs js --> 
+<style type="text/css">
+.ionic_ratings .icon {
+  font-size:50px;
+}
+
+.ionic_ratings .read_only {
+  pointer-events:none;
+}
+</style>
 <ion-view title="Store Info" id="StoreInfo">
   <ion-nav-buttons side="left">
 	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   
-  <ion-content class="has-header">
+  <ion-content class="has-header" >
 		<div style="width: 100%; height: 140px" data-tap-disabled="true"> 
-			<google-map draggable="true" center="map.center" zoom="map.zoom" >
-				<marker coords="{latitude: store.Latitude,longitude: store.Longitude}" idkey="store.CS_StoreID || 'store'" icon="store.StoreIconURL" >
+			<ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom" >
+				<ui-gmap-marker coords="{latitude: store.Latitude,longitude: store.Longitude}" idkey="store.StoreID || 'store'" icon="store.StoreIconURL" >
 				</marker>
-			</google-map> 
+			</ui-gmap-google-map> 
 		</div>
 	
 		<ul class="list store-info-list">
+			 
+			<li class="item check-in">
+				<div></div>
+				<a class="tab-item button-checkin"  ng-click="checkIn(store)">
+		            <i class="icon icon-store-location"></i>
+		            Check in
+       			</a>
+       			<span class="total-checkin">Total {{store.CheckIn}}</span>
+        	</li>
 			<li class="item store-logo">
 				<img ng-src="{{getLogo(store)}}"/>
 			</li>
 			<li class="item">
-				<div>{{store.StoreName}}</div>
+				<div>{{store.Name}}</div>
 				<div class="sub">{{store.StoreHours}}</div>
 			</li>
 			<li class="item item-icon-right">
-				<div>{{store.Address1}}</div>
+				<div>{{store.Address}}</div>
 				<div ng-if="store.Address2">{{store.Address2}}</div>
-				<div class="sub">{{store.City}}, {{store.State}} {{store.Zipcode}}</div>
+				<div class="sub">{{store.DistrictName}}, {{store.CityName}}</div>
 				<a ng-click="openLink(store.mapLink)"><i class="icon icon-store-location"></i></a>
 			</li>
 			<li class="item item-icon-right">
 				<div>{{store.PhoneNumber}}</div>
 				<a href="tel:{{store.PhoneNumber}}"><i class="icon icon-store-phone"></i></a>
 			</li>
-			<li class="item item-icon-right" ng-click="select(store)">
+			<li class="item" >
+				<div class="sub" >
+					<div ng-repeat="article in store.Articles" ><p class="html-content" ng-bind-html="article.Content"></p></div>					
+				</div> 
+			</li>
+			<!--li class="item item-icon-right" ng-click="select(store)">
 				<div>View Weekly Ad </div>
 				<i class="icon icon-store-ad"></i>
-			</li>
-			<li class="item  item-icon-right" ng-if="store.Pharmacy">
+			</li-->
+			<!--li class="item  item-icon-right" ng-if="store.Pharmacy">
 				<div>Pharmacy</div>
 				
 				<i class="icon fa fa-angle-double-right" ng-if="!showP" ng-click="toggle('showP')"></i>
 				<i class="icon fa fa-angle-double-down" ng-if="showP" ng-click="toggle('showP')"></i>
-			</li>
-			<li class="item merge" ng-if="showP">
+			</li-->
+			<!--li class="item merge" ng-if="showP">
 				<div class="sub" >
 					<div ng-repeat="h in store.PharmacyHourArray">{{h}}</div>
 					<div ng-if="store.PharmacyPhone">Phone: <a href="tel:{{store.PharmacyPhone}}">{{store.PharmacyPhone}}</a></div>
 				</div> 
-			</li>
-			<li class="item item-icon-right" ng-if="store.Services && store.Services.Services && store.Services.Services.length > 0">
+			</li-->
+			<!--li class="item item-icon-right" ng-if="store.Services && store.Services.Services && store.Services.Services.length > 0">
 				<div>Addtional Store Services</div>
 				<i class="icon fa fa-angle-double-right" ng-if="!showS" ng-click="toggle('showS')"></i>
 				<i class="icon fa fa-angle-double-down" ng-if="showS" ng-click="toggle('showS')"></i>
-			</li>
-			<li class="item merge" ng-if="showS ">
+			</li-->
+			<!--li class="item merge" ng-if="showS ">
 				<div class="sub">
 					<div class="store-services-list">
 						<div class="store-service" ng-repeat="s in store.Services.Services | filter:{'Value': 'True'}">
@@ -58,7 +82,7 @@
 						</div>
 					</div>
 				</div>
-			</li>
+			</li-->
 		</ul>		
   </ion-content>
 </ion-view>

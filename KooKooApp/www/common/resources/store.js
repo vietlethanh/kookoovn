@@ -5,13 +5,17 @@ angular.module('MCMRelationshop.Resource.Store', [
 .factory('Store', ['$q','$http','DSCacheFactory','HttpUtil','CacheUtil','AppUtil','APP_CONFIG',
 	function($q, $http, DSCacheFactory, HttpUtil, CacheUtil, AppUtil, APP_CONFIG){
 		var r = {
-			getStore: function(storeid){
+			getStore: function(storeid,clearCache){
+
 				var opts = HttpUtil.opts({
 					cache: true,
 					offcache: true,
 					intercetorParams: {api: false}
 				})
-				return $http.get('http://kookoo.local:8080/store.php?id='+storeid);
+				if(clearCache){
+					CacheUtil.clearKey([APP_CONFIG.KooKooAPI+'/store.php?act=2&id='+storeid]);
+				}
+				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=2&id='+storeid);
 				/*var p  = $http.get('http://kookoo.local:8080/store.php?id='+storeid, opts).then(function(res){
 					if(!res.data.Services){
 						return res;
@@ -22,13 +26,27 @@ angular.module('MCMRelationshop.Resource.Store', [
 				});
 				return p;*/
 			},
-			searchStore: function(keyword){				
+			searchStore: function(keyword,pos){				
 				keyword = keyword == undefined ? '': keyword;
 				var opts = HttpUtil.opts({
 					intercetorParams: {api: false}
 					
 				});
-				return $http.get('http://kookoo.local:8080/store.php?'+ HttpUtil.encodeUrl({keyword: keyword}));
+				console.log('searchStore pos');
+
+				console.log(pos);
+
+				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=1&distance=1&'+ 
+					HttpUtil.encodeUrl({keyword: keyword})+'&'+ HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'?pos.lat:0})+'&'+
+					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?pos.lng:0}));
+			},
+			addCheckIn: function(checkin){			
+			
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});
+				return $http.post( APP_CONFIG.KooKooAPI+'/store.php',checkin, opts);					
 			},
 			searchNearByStore: function(latlng){
 				var opts = HttpUtil.opts();

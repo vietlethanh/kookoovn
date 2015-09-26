@@ -7,6 +7,11 @@
 angular.module('MCMRelationshop', [
 	'ionic',
 	'toaster',
+	'ngOpenFB',
+	'ngMap',
+	'ionic-ratings',
+	'Scope.safeApply',
+	'uiGmapgoogle-maps',
 	'MCMRelationshop.Push',
 	'MCMRelationshop.Config',
 	'security',
@@ -31,7 +36,8 @@ angular.module('MCMRelationshop', [
 	//Angular Utils
 	'ui.utils',
 	'MCMRelationshop.Filter',
-	'ngOpenFB','uiGmapgoogle-maps'
+
+
 ])
 .config(function($sceDelegateProvider, $compileProvider) {
   $sceDelegateProvider.resourceUrlWhitelist([
@@ -452,7 +458,7 @@ angular.module('MCMRelationshop', [
 			}
 		})
 		.state('app.storelocator', {
-			url: "/storelocator",
+			url: "/storelocator?keyword",
 			views: {
 				'menuContent': {
 					controller: 'StoreLocatorCtrl',
@@ -550,6 +556,15 @@ angular.module('MCMRelationshop', [
 		}
 		$scope.openLink = AppUtil.openNewWindow;
 		$scope.appcfg = APP_CONFIG;
+		$scope.globalKeyword =  {};
+		$scope.globalSearchStore = function(){
+			 var keyword = $scope.globalKeyword.Keyword;
+			 $state.go('app.storelocator', {keyword: keyword});
+			 $ionicViewService.nextViewOptions({
+				disableBack: true
+			 });
+			 $ionicSideMenuDelegate.toggleLeft();
+		}
 		$scope.goTo = function(link, params){
 			$state.go(link, params);
 			 $ionicSideMenuDelegate.toggleLeft();
@@ -564,11 +579,20 @@ angular.module('MCMRelationshop', [
 				notify: true
 			});
 			*/
-			//console.log(args);
-			$scope.socialWeb = args;
+			console.log('event userLoggedIn'+args);
+			//$scope.socialWeb = args;			
 			$scope.isGuestMode = security.isGuestMode();
 
 		});
+		$scope.$on('mapInitialized', function(event, map) {
+	      $scope.map = map;
+	      console.log('mapInitialized map');
+	      console.log(map);
+	       //var myLatlng = new google.maps.LatLng( $scope.map.center.latitude,$scope.map.center.longitude);
+	       console.log('mapInitialized $scope.map.center');
+	       console.log($scope.map.center);
+           //map.setCenter(myLatlng)   ; 
+	    });
 		if(isOutdate){
 			$ionicPopup.alert({
 				title: 'Your app is out date',

@@ -40,10 +40,10 @@
 				<div class="item item-input-inset">
 				    <label class="item-input-wrapper">
 				      <i class="icon ion-search placeholder-icon"></i>
-				      <input type="text" placeholder="Enter Location">
+				      <input type="text" placeholder="Enter Location" ng-model="globalKeyword.Keyword">
 				    </label>
 				    <button class="button button-small button-clear icon fa fa-angle-double-right search-btn"
-				    	ng-click="goTo('app.storelocator')">				      
+				    	ng-click="globalSearchStore()">				      
 				    </button>
 				  </div>
 				<ion-item nav-clear menu-close href="#/app/storelocator">
@@ -76,7 +76,7 @@
 					<i class='icon icon-menu-fullstie'></i>Full site
 				</ion-item--> 
 				<ion-item nav-clear menu-close  href="#/app/info">
-					<i class='icon icon-menu-info ion-ios7-information'></i>Info
+					<i class='icon icon-menu-info ion-information-circled'></i>Info
 				</ion-item>  
 
 			</ion-list>

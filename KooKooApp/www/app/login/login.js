@@ -5,8 +5,8 @@ angular.module('MCMRelationshop.Login', [
 	'ngCordovaOauth'
 	
 ])
-.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','$ionicViewService','ngFB','$cordovaOauth',
-	function($rootScope, $scope, $state, $stateParams, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList, $ionicViewService,ngFB,$cordovaOauth) { 
+.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','ngFB','$cordovaOauth',
+	function($rootScope, $scope, $state, $stateParams, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,ngFB,$cordovaOauth) { 
 
 		var vm = this;
 		vm.showInvalid = 0;
@@ -91,16 +91,25 @@ angular.module('MCMRelationshop.Login', [
 	                    // Todo
 	                    // After posting user data to server successfully store user data locally
 	                    var user = {};
-	                    user.name = response.name;
-	                    user.email = response.email;
+	                    user.ExternalID = response.id;
+	                    user.ExternalType = APP_CONFIG.SocialWeb.Facebook;
+	                    user.FullName = response.name;
+	                    user.Email = response.email;
+	                    user.UserName = response.email;
+	                    user.Password = response.email;
 	                    if(response.gender) {
-	                        response.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
+	                        response.gender.toString().toLowerCase() === 'male' ? user.Sex = 'Male' : user.Sex = 'Female';
 	                    } else {
-	                        user.gender = '';
+	                        user.Sex = '';
 	                    }
-	                    user.profilePic = picResponse.data.url;
-	                    $cookieStore.put('userInfo', user);
-	                    $state.go('dashboard');
+	                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
+	                    user.ProfilePic = picResponse.data.url;
+	                    security.setCurrentUser(user);
+	                    user.act = 19;//create account
+	                    User.createUser(user);
+	                   // $cookieStore.put('userInfo', user);
+	                   $rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
+	                   // $state.go('dashboard');
 
 	                });
 	            });
@@ -110,6 +119,7 @@ angular.module('MCMRelationshop.Login', [
 		$scope.fbLogin = function () {
 			alert(ionic.Platform.isAndroid());
 			console.log(ionic.Platform.device());
+			
 		    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
 		        function (response) {
 		            if (response.status === 'connected') {
@@ -120,8 +130,8 @@ angular.module('MCMRelationshop.Login', [
 				            	}
 		            		);
 		            	
-		            	console.log('Facebook login succeeded');
-		            	console.log(response);
+		            	//console.log('Facebook login succeeded');
+		            	//console.log(response);
 						$rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
 		                //console.log('Facebook login succeeded');
 		                //$scope.closeLogin();
@@ -129,6 +139,7 @@ angular.module('MCMRelationshop.Login', [
 		                alert('Facebook login failed');
 		            }
 		        });
+			
 		};
 
 
@@ -190,7 +201,7 @@ angular.module('MCMRelationshop.Login', [
 	        //console.log('gplusLogin');
 	        var myParams = {
 	            // Replace client id with yours
-	            'clientid': '18301237550-3vlqoed2en4lvq6uuhh88o2h1l9m70tr.apps.googleusercontent.com',
+	            'clientid': '1026812135759-8te78kmpleomk3ooup2k2h2k8d2orf83.apps.googleusercontent.com',
 	            'cookiepolicy': 'single_host_origin',
 	            'callback': loginCallback,
 	            'approvalprompt': 'force',
@@ -213,16 +224,21 @@ angular.module('MCMRelationshop.Login', [
 	                    }
 	                    // store data to DB
 	                    var user = {};
-	                    user.name = resp.displayName;
-	                    user.email = userEmail;
+	                    user.Name = resp.displayName;
+	                    user.Email = userEmail;
 	                    if(resp.gender) {
-	                        resp.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
+	                        resp.gender.toString().toLowerCase() === 'male' ? user.Gender = 'M' : user.Gender = 'F';
 	                    } else {
 	                        user.gender = '';
 	                    }
-	                    user.profilePic = resp.image.url;
-	                    $cookieStore.put('userInfo', user);
-	                    $state.go('dashboard');
+	                 
+	                     user.SocialWeb = APP_CONFIG.SocialWeb.Google;
+	                    user.ProfilePic = resp.image.url;
+	                     security.setCurrentUser(user);
+	                   // $cookieStore.put('userInfo', user);
+	                   $rootScope.$broadcast('userLoggedIn');
+	                    //$cookieStore.put('userInfo', user);
+	                    //$state.go('dashboard');
 	                });
 	            }
 	        }

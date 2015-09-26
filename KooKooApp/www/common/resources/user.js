@@ -3,8 +3,8 @@ angular.module('MCMRelationshop.Resource.User', [
 	'angular-data.DSCacheFactory',
 	'MCMRelationshop.Config',
 ])
-.factory('User', ['$http','HttpUtil','CacheUtil',
-	function($http, HttpUtil, CacheUtil){
+.factory('User', ['$http','HttpUtil','CacheUtil','APP_CONFIG',
+	function($http, HttpUtil, CacheUtil,APP_CONFIG){
 		var r = {
 			getUser: function(userid, clearCache){
 				if(clearCache){
@@ -32,8 +32,9 @@ angular.module('MCMRelationshop.Resource.User', [
 			},
 			createUser: function(user){
 				var opts = HttpUtil.opts();
-				opts.secure = true;
-				return $http.post('/users/',user, opts);	
+				//opts.secure = true;
+				opts.intercetorParams= {api: false};
+				return $http.post( APP_CONFIG.KooKooAPI+'/bg_user.php',user, opts);	
 			},
 			forgotPassword: function(email, bannerid){
 				var opts = HttpUtil.opts();

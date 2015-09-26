@@ -56,7 +56,7 @@ var socialAppID =
 var unitedAppCfg = {
 	ShowSmartReward : true,
 	FeedBackType : 'Mobile Web',
-	AlertTitle : "United Market",
+	AlertTitle : "KooKoo",
 	CustomApp : typeof(DfwOLC) != 'undefined' ? DfwOLC : '',
 	//Tracker : AppTracker,
 	AccountTrackerID: 'UA-23943946-15',
@@ -67,7 +67,7 @@ var unitedAppCfg = {
 	FullSiteLink : 'http://www.unitedtexas.com',
 	StoreSearchDefaultKey:'',
 	StoreMapCenterPointDefault:[10.771557,106.705818],//Quan 1
-	StoreMapZoomDefault:12,
+	StoreMapZoomDefault:14,
 	EnablePushnotification : false,
 	AppName:'UnitedRelationshop',
 	AppVersion :'3.0.2',
@@ -83,7 +83,8 @@ var unitedAppCfg = {
 	RecipeImageDefault: 'http://unitedadmin.myrelationshop.com/images/RecipeDefault.jpg',
 	SocialAppID: socialAppID,
 	MapMode: mapMode,
-	SocialWeb : socialWeb
+	SocialWeb : socialWeb,
+	KooKooAPI: 'http://kookoo.local:8080'
 }
 
 var matchedCodes = {

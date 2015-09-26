@@ -18,17 +18,20 @@ angular.module('MCMRelationshop.Account', [
 		// private method -------------------------------------------------------------
 		function loadData(){
 			
-			$ionicLoading.show();
+			//$ionicLoading.show();
 			//console.log($scope.socialWeb);
 			var user = security.getCurrentUser();
 			console.log("Account load data");
 			console.log(user);
 			$scope.socialWeb = user.SocialWeb
+			 $scope.user = user;
+			/*
 		 	ngFB.api({
 		        		path: '/me'
 		        		//params: {fields: 'id,name'}
 		    		}).then(
 					        function (user) {
+					        	console.log("Account load data ngFB.api");
 					        	$ionicLoading.hide();
 					            $scope.user = {
 					            	Email: user.email,
@@ -40,7 +43,7 @@ angular.module('MCMRelationshop.Account', [
 					        function (error) {
 					            alert('Facebook error: ' + error.error_description);
 					});
-			
+			*/
 			/*var storeReq = Store.getStore($scope.user.StoreID).then(function(res){
 				$scope.userStore = res.data;
 			});
