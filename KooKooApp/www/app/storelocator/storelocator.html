@@ -22,7 +22,7 @@
         
         <div style="width: 100%; height: 100%" data-tap-disabled="true" ng-if="mode == 'map'"> 
             <map id="mainGmap" draggable="true" center="[{{lat}}, {{lng}}]" zoom="{{map.zoom}}" zoom-to-include-markers="auto"  >
-                    <marker ng-repeat="store in stores" position="{{store.Latitude}},{{store.Longitude}}"   idkey='{{store.StoreID}}'>
+                    <marker ng-repeat="store in stores" position="{{store.Latitude}},{{store.Longitude}}"   idkey='{{store.StoreID}}'>b
                     <!--ng-controller=""-->
                         <!--window   show="store.ShowWindow" ng-controller="StoreInfoCtrl">
                             <div class="MapStoreInfo" >
