@@ -36,7 +36,7 @@ angular.module('MCMRelationshop', [
 	//Angular Utils
 	'ui.utils',
 	'MCMRelationshop.Filter',
-
+	'ionic.contrib.drawer'
 
 ])
 .config(function($sceDelegateProvider, $compileProvider) {
@@ -523,8 +523,8 @@ angular.module('MCMRelationshop', [
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/app/home');
 })
-.controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate',
-	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate) {
+.controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture',
+	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture) {
 		// Form data for the login modal
 		/*
 		$scope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
@@ -553,6 +553,7 @@ angular.module('MCMRelationshop', [
 			});
 			security.logout();
 			$scope.isGuestMode=true;
+			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$scope.openLink = AppUtil.openNewWindow;
 		$scope.appcfg = APP_CONFIG;
@@ -569,8 +570,30 @@ angular.module('MCMRelationshop', [
 			$state.go(link, params);
 			 $ionicSideMenuDelegate.toggleLeft();
 		}
+		var onContentTap = function(e) {
+					console.log('onContentTap');
+			    if ($scope.ShowDrawer){
+			      $scope.closeDrawer();
+			      e.gesture.srcEvent.preventDefault();
+			    }
+		  }
+		$scope.gestureMenu = function(mainContent){
+			$ionicGesture.on('tap', onContentTap, mainContent);
+		}
+		// ionic.Platform.ready(function(){
+    // will execute when device is ready, or immediately if the device is already ready.
+    	//var mainContent = angular.element(document.querySelectorAll("ion-content")[1]);
+    	//var mainContent = angular.element(document.querySelector('#app-content'));
+
+	//	console.log('mainContent');
+	//	console.log(mainContent);
+		 // $ionicGesture.on('tap', onContentTap, mainContent);
+  //});
 
 	
+
+		//var buttonDrawerContent = angular.element(document.querySelectorAll(".button-drawer")[0]);
+		 //  $ionicGesture.on('tap', onDrawerContentTap, buttonDrawerContent);
 		$scope.$on('userLoggedIn', function(events, args){
 			/*
 			$state.transitionTo(state.current, null,{
@@ -582,15 +605,43 @@ angular.module('MCMRelationshop', [
 			console.log('event userLoggedIn'+args);
 			//$scope.socialWeb = args;			
 			$scope.isGuestMode = security.isGuestMode();
-
+			 $state.go('app.storelocator');
+			 $ionicViewService.nextViewOptions({
+  				disableBack: true
+   			 });
 		});
+
 		$scope.$on('mapInitialized', function(event, map) {
 	      $scope.map = map;
 	      console.log('mapInitialized map');
-	      console.log(map);
+	      console.log($scope.map);
+	      /*
 	       //var myLatlng = new google.maps.LatLng( $scope.map.center.latitude,$scope.map.center.longitude);
 	       console.log('mapInitialized $scope.map.center');
 	       console.log($scope.map.center);
+	       console.log( google.maps.event.addListener);
+	       console.log( map.markers);
+	       var markers = map.markers;
+
+	       for (var i = 0; i < markers.length; i++) 
+	       {
+	       			marker = markers[i];
+
+			       google.maps.event.addListener(marker, 'click', function () {
+			                // close window if not undefined
+			                if (infoWindow !== void 0) {
+			                    infoWindow.close();
+			                }
+			                // create new window
+			                var infoWindowOptions = {
+			                    content: content
+			                };
+			                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+			                infoWindow.open(map, marker);
+			            });
+			} 
+    		*/
+	        //$scope.$safeApply();
            //map.setCenter(myLatlng)   ; 
 	    });
 		if(isOutdate){

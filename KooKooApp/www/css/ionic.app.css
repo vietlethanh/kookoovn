@@ -9334,12 +9334,12 @@ map {
     margin-top: 5px; }
   .store-list .image {
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 150px;
+    -webkit-flex: 0 0 220px;
     -moz-box-flex: 0;
-    -moz-flex: 0 0 150px;
-    -ms-flex: 0 0 150px;
-    flex: 0 0 150px;
-    width: 150px; }
+    -moz-flex: 0 0 220px;
+    -ms-flex: 0 0 220px;
+    flex: 0 0 220px;
+    width: 220px; }
     .store-list .image img {
       display: block;
       max-width: 108px;
@@ -9350,13 +9350,15 @@ map {
       margin: 20px 0px 10px 0px;
       display: block;
       width: 90%; }
+    .store-list .image h3.title {
+      white-space: normal; }
   .store-list .info {
     text-align: center;
     padding-left: 5px; }
     .store-list .info .button-small {
       margin-top: 10px;
       margin-bottom: 10px;
-      width: 130px; }
+      width: 65px; }
 
 .MapStoreInfo {
   font-size: 12px; }

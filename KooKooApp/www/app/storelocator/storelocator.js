@@ -39,6 +39,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           keyword: '',
         }
         $scope.map = {};
+
         //var myLatlng = new google.maps.LatLng( APP_CONFIG.StoreMapCenterPointDefault[0], APP_CONFIG.StoreMapCenterPointDefault[1]);
         //$scope.mapcenter= myLatlng;
 
@@ -198,7 +199,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         $ionicLoading.hide();
       },
       onSelectStore: function(store){
-        //console.log('lam gi the lam');
+        console.log('lam gi the lam');
       },
       switchMode: function(mode){
         this.$scope.mode = mode;
@@ -232,19 +233,188 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     var controller = new controllerCls($scope);
   }
 ])
-.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security',
-  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security) {  
+.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile',
+  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile) {  
     var controllerCls = BaseStoreLocatorCtrl.extend({
-      onSelectStore: function(store){
-        delete store.selectStore;
-        security.setCurrentStore(store);
-        $state.go('app.weeklyad');
+      onSelectStore: function(){
+        //console.log('onSelectStore');
+        //goTo('app.storeinfo', {id: storeID})
+        //delete store.selectStore;
+        //security.setCurrentStore(store);
+        //$state.go('app.weeklyad');
       },
       
     });
     console.log('init controllerCls');
     var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);
+     //$scope.onSelectStore = controller.onSelectStore;
+     //var store ={};
+      $scope.onSelectStore = function(storeID) {
+        //console.log('onSelectStore');
+        console.log('onSelectStore');
+        $scope.goTo('app.storeinfo', {id: storeID})
+      }
+       var onload = function(markerID) {
+           console.log('onload');
+                $scope.$apply(function(){
+                  var element = document.getElementById("map-infoWindo_"+markerID);
+                  console.log('element:'+"map-infoWindo_"+markerID);
+                  console.log(element);
+                 $compile(element)($scope)
+              });
+        }
+    $scope.showStore = function(evt,store) {
+
+        console.log(markers);
+        console.log(evt);
+        //console.log(id);
+        console.log('this');
+        self = this;
+        console.log(self.id);
+        console.log(self)
+
+
+        // $scope.store = $scope.stores[0];
+        // $scope.showInfoWindow.apply(this, [evt, 'bar']); 
+        infoWindow.close(map);
+        //addInfoWindow(this,store);
+        
+        infoWindow = new google.maps.InfoWindow({
+          content:'<div id="map-infoWindo_'+this.id+'" class="MapStoreInfo"  >'
+          //+'<span ng-click="onSelectStore()">Click me to test data-ng-click</span>' 
+          //+'<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' 
+          +'<h3>'          
+          +store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '
+          +store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a data-ng-click="onSelectStore(\''+store.StoreID+'\')">Xem</a></div>'
+        });
+
+         console.log('addListener');
+        google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
+                   onload(self.id);
+        });
+       
+        console.log(infoWindow.content);
+        infoWindow.open(map, self);
+        
+     };
+
+       $scope.showNativeMaps = function() {
+        alert('showNativeMaps');
+      };
+      function addInfoWindow(marker, data) {
+
+        google.maps.event.addListener(
+                    
+          marker,
+          'click',
+          (function(marker , $scope) {
+                        
+            return function() {
+                           
+                    var content =
+                                      '<div id="reparse_helper_'+marker.id+'" class="list-orders info-bubble">' +
+                                      '<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' +
+                                   
+                                   '</div>' ;
+
+                    
+
+                    //$scope.$apply(); // must be inside write new values for each marker
+                    var onload = function() {
+                        $scope.$apply(function(){
+                         $compile(document.getElementById("reparse_helper_"+marker.id))($scope)
+                      });
+                    }
+                      infoWindow  = new google.maps.InfoWindow({
+                        content: content
+                      });
+                      google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
+                         onload();
+                      });
+
+                    infoWindow.open(map, marker);
+                           
+               };
+             // return fn()
+          })(marker , $scope)
+        ); // addListener
+      }
+
+
+
+      var infoWindow = new google.maps.InfoWindow({
+          //content:'<div class="MapStoreInfo" ><h3>'+store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '+store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a ng-click="info('+store+'">Xem</a></div>'
+      });
+
+
+      ionic.Platform.ready(function(){
+        // will execute when device is ready, or immediately if the device is already ready.
+          //var mainContent = angular.element(document.querySelectorAll("ion-content")[1]);
+          var mainContent = angular.element(document.querySelector('#app-content'));
+
+        console.log('mainContent');
+        console.log(mainContent);
+         $scope.gestureMenu(mainContent);
+         // $ionicGesture.on('tap', onContentTap, mainContent);
+      });
+    /*
+    $scope.showInfoWindow = function() {
+      // close window if not undefined
+      if (infoWindow !== void 0) {
+          infoWindow.close();
+      }
+      // create new window
+      var infoWindowOptions = {
+          content: content
+      };
+      infoWindow = new google.maps.InfoWindow(infoWindowOptions);    
+      infoWindow.open(map, marker);
+    }
+
+    */
+     var map, markers;
+     
+    /*
    
+    var infoWindow = new google.maps.InfoWindow({
+      content:'Hi<br/>I am an infowindow'
+    });
+    $scope.showInfoWindow = function() {
+      console.log('showInfoWindow');
+      console.log(map);
+      console.log(map.markers);
+      infoWindow.open(map, map.markers[0]);
+    }
+    */
+    
+    $scope.$on('mapInitialized', function(event, evtMap) {
+      map = evtMap, markers = map.markers;
+      // var markers = map.markers;
+       /*
+       console.log('mapInitialized store');
+ console.log(markers);
+ console.log('mapInitialized store.'+markers.length);
+         for (var i = 0; i < markers.length; i++) 
+         {
+              marker = markers[i];
+              console.log(marker);
+             google.maps.event.addListener(marker, 'click', function () {
+                      // close window if not undefined
+                      if (infoWindow !== void 0) {
+                          infoWindow.close();
+                      }
+                       console.log('click store');
+                      // create new window
+                      var infoWindowOptions = {
+                          content: 'mapInitialized store'
+                      };
+                      infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+                      infoWindow.open(map, marker);
+                  });
+
+      } */
+    });
+    
     $scope.keyword = $stateParams.keyword;
     //console.log('$scope.keyword');
     //console.log($scope.keyword);

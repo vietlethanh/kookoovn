@@ -18,7 +18,8 @@
     "components-font-awesome": "~4.2.0",
     "ionic-ratings": "~0.2.0",
     "lodash": "~3.10.1",
-    "ng-cordova-oauth": "~0.1.4"
+    "ng-cordova-oauth": "~0.1.4",
+    "ionic-ion-drawer": "*"
   },
   "resolutions": {
     "angular": ">=1.4.0",

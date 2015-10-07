@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"info",
+				"infoWindow"
+			],
+			[
+				"sc",
+				"scope"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"load",
+				"loadData"
+			],
+			[
 				"store",
 				"storeid"
 			],
@@ -20,26 +40,10 @@
 	"buffers":
 	[
 		{
-			"file": "www/common/resources/store.js",
-			"settings":
-			{
-				"buffer_size": 4503,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/app/storelocator/storelocator.js",
-			"settings":
-			{
-				"buffer_size": 13658,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "www/app/storelocator/storelocator.html",
 			"settings":
 			{
-				"buffer_size": 4080,
+				"buffer_size": 4655,
 				"line_ending": "Windows"
 			}
 		},
@@ -47,7 +51,7 @@
 			"file": "www/templates/menu.html",
 			"settings":
 			{
-				"buffer_size": 3462,
+				"buffer_size": 3831,
 				"line_ending": "Windows"
 			}
 		},
@@ -55,47 +59,23 @@
 			"file": "www/app/app.js",
 			"settings":
 			{
-				"buffer_size": 15668,
+				"buffer_size": 17835,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "www/app/login/login.js",
+			"file": "www/index.html",
 			"settings":
 			{
-				"buffer_size": 10866,
+				"buffer_size": 8025,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "www/app/login/login.html",
+			"file": "www/app/storelocator/storelocator.js",
 			"settings":
 			{
-				"buffer_size": 3008,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/app/shoppinglist/shoppinglist.js",
-			"settings":
-			{
-				"buffer_size": 20160,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/app/register/register.js",
-			"settings":
-			{
-				"buffer_size": 16110,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/app/config.js",
-			"settings":
-			{
-				"buffer_size": 4563,
+				"buffer_size": 21967,
 				"line_ending": "Windows"
 			}
 		}
@@ -124,38 +104,39 @@
 	},
 	"file_history":
 	[
-		"/D/Desktop/KooKooApp/KooKooApp/scss/_storelocator.scss",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/info.html",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/templates/menu.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/register.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/config.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/ionic.app.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_storelocator.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/info.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/interceptor.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/smartreward.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/utils/utils.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
-		"/D/Desktop/KooKooApp/KooKooApp/www/templates/menu.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/user.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/security.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/shoppinglist.js",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_info.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_intro.scss",
-		"/D/Desktop/KooKooApp/KooKooApp/scss/ionic.app.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_base.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglists.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storedetail.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipedetail.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipelist.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipe.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/retryQueue.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/setting.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.html",
 		"/D/Desktop/KooKooApp/KooKooApp/config.xml",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipesearch.html",
@@ -179,11 +160,11 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
@@ -202,6 +183,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"oncontentTap",
+			"var onContentTap = function(e) {\n			    if ($scope.ShowDrawer){\n			      $scope.closeDrawer();\n			      e.gesture.srcEvent.preventDefault();\n			    }\n		  }",
+			"ionicSideMenuDelegate",
+			"toggle",
+			"sync",
+			"showInfoWindow",
+			"map.center",
+			"map",
+			"lodash",
+			"setZoom",
+			"_sucessLoadData",
+			"userLoggedIn",
 			"Back",
 			"back",
 			"loadData",
@@ -286,73 +279,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "www/common/resources/store.js",
-					"settings":
-					{
-						"buffer_size": 4503,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1300,
-								1300
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 285.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/app/storelocator/storelocator.js",
-					"settings":
-					{
-						"buffer_size": 13658,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11623,
-								11627
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6250.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "www/app/storelocator/storelocator.html",
 					"settings":
 					{
-						"buffer_size": 4080,
+						"buffer_size": 4655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2194,
-								2194
+								1744,
+								1753
 							]
 						],
 						"settings":
@@ -362,196 +300,115 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/templates/menu.html",
+					"settings":
+					{
+						"buffer_size": 3831,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3777,
+								3777
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/app/app.js",
+					"settings":
+					{
+						"buffer_size": 17835,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14683,
+								14683
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11880.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "www/templates/menu.html",
+					"file": "www/index.html",
 					"settings":
 					{
-						"buffer_size": 3462,
+						"buffer_size": 8025,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3364,
-								3364
+								2727,
+								2727
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2700.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "www/app/app.js",
+					"file": "www/app/storelocator/storelocator.js",
 					"settings":
 					{
-						"buffer_size": 15668,
+						"buffer_size": 21967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14215,
-								14215
+								8792,
+								8792
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 10415.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/app/login/login.js",
-					"settings":
-					{
-						"buffer_size": 10866,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10735,
-								10762
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5209.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/app/login/login.html",
-					"settings":
-					{
-						"buffer_size": 3008,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1574,
-								1574
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 456.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "www/app/shoppinglist/shoppinglist.js",
-					"settings":
-					{
-						"buffer_size": 20160,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3363.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "www/app/register/register.js",
-					"settings":
-					{
-						"buffer_size": 16110,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								573,
-								585
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "www/app/config.js",
-					"settings":
-					{
-						"buffer_size": 4563,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3243,
-								3243
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 969.0,
+						"translation.x": 25.0,
+						"translation.y": 4876.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

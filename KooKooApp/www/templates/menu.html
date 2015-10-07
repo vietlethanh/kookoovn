@@ -1,4 +1,64 @@
 <toaster-container toaster-options="{'time-out': 3000, 'close-button':false, tab: true}"></toaster-container>
+<drawer side="left" ng-show="false">
+   
+	<!--
+		<header class="bar bar-header bar-stable">
+			<h1 class="title">Left</h1>
+		</header>
+	-->
+		<ion-content class="has-header">
+			
+			<ion-list>
+				<ion-item nav-clear menu-close href="#/app/home" class="icon icon-left">
+					<i class='icon icon-menu-home'></i>Home
+				</ion-item>				
+				<div class="item item-input-inset">
+				    <label class="item-input-wrapper">
+				      <i class="icon ion-search placeholder-icon"></i>
+				      <input type="text" placeholder="Enter Location" ng-model="globalKeyword.Keyword">
+				    </label>
+				    <button class="button button-small button-clear icon fa fa-angle-double-right search-btn"
+				    	ng-click="globalSearchStore()">				      
+				    </button>
+				  </div>
+				<ion-item nav-clear menu-close href="#/app/storelocator">
+					<i class='icon ion-android-locate'></i>NearBy
+				</ion-item>  
+				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
+					<i class='icon ion-heart'></i>Favorite Brands
+				</ion-item>  
+				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
+					<i class='icon ion-star'></i>Lucky Day
+				</ion-item>  
+				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
+					<i class='icon ion-clock'></i>Histories
+				</ion-item>       
+				<ion-item nav-clear menu-close href="#/app/login" ng-if="isGuestMode">
+					<i class='icon ion-log-in'></i>Log In
+				</ion-item> 
+				<ion-item nav-clear menu-close href="#/app/account" ng-if="!isGuestMode">
+					<i class='icon ion-person'></i>Account
+				</ion-item>
+			
+				<ion-item nav-clear menu-close  href="" ng-if="!isGuestMode" ng-click="logout()">
+					<i class='icon ion-log-out'></i>Logout
+				</ion-item> 
+				
+				<!--ion-item nav-clear menu-close href="#/app/search">
+					<i class='icon icon-menu-search'></i>Search
+				</ion-item-->
+				<!--ion-item nav-clear menu-close ng-click="openLink(appcfg.FullSiteLink)" class="item-content">
+					<i class='icon icon-menu-fullstie'></i>Full site
+				</ion-item--> 
+				<ion-item nav-clear menu-close  href="#/app/info">
+					<i class='icon icon-menu-info ion-information-circled'></i>Info
+				</ion-item>  
+
+			</ion-list>
+			
+		</ion-content>
+	
+</drawer>
 <ion-side-menus>
 
 	<ion-pane ion-side-menu-content >
@@ -15,6 +75,7 @@
 		</header>
 	-->
 		<ion-content class="has-header">
+			
 			<ion-list>
 				<ion-item nav-clear menu-close href="#/app/home" class="icon icon-left">
 					<i class='icon icon-menu-home'></i>Home
@@ -49,13 +110,13 @@
 				<ion-item nav-clear menu-close href="#/app/storelocator">
 					<i class='icon ion-android-locate'></i>NearBy
 				</ion-item>  
-				<ion-item nav-clear menu-close href="#/app/storelocator">
+				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
 					<i class='icon ion-heart'></i>Favorite Brands
 				</ion-item>  
-				<ion-item nav-clear menu-close href="#/app/storelocator">
+				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
 					<i class='icon ion-star'></i>Lucky Day
 				</ion-item>  
-				<ion-item nav-clear menu-close href="#/app/storelocator">
+				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
 					<i class='icon ion-clock'></i>Histories
 				</ion-item>       
 				<ion-item nav-clear menu-close href="#/app/login" ng-if="isGuestMode">
@@ -80,6 +141,7 @@
 				</ion-item>  
 
 			</ion-list>
+			
 		</ion-content>
 	</ion-side-menu>
 </ion-side-menus>
