@@ -12,15 +12,24 @@
 				<ion-item nav-clear menu-close href="#/app/home" class="icon icon-left">
 					<i class='icon icon-menu-home'></i>Home
 				</ion-item>				
-				<div class="item item-input-inset">
-				    <label class="item-input-wrapper">
+				<div class="item item-input-inset item-search">
+					<label class="item-input-wrapper">
+						
+						<select name="state" >
+							<option value="" >Food</option>
+							<option value="" >Bevage and Scream</option>
+							<option value="" >Clothes</option>
+							<option value="" >Restaurant</option>							
+						</select>
+				  	</label>
+				    <label class="item-input-wrapper ">
 				      <i class="icon ion-search placeholder-icon"></i>
 				      <input type="text" placeholder="Enter Location" ng-model="globalKeyword.Keyword">
 				    </label>
 				    <button class="button button-small button-clear icon fa fa-angle-double-right search-btn"
 				    	ng-click="globalSearchStore()">				      
 				    </button>
-				  </div>
+				</div>
 				<ion-item nav-clear menu-close href="#/app/storelocator">
 					<i class='icon ion-android-locate'></i>NearBy
 				</ion-item>  
@@ -61,9 +70,11 @@
 </drawer>
 <ion-side-menus>
 
-	<ion-pane ion-side-menu-content >
-		<ion-nav-bar class="bar-stable nav-title-slide-ios7">
-			<ion-nav-back-button class="button-clear"><i class="icon ion-aquo-left fa fa-angle-double-left"></i></ion-nav-back-button>
+	<ion-pane ion-side-menu-content  >
+		<ion-nav-bar class="bar-stable nav-title-slide-ios7 "  ng-class='{{BarClass}}' >
+			<ion-nav-back-button class="button-clear">
+					<i class="icon ion-aquo-left fa fa-angle-double-left"></i>
+			</ion-nav-back-button>
 		</ion-nav-bar>
 		<ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
 	</ion-pane>
@@ -78,7 +89,7 @@
 			
 			<ion-list>
 				<ion-item nav-clear menu-close href="#/app/home" class="icon icon-left">
-					<i class='icon icon-menu-home'></i>Home
+					<i class='icon ion-ios-home'></i>Home
 				</ion-item>
 				<!--ion-item nav-clear menu-close href="#/app/weeklyad">
 					<i class='icon icon-menu-weeklyad'></i>Weekly Ad
@@ -98,7 +109,24 @@
 				<ion-item nav-clear menu-close href="#/app/recipebox">
 					<i class='icon icon-menu-recipebox'></i> My Recipe Box
 				</ion-item-->
-				<div class="item item-input-inset">
+				<div class="item item-input-inset item-filter">
+					<label class="item-input">
+						<select ng-options="cat as cat.ArticleTypeName for cat in categories" 
+   								ng-model="selectedCategory" ng-change="changeCategory()">
+   						</select>
+						<!--select >
+								<option selected value="0">Filter by Category</option>
+   								<option ng-repeat="cat in categories" ng-selected="selectedCategory == cat" value="{{cat.ArticleTypeID}}">{{cat.ArticleTypeName}}</option>
+   						</select-->
+						<!--select name="state" >
+							<option value="" >Food</option>
+							<option value="" >Bevage and Scream</option>
+							<option value="" >Clothes</option>
+							<option value="" >Restaurant</option>							
+						</select-->
+				  	</label>				   
+				</div>
+				<div class="item item-input-inset">					
 				    <label class="item-input-wrapper">
 				      <i class="icon ion-search placeholder-icon"></i>
 				      <input type="text" placeholder="Enter Location" ng-model="globalKeyword.Keyword">
@@ -106,7 +134,7 @@
 				    <button class="button button-small button-clear icon fa fa-angle-double-right search-btn"
 				    	ng-click="globalSearchStore()">				      
 				    </button>
-				  </div>
+				</div>
 				<ion-item nav-clear menu-close href="#/app/storelocator">
 					<i class='icon ion-android-locate'></i>NearBy
 				</ion-item>  
@@ -119,7 +147,7 @@
 				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
 					<i class='icon ion-clock'></i>Histories
 				</ion-item>       
-				<ion-item nav-clear menu-close href="#/app/login" ng-if="isGuestMode">
+				<ion-item nav-clear menu-close ng-click="login()" class="log-in" ng-if="isGuestMode">
 					<i class='icon ion-log-in'></i>Log In
 				</ion-item> 
 				<ion-item nav-clear menu-close href="#/app/account" ng-if="!isGuestMode">

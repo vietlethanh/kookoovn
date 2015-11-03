@@ -31,6 +31,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         '15': 'img/store-logo-amigos.png'
       },
       init: function($scope){
+       
         var self = this;
         this.$scope = $scope;
         $scope.mode= APP_CONFIG.MapMode.map;// 'map'; /*map, list*/

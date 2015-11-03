@@ -26,7 +26,7 @@ angular.module('MCMRelationshop.Resource.Store', [
 				});
 				return p;*/
 			},
-			searchStore: function(keyword,pos){				
+			searchStore: function(keyword,catId,pos){				
 				keyword = keyword == undefined ? '': keyword;
 				var opts = HttpUtil.opts({
 					intercetorParams: {api: false}
@@ -37,8 +37,17 @@ angular.module('MCMRelationshop.Resource.Store', [
 				console.log(pos);
 
 				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=1&distance=1&'+ 
-					HttpUtil.encodeUrl({keyword: keyword})+'&'+ HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'?pos.lat:0})+'&'+
+					HttpUtil.encodeUrl({keyword: keyword})+'&'+
+					HttpUtil.encodeUrl({cat: catId})+'&'+ 
+					HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'?pos.lat:0})+'&'+
 					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?pos.lng:0}));
+			},
+			getCategory: function(){					
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});				
+				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=5');
 			},
 			addCheckIn: function(checkin){			
 			

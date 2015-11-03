@@ -212,6 +212,9 @@ angular.module('MCMRelationshop.Utils', [
 		isBlankImgUrl: function(imgUrl){
 			return !imgUrl || imgUrl == APP_CONFIG.BlankImge;	
 		},
+		trim: function (str){       
+	      return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');       
+	    },
 		mapLink: function(){
 			if(isAndroid()){
 				return function(lat, long){

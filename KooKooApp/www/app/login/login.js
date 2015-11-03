@@ -5,9 +5,35 @@ angular.module('MCMRelationshop.Login', [
 	'ngCordovaOauth'
 	
 ])
-.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','ngFB','$cordovaOauth',
-	function($rootScope, $scope, $state, $stateParams, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,ngFB,$cordovaOauth) { 
+.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','ngFB','$cordovaOauth','$ionicNavBarDelegate','$ionicSideMenuDelegate',
+	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,ngFB,$cordovaOauth,$ionicNavBarDelegate,$ionicSideMenuDelegate) { 
+		console.log('LoginCtrl');
 
+		
+		//console.log($ionicNavBarDelegate);
+		// Disable side-menu drag so that it doesnt interfere with our tinder cards functionality
+ 		//$scope.drapmenu = false;
+
+		ionic.Platform.ready(function(){
+        		$ionicNavBarDelegate.showBar(false);
+        		//$scope.slideHeader = false;
+        		//$scope.drapmenu = false;
+        		//console.log('$scope.drapmenu');
+        		//console.log($scope.drapmenu);
+        		//$scope.$safeApply();
+        		if($stateParams.hidebar == "true")
+		    	{
+					$ionicSideMenuDelegate.canDragContent(false);
+				}
+				else
+				{
+					$ionicSideMenuDelegate.canDragContent(true);
+				}
+        		
+     	 });
+		$scope.BarClass = 'login-form';
+	 
+		// $rootScope.slideHeaderPrevious = 0;
 		var vm = this;
 		vm.showInvalid = 0;
 		vm.userName = '';

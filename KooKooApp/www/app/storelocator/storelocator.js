@@ -44,11 +44,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         //$scope.mapcenter= myLatlng;
 
         $scope.lat = APP_CONFIG.StoreMapCenterPointDefault[0], $scope.lng = APP_CONFIG.StoreMapCenterPointDefault[1]; 
-        console.log('APP_CONFIG.StoreMapZoomDefault');
-        console.log($scope.map.center);
+        //console.log('APP_CONFIG.StoreMapZoomDefault');
+        //console.log($scope.map.center);
         $scope.map.zoom = APP_CONFIG.StoreMapZoomDefault;
-        console.log('APP_CONFIG.StoreMapZoomDefault');
-        console.log(APP_CONFIG.StoreMapZoomDefault);
+        //console.log('APP_CONFIG.StoreMapZoomDefault');
+        //console.log(APP_CONFIG.StoreMapZoomDefault);
         //$scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
         //  $scope.map.bounds= {};
       
@@ -82,12 +82,15 @@ angular.module('MCMRelationshop.StoreLocator', function(){
        //  alert("You have Map Instance of" + this.$scope.map.control.getGMap().toString());
 
       },//init
-      loadData: function(keyword, pos){
-        console.log('loadData keyword');
+      loadData: function(keyword,cat, pos){
+        //console.log('loadData keyword');
+        //console.log(cat);
         var self = this;
         $ionicLoading.show();
         this.$scope.showHere = false;
-        Store.searchStore(keyword,pos).then(this._sucessLoadData.bind(this))//
+        var catId = cat;
+        
+        Store.searchStore(keyword,catId,pos).then(this._sucessLoadData.bind(this))//
         .then(function(){
           
           var sumlat = 0, 
@@ -181,7 +184,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         var self = this;
         //console.log(res);
         var stores = res.data;
-        console.log(stores);
+     
         _.forEach(stores, function(store){
           store.selectStore = self.onSelectStore;
           store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];
@@ -196,10 +199,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         });
 
         this.$scope.stores = stores;
+        console.log(  this.$scope.stores);
         $ionicLoading.hide();
       },
       onSelectStore: function(store){
-        console.log('lam gi the lam');
+        //console.log('lam gi the lam');
       },
       switchMode: function(mode){
         this.$scope.mode = mode;
@@ -233,8 +237,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     var controller = new controllerCls($scope);
   }
 ])
-.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile',
-  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile) {  
+.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil',
+  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil) {  
     var controllerCls = BaseStoreLocatorCtrl.extend({
       onSelectStore: function(){
         //console.log('onSelectStore');
@@ -245,240 +249,228 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       },
       
     });
-    console.log('init controllerCls');
+    //console.log('init controllerCls');
     var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);
-     //$scope.onSelectStore = controller.onSelectStore;
-     //var store ={};
-      $scope.onSelectStore = function(storeID) {
-        //console.log('onSelectStore');
-        console.log('onSelectStore');
-        $scope.goTo('app.storeinfo', {id: storeID})
-      }
-       var onload = function(markerID) {
-           console.log('onload');
-                $scope.$apply(function(){
-                  var element = document.getElementById("map-infoWindo_"+markerID);
-                  console.log('element:'+"map-infoWindo_"+markerID);
-                  console.log(element);
-                 $compile(element)($scope)
-              });
-        }
-    $scope.showStore = function(evt,store) {
+    //$scope.onSelectStore = controller.onSelectStore;
+    //var store ={};
+    $scope.onSelectStore = function(storeID) {
+      //console.log('onSelectStore');
+      //console.log('onSelectStore');
+      $scope.goTo('app.storeinfo', {id: storeID, reload:true})
+    }
+    var onload = function(markerID) {
+      //console.log('onload');
+      //console.log($scope.stores);
+      $scope.$apply(function(){
+          var element = document.getElementById("map-infoWindo_"+markerID);
+          //console.log('element:'+"map-infoWindo_"+markerID);
+          //console.log(element);
+          $compile(element)($scope)
+      });
+    }
+    $scope.showStore = function(evt,storeID) {
 
-        console.log(markers);
-        console.log(evt);
-        //console.log(id);
-        console.log('this');
-        self = this;
-        console.log(self.id);
-        console.log(self)
+      //console.log(markers);
+      //console.log(evt);
+      //console.log(id);
+      //console.log('this showStore');
+      self = this;
+      //console.log(self.id);
+      //console.log(self)
+      var selectStore = null;
+      var stores = $scope.stores
+      //console.log(stores);
+      _.forEach(stores, function(store){
+         if(store.StoreID == storeID)
+         {
+            //console.log('this showStore:'+store.StoreID);
+            //console.log(store);
+            selectStore = store;
+            //break;
+         } 
+      });
+      
+      //console.log('showStore selectStore');
+      //console.log(selectStore);
+      //console.log(AppUtil.trim(selectStore.Content));
+      // $scope.store = $scope.stores[0];
+      // $scope.showInfoWindow.apply(this, [evt, 'bar']); 
+      infoWindow.close(map);
+     
+      infoWindow = new google.maps.InfoWindow({
+        content:'<div id="map-infoWindo_'+this.id+'" class="MapStoreInfo"  >'
+        //+'<span ng-click="onSelectStore()">Click me to test data-ng-click</span>' 
+        //+'<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' 
+        +'<h3>'          
+        +selectStore.Name+'</h3>'+selectStore.Address+'<br/>'+selectStore.DistrictName+', '
+        +selectStore.CityName+'<br/><div>'+ ((typeof(selectStore.Content) != 'undefined' && AppUtil.trim(selectStore.Content)!= '')?'Post: '+selectStore.Content+'...':'')+' <a data-ng-click="onSelectStore(\''+selectStore.StoreID+'\')">Details</a></div></div>'
+      
 
-
-        // $scope.store = $scope.stores[0];
-        // $scope.showInfoWindow.apply(this, [evt, 'bar']); 
-        infoWindow.close(map);
-        //addInfoWindow(this,store);
-        
-        infoWindow = new google.maps.InfoWindow({
-          content:'<div id="map-infoWindo_'+this.id+'" class="MapStoreInfo"  >'
-          //+'<span ng-click="onSelectStore()">Click me to test data-ng-click</span>' 
-          //+'<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' 
-          +'<h3>'          
-          +store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '
-          +store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a data-ng-click="onSelectStore(\''+store.StoreID+'\')">Xem</a></div>'
-        });
-
-         console.log('addListener');
-        google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
-                   onload(self.id);
-        });
-       
-        console.log(infoWindow.content);
-        infoWindow.open(map, self);
-        
-     };
-
-       $scope.showNativeMaps = function() {
-        alert('showNativeMaps');
-      };
-      function addInfoWindow(marker, data) {
-
-        google.maps.event.addListener(
-                    
-          marker,
-          'click',
-          (function(marker , $scope) {
-                        
-            return function() {
-                           
-                    var content =
-                                      '<div id="reparse_helper_'+marker.id+'" class="list-orders info-bubble">' +
-                                      '<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' +
-                                   
-                                   '</div>' ;
-
-                    
-
-                    //$scope.$apply(); // must be inside write new values for each marker
-                    var onload = function() {
-                        $scope.$apply(function(){
-                         $compile(document.getElementById("reparse_helper_"+marker.id))($scope)
-                      });
-                    }
-                      infoWindow  = new google.maps.InfoWindow({
-                        content: content
-                      });
-                      google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
-                         onload();
-                      });
-
-                    infoWindow.open(map, marker);
-                           
-               };
-             // return fn()
-          })(marker , $scope)
-        ); // addListener
-      }
-
-
-
-      var infoWindow = new google.maps.InfoWindow({
-          //content:'<div class="MapStoreInfo" ><h3>'+store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '+store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a ng-click="info('+store+'">Xem</a></div>'
+      });
+     // infoWindow.className = 'custom-marker';
+      //console.log('addListener');
+      google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
+             // self.className = 'custom-marker';
+             //document.querySelector('#app-content');
+            
+               angular.element( document.querySelector('.gm-style-iw').parentNode).addClass('custom-iw');
+               onload(self.id);
       });
 
+      console.log(infoWindow.content);
+      infoWindow.open(map, self);
+      
+    };
 
-      ionic.Platform.ready(function(){
-        // will execute when device is ready, or immediately if the device is already ready.
-          //var mainContent = angular.element(document.querySelectorAll("ion-content")[1]);
-          var mainContent = angular.element(document.querySelector('#app-content'));
+    $scope.showNativeMaps = function() {
+      alert('showNativeMaps');
+    };  
 
-        console.log('mainContent');
-        console.log(mainContent);
-         $scope.gestureMenu(mainContent);
-         // $ionicGesture.on('tap', onContentTap, mainContent);
-      });
+
+    var infoWindow = new google.maps.InfoWindow({
+        //content:'<div class="MapStoreInfo" ><h3>'+store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '+store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a ng-click="info('+store+'">Xem</a></div>'
+    });
+
+   
+    ionic.Platform.ready(function(){
+      // will execute when device is ready, or immediately if the device is already ready.
+      //var mainContent = angular.element(document.querySelectorAll("ion-content")[1]);
+      var mainContent = angular.element(document.querySelector('#app-content'));
+
+      console.log('mainContent');
+      console.log(mainContent);
+      $scope.gestureMenu(mainContent);
+      // $ionicGesture.on('tap', onContentTap, mainContent);
+    });
     /*
     $scope.showInfoWindow = function() {
-      // close window if not undefined
-      if (infoWindow !== void 0) {
-          infoWindow.close();
-      }
-      // create new window
-      var infoWindowOptions = {
-          content: content
-      };
-      infoWindow = new google.maps.InfoWindow(infoWindowOptions);    
-      infoWindow.open(map, marker);
+    // close window if not undefined
+    if (infoWindow !== void 0) {
+        infoWindow.close();
+    }
+    // create new window
+    var infoWindowOptions = {
+        content: content
+    };
+    infoWindow = new google.maps.InfoWindow(infoWindowOptions);    
+    infoWindow.open(map, marker);
     }
 
     */
-     var map, markers;
-     
+    var map, markers;
+
     /*
-   
+
     var infoWindow = new google.maps.InfoWindow({
-      content:'Hi<br/>I am an infowindow'
+    content:'Hi<br/>I am an infowindow'
     });
     $scope.showInfoWindow = function() {
-      console.log('showInfoWindow');
-      console.log(map);
-      console.log(map.markers);
-      infoWindow.open(map, map.markers[0]);
+    console.log('showInfoWindow');
+    console.log(map);
+    console.log(map.markers);
+    infoWindow.open(map, map.markers[0]);
     }
     */
-    
+
     $scope.$on('mapInitialized', function(event, evtMap) {
       map = evtMap, markers = map.markers;
-      // var markers = map.markers;
-       /*
-       console.log('mapInitialized store');
- console.log(markers);
- console.log('mapInitialized store.'+markers.length);
-         for (var i = 0; i < markers.length; i++) 
-         {
-              marker = markers[i];
-              console.log(marker);
-             google.maps.event.addListener(marker, 'click', function () {
-                      // close window if not undefined
-                      if (infoWindow !== void 0) {
-                          infoWindow.close();
-                      }
-                       console.log('click store');
-                      // create new window
-                      var infoWindowOptions = {
-                          content: 'mapInitialized store'
-                      };
-                      infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-                      infoWindow.open(map, marker);
-                  });
-
-      } */
-    });
     
+    // var markers = map.markers;
+    /*
+    console.log('mapInitialized store');
+    console.log(markers);
+    console.log('mapInitialized store.'+markers.length);
+    for (var i = 0; i < markers.length; i++) 
+    {
+        marker = markers[i];
+        console.log(marker);
+       google.maps.event.addListener(marker, 'click', function () {
+                // close window if not undefined
+                if (infoWindow !== void 0) {
+                    infoWindow.close();
+                }
+                 console.log('click store');
+                // create new window
+                var infoWindowOptions = {
+                    content: 'mapInitialized store'
+                };
+                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+                infoWindow.open(map, marker);
+            });
+
+    } */
+    });
+
     $scope.keyword = $stateParams.keyword;
+    $scope.cat = $stateParams.catId;
+    //console.log(' $scope.cat');
+    //console.log( $stateParams);
+    //console.log( $scope.cat);
     //console.log('$scope.keyword');
     //console.log($scope.keyword);
-    centerOnMe = function(keyword){
-        $scope.positions = [];
+    centerOnMe = function(keyword,catId){
+      $scope.positions = [];
 
+      /*$ionicLoading.show({
+          template: 'Loading...'
+      });
+      */
 
-        /*$ionicLoading.show({
-            template: 'Loading...'
-        });
-        */
+      navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          $scope.positions.push({lat: pos.k,lng: pos.B});
+          //console.log('pos');
+          //console.log(pos);
 
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            $scope.positions.push({lat: pos.k,lng: pos.B});
-            console.log('pos');
-            console.log(pos);
-            //console.log( $scope.map);
-           // $scope.map.setZoom(pos);
-            //$scope.map.setCenter(pos);
-            //$ionicLoading.hide();
-            
-            controller.loadData(keyword,{lat: position.coords.latitude,lng: position.coords.longitude});
-            // $scope.map.center = {lat: position.coords.latitude,lng: position.coords.longitude};
-           //  $scope.map.zoom = 12;
+          //console.log( $scope.map);
+          // $scope.map.setZoom(pos);
+          //$scope.map.setCenter(pos);
+          //$ionicLoading.hide();
 
-            //$scope.map.center = {
-            //  latitude:position.coords.latitude,
-            //  longitude: position.coords.longitude
-            //};
-            //console.log('reset $setCenter');
-            //$scope.lat = position.coords.latitude;
-            //$scope.lng = position.coords.longitude; 
+          controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});
+          // $scope.map.center = {lat: position.coords.latitude,lng: position.coords.longitude};
+          //  $scope.map.zoom = 12;
 
-            //if(typeof($scope.map.setCenter) != 'undefined')
-            //{
-            //   console.log('$setCenter');
-            //  $scope.map.setCenter(pos);
-            //}
+          //$scope.map.center = {
+          //  latitude:position.coords.latitude,
+          //  longitude: position.coords.longitude
+          //};
+          //console.log('reset $setCenter');
+          //$scope.lat = position.coords.latitude;
+          //$scope.lng = position.coords.longitude; 
+
+          //if(typeof($scope.map.setCenter) != 'undefined')
+          //{
+          //   console.log('$setCenter');
+          //  $scope.map.setCenter(pos);
+          //}
           //  console.log('$scope.mapcenter');
-         //   console.log($scope.mapcenter);
+          //   console.log($scope.mapcenter);
           //  console.log($scope.map.center);
-          });
-      }
-   
+        });
+    }
 
-   
+
+
     //$scope.centerOnMe = centerOnMe();
-    
-    console.log('call centerOnMe');
-    centerOnMe($scope.keyword);
+
+    //console.log('call centerOnMe');
+    centerOnMe($scope.keyword,$scope.cat);
+        
+
     //controller.loadData();
     //console.log($scope.stores);
     /*$scope.onMarkerClicked =  function (marker) {
-          console.log('onMarkerClicked');
-          //console.log(marker);
-        
-           for (var i = 0; i < $scope.stores.length; i++) {
-             $scope.stores[i].ShowWindow = false;            
-            }
-            
-          //$scope.$evalAsync();
-         marker.ShowWindow = true;     
-          //$scope.$safeApply();   
+        console.log('onMarkerClicked');
+        //console.log(marker);
+      
+         for (var i = 0; i < $scope.stores.length; i++) {
+           $scope.stores[i].ShowWindow = false;            
+          }
+          
+        //$scope.$evalAsync();
+       marker.ShowWindow = true;     
+        //$scope.$safeApply();   
     }
     */
   }
@@ -506,22 +498,25 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     };
     // scope properties -------------------------------------------------------------
     
-     $scope.map ={
-          center: {
-            latitude:APP_CONFIG.StoreMapCenterPointDefault[0],
-            longitude: APP_CONFIG.StoreMapCenterPointDefault[1]
-          },
-          zoom: APP_CONFIG.StoreMapZoomDefault,
-          bounds: {},
+    $scope.map ={
+        center: {
+          latitude:APP_CONFIG.StoreMapCenterPointDefault[0],
+          longitude: APP_CONFIG.StoreMapCenterPointDefault[1]
+        },
+        zoom: APP_CONFIG.StoreMapZoomDefault,
+        bounds: {},
     };
     $scope.store = {};
     $scope.showP = false;
     $scope.showS = false;
-
+    console.log('StoreInfoCtrl')
     // private method -------------------------------------------------------------
     function loadData(clearCache){
+
+      console.log('loadData StoreInfoCtrl')
       $ionicLoading.show();
       var req = Store.getStore(id,clearCache).then(function(res){
+
         $ionicLoading.hide();
         var store = res.data;
         console.log(store);
@@ -550,7 +545,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         longitude: $scope.store.Longitude
       
       };
-     $ionicScrollDelegate.scrollTop();
+      $ionicScrollDelegate.scrollTop();
     };
     $scope.getLogo =  function(store){
       return logos[store.CS_BannerID+''];
@@ -562,16 +557,16 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       security.setCurrentStore(store);
       $state.go('app.weeklyad');
     }
-      $scope.ratingsObject = {
-    iconOn: 'ion-ios-star', //Optional
-    iconOff: 'ion-ios-star-outline',  //Optional
-    iconOnColor: 'rgb(200, 200, 100)',  //Optional
-    iconOffColor: 'rgb(200, 100, 100)', //Optional
-    rating: 5,  //Optional
-    minRating: 1, //Optional
-    readOnly:false, //Optional
-    callback: function(rating) {  //Mandatory    
-      $scope.ratingsCallback(rating);
+    $scope.ratingsObject = {
+      iconOn: 'ion-ios-star', //Optional
+      iconOff: 'ion-ios-star-outline',  //Optional
+      iconOnColor: 'rgb(200, 200, 100)',  //Optional
+      iconOffColor: 'rgb(200, 100, 100)', //Optional
+      rating: 5,  //Optional
+      minRating: 1, //Optional
+      readOnly:false, //Optional
+      callback: function(rating) {  //Mandatory    
+        $scope.ratingsCallback(rating);
     }
   };
 
@@ -579,55 +574,55 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     $scope.ratingsObject.rating = rating;
    // console.log('Selected rating is : ', rating);
   };
-    $scope.checkIn = function(store) {
-      //console.log(store);
-      $scope.rate = {}
+  $scope.checkIn = function(store) {
+    //console.log(store);
+    $scope.rate = {}
 
-      // An elaborate, custom popup
-      var myPopup = $ionicPopup.show({
-        template: '<input type="text" ng-model="rate.message">  <ionic-ratings ratingsobj="ratingsObject"></ionic-ratings>',
-        title: 'Check in with the status',
-        //subTitle: 'Please use normal things',
-        scope: $scope,
-        buttons: [
-          { text: 'Cancel' },
-          {
-            text: '<b>Submit</b>',
-            type: 'button-positive',
-            onTap: function(e) {
-              //console.log(e);
-              if (!$scope.rate.message) {
-                //don't allow the user to close unless he enters wifi password
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      template: '<input type="text" ng-model="rate.message">  <ionic-ratings ratingsobj="ratingsObject"></ionic-ratings>',
+      title: 'Check in with the status',
+      //subTitle: 'Please use normal things',
+      scope: $scope,
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: '<b>Submit</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            //console.log(e);
+            if (!$scope.rate.message) {
+              //don't allow the user to close unless he enters wifi password
 
-               toaster.pop('error','Error', 'Please enter your feedback.');
-                
-                e.preventDefault();
-              } else {
-                //console.log($scope.rate.message);
-                return $scope.rate.message;
+             toaster.pop('error','Error', 'Please enter your feedback.');
+              
+              e.preventDefault();
+            } else {
+              //console.log($scope.rate.message);
+              return $scope.rate.message;
 
-              }
             }
           }
-        ]
-      });
-      myPopup.then(function(res) {
-          if(!res){
-          return;
-         }
-          var checkin = {
-            StoreID: store.StoreID,
-            UserName:  security.getCurrentUserId(),
-            Message: res,
-            Rate: $scope.ratingsObject.rating,
-            act: 3
-          };
-          Store.addCheckIn(checkin);
-          loadData(true);
-          $scope.$safeApply();
-          toaster.pop('success','Success', 'Check-in this location successful.');
-        //console.log('Tapped!', res);
-      });
+        }
+      ]
+    });
+    myPopup.then(function(res) {
+        if(!res){
+        return;
+       }
+        var checkin = {
+          StoreID: store.StoreID,
+          UserName:  security.getCurrentUserId(),
+          Message: res,
+          Rate: $scope.ratingsObject.rating,
+          act: 3
+        };
+        Store.addCheckIn(checkin);
+        loadData(true);
+        $scope.$safeApply();
+        toaster.pop('success','Success', 'Check-in this location successful.');
+      //console.log('Tapped!', res);
+    });
 
     /*$timeout(function() {
        myPopup.close(); //close the popup after 3 seconds for some reason

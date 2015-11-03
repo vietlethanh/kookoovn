@@ -15,10 +15,13 @@
   
   <ion-content class="has-header" >
 		<div style="width: 100%; height: 140px" data-tap-disabled="true"> 
-			<ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom" >
+			<!--ui-gmap-google-map draggable="true" center="map.center" zoom="map.zoom" >
 				<ui-gmap-marker coords="{latitude: store.Latitude,longitude: store.Longitude}" idkey="store.StoreID || 'store'" icon="store.StoreIconURL" >
 				</marker>
-			</ui-gmap-google-map> 
+			</ui-gmap-google-map--> 
+			<map id="mainGmap" draggable="true" center="[{{store.Latitude}},{{store.Longitude}}]" zoom="{{map.zoom}}"   >
+				<marker  class="store-info" position="{{store.Latitude}},{{store.Longitude}}"   id='m{{store.StoreID}}' ></marker>
+			</map>
 		</div>
 	
 		<ul class="list store-info-list">

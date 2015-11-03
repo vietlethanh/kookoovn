@@ -1,5 +1,11 @@
 
-<ion-view title="Account Log In" ng-controller="LoginCtrl as vm" id="Login">
+<style type="text/css">
+.login-form
+{
+	visibility: hidden;
+}
+</style>
+<ion-view title="" ng-controller="LoginCtrl as vm" id="Login">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -13,15 +19,22 @@
 		</div>
 		-->
   	<!--/div-->
+  	<div class="row login-logo" >
+	 	 <img class="" src="img/login_logo.png" />
+	</div>
+	<div class="row login-social" >
+	  <div class="col facebook-login">
+	  	 <img class="" src="img/login_facebook.png" ng-click="fbLogin2()" />
+	  </div>
+	 
+	</div>
   	<div class="row login-social" >
-	  <div class="col">
-	  	 <img class="" src="../img/social_facebook_box_white.png" ng-click="fbLogin2()" />
+	 
+	  <div class="col google-login">
+	  	<img src="img/login_google.png" ng-click="gplusLogin()"/>
 	  </div>
-	  <div class="col">
-	  	<img src="../img/social_google_box_white.png" ng-click="gplusLogin()"/>
-	  </div>
-	  <div class="col">
-	  	<img src="../img/social_twitter_box_white.png" ng-click="twitterlogin()" />
+	  <div class="col twitter-login">
+	  	<img src="img/login_twitter.png" ng-click="twitterlogin()" />
 	  </div>	
 	</div>
   	<!--form name="loginForm" novalidate ng-submit="vm.login(loginForm)">
@@ -53,7 +66,7 @@
 		</div>
 	</div-->
 	
-	<div class="login-account-adver ">
+	<!--div class="login-account-adver " ng-show="false">
 		<div class="title second-bar col col-center">Why Need to Login?</div>
 		<div class="header"></div>
 		<ul>
@@ -63,7 +76,7 @@
 			<li>Search and save <strong>recipes</strong></li>
 			<li><strong>And More</strong></li>
 		</ul>
-	</div>
+	</div-->
 	<!--div class="row" >	
 		<div class="col" style="text-align: center">
 			<button class="button button-long button-energized" type="button" ng-click="vm.register()">
