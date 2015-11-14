@@ -11,9 +11,9 @@ var localserver = {
    	DefaultImage: 'http://united.myrelationshop.com/Admin/Images/CouponIcon/sr_coupon_icon.png'
 }
 var qcserver = {
-	Host:'http://unitedqcapiv2.myrelationshop.com/api',
+	Host:'http://united3qcapiv2.myrelationshop.com/api',
 	DistributeHost: 'http://devapi.mcmhq.com/mcmdistribution/api',
-   	SecureHost: 'https://unitedqcapiv2.myrelationshop.com/api',
+   	SecureHost: 'https://united3qcapiv2.myrelationshop.com/api',
    	ApplicationId: isAndroid()?'56dd18ee-abe1-4dae-8737-bdf0d64898a7':'f3315060-5099-41df-809a-9c11e6e36d59',
    	BlankImge: 'http://UnitedQCAdmin.MyRelationShop.com/Images/1x1.gif',
    	DefaultImage: 'http://united.myrelationshop.com/Admin/Images/CouponIcon/sr_coupon_icon.png'
