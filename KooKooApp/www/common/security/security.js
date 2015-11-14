@@ -30,6 +30,7 @@ angular.module('security.service', [
 			},
 			// Ask the backend to see if a user is already authenticated - this may be from a previous session.
 			requestApiKey: function(force) {
+				return;
 				var self = this;
 
 				if(!force && this.isAuthenticated()){

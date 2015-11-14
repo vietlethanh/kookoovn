@@ -24,8 +24,8 @@ angular.module('MCMRelationshop.Home', [
 		// public properties -------------------------------------------------------------
 		// scope properties -------------------------------------------------------------
 
-		$scope.homelink = APP_CONFIG.Host+'/dynamic/gethome?bannerid='+bannerid;
-		$scope.template = '';
+		//$scope.homelink = APP_CONFIG.Host+'/dynamic/gethome?bannerid='+bannerid;
+		//$scope.template = '';
 		// private method -------------------------------------------------------------
 		/*
 		function load(){
