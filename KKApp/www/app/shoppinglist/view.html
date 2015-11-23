@@ -1,0 +1,63 @@
+
+<div class="bar-stable nav-title-slide-ios7 bar bar-header nav-bar disable-user-behavior  no-animation">
+	<div class="buttons">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</div>
+	<h1 class="title">Shopping List</h1>
+</div>
+<ion-view id="ShoppingList">
+  <ion-content class="has-header  page-wrap">
+	<div class="list shopping-item-list" ng-if="cats == null || cats.isEmpty">
+		<div class="item noitems">
+			No Items.
+		</div>
+	</div>
+	<div class="list shopping-item-list" ng-if="cats != null && !cats.isEmpty">
+		<div class="group-wrap" ng-if="cats.Notes">
+			<div class="item item-divider">
+				Added Items
+			</div>
+			<div class="item row" ng-repeat="item in cats.Notes">
+				<div class="col checkmate">
+					<button class="button button-outline button-icon mcm-checkbox in-view " ng-class="{'ion-android-checkmark': item.checked}" ng-click="toggle(item, $event)"></button>
+				</div>
+				<div class="col info">
+					<div class="name" ng-bind-html="item.Note"></div>
+				</div>
+				<div class="col quantity">{{item.Quantity = item.Quantity == 0 ? 1 : item.Quantity}}</div>
+			</div>
+		</div>
+		<div class="group-wrap" ng-repeat="(cat, items) in cats" ng-if="cat!='ZExpired' && cat!='Notes'">
+			<div class="item item-divider">
+				{{cat}}
+			</div>
+			<div class="item row" ng-repeat="item in items" ng-class="{coupon: item.isCoupon}">
+				<div class="col checkmate">
+					<button class="button button-outline button-icon mcm-checkbox in-view " ng-class="{'ion-android-checkmark': item.checked}" ng-click="toggle(item, $event)"></button>
+				</div>
+				<div class="col info">
+					<div class="name" ng-bind-html="item.ProductName"></div>
+					<div class="desc" ng-if="item.ProductDesc" ng-bind-html="item.ProductDesc"></div>
+					<div class="price" ng-if="item.ItemPrice&& !item.isCoupon" ng-bind-html="item.ItemPrice"></div>
+					<div class="price" ng-if="item.ItemPrice && item.isCoupon"><span>Digital Coupon Price - </span>{{item.ItemPrice}}</div>
+					<div class="price" ng-if="item.ExpirationDate&& item.isCoupon"><span>Expiration Date - </span>{{item.ExpirationDate |date:"MM/dd/yyyy"}}</div>
+				</div>
+				<div class="col quantity" >{{item.Quantity = item.Quantity == 0 ? 1 : item.Quantity}}</div>
+			</div>
+		</div>
+		<div class="group-wrap" ng-if="cats.ZExpired">
+			<div class="item item-divider">
+				Expired
+			</div>
+			<div class="item row" ng-repeat="item in cats.ZExpired">
+				<div class="col info">
+					<div class="name" ng-bind-html="item.ProductName"></div>
+					<div class="desc" ng-if="item.ProductDesc" ng-bind-html="item.ProductDesc"></div>
+					<div class="price" ng-if="item.ItemPrice" ng-bind-html="item.ItemPrice"></div>
+				</div>
+				<div class="col quantity">{{item.Quantity = item.Quantity == 0 ? 1 : item.Quantity}}</div>
+			</div>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

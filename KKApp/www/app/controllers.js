@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('KooKoo.controllers', []) 
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -13,10 +13,10 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('templates/login.html', {  
     scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.modal = modal;  
   });
 
   // Triggered in the login modal to close it

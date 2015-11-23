@@ -1,0 +1,163 @@
+<ion-view title="My Info" id="EditAccount">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<form id="editForm" name="editForm" novalidate ng-submit="save(editForm)">
+			<div class="list edit-account-list">
+				<div ng-if="part=='username'">
+					<label class="item item-input">
+						<input type="text" placeholder="User Name" name="username" ng-model="user.UserName" required />
+						<span class="help-block" ng-show="showInvalid && editForm.username.$error.required">This field is required</span>
+				  	</label>
+			  	</div>
+			  	<div ng-if="part == 'password'">
+			  		<div class="item item-divider">Edit Password</div>
+			  		<label class="item item-input">
+						<input name="password" type="password" placeholder="Old Password" ng-model="user.OldPassword" required />
+						<span class="help-block" ng-show="showInvalid && editForm.oldpassword.$error.required">This field is required</span>
+				  	</label>
+				  	<label class="item item-input">
+						<input name="password" type="password" placeholder="New Password" id="password" ng-model="user.Password" required ng-pattern="passwordRegx"/>
+						<span class="help-block" ng-show="showInvalid && editForm.password.$error.required">This field is required</span>
+						<span class="help-block" ng-show="editForm.password.$error.pattern">6-12 characters long and include at least one letter and one number</span>
+				  	</label>
+				  	<label class="item item-input">
+						<input name="retypepassword" type="password" placeholder="Retype New Password" ng-model="user.RetypePassword" required pw-check="user.Password" >
+						<span class="help-block" ng-show="showInvalid && editForm.retypepassword.$error.required">This field is required</span>
+						<span class="help-block" ng-show="editForm.retypepassword.$error.match">Passwords do not match</span>
+				  	</label>
+			  	</div>
+			  	<div ng-if="part == 'name'">
+			  		<div class="item item-divider">Edit Name</div>
+				  	<label class="item item-input">
+						<input name="firstname" type="text" placeholder="First Name" ng-model="user.FirstName" required />
+						<span class="help-block" ng-show="showInvalid && editForm.firstname.$error.required">This field is required</span>
+				  	</label>
+				  	<label class="item item-input">
+						<input name="lastname" type="text" placeholder="Last Name" ng-model="user.LastName" required />
+						<span class="help-block" ng-show="showInvalid && editForm.lastname.$error.required">This field is required</span>
+				  	</label>
+			  	</div>
+			  	<div ng-if="part == 'address'">
+			  		<div class="item item-divider">Edit Address</div>
+				  	<label class="item item-input">
+						<input name="address" type="text" placeholder="Address" ng-model="user.Address" required />
+						<span class="help-block" ng-show="showInvalid && editForm.address.$error.required">This field is required</span>
+				  	</label>
+				  	<label class="item item-input">
+						<input name="city" type="text" placeholder="City" ng-model="user.City" required />
+						<span class="help-block" ng-show="showInvalid && editForm.city.$error.required">This field is required</span>
+				  	</label>
+				  	<label class="item ">
+						<select name="state" ng-model="user.State">
+							<option ng-repeat="state in states" value="{{state.value}}" ng-selected="state.value == user.State">{{state.text}}</option>
+						</select>
+						
+						<span class="help-block" ng-show="showInvalid && editForm.state.$error.required">This field is required</span>
+				  	</label>
+				  	<label class="item item-input">
+						<input name="zip" type="text" placeholder="Zip" ng-model="user.ZipCode" required maxlength="5" ng-pattern="zipcodeRegx"  ng-maxlength="5"/>
+						<span class="help-block" ng-show="showInvalid && editForm.zip.$error.required">This field is required</span>
+				  	</label>
+			  	</div>
+			  	<div ng-if="part == 'email'">
+			  		<div class="item item-divider">Edit Email</div>
+				  	<label class="item item-input">
+						<input name="email" type="email" placeholder="Email" ng-model="user.UserEmail" required ng-pattern="emailRegx"/>
+						<span class="help-block" ng-show="showInvalid && editForm.email.$error.required">This field is required</span>
+						<span class="help-block" ng-show="showInvalid && editForm.email.$error.pattern">That is not valid email</span>
+				  	</label>
+				</div>
+				<div ng-if="part == 'phone'">
+					<div class="item item-divider">Edit Primary Phone/AltID</div>
+				  	<label class="item item-input">
+						<input name="phone" type="tel" placeholder="Phone Number" ng-model="user.Phone" ui-mask="999-999-9999" required/>
+						<span class="help-block" ng-show="showInvalid && editForm.phone.$error.required">This field is required</span>
+				  	</label>
+			  	</div>
+			  	<div ng-if="part == 'cellphone'">
+			  		<div class="item item-divider">Edit Primary Mobile/AltID</div>
+				  	<label class="item item-input">
+				  		<input name="cellphone" type="tel" placeholder="Cell Phone Number" ng-model="user.CellPhone" ui-mask="999-999-9999" required/>
+						<span class="help-block" ng-show="showInvalid && editForm.cellphone.$error.required">This field is required</span>
+				  	</label>
+				 </div>
+			  	<div ng-if="part == 'seccellphone'">
+			  		<div class="item item-divider">Edit Secondary Mobile Phone</div>
+				  	<label class="item item-input">
+				  		<input name="seccellphone" type="tel" placeholder="Empty" ng-model="user.SecondaryCellPhone" ui-mask="999-999-9999"/>
+				  	</label>
+				 </div>
+				<!-- Communications -->
+				<div ng-if="part == 'communications'">
+			  			<div class="item item-divider">Edit Communication option</div>
+						<div class="list">
+							<div class="item no-padding-top-bot">
+							  	<label class="item-input">
+									<ion-checkbox ng-model="user.ReceiveEmail">
+									<span class="bold">Yes! Add me to your weekly email list.</span>
+									<span class="offer-msg">i'd ike to receive weekly emails with specials 
+										from my store, delivered directly to my inbox 
+										each week. From time to time, I may also receive 
+										emails about other special events, promotions 
+										and more.
+									</span>
+									</ion-checkbox>
+								</label>
+							</div>
+							<div class="item no-padding-top-bot">
+							  	<label class="item-input">
+									<ion-checkbox ng-model="user.ReceiveTextMessage">
+									<span class="bold">Yes! Sign me up today to receive
+										special promotions via text message.</span>
+									<span class="offer-msg">By selecting this box, you will receive a text 
+										message to your provided mobile number(s) 
+										to  confirm your selection. Check the mobile 
+										number(s) listed below to confirm it is the 
+										correct number. Otherwise contact 
+										guestservices@unitedtexas.com or call
+										1-877-848-6483
+									</span>
+									</ion-checkbox>
+								</label>
+							</div>
+							<div class="item no-padding-top-bot">
+							  	<label class="item-input">
+							  		<span class="blue-text">* Primary Mobile Number / Alt ID </span>
+							  		<input name="cellphone" type="tel" placeholder="936-000-0000" ng-model="user.CellPhone" ui-mask="999-999-9999"/>
+								</label>
+							</div>
+							<div class="item no-padding-top-bot">
+							  	<label class="item-input">
+							  		<span class="blue-text">Secondary Mobile Phone: </span>
+							  		<input name="seccellphone" type="tel" placeholder="Empty" ng-model="user.SecondaryCellPhone" ui-mask="999-999-9999"/>
+								</label>
+							</div>
+						</div>
+						<div class="red-text" ng-if="redMessage">
+							A text message has been sent to the 
+							number(s) above. The message is from 
+							433-00. Please check your phone and 
+							confirm with a "Y". If you did not receive 
+							the message, please check the number(s) 
+							above to make sure it's correct.
+						</div>
+				</div>
+				<!-- end Communications -->
+
+			</div>
+			
+			<div class="row" >	
+				<div class="col" style="text-align: center">
+					<button class="button button-long button-positive" type="button" ng-click="cancel()">
+						Cancel
+					</button>
+					<button class="button button-long button-positive" ng-disabled="editForm.$invalid" type="submit" >
+						Save
+					</button>
+				</div>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>

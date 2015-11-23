@@ -1,0 +1,358 @@
+<ion-view title="{{viewTitle}}" id="Register">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<!-- Step 1 -->
+		<div ng-if="step == '1'">
+			<form id="registerForm" name="registerForm" novalidate ng-submit="next(registerForm)">
+				<div class="list">
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="firstname" type="text" placeholder="First Name" ng-model="user.FirstName" required />
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.firstname.$error.required">This field is required</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="lastname" type="text" placeholder="Last Name" ng-model="user.LastName" required />
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.lastname.$error.required">This field is required</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="email" type="email" placeholder="Email" ng-model="user.UserEmail" required ng-pattern="emailRegx" autocapitalize="off" server-validate/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.email.$error.required">This field is required</span>
+  						<span class="help-block" ng-show="showInvalid && registerForm.email.$error.pattern">That is not valid email</span
+  						>
+  						<span class="help-block" ng-if="registerForm.email.$error.server">{{e_msges.email}}</span>
+  					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="confirmuseremail" type="email" placeholder="Confirm Email" ng-model="user.ConfirmUserEmail" required ng-pattern="emailRegx" match="user.UserEmail" autocapitalize="off"/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.confirmuseremail.$error.required">This field is required</span>
+	  					<span class="help-block" ng-show="showInvalid && registerForm.confirmuseremail.$error.match">Emails do not match</span>
+  					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="phone" type="tel" placeholder="Primary Phone Number / Alt ID" ng-model="user.Phone" required ui-mask="999-999-9999"/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.phone.$error.required">This field is required</span>
+						<span class="help-block" ng-show="showInvalid && registerForm.phone.$error.mask">Phone Number is invalid</span>
+  						<span class="help-block" ng-if="registerForm.phone.$error.server">{{e_msges.phone}}</span>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col noitems">
+						<button class="button button-long button-positive" type="button" ng-if="backToconfirm" ng-click="goBack()">
+							Back
+						</button>
+						<button class="button button-long button-positive" type="submit" ng-disabled="registerForm.$invalid">
+							Next
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- End Step 1 -->
+		<!-- Step 2 -->
+		<div ng-if="step == '2'">
+			<form id="registerForm" name="registerForm" novalidate ng-submit="saveProfile(registerForm)">
+				<div class="list">
+					<div class="item no-padding-top-bot">
+						<label class="item-input">
+							<input type="text" placeholder="User Name" name="username" ng-model="user.Email" maxlength="40" required server-validate />
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.username.$error.required">This field is required</span>
+  						<span class="help-block" ng-if="registerForm.username.$error.server">{{e_msges.username}}</span>
+  					</div>
+					<div class="item no-padding-top-bot">
+						<label class="item-input">
+							<input type="password" placeholder="Password" name="password" ng-model="user.Password" required ng-pattern="passwordRegx" />
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.password.$error.required">This field is required</span>
+						<span class="help-block" ng-show="registerForm.password.$error.pattern">6-12 characters long and include at least one letter and one number</span>
+					</div>
+					<div class="item no-padding-top-bot">
+						<label class="item-input">
+							<input type="password" placeholder="Confirm Password" name="retypepassword" ng-model="user.RetypePassword" required match="user.Password"/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.retypepassword.$error.required">This field is required</span>
+						<span class="help-block" ng-show="showInvalid && registerForm.retypepassword.$error.match">Passwords do not match</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="address" type="text" placeholder="Address" ng-model="user.Address" required />
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.address.$error.required">This field is required</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="city" type="text" placeholder="City" ng-model="user.City" required />
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.city.$error.required">This field is required</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<select name="state" ng-model="user.State" required ng-class="{placeholder: !user.State}">
+								<option value="" disabled>State</option>
+								<option ng-repeat="state in states" value="{{state.value}}" ng-selected="state.value == user.State">{{state.text}}</option>
+							</select>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.state.$error.required">This field is required</span>
+				  	</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="zip" type="tel" placeholder="Zip" ng-model="user.ZipCode" required ui-mask="99999"/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.zip.$error.required">This field is required</span>
+						<span class="help-block" ng-show="showInvalid && registerForm.zip.$error.mask">Zip is invalid</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<input name="cellphone" type="tel" placeholder="Primary Mobile Number / Alt ID" ng-model="user.CellPhone" required ui-mask="999-999-9999"/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.cellphone.$error.required">This field is required</span>
+						<span class="help-block" ng-show="showInvalid && registerForm.cellphone.$error.mask">Phone Number is invalid</span>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+					  		<input name="seccellphone" type="tel" placeholder="Secondary Mobile Number (Optional)" ng-model="user.SecondaryCellPhone" ui-mask="999-999-9999"/>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.seccellphone.$error.mask">Phone Number is invalid</span>
+					</div>
+					<div class="item no-padding-top-bot border-bottom">
+					  	<label class="item-input item-icon-right store-selection" ng-click="selectStore()">
+					  		<input name="storeid" type="hidden" ng-model="user.StoreID" required>
+					  		<div ng-class="{placehoder: !user.StoreID}" ng-if="!user.StoreID">Select Preferred Store</div>
+					  		<div ng-if="user.StoreID">{{chooseStore.StoreName}}<br/>{{chooseStore.Address1}}, {{chooseStore.City}} {{chooseStore.State}}<br/>{{chooseStore.Zipcode}}</div>
+							<i class="icon ion-aquo-left fa fa-angle-double-right"></i>
+					  	</label>
+					  	<span class="help-block" ng-show="showInvalid && registerForm.storeid.$error.required">This field is required</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col noitems">
+						<button class="button button-long button-positive" type="button" ng-click="goBack()">
+							Back
+						</button>
+						<button class="button button-long button-positive" type="submit" ng-disabled="registerForm.$invalid">
+							Save & Continue
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- End Step 2 -->
+		<!-- Step 3 -->
+		<div ng-if="step == '3'">
+			<form id="registerForm" class="communication-form" name="registerForm" novalidate ng-submit="saveCommunications(registerForm)">
+				<div class="second-header">
+					Sign Up to Receive Special Offers.
+				</div>
+				<div class="list">
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<ion-checkbox ng-model="user.ReceiveEmail">
+							<span class="bold">Yes! Add me to your weekly email list.</span>
+							<span class="offer-msg">I'd ike to receive weekly emails with specials 
+								from my store, delivered directly to my inbox 
+								each week. From time to time, I may also receive 
+								emails about other special events, promotions 
+								and more.
+							</span>
+							</ion-checkbox>
+						</label>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+							<ion-checkbox ng-model="user.ReceiveTextMessage">
+							<span class="bold">Yes! Sign me up today to receive
+								special promotions via text message.</span>
+							<span class="offer-msg">By selecting this box, you will receive a text 
+								message to your provided mobile number(s) 
+								to  confirm your selection. Check the mobile 
+								number(s) listed below to confirm it is the 
+								correct number. Otherwise contact 
+								guestservices@unitedtexas.com or call
+								1-877-848-6483
+							</span>
+							</ion-checkbox>
+						</label>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+					  		<span class="blue-text">* Primary Mobile Number / Alt ID </span>
+					  		<input name="cellphone" type="tel" placeholder="936-000-0000" ng-model="user.CellPhone" ui-mask="999-999-9999"/>
+						</label>
+					</div>
+					<div class="item no-padding-top-bot">
+					  	<label class="item-input">
+					  		<span class="blue-text">Secondary Mobile Phone: </span>
+					  		<input name="seccellphone" type="tel" placeholder="Empty" ng-model="user.SecondaryCellPhone" ui-mask="999-999-9999"/>
+						</label>
+					</div>
+				</div>
+				<!--div class="red-text">
+					A text message has been sent to the 
+					number(s) above. The message is from 
+					433-00. Please check your phone and 
+					confirm with a "Y". If you did not receive 
+					the message, please check the number(s) 
+					above to make sure it's correct.
+				</div-->
+				<div class="row">
+					<div class="col noitems">
+						<button class="button button-long button-positive" type="button" ng-click="goBack()">
+							Back
+						</button>
+						<button class="button button-long button-positive" type="submit">
+							Save & Continue
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- End Step 3 -->
+		<!-- Step 4 (Confirm info)-->
+		<div ng-if="step == '4'">
+			<form id="registerForm" class="confirm-form" name="registerForm" novalidate ng-submit="create(registerForm)">
+				<div class="list">
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Name</div>
+		  				<div class="value">{{user.FirstName}} {{user.LastName}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('1')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Address</div>
+  						<div class="value">{{user.Address}}</br>{{user.City}}, {{user.State}} {{user.ZipCode}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('2')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Username</div>
+		  				<div class="value">{{user.Email}}</div>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Rewards Account Number</div>
+		  				<div class="value">{{user.SRCardID}}</div>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Primary Phone/AltID</div>
+		  				<div class="value">{{user.Phone | tel}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('1')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Primary Mobile/AltID</div>
+		  				<div class="value">{{user.CellPhone | tel}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('2')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Secondary Mobile Phone</div>
+		  				<div class="value">{{user.SecondaryCellPhone | tel}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('2')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Email Address</div>
+		  				<div class="value">{{user.UserEmail}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('1')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Password</div>
+		  				<div class="value">**********</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('2')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Communication</div>
+		  				<div class="value">Opted in to Receive...</div>
+		  				<div class="value" ng-if="user.ReceiveEmail == true">&raquo; Email</div>
+		  				<div class="value" ng-if="user.ReceiveTextMessage == true">&raquo; Text Messages</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="edit('3')">Edit</button>
+		  			</div>
+		  			<div class="item item-button-right">
+		  				<div class="label blue-text">Preferred Store</div>
+		  				<div class="value" ng-if="user.StoreID">{{chooseStore.StoreName}}<br/>{{chooseStore.Address1}}, {{chooseStore.City}} {{chooseStore.State}}<br/>{{chooseStore.Zipcode}}</div>
+		  				<button type="button" class="button button-positive button-small" ng-click="selectStore()">Edit</button>
+		  			</div>
+				</div>
+				<div class="row">
+					<div class="col noitems">
+						<button class="button button-long button-positive" type="button" ng-click="goBack()">
+							Back
+						</button>
+						<button class="button button-long button-positive" type="submit" ng-disabled="registerForm.$invalid">
+							Create Account
+						</button>
+					</div>
+				</div>
+				<div class="footer-confirm-msg">
+					By registering an account with us, <br/>
+					you agree to our <a class="blue-link" ng-click="openLink(cfg.TOULink)"> Terms of Use </a>
+				</div>
+			</form>
+		</div>
+		<!-- End Step 4 (Confirm info)-->
+		<!-- Step 5 (Multiple Accounts Located)-->
+		<div ng-if="step == '5'">
+			<form id="registerForm" name="registerForm" novalidate ng-submit="cancel(registerForm)">
+				<div class="second-header">
+					Multiple Accounts Located
+				</div>
+				<div class="red-text db-messages" compile="messages">
+				</div>
+				<div class="list">
+		  			<div class="item noitems blue-text" ng-repeat="user in users" ng-click="goToLogin(user)">
+		  				{{user.Email}}
+		  			</div>
+				</div>
+				<div class="row">
+					<div class="col noitems">
+						<button class="button button-long button-positive" type="submit" ng-disabled="registerForm.$invalid">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- End Step 5 (Multiple Accounts Located)-->
+		<!-- Step 6 (Already Account)-->
+		<div ng-if="step == '6'">
+			<form id="registerForm" class="login-form" name="registerForm" novalidate ng-submit="signIn(registerForm)">
+				<div class="second-header">
+					You already have an account.
+					Please log in.
+				</div>
+				<div class="red-text db-messages" compile="messages">
+				</div>
+				<div class="list">
+					<div class="item no-padding-top-bot">
+						<label class="item-input">
+		    				<input type="text" placeholder="User Name" name="username" ng-model="logInModel.UserName" required>
+					  	</label>
+						<span class="help-block" ng-show="showInvalid && registerForm.username.$error.required">This field is required</span>
+  					</div>
+					<div class="item no-padding-top-bot">
+						<label class="item-input">
+		    				<input name="password" type="password" placeholder="Password" ng-model="logInModel.Password" required>
+					  	</label>
+		    			<span class="help-block" ng-show="showInvalid && registerForm.password.$error.required">This field is required</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col noitems">
+						<button class="button button-long button-positive" type="submit" ng-disabled="registerForm.$invalid">
+							Sign In
+						</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col noitems footer-link">
+						<a class="blue-link" href="#/app/forgot">Forgot Your Password?</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- End Step 6 (Already Account)-->
+	</ion-content>
+</ion-view>

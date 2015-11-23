@@ -1,0 +1,46 @@
+<ion-view title="Search" id="Search">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  	</ion-nav-buttons>
+  	<ion-content class="has-header">
+		<div class="list search">
+  			<div class="item item-divider">
+	  			<form name="searchForm"novalidate class="item-input-inset search-form" ng-submit="search(searchForm)">
+					<label class="item item-input">
+						<input type="text" placeholder="Weekly Ad and Recipes" ng-model="form.keyword" required/>
+					</label>
+					<button class="button button-clear icon fa fa-angle-double-right search-btn" type="submit"></button>
+	  			</form>
+	  		</div>
+  		</div>
+  		<div class="list search-list" ng-if="restult">
+  			<div class="item item-divider" ng-if="restult.SaleItems && restult.SaleItems.length>0">
+  				WEEKLY AD
+  			</div>
+  			<div class="item row" ng-repeat="item in restult.SaleItems">
+  				<div class="col">
+  					<div class="name" ng-bind-html="item.Name"></div>
+  					<div class="name" ng-bind-html="item.Description"></div>
+  					<button class="button button-small button-positive" ng-click="addToShoppingList(item)">Add To List</button>
+  				</div>
+  				<div class="col">
+  					<div class="price" ng-bind-html="item.Price"></div>
+  				</div>
+  			</div>
+  			<div class="item item-divider" ng-if="restult.Recipes && restult.Recipes.length>0">
+  				RECIPES
+  			</div>
+  			<div class="item row" ng-repeat="item in restult.Recipes" ng-click="viewRecipe(item)">
+  				<div class="col">
+  					<div class="name">{{item.Title}}</div>
+  				</div>
+  				<div class="col">
+  					<div class="price">{{item.PreparationTime}}</div>
+  				</div>
+  			</div>
+        <div class ="item noitems" ng-if="(restult.Recipes && restult.Recipes.length == 0) && (restult.SaleItems && restult.SaleItems.length == 0)">
+            No Results Found.
+        </div>
+  		</div>
+  	</ion-content>
+</ion-view>
