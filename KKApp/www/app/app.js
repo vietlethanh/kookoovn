@@ -113,12 +113,10 @@ angular.module('MCMRelationshop', [
 		})
 		
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/app/login?hidebar=true');
+	$urlRouterProvider.otherwise('/app/home');
 })
-.controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'AppUtil','APP_CONFIG','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate',
-	function($scope,$state, $stateParams, $ionicModal, $timeout, AppUtil, APP_CONFIG,  CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate) {
-		
-		
-		
+.controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'AppUtil','APP_CONFIG','CacheUtil','$ionicViewService','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate',
+	function($scope,$state, $stateParams, $ionicModal, $timeout, AppUtil, APP_CONFIG,  CacheUtil, $ionicViewService, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate) {
+				
 	}
 ]);

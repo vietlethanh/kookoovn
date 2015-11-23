@@ -5,8 +5,8 @@ angular.module('MCMRelationshop.Account', [
 	'MCMRelationshop.StoreLocator'
 ])
 
-.controller('AccountCtrl', ['$rootScope','$scope','$state','$q', 'Store', 'User', 'security','$ionicLoading','AppUtil','MCMTracker','ngFB',
-	function($rootScope,$scope, $state,$q, Store, User, security, $ionicLoading, AppUtil,MCMTracker,ngFB) {  
+.controller('AccountCtrl', ['$rootScope','$scope','$state','$q', 'Store', 'User', 'security','$ionicLoading','AppUtil','MCMTracker',
+	function($rootScope,$scope, $state,$q, Store, User, security, $ionicLoading, AppUtil,MCMTracker) {  
 		
 		//console.log('dang thu trang')
 		// private properties -------------------------------------------------------------
@@ -18,44 +18,7 @@ angular.module('MCMRelationshop.Account', [
 		// private method -------------------------------------------------------------
 		function loadData(){
 			
-			//$ionicLoading.show();
-			//console.log($scope.socialWeb);
-			var user = security.getCurrentUser();
-			console.log("Account load data");
-			console.log(user);
-			$scope.socialWeb = user.SocialWeb
-			 $scope.user = user;
-			/*
-		 	ngFB.api({
-		        		path: '/me'
-		        		//params: {fields: 'id,name'}
-		    		}).then(
-					        function (user) {
-					        	console.log("Account load data ngFB.api");
-					        	$ionicLoading.hide();
-					            $scope.user = {
-					            	Email: user.email,
-					            	FirstName: user.first_name,
-					            	LastName: user.last_name,
-					            };
-					            console.log(user);
-					        },
-					        function (error) {
-					            alert('Facebook error: ' + error.error_description);
-					});
-			*/
-			/*var storeReq = Store.getStore($scope.user.StoreID).then(function(res){
-				$scope.userStore = res.data;
-			});
-			var userReq = User.getUser($scope.user.Email, true).then(function(res){
-				$scope.user = res.data;
-				security.setCurrentUser(res.data);
-			});	
-			$ionicLoading.show();
-			$q.all([storeReq, userReq]).then(function(){
-				$ionicLoading.hide();
-			})
-			*/
+			
 		}
 		//public method -------------------------------------------------------------
 		$scope.edit  = function(part){

@@ -5,8 +5,8 @@ angular.module('MCMRelationshop.Login', [
 	'ngCordovaOauth'
 	
 ])
-.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','ngFB','$cordovaOauth','$ionicNavBarDelegate','$ionicSideMenuDelegate',
-	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,ngFB,$cordovaOauth,$ionicNavBarDelegate,$ionicSideMenuDelegate) { 
+.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','$cordovaOauth','$ionicNavBarDelegate','$ionicSideMenuDelegate',
+	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,$cordovaOauth,$ionicNavBarDelegate,$ionicSideMenuDelegate) { 
 		console.log('LoginCtrl');
 
 		
@@ -142,31 +142,7 @@ angular.module('MCMRelationshop.Login', [
 	        }
 	    };
 	    
-		$scope.fbLogin = function () {
-			alert(ionic.Platform.isAndroid());
-			console.log(ionic.Platform.device());
-			
-		    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
-		        function (response) {
-		            if (response.status === 'connected') {
-
-				            security.setCurrentUser(
-				            	{
-				            		SocialWeb:APP_CONFIG.SocialWeb.Facebook
-				            	}
-		            		);
-		            	
-		            	//console.log('Facebook login succeeded');
-		            	//console.log(response);
-						$rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
-		                //console.log('Facebook login succeeded');
-		                //$scope.closeLogin();
-		            } else {
-		                alert('Facebook login failed');
-		            }
-		        });
-			
-		};
+		
 
 
 	    //Login FB with oauth2
@@ -328,6 +304,6 @@ angular.module('MCMRelationshop.Login', [
 		vm.goForgot = function(){
 			$state.go('app.forgot');
 		}
-		MCMTracker.trackView('Login');
+	
 	}
 ])
