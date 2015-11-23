@@ -6,18 +6,35 @@ For example, you might change some of the default colors:
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
+$balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #8a6de9 !default;
 $dark:                            #444 !default;
 */
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
-// Include all of Ionic
+@import "scss/_variables";
+$positive: $dark_blue;
+$energized: $orange_red;
+$calm: #c5c7c9;
+// Include all of Ionic:
 @import "www/lib/ionic/scss/ionic";
-
+@import "scss/_base";
+@import "scss/_action-sheet";
+@import "scss/_menu";
+@import "scss/_intro";
+@import "scss/_login";
+@import "scss/_register";   
+@import "scss/_account";
+@import "scss/_info";
+@import "scss/_weeklyad";
+@import "scss/_shoppinglist"; 
+@import "scss/_recipe";
+@import "scss/_digitalcoupon";
+@import "scss/_rewardsprogram";
+@import "scss/_storelocator";
+@import "scss/_search";

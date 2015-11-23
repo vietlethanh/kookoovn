@@ -1,0 +1,32 @@
+$a_blue : #325fa0;
+
+#editForm {
+	select {
+		opacity: 1;
+		width: 100%;
+		z-index:100;
+		border: none;
+		background: transparent;
+		margin-left: -8px;
+	}
+	.placehoder{
+		color: gray;
+	}
+}
+.account-list {
+	.label{
+		color: $a_blue;
+	}
+	.value {
+		color: #909193;
+	}
+	.item-button-right > .button {
+		font-size: 12px;
+		line-height: 26px;
+		min-width: 28px;
+		min-height: 30px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+}
