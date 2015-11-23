@@ -1,0 +1,39 @@
+<ion-view title="Search Digital Coupons" id="Search">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  	</ion-nav-buttons>
+  	<ion-content class="has-header">
+		<div class="list search">
+  			<div class="item item-divider">
+	  			<form name="searchForm"novalidate class="item-input-inset search-form" ng-submit="search(searchForm)">
+					<label class="item item-input">
+						<input type="text" placeholder="Keyword" ng-model="searchText" required/>
+					</label>
+					<button class="button button-clear icon fa fa-angle-double-right search-btn" type="submit"></button>
+	  			</form>
+	  		</div>
+  		</div>
+  		<div class="list search-list" ng-if="(digitalcoupons && digitalcoupons.length > 0)">
+        <div ng-if="currentUser && currentUser.SRCardID && !showWatingCardView">
+          <ul class="list digitalcoupon-list" ng-if="digitalcoupons.length>0">
+            <li class="item" ng-repeat="coupon in digitalcoupons | filter:searchText">
+              <div class="row">
+                <div class="image">
+                  <img ng-src="{{coupon.ImgFile}}"/>
+                </div>
+                <div class="col info">
+                  <div class="name"  ng-bind-html="coupon.Title"></div>
+                  <div class="desc" ng-bind-html="coupon.Description"></div>
+                  <button class="button button-small button-positive" ng-click="add(coupon)" ng-if="!coupon.IsAdded">Add To Account</button>
+                  <button class="button button-small button-calm" ng-if="coupon.IsAdded">Added To Account</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class ="item noitems" ng-if="(digitalcoupons|filter:searchText).length == 0">
+            No Results Found.
+        </div>
+  		</div>
+  	</ion-content>
+</ion-view>

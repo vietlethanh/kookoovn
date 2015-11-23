@@ -1,0 +1,614 @@
+<ion-view title="Rewards Program" id="RewardsProgram">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button class="button button-icon icon ion-refresh" ng-click="refresh()"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<div ng-if= "showUnactive">
+			<div class="guest_view">
+				<div class="guest_header"></div>
+				<div class="intro">
+					<p>{{lmessage}}</p>
+					<div class="row">
+						<div class="col center">
+							<button class="button button-positive"ng-click="openLink('http://albertsonsmarket.com/rewardscomingsoon')">More info</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-if= "!showUnactive">
+			<div ng-if="currentUser && currentUser.SRCardID && !showWatingCardView">
+				<div class="header"></div>
+				<div class="section points" ng-if="cardInfo.PilotPoint!=null && cardInfo.PilotPoint!=undefined">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon " ng-click="toggle('pShow')" ng-class="{'ion-plus': !switchs.pShow,'ion-minus': switchs.pShow}"></button>
+						</div>
+						<div class="col col-center title">
+							My Points & Rewards
+						</div>
+						<div class="col col-center point">
+							{{cardInfo.PilotPoint}}
+						</div>
+					</div>
+					<div class="content" ng-if="switchs.pShow">
+						<h2>Base on how much you've shopped you have earned Rewards.</h2>
+						<ul class="list reward-list">
+							<div class="item item-divider" ng-if="cardInfo.PointRewards.length>0">
+								<div class="row">
+									<div class="col">My Rewards</div>
+									<div class="col col-expire">Expires</div>
+								</div>
+							</div>
+							<div class="item" ng-repeat="re in cardInfo.PointRewards" ng-if="cardInfo.PointRewards.length>0">
+								<div class="row">
+									<div class="col" ng-bind-html="re.Title"> </div>
+									<div class="col col-expire">{{re.ExpDate | date: 'MM/dd/yyyy'}}</div>
+								</div>
+							</div>
+							<div class="item item-divider">
+								Program Details
+							</div>
+							<div class="item title">
+								Earn aisles and miles every time you shop with our Rewards Program!
+							</div>
+							<div class="item" style="text-align: center; font-size: 16px;">
+								UChoose your Rewards, either .20&cent; off/gallon of gas or 5% off your groceries, just for shopping with us.
+							</div>
+							<div class="item title">
+								Shop
+							</div>
+							<div class="item" style="border: none; padding-bottom: none;">
+								For a limited time, every time you shop, earn 1 point for every dollar you spend. Every 200 points earns a 20&cent; reward. Earn points on groceries, prescriptions and more!
+							</div>
+							<div class="item title" style="border: none;">
+								Save
+							</div>
+							<div class="item no-border" style="border: none;">
+								Use you 20&cent; Reward on 20&cent; off/gallon of gas, up to 25 gallons, or exchange 40&cent; for 5% off your groceries. Redeem at participating locations. The More You Shop the More You Save! 
+							<div>
+						</ul>
+
+					</div>
+				</div>
+				<div class="section digitalcoupons">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon " ng-click="toggle('dcShow')" ng-class="{'ion-plus': !switchs.dcShow,'ion-minus': switchs.dcShow}"></button><!---->
+						</div>
+						<div class="col col-center title">
+							My Digital Coupons
+						</div>
+						<div class="col col-center point">
+							{{cardInfo.DigitalCoupons.length + cardInfo.SmartCoupons.length + cardInfo.SmartRewards.length}}
+						</div>
+					</div>
+					<div class="content" ng-if="switchs.dcShow">
+						<ul class="digital_coupon_list">
+							<li ng-repeat="dc in cardInfo.DigitalCoupons">
+								{{dc.Title}}<br/>
+								Expires: {{dc.ExpDate | date: 'MM/dd/yyyy'}}
+							</li>
+							<li ng-repeat="dc in cardInfo.SmartCoupons">
+								{{dc.Title}}<br/>
+								Expires: {{dc.ExpDate | date: 'MM/dd/yyyy'}}
+							</li>
+							<li ng-repeat="dc in cardInfo.SmartRewards">
+								{{dc.Title}}<br/>
+								Expires: {{dc.ExpDate | date: 'MM/dd/yyyy'}}
+							</li>
+						</ul>
+					</div>
+				</div><!-- digital coupons -->
+				<div class="section myrxclub">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon " ng-click="toggle('rxShow')" ng-class="{'ion-plus': !switchs.rxShow,'ion-minus': switchs.rxShow}">
+						</div>
+						<div class="col col-center title">
+							My Rx Club
+						</div>
+					</div>
+					<div class="content" ng-if="switchs.rxShow" class="animate-if">
+						<div class="join-the-club" ng-if="rxClub.showPart=='intro'">
+							<h3>Join The Club!</h3>
+							<div class="intro">
+								<p>
+									MyRxClub is a membership pharmacy savings program that provides individuals and families immediate savings on prescriptions
+								</p>
+								<p>
+									Join today and you and your family will receive savings on generic medications, plus discounts on brand name prescriptions
+								</p>
+							</div>
+							<div class="impress">
+								For an annual enrollment fee of $11.99 you'll receive:
+							</div>
+							<ul>
+								<li><strong>$3.99 Select Generics</strong> 30-Day Supply**</li>
+								<li><strong>$9.99 Select Generics</strong> 90-Day Supply**</li>
+								<li><strong>Discounts</strong> on brand names and hundreds of other generic medications!</li>
+
+							</ul>
+							<div class="link">
+									<!--
+									<a ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/myrxclub_druglist.pdf')">View Generic Drug List </a>
+									-->
+									
+									<div class="druglink">
+										<img src="img/drug.png"></img>
+										<!-- map -->
+										<a class="AlbertsonsDugLink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/MyRxClub_ABM.pdf')"></a>
+										<a class="UnitedDugLink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/myrxclub_druglist.pdf')"></a>
+									</div>
+										
+									
+									<a ng-click="openLink('http://www.unitedtexas.com/myrxclub/faqs')">Frequently Asked Questions</a>
+									
+							</div>
+							<div class="info">
+								With your annual enrollment fee of $11.99 you will receive a <strong>$10 credit to your rewards account*</strong>.
+							</div> 
+							<div class="row">
+								<div class="col center">
+									<button class="button button-long button-positive" ng-click="rsNothanks()">No Thanks</button>
+									<button class="button button-long button-positive" ng-click="showEnrollForm()">Continue</button>
+								</div>
+							</div>
+							
+							<div class="note">
+								<p>
+									*Credit on account given when annual enrollments fee is charged at the pharmacy counter. <strong>DISCOUNT ONLY - NOT INSURANCE.</strong> Terms and Conditions apply. See your pharmacist for complete program details.
+								</p>
+								<p>
+									**The day supply is based upon the average dispensing patterns for the specific drug and strength. The Program, as well as the prices and the list of covered drugs, can be modified at any time without notice.
+								</p>
+							</div>
+						</div><!-- join -->
+						<div class="rx-singup" ng-if="rxClub.showPart=='enroll'">
+							<h3>Sign Up Today</h3>
+							<div class="su-text">
+								To sign up in MyRxClub, complete the information below and click Enroll.
+							</div>
+							<form novalidate id="enrollForm" name="enrollForm"  ng-submit="enrollRx(enrollForm)">
+
+								<div class="list" class="input-date-group">
+									<label class="label">Date of Birth</label>
+									<label class="item item-input">
+										<input type="date" placeholder="Date of Birth" ng-model="rxForm.dateOfBirth" required >
+									</label>
+									<div class="item label">
+										<div class="row">
+											<div class="col  cbox">
+												<input type="checkbox" ng-model="rxForm.agree" required>
+											</div>
+											<div class="col">
+												Yes, I have read and agree to the <a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">HIPAA Authorization</a> <span class="required">*Required</span>
+											</div>
+										</div>
+									</div>
+									<div class="item label">
+										<div class="row">
+											<div class="col cbox">
+												<input type="checkbox" ng-model="rxForm.reciveMessage">
+											</div>
+											<div class="col">
+												Yes, I have read and agree to the <a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">Marketing Authorization</a>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col center">
+											<buton class="button button-long button-positive" type="submit" ng-disabled="enrollForm.$invalid" ng-click="enrollRx(enrollForm)">ENROLL</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<div>
+								<p>
+									Only one online, sign up per household is necessary. Additional household members may be added to your enrollment at the pharmacy counter.
+								</p>
+								<p>
+									I understand that I have a right to receive a copy of this authorization by calling <strong>1-877-848-6483</strong>.
+								</p>
+							</div>
+							<div class="link">
+								<a ng-click="openLink('http://www.unitedtexas.com/myrxclub/faqs')">Frequently Asked Questions</a>
+							</div>
+							<!--
+							<div class="note">
+								<p>
+									*Credit on account given when annual enrollments fee is charged at the pharmacy counter. <strong>DISCOUNT ONLY - NOT INSURANCE.</strong> Term and Conditions apply. See you pharmacist for complete program details.
+								</p>
+								<p>
+									**The day supply is based upon the average dispensing patters for the specific drug and strength. The Program, as well as the prices and the list of covered drugs, can be modified at any time without notice.
+								</p>
+							</div>
+							-->
+						</div> <!-- Singup-->
+						<div class="rx-singup-success" ng-if="rxClub.showPart=='success'">
+							<h3>Congratulations!<br/>You have successfully enrolled in MyRxClub.</h3>
+							<p>
+								The enrollment fee of $11.99 will be added to your first prescription filled using MyRxClub at our pharmacy, and annually at the time of renewal
+							</p>
+							<p>
+								Each year you pay your enrollment fee, your Rewards Account will receive a $10 credit!
+							</p>
+							<div class="row">
+								<div class="col center">
+									<button class="button button-long button-positive" ng-click="showPaid()">Continue</button>
+								</div>
+							</div>
+						</div><!-- rx-singup-success -->
+						<div class="rx-welcome" ng-if="rxClub.showPart=='paid'">
+							<div ng-if="!rxClub.startDate">  
+								<div class="hipaa">
+									<p class="required">The enrollment fee of $11.99 will be added to your first prescription filled using MyRxClub at your pharmacy, and annually at the time of renewal.
+									</p>
+									<p>
+										Each year you pay your enrollment fee, your Rewards Accounting will receive a $10 credit.
+									</p>
+									<p style="text-align: right;"><a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">HIPAA Authorization</a></p>
+								</div>
+								<div class="paid part">
+									<h3>Welcome To The Club</h3>
+									<div>
+										<p>Your are signed up for MyRxClub. You can now visit any United Supermarkets, Market Street, Amigos or Albertsons Market pharmacy location and receive the advantages of MyRxClub!
+										</p>
+										<p>
+											Your pharmacists can provide you with a printed copy of the Program <a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">Terms and Conditions</a>. If you should have any questions regarding MyRxClub please call Guest Support representatives at 1-877-848-6483
+										</p>
+										<div class="link">
+											<!--
+											<a class="pdflink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/myrxclub_druglist.pdf')">View Generic Drug List</a>
+											<i class="icon ion-pdf"></i>
+											-->
+											<div class="druglink">
+												<img src="img/drug.png"></img>
+												<!-- map -->
+												<a class="AlbertsonsDugLink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/MyRxClub_ABM.pdf')"></a>
+												<a class="UnitedDugLink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/myrxclub_druglist.pdf')"></a>
+											</div>
+										</div>
+										<p>
+											<strong>DISCOUNT ONLY - NOT INSURANCE.</strong> Terms and Conditions apply. See your pharmacist for complete program details.
+										</p>
+										<div class="link">
+											<a ng-click="openLink('http://www.unitedtexas.com/myrxclub/faqs')">Frequently Asked Questions</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div ng-if="rxClub.startDate"> 
+								<div class="paid part">
+									<div class='row'>
+										<div class="col" style="font-weight:bold">
+											Sign Up Date: {{rxClub.startDate | date: 'MM/dd/yyyy'}} <br/>
+											<div ng-if="rxClub.endDate"> Expiration Date: {{rxClub.endDate | date: 'MM/dd/yyyy'}}</div>
+										</div>
+										<div class="col" style="text-align:right;"><a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">HIPAA Authorization</a></div>
+									</div>
+									<div>
+										<p>Your are signed up for MyRxClub. You can now visit any United Supermarkets, Market Street, Amigos or Albertsons Market pharmacy location and receive the advantages of MyRxClub!
+										</p>
+										<p>
+											Your pharmacists can provide you with a printed copy of the Program <a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">Terms and Conditions</a>. If you should have any questions regarding MyRxClub please call Guest Support representatives at 1-877-848-6483
+										</p>
+										<div class="link">
+											<!--
+											<a class="pdflink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/myrxclub_druglist.pdf')">View Generic Drug List</a>
+											<i class="icon ion-pdf"></i>
+											-->
+											<div class="druglink">
+												<img src="img/drug.png"></img>
+												<!-- map -->
+												<a class="AlbertsonsDugLink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/MyRxClub_ABM.pdf')"></a>
+												<a class="UnitedDugLink" ng-click="openLink('http://unitedtexas.com/Media/UnitedTexasCorp/PDFs/myrxclub_druglist.pdf')"></a>
+											</div>
+										</div>
+										<p>
+											<strong>DISCOUNT ONLY - NOT INSURANCE.</strong> Terms and Conditions apply. See your pharmacist for complete program details.
+										</p>
+										<div class="link">
+											<a ng-click="openLink('http://www.unitedtexas.com/myrxclub/faqs')">Frequently Asked Questions</a>
+										</div>
+									</div>
+								</div>
+							</div>	
+							<div class="part">
+								<h3>Would you like to receive Marketing messages related to the Pharmacy?</h3>
+								<form novalidate ng-submit="updateRx()">
+									<div class="list">
+										<div class="item label">
+											<div class="row">
+												<div class="col cbox">
+													<input type="checkbox" ng-model="rxClub.isReciveMessage">
+												</div>
+												<div class="col">
+													Yes, I have read and agree to the <a ng-click="openLink('http://unitedtexas.com/myrxclub/hipaa_mkt_release')">Marketing Authorization</a>
+												</div>
+											</div>
+										</div>
+										<div class="row buttons">
+											<div class="col center">
+												<button class="button button-long button-positive" type="submit">UPDATE ACCOUNT</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						
+					</div><!--rx-welcome-->
+				</div><!-- myrxclub -->
+				
+				<div class="section lodge" id="lodge_section" ng-if="enableLodge">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon" ng-click="toggle('lodgeShow')" ng-class="{'ion-plus': !switchs.lodgeShow,'ion-minus': switchs.lodgeShow}">
+						</div>
+						<div class="col col-center title">
+							<div>Lodge Cookware</div>
+							<div class="sub"> Texas Locations Only </div>
+						</div>
+						<div class="col col-center point">
+							{{cardInfo.LodgeContinuity}}
+						</div>
+					</div>
+					<div class="content" ng-if="switchs.lodgeShow" class="animate-if">
+						<div class="logde-intro" ng-if="switchs.lodgePart=='intro'">
+							<h5>
+								Earn e-stickers
+							</h5>
+							<p>from September 17, 2014</br> through January 27, 2015</p>
+							<h5>Redeem e-stickers</h5>
+							<p>through February 28, 2015.</p>
+							<div class="row">
+								<div class="col center">
+									<button class="button button-long button-positive" ng-click="showLogdePart('items')">View Items</button>
+									<button class="button button-long button-positive" ng-click="showLogdePart('program')">Program Details</button>
+								</div>
+							</div>
+						</div>
+						<div class="lodge-items" ng-if="switchs.lodgePart=='items'">
+							<div class="" style="text-align:right">
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('intro')">Back</button>
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('program')">Program Details</button>
+							</div>
+							<div class="titlepanel">FREE Cookware & Bakeware</div>
+							<div class="lodge-section">
+								<div class="lodge-header row">
+									<div class="title col col-66">Total e-stickers</div>
+									<div class="points col col-33">{{cardInfo.LodgeContinuity}}</div>
+								</div>
+							</div>
+							<div class="see_other">
+								<span class="see_details" ng-click="showLogdePart('program')">&raquo; Program Details and How to Redeem<span>
+							</div>
+							<div class="note">
+								Texas Locations Only
+							</div>
+							<div class="explaination">
+								<ul>
+									<li><div class="free"></div><div class="label"> Item Available for Free</div></li>
+									<li><div class="purchase"></div><div class="label">Item Available to Purchase</div></li>
+								</ul>
+							</div>
+							
+							<div class="item {{item.status}}" ng-repeat="item in lodgeItems" >
+								<div class="image"><image ng-src="{{item.image}}" /><div class="code"p>{{item.code}}</div></div>
+								<div class="content">
+									<div class="name">{{item.name}}</div>
+									<div class="desc">{{item.description}}</div>
+									<div class="ticket">FREE with <strong>{{item.ticket}}</strong> e-stickers</div>
+									<hr ng-if="item.purchase && item.purchase.length >0"/>
+									<div class="purchase" ng-repeat="p in item.purchase">${{p.money}} with {{p.ticket}} e-stickers</div>
+								</div>
+							</div>
+							<div class="" style="text-align:right">
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('intro')">Back</button>
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('program')">Program Details</button>
+							</div>				
+						</div><!-- items -->
+						<div class="lodge-programs" ng-if="switchs.lodgePart=='program'">
+							<div class="" style="text-align:right">
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('intro')">Back</button>
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('items')">View items</button>
+							</div>	
+							<div class="titlepanel">FREE Cookware & Bakeware</div>
+							<div class="see_other">
+								<span class="see_details" ng-click="showLogdePart('items')">&raquo; Items to Redeem<span>
+							</div>
+							<div class="lodge-section have-logo">
+								<h5> Earn e-stickers</h5>
+								<p> from September 17, 2014 </br> through January 27, 2015.</p>
+								<h5>Redeem e-stickers</h5>
+								<p>through February 28, 2015.</p>
+							</div>
+							
+							<div class="lodge-section">
+								<h1>To Redeem your e-stickers</h1>
+								<p>When you have earned the required number of e-stickers</p>
+								<ul>
+									<li>Select your desired cookware or bakeware in store</li>
+									<li>Use your Rewards account number or alternate ID at checkout</li>
+									<li>Your e-stickers for the Lodge product(s) you are purchasing will be automatically redeemed and deducted from your account</li>
+								</ul>
+							</div>
+							<div class="lodge-section terms">
+								<h1>Terms & Conditions</h1>
+								<p>Offer valid at participating United, Market Street, Albertsons Market, Amigos and United Express locations in Texas.</p>
+								<p>Earn one e-sticker for every $10 qualifying purchase within the same ticket spend between September 17, 2014 and January 27, 2015.</p>
+								<p>Participation in the Rewards Program is required to earn e-stickers. The Rewards program is free, just sign up online or on our mobile app.</p>
+								<p>E-stickers can be redeemed between September 17, 2014 and February 28, 2015 on applicable Lodge Bakeware and Cookware.</p>
+								<p>Lodge Bakeware and Cookware is offered for a limited time and is subject to availability.</p>
+								<p>Qualifying purchases exclude tobacco, fuel, money orders, FTD wires, catering rentals, Western Union, lottery; United, Albertsons, Peet's, Visa, Mastercard and American Express gift cards; Greendot, Netspend, Paypower, Reload it and Univision pre-paid cards.</p>
+								<p>To receive your Lodge Cookware and Bakeware, give your Rewards account number or alternate ID to the cashier along with the item you'd like to redeem.</p>
+								<p>Customers are responsible for the applicable sales tax on reduced and full retail purchases.</p>
+							</div>
+							<div class="" style="text-align:right">
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('intro')">Back</button>
+								<button class="button button-small button-clear button-positive" ng-click="showLogdePart('items')">View items</button>
+							</div>
+						</div><!-- program details -->
+					</div>
+				</div><!-- coffee -->
+				<div class="section coffee">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon" ng-click="toggle('cfShow')" ng-class="{'ion-plus': !switchs.cfShow,'ion-minus': switchs.cfShow}">
+						</div>
+						<div class="col col-center title">						
+							<div>Coffee Rewards</div>
+							<div class="sub"><a style="text-decoration:underline"ng-click="openLink('http://www.unitedtexas.com/rewards')">Participating stores only.<br/>Excludes in-store Starbucks cafe</a></div>
+						</div>
+						<div class="col col-center point">
+							{{cardInfo.CoffeeBalance}}
+						</div>
+					</div>
+					<div class="content" ng-if="switchs.cfShow">
+						<div ng-if="cardInfo.CoffeeBalance >= 10">
+							<div  class="coffee-desc"> 
+								Next coffee is <span class="free_txt">Free</span>
+							</div>
+							<div class="cf-points">
+								<div class="cf-point-check" ng-repeat="i in range(10)"></div>
+							</div>
+						</div>
+						<div ng-if="cardInfo.CoffeeBalance < 10">
+							<div  class="coffee-desc">
+								Only <span class="coffee_need_points">{{cardInfo.CoffeeNeedPoints}}</span> more coffees and the next one is <span class="free_txt"> FREE</span>
+							</div>
+							<div class="cf-points">
+								<div class="cf-point-check" ng-repeat="i in range(1,cardInfo.CoffeePoints+1)"></div>
+								<div class="cf-point" ng-repeat="i in range(cardInfo.CoffeePoints+1, 11)">{{i}}</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- coffee -->
+				<div class="section kidclub" id="kidclub_section">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon" ng-click="toggle('kcShow')" ng-class="{'ion-plus': !switchs.kcShow,'ion-minus': switchs.kcShow}">
+						</div>
+						<div class="col col-center title">						
+							<div>Kids Club</div>
+						</div>
+						<div class="col col-center point"></div>
+					</div>
+					<div class="content" ng-if="switchs.kcShow">
+						<div class="empty" ng-if="!kidClub.isJoin">							
+							<img src="img/rewardsprogram-kid-3.png"/>
+							<h3>There are so many fun exciting things for kids to do...</h3>
+							<div>
+								<ul>
+									<li>Cool Contests</li>
+									<li>Meet the Danger Rangers Online </li>
+									<li>Fun Activity Pages </li>
+									<li>A FREE Treat for Your Birthday</li>
+									<li>Free Fruit Everytime You Shop</li>
+									<li>Monthly Enewsletters with Recipes & Activities</li>
+									<li>And More</li>
+								</ul>
+							</div>
+							<div class="row row-center" >
+								<div class="col" style="text-align: center">
+									<button class="button button-small button-positive button-long" ng-click="addChild()">Add A Child</button>
+									<div class="sub">Add up to 5 children per household</div>
+								</div>
+							</div>
+						</div>
+						<div ng-if="kidClub.isJoin">
+							<div class="row">
+								<div class="col center">
+									<img src="img/rewardsprogram-kid-1.png" ng-click="openLink('http://marketstreetunited.com/kidsclub')"/>
+								</div>
+								<div class="col center">
+									<img src="img/rewardsprogram-kid-2.png" ng-click="showFruitMessage()"/>
+								</div>
+							</div>
+							<div class="list child-list">
+								<div class="item-divider">Club Members</div>
+								<div class="item row" ng-repeat="child in kidClub.Children">
+									<div class="col ">
+										<div>{{child.FirstName}}</div>
+										<div class="sub">Birth Month - {{child.DOB| date: 'MMMM' }}</div>
+
+									</div>
+									<div class="col actions-ctr">
+										<button class="button button-small button-positive" ng-click="editChild(child)" >Edit</button>	
+									</div>				
+								</div>
+							</div>
+							<div class="row" >
+								
+								<div class="col center">
+									<ion-checkbox ng-model="kidClub.isReciveLetter" ng-change="saveKidClub()">Receive Our Kids Club Enewsletter</ion-checkbox>
+									<button class="button button-small button-positive button-long" ng-click="addChild()" ng-disabled="kidClub.Children.length == 5">Add A Child</button>
+									<div class="sub">Add up to 5 children per household</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- kidclub -->
+
+				<div class="section accountnumber" id="accountnumber_section">
+					<div class="header-bar row">
+						<div class="col col-center btn ">
+							<button class="button icon" ng-click="toggle('anShow')" ng-class="{'ion-plus': !switchs.anShow,'ion-minus': switchs.anShow}">
+						</div>
+						<div class="col col-center title">						
+							<div>My Account Number</div>
+							<div class="sub">Barcode can only be used in select locations</div>
+						</div>
+					</div>
+					<div class="content" ng-show="switchs.anShow">
+						<div class="card-container">
+							<canvas id="barcode" barcode="cardInfo.ID" width=1 height=1 style="border:1px solid #fff;visibility:hidden" ng-if="cardInfo.ID"></canvas>
+						</div>
+					</div>
+
+				</div><!-- accout number -->
+			</div>
+			<!-- no card view -->
+			<div class="guest_view" ng-if="currentUser && !currentUser.SRCardID">			
+				<div class="guest_header"></div>
+				<div class="intro">
+					<p>
+						To use <strong>Rewards</strong>,<br/> you must be enrolled in the<br/> Rewards Program and be<br/> logged into your account.
+					</p>
+					<div class="row">
+						<div class="col center">
+							<button class="button button-energized"ng-click="goTo('app.registercard', {return: 'app.rewardsprogram'})">Sign Up</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- waiting card view -->
+			<div class="guest_view" ng-if="currentUser && currentUser.SRCardID && showWatingCardView">
+				<div class="guest_header"></div>
+				<div class="intro">
+					<p>Congratulations! Please be aware that it may take up to 30 minutes for your account to become active. Until then, you will not be able to use program features such as rewards program.</p>
+					<p>Remember to use your phone number or alternate ID when you check out in store.</p>
+				</div>
+			</div>
+			<!-- end waiting card -->
+			<div class="guest_view" ng-if="isGuest">
+				<div class="guest_header"></div>
+				<div class="intro">To use <strong>Rewards</strong>,<br> you must be enrolled in the<br> Rewards Program and be<br> logged into your account.</div>
+				<div class="row">
+					<div class="col center">
+						<button class="button button-positive" ng-click="goTo('app.login', {return: 'app.rewardsprogram'})">Log In</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col center">
+						<button class="button button-energized"ng-click="goTo('app.register', {step: 1})">Sign Up</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

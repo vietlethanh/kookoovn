@@ -1,0 +1,88 @@
+
+<style type="text/css">
+.login-form
+{
+	visibility: hidden;
+}
+</style>
+<ion-view title="" ng-controller="LoginCtrl as vm" id="Login">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">  
+  	<!--div class="second-bar row"-->
+  		<!--div class="col title col-center"> Log In </div-->
+  		<!--
+  		<div class="col forgotlink col-center">
+			<button class="button button-small forgotlink button-clear" ng-click="vm.goForgot()">&raquo; Forgot Password</button>
+		</div>
+		-->
+  	<!--/div-->
+  	<div class="row login-logo" >
+	 	 <img class="" src="img/login_logo.png" />
+	</div>
+	<div class="row login-social" >
+	  <div class="col facebook-login">
+	  	 <img class="" src="img/login_facebook.png" ng-click="fbLogin2()" />
+	  </div>
+	 
+	</div>
+  	<div class="row login-social" >
+	 
+	  <div class="col google-login">
+	  	<img src="img/login_google.png" ng-click="gplusLogin()"/>
+	  </div>
+	  <div class="col twitter-login">
+	  	<img src="img/login_twitter.png" ng-click="twitterlogin()" />
+	  </div>	
+	</div>
+  	<!--form name="loginForm" novalidate ng-submit="vm.login(loginForm)">
+		<div class="list">
+		  <label class="item item-input">
+		    <input type="text" placeholder="User Name" name="username" ng-model="vm.userName" required>
+		    <span class="help-block" ng-show="vm.showInvalid && loginForm.username.$error.required">This field is required</span>
+		  </label>
+		  <label class="item item-input">
+		    <input name="password" type="password" placeholder="Password" ng-model="vm.password" required>
+		    <span class="help-block" ng-show="vm.showInvalid && loginForm.password.$error.required">This field is required</span>
+		  </label>	  
+		</div>
+		
+		<div class="row" style="padding-bottom: 0px;" >	
+			<div class="col" style="text-align: center">
+				<button class="button button-long button-positive" type="submit" ng-disabled="loginForm.$invalid">
+					Log In
+				</button>
+			</div>
+		</div>
+	</form-->
+	<!--div class="row" style="padding-top: 0px;">
+		<div class="col" style="text-align: right; padding: 0px;">
+			<button class="button button-small forgotlink button-clear button-calm" type="button" ng-click="vm.goForgot()">Forgot Password?</button>
+		</div>
+		<div class="col" style="text-align: left; padding: 0px;">
+			<button class="button button-small forgotlink button-clear button-calm" type="button" ng-click="goTo('app.forgotusername')">Forgot User Name?</button>
+		</div>
+	</div-->
+	
+	<!--div class="login-account-adver " ng-show="false">
+		<div class="title second-bar col col-center">Why Need to Login?</div>
+		<div class="header"></div>
+		<ul>
+			<li>Choose your <strong>digital coupons</strong></li>
+			<li>Take advantage of <strong>valuable offers</strong></li>
+			<li>Create and save <strong>shopping lists</strong></li>
+			<li>Search and save <strong>recipes</strong></li>
+			<li><strong>And More</strong></li>
+		</ul>
+	</div-->
+	<!--div class="row" >	
+		<div class="col" style="text-align: center">
+			<button class="button button-long button-energized" type="button" ng-click="vm.register()">
+				Sign Up
+			</button>
+		</div>
+	</div-->
+  </ion-content>
+</ion-view>

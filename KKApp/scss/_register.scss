@@ -1,0 +1,116 @@
+#registerForm, #editForm {
+	.item-checkbox {
+		color: #929497;
+		border: none;
+		margin: 0px;
+		padding: 5px 0 5px 35px;
+		font-size: 12px;
+		width: 100%;
+		.checkbox {
+			left: 0px;
+			margin-top: -18px;
+			top: 18px;
+			.checkbox-icon {
+				width: 20px;
+				height: 20px;
+			}
+			.checkbox-icon:before {
+				border-color: #929497;
+				border-radius: 2px;
+			}
+			.checkbox-icon:after {
+				top: 16%;
+				left: 18%;
+				width: 12px;
+			}
+			input:checked:before, input:checked + .checkbox-icon:before {
+				background: white;
+			}
+			.checkbox input:after, .checkbox-icon:after {
+				border-color: #929497;
+			}
+		}
+		.item-content{
+			color: black;
+			.offer-msg{
+				white-space: normal; 
+			}
+		}
+	}
+	select {
+		opacity: 1;
+		width: 100%;
+		z-index:100;
+		border: none;
+		background: transparent;
+		margin-left: -8px;
+	}
+	.placehoder{
+		color: gray;
+		option[disabled] {
+			color: gray;
+		}
+	}
+	.item-input {
+		display: block;
+		flex-flow:row wrap;
+		-webkit-flex-flow: row wrap;
+		select{
+			height: 34px;
+		}
+	}
+	.help-block {
+		color: red;
+		font-size: 12px;
+		white-space: normal;
+		@include flex(0, 0, 100%);
+	}
+	.bold{
+		font-weight: bold; display: block; white-space: normal;
+	}
+	.second-header{
+		min-height: 80px;
+		font-size: 22px;
+		padding: 20px;
+		line-height: 24px;
+		color: $blue;
+	}
+	.red-text{
+		padding-left: 20px; padding-right: 10px; padding-bottom: 20px;
+		color: red;
+	}
+	.blue-link{
+		text-decoration: none; color: #48c7f5;
+	}
+	.db-messages{
+		a{
+			text-decoration: none; color: #48c7f5;			
+		}
+	}
+}
+.communication-form{
+	.item-input {
+		padding-left: 0;
+	}
+}
+.confirm-form{
+	.value{
+		color: $gray;
+	}
+	.footer-confirm-msg{
+		text-align: center;
+		margin: 10px auto;
+	}
+	.button-positive{
+		font-size: 12px;
+		padding: 0px 10px;
+		line-height: 26px;
+		min-width: 28px;
+		min-height: 30px;
+	}
+}
+.login-form{
+	.footer-link{
+		margin-top: 10px;
+	}
+}
