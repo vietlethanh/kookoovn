@@ -1,8 +1,9 @@
 angular.module('KooKoo.Login', [
-	
+	'ngCordovaOauth'
+
 ])
-.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','$ionicLoading','security','APP_CONFIG','$ionicPopup','$q','$ionicViewService','$ionicNavBarDelegate','$ionicSideMenuDelegate',
-	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, $ionicLoading,security, APP_CONFIG,$ionicPopup, $q, $ionicViewService,$ionicNavBarDelegate,$ionicSideMenuDelegate) { 
+.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','$ionicLoading','security','APP_CONFIG','$ionicPopup','$q','$ionicViewService','$ionicNavBarDelegate','$ionicSideMenuDelegate','$cordovaOauth',
+	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, $ionicLoading,security, APP_CONFIG,$ionicPopup, $q, $ionicViewService,$ionicNavBarDelegate,$ionicSideMenuDelegate,$cordovaOauth) { 
 		console.log('LoginCtrl');
 		ionic.Platform.ready(function(){
     		$ionicNavBarDelegate.showBar(false);
@@ -71,6 +72,24 @@ angular.module('KooKoo.Login', [
 	                });
 	            });
 	        }
+	    };
+
+	     //Login FB with oauth2
+	    $scope.facebooklogin = function() {
+	        $cordovaOauth.facebook(APP_CONFIG.SocialAppID.FacebookAppID, ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
+	            //$localStorage.accessToken = result.access_token;
+	            //$location.path("/profile");
+	            console.log(JSON.stringify(result));
+	            security.setCurrentUser(
+				            	{
+				            		SocialWeb:APP_CONFIG.SocialWeb.Facebook
+				            	}
+		            		);
+		            	
+	        }, function(error) {
+	            alert("There was a problem signing in!  See the console for logs");
+	            console.log(error);
+	        });
 	    };
 	}
 ])
