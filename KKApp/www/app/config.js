@@ -103,5 +103,5 @@ env.qcapp = angular.extend({}, qcserver, unitedAppCfg, {IsWeb: false}, matchedCo
 env.liveapp = angular.extend({}, liveserver, unitedAppCfg, {IsWeb: false}, matchedCodes);
 env.liveappdev = angular.extend({}, livedev, unitedAppCfg, {IsWeb: false}, matchedCodes);
 
-angular.module('MCMRelationshop.Config', [])
+angular.module('KooKoo.Config', [])
 .constant('APP_CONFIG', env.qcweb);

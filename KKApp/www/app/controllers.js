@@ -1,4 +1,6 @@
-angular.module('KooKoo.controllers', []) 
+angular.module('KooKoo.controllers', [
+   
+  ]) 
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 

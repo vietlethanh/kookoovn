@@ -19,12 +19,68 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+
+    <!-- LIB -->
+    <script src="lib/angular-cache/dist/angular-cache.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+
     <!-- your app's js -->
     <script src="app/app.js"></script>
+    <script src="app/config.js"></script>
     <script src="app/controllers.js"></script> 
 
     <script src="app/login/login.js"></script>
     
+    <script src="common/security/index.js"></script>
+    <script src="common/security/security.js"></script>
+    <script src="common/security/info.js"></script>
+    <script src="common/security/retryQueue.js"></script>
+    <script src="common/security/interceptor.js"></script>
+    <script src="common/utils/utils.js"></script>
+    <script>
+            // Facebbok OAuth init
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '117244345278368', // Replace the App ID with yours vietlethanh1988@yahoo.com
+                    status: true, // check login status
+                    cookie: true, // enable cookies to allow the server to access the session
+                    xfbml: true  // parse XFBML
+                });
+            };
+
+            // Load the SDK asynchronously
+            (function (d) {
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement('script');
+                js.id = id;
+                js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            }(document));
+            // Facebbok OAuth init - END
+            
+            // Google OAuth Init
+            (function () {
+                var po = document.createElement('script');
+                po.type = 'text/javascript';
+                po.async = true;
+                po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(po, s);
+            })();
+
+            function onLoadCallback() {
+                // Replace the API key with yours
+                gapi.client.setApiKey('AIzaSyAxfZhj4SRz9m6cfWThoIOnj0DspDIrVmg');
+                gapi.client.load('plus', 'v1', function () {
+                });
+            }
+            // Google Oauth Init - END
+        </script>
   </head>
 
   <body ng-app="KooKoo">
