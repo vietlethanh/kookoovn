@@ -410,14 +410,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     //console.log('$scope.keyword');
     //console.log($scope.keyword);
 
-   
-
-
-
-
-
-        
-    var centerCurrentPositionCordova = function(){
+    var centerCurrentPositionCordova = function(keyword,catId){
 
         var posOptions = {timeout: 10000, enableHighAccuracy: false};
         $cordovaGeolocation.getCurrentPosition(posOptions)
@@ -441,7 +434,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
             }
           );
     }
-    var centerCurrentPositionAPI = function(){
+    var centerCurrentPositionAPI = function(keyword,catId){
 
         navigator.geolocation.getCurrentPosition(function(position) {
           //console.log('getCurrentPosition');
@@ -462,12 +455,12 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       var isWebView = ionic.Platform.isWebView();
       if(isWebView)
       {
-          centerCurrentPositionCordova();
+          centerCurrentPositionCordova(keyword,catId);
       }
       else
       {           
         
-          centerCurrentPositionAPI();   
+          centerCurrentPositionAPI(keyword,catId);   
       } 
     }
     //$scope.centerOnMe = centerOnMe();
