@@ -101,14 +101,16 @@
 	}
 	.item-filter
 	{		
-		padding: 18px 0 0 0;
-		margin: 0;
-		.item-input
-		{			
-			padding: 0 0 0 11px;
-			margin: 0;
+		padding: 15px;
+   		margin: 10px 51px 10px 11px;
+   		background: #54545B;
+					
+		
 			select
 			{
+				max-width: none;
+				width: 100%;
+				direction: ltr;
 				background-color: #54545B;
 				border: none;
 				padding: 5px;
@@ -116,7 +118,7 @@
 				color:#fff;
 				
 			}
-		}
+		
 	}
 	
 	

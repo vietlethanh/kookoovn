@@ -7825,7 +7825,7 @@ input:checked + .checkbox-icon:after {
     background: #f8f8f8;
     color: #444; }
   .item-select.item-stable:after, .item-select.item-stable .input-label {
-    color: #666666; }
+    color: #656565; }
   .item-select.item-positive select {
     background: #345fa4;
     color: #fff; }
@@ -9467,17 +9467,18 @@ div.tabs a.selected {
     .menu .item .button-clear {
       color: #151518; }
   .menu .item-filter {
-    padding: 18px 0 0 0;
-    margin: 0; }
-    .menu .item-filter .item-input {
-      padding: 0 0 0 11px;
-      margin: 0; }
-      .menu .item-filter .item-input select {
-        background-color: #54545B;
-        border: none;
-        padding: 5px;
-        width: 212px;
-        color: #fff; }
+    padding: 15px;
+    margin: 10px 51px 10px 11px;
+    background: #54545B; }
+    .menu .item-filter select {
+      max-width: none;
+      width: 100%;
+      direction: ltr;
+      background-color: #54545B;
+      border: none;
+      padding: 5px;
+      width: 212px;
+      color: #fff; }
 
 .back-button i:before {
   margin-left: 3px;
