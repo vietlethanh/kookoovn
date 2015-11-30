@@ -83,7 +83,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 
       },//init
       loadData: function(keyword,cat, pos){
-        //console.log('loadData keyword');
+        console.log('loadData keyword');
         //console.log(cat);
         var self = this;
         $ionicLoading.show();
@@ -101,7 +101,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
             return;
           }
           //console.log('load stores');
-          //console.log(stores);
+          console.log(stores);
           _.forEach(stores, function(store){
             sumlat += store.Latitude;
             sumlng += store.Longitude;
@@ -237,8 +237,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     var controller = new controllerCls($scope);
   }
 ])
-.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil',
-  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil) {  
+.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil','$cordovaGeolocation',
+  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil,$cordovaGeolocation) {  
     var controllerCls = BaseStoreLocatorCtrl.extend({
       onSelectStore: function(){
         //console.log('onSelectStore');
@@ -403,76 +403,77 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 
     $scope.keyword = $stateParams.keyword;
     $scope.cat = $stateParams.catId;
+
     //console.log(' $scope.cat');
     //console.log( $stateParams);
     //console.log( $scope.cat);
     //console.log('$scope.keyword');
     //console.log($scope.keyword);
-    centerOnMe = function(keyword,catId){
-      $scope.positions = [];
 
-      /*$ionicLoading.show({
-          template: 'Loading...'
-      });
-      */
+   
 
-      navigator.geolocation.getCurrentPosition(function(position) {
+
+
+
+
+        
+    var centerCurrentPositionCordova = function(){
+
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation.getCurrentPosition(posOptions)
+            .then(function (position) {
+              var lat  = position.coords.latitude;
+              var long = position.coords.longitude;
+              //console.log('cordovaGeolocation');
+              //console.log(position);
+
+               var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              $scope.positions.push({lat: pos.k,lng: pos.B});
+              //console.log('pos');
+              //console.log(pos);
+              controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});
+
+            }, 
+            function(err) {
+              // error
+              console.log('err centerCurrentPositionCordova');
+              console.log(err);
+            }
+          );
+    }
+    var centerCurrentPositionAPI = function(){
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+          //console.log('getCurrentPosition');
+          //console.log(position);
           var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
           $scope.positions.push({lat: pos.k,lng: pos.B});
           //console.log('pos');
           //console.log(pos);
-
-          //console.log( $scope.map);
-          // $scope.map.setZoom(pos);
-          //$scope.map.setCenter(pos);
-          //$ionicLoading.hide();
-
-          controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});
-          // $scope.map.center = {lat: position.coords.latitude,lng: position.coords.longitude};
-          //  $scope.map.zoom = 12;
-
-          //$scope.map.center = {
-          //  latitude:position.coords.latitude,
-          //  longitude: position.coords.longitude
-          //};
-          //console.log('reset $setCenter');
-          //$scope.lat = position.coords.latitude;
-          //$scope.lng = position.coords.longitude; 
-
-          //if(typeof($scope.map.setCenter) != 'undefined')
-          //{
-          //   console.log('$setCenter');
-          //  $scope.map.setCenter(pos);
-          //}
-          //  console.log('$scope.mapcenter');
-          //   console.log($scope.mapcenter);
-          //  console.log($scope.map.center);
+          controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});        
         });
+    }  
+    
+    var centerOnMe = function(keyword,catId){
+      //var self = this;
+      //console.log(self);
+      $scope.positions = [];
+      //console.log('centerOnMe');
+      var isWebView = ionic.Platform.isWebView();
+      if(isWebView)
+      {
+          centerCurrentPositionCordova();
+      }
+      else
+      {           
+        
+          centerCurrentPositionAPI();   
+      } 
     }
-
-
-
     //$scope.centerOnMe = centerOnMe();
 
     //console.log('call centerOnMe');
     centerOnMe($scope.keyword,$scope.cat);
-        
-
-    //controller.loadData();
-    //console.log($scope.stores);
-    /*$scope.onMarkerClicked =  function (marker) {
-        console.log('onMarkerClicked');
-        //console.log(marker);
-      
-         for (var i = 0; i < $scope.stores.length; i++) {
-           $scope.stores[i].ShowWindow = false;            
-          }
-          
-        //$scope.$evalAsync();
-       marker.ShowWindow = true;     
-        //$scope.$safeApply();   
-    }
-    */
   }
 ])
 .controller('SelectStoreCtrl', ['$scope',

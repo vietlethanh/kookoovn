@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('MCMRelationshop', [
+
 	'ionic',
+	'ngCordova',
 	'toaster',
 	'ngOpenFB',
 	'ngMap',
@@ -37,6 +39,7 @@ angular.module('MCMRelationshop', [
 	'ui.utils',
 	'MCMRelationshop.Filter',
 	'ionic.contrib.drawer'
+	
 
 ])
 .config(function($sceDelegateProvider, $compileProvider) {
@@ -551,9 +554,21 @@ angular.module('MCMRelationshop', [
 		//else{
 			//CacheUtil.getOfflineAppCache().touch('didIntro');
 		//} 
-		
-		
-		 $scope.$on('$ionicView.enter', function() {
+		//var deviceInformation = ionic.Platform.device();
+		//var isWebView = ionic.Platform.isWebView();
+		//var isIPad = ionic.Platform.isIPad();
+		//var isIOS = ionic.Platform.isIOS();
+		//var isAndroid = ionic.Platform.isAndroid();
+		//var isWindowsPhone = ionic.Platform.isWindowsPhone();
+
+		//var currentPlatform = ionic.Platform.platform();
+		//var currentPlatformVersion = ionic.Platform.version();
+		//var deviceInformation = ionic.Platform.device();
+		//console.log('deviceInformation');
+		//console.log(deviceInformation);
+		//var isIOS = ionic.Platform.isIOS();
+		//console.log(isIOS);
+		/*$scope.$on('$ionicView.enter', function() {
 		    	$timeout(function(){
 			    	if($stateParams.hidebar == "true")
 			    	{
@@ -565,7 +580,7 @@ angular.module('MCMRelationshop', [
 					}
 		    });
 		  });
-		
+		*/
 		//$scope.drapmenu = true;
 		//$ionicSideMenuDelegate.canDragContent(false) ;
 		//console.log('$scope.drapmenu');

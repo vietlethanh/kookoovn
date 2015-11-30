@@ -1,0 +1,459 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ca",
+				"catID"
+			],
+			[
+				"Article",
+				"ArticleTypeID"
+			],
+			[
+				"login",
+				"loginForm"
+			],
+			[
+				"hide",
+				"hidebar"
+			],
+			[
+				"info",
+				"infoWindow"
+			],
+			[
+				"sc",
+				"scope"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"load",
+				"loadData"
+			],
+			[
+				"store",
+				"storeid"
+			],
+			[
+				"con",
+				"controlMap"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "angular.module('controllers', [])\n\n.controller('WelcomeCtrl', function($scope, $state, $q, UserService, $ionicLoading) {\n\n  //This is the success callback from the login method\n  var fbLoginSuccess = function(response) {\n    if (!response.authResponse){\n      fbLoginError(\"Cannot find the authResponse\");\n      return;\n    }\n\n    var authResponse = response.authResponse;\n\n    getFacebookProfileInfo(authResponse)\n    .then(function(profileInfo) {\n      //for the purpose of this example I will store user data on local storage\n      UserService.setUser({\n        authResponse: authResponse,\n				userID: profileInfo.id,\n				name: profileInfo.name,\n				email: profileInfo.email,\n        picture : \"http://graph.facebook.com/\" + authResponse.userID + \"/picture?type=large\"\n      });\n\n      $ionicLoading.hide();\n      $state.go('app.home');\n          \n    }, function(fail){\n      //fail get profile info\n      console.log('profile info fail', fail);\n    });\n  };\n\n\n  //This is the fail callback from the login method\n  var fbLoginError = function(error){\n    console.log('fbLoginError', error);\n    $ionicLoading.hide();\n  };\n\n  //this method is to get the user profile info from the facebook api\n  var getFacebookProfileInfo = function (authResponse) {\n    var info = $q.defer();\n\n    facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,\n      function (response) {\n				console.log(response);\n        info.resolve(response);\n      },\n      function (response) {\n				console.log(response);\n        info.reject(response);\n      }\n    );\n    return info.promise;\n  };\n\n  //This method is executed when the user press the \"Login with facebook\" button\n  $scope.facebookSignIn = function() {\n\n    facebookConnectPlugin.getLoginStatus(function(success){\n     if(success.status === 'connected'){\n        // the user is logged in and has authenticated your app, and response.authResponse supplies\n        // the user's ID, a valid access token, a signed request, and the time the access token\n        // and signed request each expire\n        console.log('getLoginStatus', success.status);\n\n				//check if we have our user saved\n				var user = UserService.getUser('facebook');\n\n				if(!user.userID)\n				{\n					getFacebookProfileInfo(success.authResponse)\n					.then(function(profileInfo) {\n\n						//for the purpose of this example I will store user data on local storage\n						UserService.setUser({\n							authResponse: success.authResponse,\n							userID: profileInfo.id,\n							name: profileInfo.name,\n							email: profileInfo.email,\n							picture : \"http://graph.facebook.com/\" + success.authResponse.userID + \"/picture?type=large\"\n						});\n\n						$state.go('app.home');\n\n					}, function(fail){\n						//fail get profile info\n						console.log('profile info fail', fail);\n					});\n				}else{\n					$state.go('app.home');\n				}\n\n     } else {\n        //if (success.status === 'not_authorized') the user is logged in to Facebook, but has not authenticated your app\n        //else The person is not logged into Facebook, so we're not sure if they are logged into this app or not.\n        console.log('getLoginStatus', success.status);\n\n			  $ionicLoading.show({\n          template: 'Logging in...'\n        });\n\n        //ask the permissions you need. You can learn more about FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4\n        facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);\n      }\n    });\n  };\n})\n\n\n\n.controller('AppCtrl', function($scope){\n\n})\n\n.controller('HomeCtrl', function($scope, UserService, $ionicActionSheet, $state, $ionicLoading){\n\n	$scope.user = UserService.getUser();\n\n	$scope.showLogOutMenu = function() {\n		var hideSheet = $ionicActionSheet.show({\n			destructiveText: 'Logout',\n			titleText: 'Are you sure you want to logout? This app is awsome so I recommend you to stay.',\n			cancelText: 'Cancel',\n			cancel: function() {},\n			buttonClicked: function(index) {\n				return true;\n			},\n			destructiveButtonClicked: function(){\n				$ionicLoading.show({\n					template: 'Logging out...'\n				});\n\n        //facebook logout\n        facebookConnectPlugin.logout(function(){\n          $ionicLoading.hide();\n          $state.go('welcome');\n        },\n        function(fail){\n          $ionicLoading.hide();\n        });\n			}\n		});\n	};\n})\n\n;\n",
+			"file": "/Users/vietle/Downloads/facebook-login-with-ionic-framework-master/www/js/controllers.js",
+			"file_size": 4365,
+			"file_write_time": 1443743600000000,
+			"settings":
+			{
+				"buffer_size": 4375,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Desktop/KooKooApp/KKApp/www/common/utils/sheet.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/account/account.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/app_bk.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/digitalcoupon/digitalcoupon.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/home/home.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/info/info.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/intro/intro.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/recipe/recipe.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/recipebox/recipebox.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/register/register.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/rewardsprogram/rewardsprogram.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/search/search.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/search/searchcoupons.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/shoppinglist/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/storelocator/storedetail.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/weeklyad/weeklyad.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/directive/barcode.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/directive/compile.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/directive/formdirective.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/directive/passwordmatch.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/filter/filters.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/ads.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/digitalcoupon.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/recipe.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/recipebox.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/setting.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/smartreward.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/security/interceptor.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/services/push.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/services/relationshop_data.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/controllers.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/app.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/login/login.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/security/security.js",
+		"/D/Desktop/KooKooApp/KKApp/www/common/utils/utils.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/config.js",
+		"/D/Desktop/KooKooApp/KKApp/www/index.html",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/store.js",
+		"/D/Desktop/KooKooApp/KKApp/www/app/login/login.html",
+		"/D/Desktop/KooKooApp/KKApp/www/common/resources/user.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
+		"/D/Projects/RelationShop2015/Mobile/bigy2/ionic.project",
+		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/config.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - Copy.html",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_storelocator.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/info.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/templates/menu.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/utils/utils.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/config.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storedetail.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/search/searchcoupons.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/recipe.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/digitalcoupon.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/registercard.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/register.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/home/home.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/intro/intro.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/home/home.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/register.js",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/ionic.app.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/interceptor.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/smartreward.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/user.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/security.js",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_info.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_intro.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_base.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglists.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipedetail.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipelist.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipe.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/retryQueue.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/setting.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.html",
+		"/D/Desktop/KooKooApp/KooKooApp/config.xml",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipesearch.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator_sample/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/build/intermediates/assets/debug/www/lib/angular-google-maps/example/example.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator_sample.rar",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator_sample/storelocator.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storeinfo.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/example/example.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/dist/angular-google-maps.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/angular-google-maps.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - 20150901.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/utils/utils.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/resources/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/resources/ads.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/js/app.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/security/interceptor.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"D:\\Desktop\\KooKooApp\\KKApp\\www",
+			"D:\\Projects\\RelationShop2015\\Mobile\\bigy\\www",
+			"D:\\Projects\\RelationShop2015\\Mobile\\bigy",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample",
+			"",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
+			"",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app,D:\\Desktop\\KooKooApp\\KooKooApp\\www\\common",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"KooKooApp.",
+			"MCMRelationshop.",
+			"store",
+			"secur",
+			"securi",
+			"secu",
+			"demographic",
+			"MCMRelationshop.controllers",
+			"MCMRelationshop.Con",
+			"MCMRelationshop.Controller",
+			"ipcoo",
+			"ApplicationId",
+			"gethome",
+			"token",
+			"storeinfo",
+			"117244345278368",
+			"header-item",
+			"para",
+			"login",
+			" $state.go",
+			"loadData",
+			"keywor",
+			"getDigitalCoupons",
+			"mapInitialized ",
+			"setMarker",
+			"splash",
+			"drag",
+			"logg\nlogg\nlogg",
+			"isOffline",
+			"isOnline",
+			"addInfoWindow",
+			"login",
+			"apply",
+			"ready",
+			"logon",
+			"login",
+			"Platform",
+			"no-header",
+			"home",
+			"plash",
+			"back",
+			"oncontentTap",
+			"var onContentTap = function(e) {\n			    if ($scope.ShowDrawer){\n			      $scope.closeDrawer();\n			      e.gesture.srcEvent.preventDefault();\n			    }\n		  }",
+			"ionicSideMenuDelegate",
+			"toggle",
+			"sync",
+			"showInfoWindow",
+			"map.center",
+			"map",
+			"lodash",
+			"setZoom",
+			"_sucessLoadData",
+			"userLoggedIn",
+			"Back",
+			"back",
+			"loadData",
+			" $ionicPopup.",
+			"getCurrentUserId",
+			"ionic.bundle",
+			"ionicons",
+			"rate",
+			"back-button",
+			"ion-navicon",
+			"track",
+			"trac",
+			"track by",
+			">\n",
+			"popup",
+			"uiGmapgoogle-maps",
+			"openAddForm",
+			"popup",
+			"StoreInfoCtrl",
+			"StoreLocatorCtrl",
+			"email =",
+			"StoreInfoCtrl",
+			"clr",
+			";\n",
+			".Host",
+			"'HttpUtil'",
+			"option",
+			"HttpUtil",
+			"					clearCache: ['/users/'+user.UserID,'/users?un='+user.Email]\nisGuestMode",
+			"isGuestMode",
+			"token",
+			"ngFB",
+			"account load data",
+			"Facebook error: undefined",
+			"userLoggedIn",
+			"ionicSideMenuDelegate",
+			"AppCtrl",
+			"goTo",
+			"goto",
+			"track",
+			"recipedetail",
+			"onMarkerClicked",
+			"init",
+			"google.maps.Map",
+			"oogle.maps.Map",
+			"BaseStoreLocatorCtrl",
+			"marker",
+			"lati",
+			"lat",
+			"gMarker.key ",
+			"'keyword'",
+			"keyword",
+			"$scope.stores",
+			" $http.",
+			"DistributeHost",
+			"HttpUtil",
+			"DistributeHost",
+			"SecureHost",
+			"DistributeHost",
+			"SecureHost",
+			"searchStore"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"KooKoo.",
+			"KooKooApp.",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/vietle/Downloads/facebook-login-with-ionic-framework-master/www/js/controllers.js",
+					"settings":
+					{
+						"buffer_size": 4375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4135,
+								4135
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1652.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 244.0,
+	"status_bar_visible": true
+}

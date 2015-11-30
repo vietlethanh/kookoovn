@@ -47,7 +47,7 @@ var socialWeb =
 			}
 var socialAppID =
 				{
-					FacebookAppID:'117244345278368', //vietlethanh1988@yahoo.com
+					FacebookAppID:'871963922911532', //vietlethanh1988@yahoo.com
 					TwitterAppID:'5Z9AGmXCunGKxt3iq3dexDGzu', //vietlethanh.dev@gmail.com
 					TwitterSecretKey:"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO",//vietlethanh.dev@gmail.com
 					GoogleAppID:'1026812135759-eikn3a5n8qut3du9ujov51onc3p8h68a.apps.googleusercontent.com', //vvietlethanh.dev@gmail.com
@@ -84,7 +84,7 @@ var unitedAppCfg = {
 	SocialAppID: socialAppID,
 	MapMode: mapMode,
 	SocialWeb : socialWeb,
-	KooKooAPI: 'http://kookoo.local:8080'
+	KooKooAPI: 'http://kookoo.vn'
 }
 
 var matchedCodes = {
