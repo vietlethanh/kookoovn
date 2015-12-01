@@ -111,6 +111,8 @@ angular.module('MCMRelationshop', [
 				],
 				currentUser: ['$q', 'security','User','apiKey',
 					function($q, security, User, apiKey) {
+						console.log('resolve currentUser')
+						//
 						var sInfo, defered;
 						sInfo = security.loadSecurityFromCache();
 						if(sInfo== null || !sInfo.currentUser){
@@ -523,8 +525,10 @@ angular.module('MCMRelationshop', [
 				}
 			}
 		})
-	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/app/login?hidebar=true');
+	    // if none of the above states are matched, use this as the fallback
+		$urlRouterProvider.otherwise('/app/login?hidebar=true');	
+			
+	
 })
 .controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate','Store',
 	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate,Store) {
@@ -696,7 +700,7 @@ angular.module('MCMRelationshop', [
 				notify: true
 			});
 			*/
-			console.log('event userLoggedIn'+args);
+			//console.log('event userLoggedIn'+args);
 			//$scope.socialWeb = args;			
 			$scope.isGuestMode = security.isGuestMode();
 			 $state.go('app.storelocator');
@@ -818,6 +822,7 @@ angular.module('MCMRelationshop', [
 			}, 1000);
 		};
 		*/
+		
 		
 		
 	}

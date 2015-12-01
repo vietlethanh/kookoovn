@@ -5,8 +5,8 @@ angular.module('MCMRelationshop.Login', [
 	'ngCordovaOauth'
 	
 ])
-.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','ngFB','$cordovaOauth','$ionicNavBarDelegate','$ionicSideMenuDelegate',
-	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,ngFB,$cordovaOauth,$ionicNavBarDelegate,$ionicSideMenuDelegate) { 
+.controller('LoginCtrl', ['$rootScope','$scope', '$state', '$stateParams','$ionicPlatform','ipCookie', 'security','$ionicLoading','$ionicPopup','MCMTracker','APP_CONFIG','$q','GuestShoppingList','UserShoppingList','User','$ionicViewService','ngFB','$cordovaOauth','$ionicNavBarDelegate','$ionicSideMenuDelegate','$timeout',
+	function($rootScope, $scope, $state, $stateParams,$ionicPlatform, ipCookie, security, $ionicLoading,$ionicPopup,MCMTracker,APP_CONFIG, $q, GuestShoppingList, UserShoppingList,User, $ionicViewService,ngFB,$cordovaOauth,$ionicNavBarDelegate,$ionicSideMenuDelegate,$timeout) { 
 		console.log('LoginCtrl');
 
 		
@@ -29,6 +29,17 @@ angular.module('MCMRelationshop.Login', [
 				{
 					$ionicSideMenuDelegate.canDragContent(true);
 				}
+				$timeout(function(){
+					if(!security.isGuestMode())
+					{
+						 $state.go('app.storelocator');
+						 $ionicViewService.nextViewOptions({
+			  				disableBack: true
+			   			 });
+					}
+				}, 2500);
+				
+
         		
      	 });
 		$scope.BarClass = 'login-form';

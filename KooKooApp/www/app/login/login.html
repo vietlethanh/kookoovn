@@ -19,21 +19,21 @@
 		</div>
 		-->
   	<!--/div-->
-  	<div class="row login-logo" >
+  	<div class="row login-logo"  >
 	 	 <img class="" src="img/login_logo.png" />
 	</div>
-	<div class="row login-social" >
+	<div class="row login-social" ng-show="isGuestMode" >
 	  <div class="col facebook-login">
 	  	 <img class="" src="img/login_facebook.png" ng-click="facebooklogin()" />
 	  </div>
 	 
 	</div>
-  	<div class="row login-social" >
+  	<div class="row login-social" ng-show="isGuestMode">
 	 
 	  <div class="col google-login">
 	  	<img src="img/login_google.png" ng-click="gplusLogin()"/>
 	  </div>
-	  <div class="col twitter-login">
+	  <div class="col twitter-login" ng-show="isGuestMode">
 	  	<img src="img/login_twitter.png" ng-click="twitterlogin()" />
 	  </div>	
 	</div>
