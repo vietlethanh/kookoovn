@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"is",
+				"isIOS"
+			],
+			[
+				"faceb",
+				"facebooklogin"
+			],
+			[
 				"ca",
 				"catID"
 			],
@@ -59,31 +67,18 @@
 			"file": "www/app/login/login.js",
 			"settings":
 			{
-				"buffer_size": 16025,
+				"buffer_size": 16485,
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"contents": "// Ionic Starter App\n\n// angular.module is a global place for creating, registering and retrieving Angular modules\n// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)\n// the 2nd parameter is an array of 'requires'\n// 'starter.controllers' is found in controllers.js\nangular.module('MCMRelationshop', [\n\n	'ionic',\n	'ngCordova',\n	'toaster',\n	'ngOpenFB',\n	'ngMap',\n	'ionic-ratings',\n	'Scope.safeApply',\n	'uiGmapgoogle-maps',\n	'MCMRelationshop.Push',\n	'MCMRelationshop.Config',\n	'security',\n	'MCMRelationshop.Resource.Store',\n	'MCMRelationshop.Resource.User',\n	'MCMRelationshop.Intro',\n	'MCMRelationshop.Home',\n	'MCMRelationshop.Login',\n	'MCMRelationshop.Register',\n	'MCMRelationshop.Account',\n	'MCMRelationshop.WeeklyAd',\n	'MCMRelationshop.ShoppingList',\n	'MCMRelationshop.Recipe',\n	'MCMRelationshop.DigitalCoupon',\n	'MCMRelationshop.Analytics',\n	'MCMRelationshop.RewardsProgram',\n	'MCMRelationshop.StoreLocator', \n	'MCMRelationshop.RecipeBox',\n	'MCMRelationshop.Info',\n	'MCMRelationshop.Search',\n	'MCMRelationshop.SearchCoupons',\n	//Angular Utils\n	'ui.utils',\n	'MCMRelationshop.Filter',\n	'ionic.contrib.drawer'\n	\n\n])\n.config(function($sceDelegateProvider, $compileProvider) {\n  $sceDelegateProvider.resourceUrlWhitelist([\n    // Allow same origin resource loads.\n    'self',\n    // Allow loading from our assets domain.  Notice the difference between * and **.\n    'http://**',\n    'https://**',\n    'geo:/**',\n    'tel:/**',\n    'maps:/**',\n    'maps:**',\n    'chrome-extension:/**',\n  ]);\n  /*\n  $compileProvider.aHrefSanitizationWhitelist(/^\\s*(https?|ftp|mailto|geo|tel|chrome-extension):/);\n  */\n})\n.run(function($ionicPlatform, $http, DSCacheFactory, push, CacheUtil,MCMAnalytics, MCMTracker, APP_CONFIG,ngFB) {\n	// register push notification \n	$ionicPlatform.ready(function() {\n		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard\n		/*	\n		if(navigator.splashscreen){\n			navigator.splashscreen.hide();\n		}\n		*/\n		// for form inputs)\n		if (window.cordova && window.cordova.plugins.Keyboard) {\n			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);\n		}\n		if (window.StatusBar) {\n			// org.apache.cordova.statusbar required\n			StatusBar.styleDefault();\n			//StatusBar.hide();\n		}\n		// default caches\n		 $http.defaults.cache = CacheUtil.getHttpCache();\n		//push.registerDevice('token test');\n		// register event when app online, offline\n		MCMTracker.startTrackerWithId(APP_CONFIG.AccountTrackerID);\n		\n		ngFB.init({appId: APP_CONFIG.SocialAppID.FacebookAppID});\n	});\n})\n.config(function($stateProvider, $urlRouterProvider) {\n	$stateProvider\n		.state('app', {\n			url: \"/app\",\n			abstract: true,\n			templateUrl: \"templates/menu.html\",\n			controller: 'AppCtrl',\n			resolve: {\n				ready: ['$q','$ionicPlatform', function($q,$ionicPlatform){\n					var q = $q.defer();\n\n					  $ionicPlatform.ready(function(){\n					    q.resolve();\n					    \n					  });\n					return q.promise;\n\n				}],\n				apiKey: ['security','ready',\n					function(security,ready) {\n						return security.requestApiKey(true);\n					}\n				],\n				currentUser: ['$q', 'security','User','apiKey',\n					function($q, security, User, apiKey) {\n						var sInfo, defered;\n						sInfo = security.loadSecurityFromCache();\n						if(sInfo== null || !sInfo.currentUser){\n							return null;\n						}\n						security.setCurrentUser(sInfo.currentUser);\n						security.setCurrentStore(sInfo.currentStore);\n						//get CurrentUser\n						/*var promise = User.getUser(security.getCurrentUser().Email).then(function(res){\n							security.setCurrentUser(res.data);\n							return res.data;\n						}, function(){\n							security.setCurrentUser(sInfo.currentUser);\n							return sInfo.currentUser;\n						});\n\n						return promise;\n						*/\n					}\n				],\n				currentStore: ['$q', 'security','apiKey', 'currentUser','Store', \n					function($q,security,apiKey,currentUser, Store){\n						var sInfo, defered, storeId;\n						sInfo = security.loadSecurityFromCache();\n						\n						if(sInfo && sInfo.currentStore){\n							storeId = sInfo.currentStore.CS_StoreID;\n						}\n						else if(sInfo && security.getCurrentUser()){\n							storeId = security.getCurrentUser().StoreID;\n						}\n						if(!storeId){\n							return null;\n						}\n						//get CurrentStore\n						var promise = Store.getStore(storeId).then(function(res){\n							security.setCurrentStore(res.data);\n							return res.data;\n						}, function(){\n							security.setCurrentStore(sInfo.currentStore);\n							return sInfo.currentStore;\n						});\n						return promise;\n					}\n				],\n				analytic: ['currentUser', 'push', 'MCMAnalytics', function(currentUser, push, MCMAnalytics){\n					var result = push.registerPush(function (result) {\n					  if (result.type === 'registration') {\n\n					  	MCMAnalytics.send({\n					  		DeviceToken: result.id,\n					  		Notification: true\n					  	})\n					  }\n					  else{\n					  	MCMAnalytics.send({\n					  		Notification: false\n					  	})\n					  }\n					});				\n				}],\n				isOutdate:[ '$q', 'Setting','APP_CONFIG','Setting','apiKey',\n					function($q, Setting, APP_CONFIG, Setting, apiKey){\n						if(APP_CONFIG.IsWeb){\n							return false;\n						}\n						var v = Setting.getLastVersion().then(function(res){\n							if(!res.data.Device){\n								return false;\n							}\n							var setting = _.find(res.data.Device, {DeviceName: isAndroid()?'Android': 'IOS'});\n							if(!setting){\n								return false;\n							}\n							APP_CONFIG.DowloadAppLink = setting.AppLink;\n							return APP_CONFIG.BuildVersion < parseInt(setting.Version);\n						});\n						return v;\n					}\n				]\n\n			}\n		})\n		.state('app.intro',{\n			url: \"/intro\",\n			views: {\n				'menuContent': {\n					controller: 'IntroCtrl',\n					templateUrl: 'app/intro/intro.html'\n				}\n			}\n		})\n		.state('app.home', {\n			url: \"/home\",\n			views: {\n				'menuContent': {\n					controller: 'HomeCtrl',\n					templateUrl: \"app/home/home.html\",\n				}\n			}\n		})\n		.state('app.login', {\n			url: \"/login?return&hidebar\",\n			views: {\n				'menuContent': {\n					//controller: 'LoginCtrl',\n					templateUrl: \"app/login/login.html\",\n				}\n			}\n		})\n		.state('app.register', {\n			url: \"/register?return&step&back\",\n			views: {\n				'menuContent': {\n					controller: 'RegisterCtrl',\n					templateUrl: \"app/register/register.html\",\n				}\n			}\n		})\n		.state('app.registercard', {\n			url: \"/registercard?return\",\n			views: {\n				'menuContent': {\n					controller: 'RegisterCardCtrl',\n					templateUrl: \"app/register/registercard.html\",\n				}\n			}\n		})\n		.state('app.account', {\n			url: \"/account\",\n			views: {\n				'menuContent': {\n					controller: 'AccountCtrl',\n					templateUrl: \"app/account/account.html\",\n				}\n			}\n		})\n		.state('app.editaccount', {\n			url: \"/editaccount/:part\",\n			views: {\n				'menuContent': {\n					controller: 'EditAccountCtrl',\n					templateUrl: \"app/account/edit-account.html\",\n				}\n			}\n		})\n		.state('app.changestore', {\n			url: \"/changestore\",\n			views: {\n				'menuContent': {\n					controller: 'ChangeStoreCtrl',\n					templateUrl: \"app/storelocator/storelocator.html\"\n				}\n			}\n		})\n		.state('app.info', {\n			url: \"/info\",\n			views: {\n				'menuContent': {\n					controller: 'InfoCtrl',\n					templateUrl: \"app/info/info.html\",\n				}\n			}\n		})\n		.state('app.support', {\n			url: \"/support\",\n			views: {\n				'menuContent': {\n					controller: 'SupportCtrl',\n					templateUrl: \"app/info/support.html\",\n				}\n			}\n		})\n		.state('app.forgot', {\n			url: \"/forgot\",\n			views: {\n				'menuContent': {\n					controller: 'ForgotPasswordCtrl',\n					templateUrl: \"app/account/forgot.html\",\n				}\n			}\n		})\n		.state('app.forgotusername', {\n			url: \"/forgotusername\",\n			views: {\n				'menuContent': {\n					controller: 'ForgotUsernameCtrl',\n					templateUrl: \"app/account/forgotusername.html\",\n				}\n			}\n		})\n		.state('app.shoppinglist', {\n			url: \"/shoppinglist\",\n			views: {\n				'menuContent': {\n					controller: 'ShoppingListCtrl',\n					templateUrl: \"app/shoppinglist/shoppinglist.html\",\n				}\n			}\n		})\n		.state('app.shoppinglists', {\n			url: \"/shoppinglists\",\n			views: {\n				'menuContent': {\n					controller: 'ShoppingListsCtrl',\n					templateUrl: \"app/shoppinglist/shoppinglists.html\",\n				}\n			}\n		})\n		.state('app.shoppinglistview', {\n			url: \"/publish_shoppinglist?id&uid\",\n			views: {\n				'menuContent': {\n					controller: 'PublishShoppingListCtrl',\n					templateUrl: \"app/shoppinglist/view.html\",\n				}\n			}\n		})\n		.state('app.createshoppinglist', {\n			url: \"/createshoppinglist\",\n			views: {\n				'menuContent': {\n					controller: 'CreateShoppingListCtrl',\n					templateUrl: \"app/shoppinglist/create.html\",\n				}\n			}\n		})\n		.state('app.editshoppinglist', {\n			url: \"/editshoppinglist?id\",\n			views: {\n				'menuContent': {\n					controller: 'EditShoppingListCtrl',\n					templateUrl: \"app/shoppinglist/edit.html\",\n				}\n			}\n		})\n		.state('app.weeklyad', {\n			url: \"/weeklyad?dept\",\n			views: {\n				'menuContent': {\n					//controller: 'WeeklyAdCtrl',\n					templateUrl: \"app/weeklyad/weeklyad.html\",\n				}\n			}\n		})\n		.state('app.weeklyadflyer', {\n			url: \"/weeklyadflyer\",\n			views: {\n				'menuContent': {\n					//controller: 'WeeklyAdCtrl',\n					templateUrl: \"app/weeklyad/flyer.html\",\n				}\n			}\n		})\n		.state('app.weeklyaddepts', {\n			url: \"/weeklyad/depts\",\n			views: {\n				'menuContent': {\n					//controller: 'WeeklyAdCtrl',\n					templateUrl: \"app/weeklyad/depts.html\"\n				}\n			}\n			\n		})\n		.state('app.recipecats', {\n			url: \"/recipe/cats\",\n			views: {\n				'menuContent': {\n					controller: 'RecipeCatsCtrl',\n					templateUrl: \"app/recipe/recipecats.html\"\n				}\n			}\n			\n		})\n		.state('app.recipelist', {\n			url: \"/recipe/list/:catid\",\n			views: {\n				'menuContent': {\n					controller: 'RecipeListCtrl',\n					templateUrl: \"app/recipe/recipelist.html\"\n				}\n			}\n		})\n		.state('app.recipedetail', {\n			url: \"/recipe/detail/:id?inbox\",\n			views: {\n				'menuContent': {\n					controller: 'RecipeDetailCtrl',\n					templateUrl: \"app/recipe/recipedetail.html\"\n				}\n			}\n			\n		})\n\n		.state('app.recipesearch', {\n			url: \"/recipe/search?keyword\",\n			views: {\n				'menuContent': {\n					controller: 'RecipeSearchCtrl',\n					templateUrl: \"app/recipe/recipesearch.html\"\n				}\n			}\n		})\n		.state('app.recipebox', {\n			url: \"/recipebox\",\n			views: {\n				'menuContent': {\n					controller: 'RecipeBoxCtrl',\n					templateUrl: \"app/recipebox/recipebox.html\"\n				}\n			}\n			\n		})\n		.state('app.digitalcoupons', {\n			url: \"/digitalcoupons?sortBy&catId\",\n			views: {\n				'menuContent': {\n					controller: 'DigitalCouponCtrl',\n					templateUrl: \"app/digitalcoupon/digitalcoupon.html\"\n				}\n			}\n		})\n		.state('app.rewardsprogram', {\n			url: \"/rewardsprogram?open\",\n			views: {\n				'menuContent': {\n					controller: 'RewardsProgramCtrl',\n					templateUrl: \"app/rewardsprogram/rewardsprogram.html\"\n				}\n			}\n		})\n		.state('app.kidclubaddchild', {\n			url: \"/kidclubaddchild\",\n			views: {\n				'menuContent': {\n					controller: 'KidClubAddChildCtrl',\n					templateUrl: \"app/rewardsprogram/addchild.html\"\n				}\n			}\n		})\n		.state('app.kidclubeditchild', {\n			url: \"/kidclubeditchild/:id\",\n			views: {\n				'menuContent': {\n					controller: 'KidClubAddChildCtrl',\n					templateUrl: \"app/rewardsprogram/editchild.html\"\n				}\n			}\n		})\n		.state('app.storelocator', {\n			url: \"/storelocator?keyword&catId\",\n			views: {\n				'menuContent': {\n					controller: 'StoreLocatorCtrl',\n					templateUrl: \"app/storelocator/storelocator.html\"\n				}\n			}\n		})\n		.state('app.storeinfo', {\n			url: \"/storeinfo/:id\",\n			views: {\n				'menuContent': {\n					controller: 'StoreInfoCtrl',\n					templateUrl: \"app/storelocator/info.html\"\n				}\n			}\n		})\n		.state('app.registerstore', {\n			url: \"/registerstore\",\n			views: {\n				'menuContent': {\n					controller: 'RegisterStoreCtrl',\n					templateUrl: \"app/storelocator/storelocator.html\"\n				}\n			}\n		})\n		.state('app.search', {\n			url: \"/search?keyword\",\n			views: {\n				'menuContent': {\n					controller: 'SearchCtrl',\n					templateUrl: \"app/search/search.html\"\n				}\n			}\n		})\n		.state('app.search_storelocator',{\n			url: \"/search_storelocator\",\n			views: {\n				'menuContent': {\n					controller: 'SearchStoreCtrl',\n					templateUrl: \"app/storelocator/storelocator.html\"\n				}\n			}\n		})\n		.state('app.searchcoupons', {\n			url: \"/searchcoupons\",\n			views: {\n				'menuContent': {\n					controller: 'SearchCouponsCtrl',\n					templateUrl: \"app/search/searchcoupons.html\"\n				}\n			}\n		})\n		.state('app.sortcoupons', {\n			url: \"/sortcoupons\",\n			views: {\n				'menuContent': {\n					controller: 'SortCouponsCtrl',\n					templateUrl: \"app/digitalcoupon/sortcoupons.html\"\n				}\n			}\n		})\n	// if none of the above states are matched, use this as the fallback\n	$urlRouterProvider.otherwise('/app/login?hidebar=true');\n})\n.controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate','Store',\n	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate,Store) {\n		// Form data for the login modal\n		/*\n		$scope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){\n			console.log(error);\n		});\n		*/\n		 /*$scope.$on('$ionicView.afterEnter', function(){\n    setTimeout(function(){\n      document.getElementById(\"custom-overlay\").style.display = \"none\";      \n    }, 3000);\n  });  */\n		//var didIntro = CacheUtil.getAppCache().get('didIntro') || CacheUtil.getOfflineAppCache().get('didIntro');\n		/*if(navigator.splashscreen){\n			$timeout(function(){\n				navigator.splashscreen.hide();\n			}, 200);			\n		}\n		*/ \n\n		//navigator.splashscreen.show()\n		//if(!didIntro && $state.current.name != 'app.shoppinglistview'){\n			//$state.go('app.intro');\n		//}\n		//else{\n			//CacheUtil.getOfflineAppCache().touch('didIntro');\n		//} \n		//var deviceInformation = ionic.Platform.device();\n		//var isWebView = ionic.Platform.isWebView();\n		//var isIPad = ionic.Platform.isIPad();\n		//var isIOS = ionic.Platform.isIOS();\n		//var isAndroid = ionic.Platform.isAndroid();\n		//var isWindowsPhone = ionic.Platform.isWindowsPhone();\n\n		//var currentPlatform = ionic.Platform.platform();\n		//var currentPlatformVersion = ionic.Platform.version();\n		//var deviceInformation = ionic.Platform.device();\n		//console.log('deviceInformation');\n		//console.log(deviceInformation);\n		//var isIOS = ionic.Platform.isIOS();\n		//console.log(isIOS);\n		/*$scope.$on('$ionicView.enter', function() {\n		    	$timeout(function(){\n			    	if($stateParams.hidebar == \"true\")\n			    	{\n						//$ionicSideMenuDelegate.canDragContent(false);\n					}\n					else\n					{\n						//$ionicSideMenuDelegate.canDragContent(true);\n					}\n		    });\n		  });\n		*/\n		//$scope.drapmenu = true;\n		//$ionicSideMenuDelegate.canDragContent(false) ;\n		//console.log('$scope.drapmenu');\n        //console.log($scope.drapmenu);\n        //console.log($stateParams);\n		//console.log('$state');\n		//console.log($state);\n		//$scope.HideBar = $stateParams.hidebar;\n		//console.log($stateParams);\n		//console.log($scope.HideBar);\n		$scope.loginData = {};\n		//$scope.slideHeader = true;\n		//$scope.ShowHeader = true;\n		//console.log('$scope.ShowHeader AppCtrl');\n		//console.log($scope.ShowHeader);\n		\n		$scope.selectedCategory = {};\n  		\n		$scope.currentUser = security.getCurrentUser();\n		Store.getCategory().then(function(res){\n				$scope.categories = res.data;\n				$scope.categories.unshift({ArticleTypeID:\"0\" , ArticleTypeName: \"Choose a Category\"})\n				$scope.selectedCategory = $scope.categories[0];\n				//console.log('$scope.categories');\n				//console.log($scope.categories);\n				\n			}, function(res){\n				//$ionicLoading.hide();\n		});\n		$scope.isGuestMode = security.isGuestMode();\n		$scope.changeCategory = function(){\n			//console.log('$scope.selectedCategory');\n			//console.log($scope.selectedCategory);\n			//console.log(this);\n			//console.log(this.selectedCategory);\n\n			$scope.selectedCategory = this.selectedCategory;\n		}\n		$scope.logout = function(){\n			$ionicViewService.nextViewOptions({\n				disableBack: true\n			});\n			security.logout();\n			$scope.isGuestMode=true;\n			$ionicSideMenuDelegate.toggleLeft();\n			$ionicNavBarDelegate.showBar(false);\n			$scope.$on('$ionicView.enter', function() {\n		   		$timeout(function(){		    	\n		     		 $ionicSideMenuDelegate.canDragContent(false);		 \n		    		});\n		  	});\n		}\n		$scope.login = function(){\n			console.log('app.login');\n			$state.go('app.login',{reload: true,hidebar:true});\n			$ionicViewService.nextViewOptions({\n				disableBack: true\n			});		\n\n			$ionicSideMenuDelegate.toggleLeft();\n			$ionicNavBarDelegate.showBar(false);\n\n		}\n		$scope.openLink = AppUtil.openNewWindow;\n		$scope.appcfg = APP_CONFIG;\n		$scope.globalKeyword =  {};\n		$scope.globalSearchStore = function(){\n			 var keyword = $scope.globalKeyword.Keyword;\n			 var catID = $scope.selectedCategory.ArticleTypeID;\n			 console.log('catID');\n			 console.log(catID);\n			 $state.go('app.storelocator', {keyword: keyword,catId: catID});\n			 $ionicViewService.nextViewOptions({\n				disableBack: true\n			 });\n			 ionic.Platform.ready(function(){\n		        $ionicSideMenuDelegate.toggleLeft();\n		      });			 \n		}\n		$scope.goTo = function(link, params){\n			$state.go(link, params);\n			 $ionicSideMenuDelegate.toggleLeft();\n		}\n		var onContentTap = function(e) {\n					console.log('onContentTap');\n			    if ($scope.ShowDrawer){\n			      $scope.closeDrawer();\n			      e.gesture.srcEvent.preventDefault();\n			    }\n		  }\n		$scope.gestureMenu = function(mainContent){\n			$ionicGesture.on('tap', onContentTap, mainContent);\n		}\n		// ionic.Platform.ready(function(){\n    // will execute when device is ready, or immediately if the device is already ready.\n    	//var mainContent = angular.element(document.querySelectorAll(\"ion-content\")[1]);\n    	//var mainContent = angular.element(document.querySelector('#app-content'));\n\n	//	console.log('mainContent');\n	//	console.log(mainContent);\n		 // $ionicGesture.on('tap', onContentTap, mainContent);\n  //});\n\n	\n\n		//var buttonDrawerContent = angular.element(document.querySelectorAll(\".button-drawer\")[0]);\n		 //  $ionicGesture.on('tap', onDrawerContentTap, buttonDrawerContent);\n		$scope.$on('userLoggedIn', function(events, args){\n			/*\n			$state.transitionTo(state.current, null,{\n				reload: true,\n				inderit: false,\n				notify: true\n			});\n			*/\n			console.log('event userLoggedIn'+args);\n			//$scope.socialWeb = args;			\n			$scope.isGuestMode = security.isGuestMode();\n			 $state.go('app.storelocator');\n			 $ionicViewService.nextViewOptions({\n  				disableBack: true\n   			 });\n		});\n\n		$scope.$on('mapInitialized', function(event, map) {\n			$scope.map = map;\n			console.log('mapInitialized map');\n			console.log($scope.map);\n			navigator.geolocation.getCurrentPosition(function(position) {\n				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');\n			});\n			\n			/*\n			//var myLatlng = new google.maps.LatLng( $scope.map.center.latitude,$scope.map.center.longitude);\n			console.log('mapInitialized $scope.map.center');\n			console.log($scope.map.center);\n			console.log( google.maps.event.addListener);\n			console.log( map.markers);\n			var markers = map.markers;\n\n			for (var i = 0; i < markers.length; i++) \n			{\n					marker = markers[i];\n\n			   google.maps.event.addListener(marker, 'click', function () {\n			            // close window if not undefined\n			            if (infoWindow !== void 0) {\n			                infoWindow.close();\n			            }\n			            // create new window\n			            var infoWindowOptions = {\n			                content: content\n			            };\n			            infoWindow = new google.maps.InfoWindow(infoWindowOptions);\n			            infoWindow.open(map, marker);\n			        });\n			} \n			*/\n			//$scope.$safeApply();\n			//map.setCenter(myLatlng)   ; \n	    });\n		if(isOutdate){\n			$ionicPopup.alert({\n				title: 'Your app is out date',\n				scope: $scope,\n				template: \"Please go to <a style=\\\"text-decoration: underline\\\" ng-click=\\\"openLink(appcfg.DowloadAppLink)\\\">here</a> for download lastest app.\"\n			})\n		};\n		 function setMarker(map, position, title, content) {\n				//console.log('setMarker');\n\n				//console.log(map);\n				var marker;\n				var markerOptions = {\n				    position: position,\n				    map: map,\n				    title: title,\n				    icon: './img/my-location.png'\n				};\n\n				marker = new google.maps.Marker(markerOptions);\n				// markers.push(marker); // add marker to array\n				circle = new google.maps.Circle({\n				    map: map,\n				    clickable: false,\n				   	center: position,\n				    // metres\n				    radius: 300,\n				    fillColor: '#fff',\n				    fillOpacity: .6,\n				    strokeColor: '#313131',\n				    strokeOpacity: .4,\n				    strokeWeight: 0.1\n				});\n				// attach circle to marker\n				//circle.bindTo('center', marker, 'position');\n				google.maps.event.addListener(marker, 'click', function () {\n					// close window if not undefined\n					if (infoWindow !== void 0) {\n					    infoWindow.close();\n					}\n					// create new window\n					var infoWindowOptions = {\n					    content: content\n					};\n					infoWindow = new google.maps.InfoWindow(infoWindowOptions);\n					infoWindow.open(map, marker);\n				});\n		    }\n		/*\n		// Create the login modal that we will use later\n		$ionicModal.fromTemplateUrl('app/login/login.html', {\n			scope: $scope\n		}).then(function(modal) {\n			$scope.modal = modal;\n		});\n		\n		// Triggered in the login modal to close it\n		$scope.closeLogin = function() {\n			$scope.modal.hide();\n		};\n		// Open the login modal\n		$scope.login = function() {\n			$scope.modal.show();\n		};\n		\n		// Perform the login action when the user submits the login form\n		$scope.doLogin = function() {\n			console.log('Doing login', $scope.loginData);\n\n			// Simulate a login delay. Remove this and replace with your login\n			// code if using a login system\n			$timeout(function() {\n				$scope.closeLogin();\n			}, 1000);\n		};\n		*/\n		\n		\n	}\n]);",
 			"file": "www/app/app.js",
+			"file_size": 22176,
+			"file_write_time": 1448889410000000,
 			"settings":
 			{
-				"buffer_size": 21781,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/app/config.js",
-			"settings":
-			{
-				"buffer_size": 4557,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "platforms/ios/www/app/config.js",
-			"settings":
-			{
-				"buffer_size": 4557,
+				"buffer_size": 22178,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,34 +86,31 @@
 			"file": "www/app/storelocator/storelocator.js",
 			"settings":
 			{
-				"buffer_size": 22593,
+				"buffer_size": 21388,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "\nangular.module('MCMRelationshop.StoreLocator', function(){\n  if(isOnline()){\n    return [\n      'uiGmapgoogle-maps',\n      'MCMRelationshop.Resource.Store',\n      'MCMRelationshop.Utils'\n    ]\n  }\n  else {\n    return [\n      'MCMRelationshop.Resource.Store',\n      'MCMRelationshop.Utils'\n    ]\n  }\n}()\n/*  \n[\n  'google-maps',\n  'MCMRelationshop.Resource.Store',\n  'MCMRelationshop.Utils'\n]*/)\n.factory('BaseStoreLocatorCtrl',['APP_CONFIG', 'Store','AppUtil','$ionicLoading','MCMTracker','$ionicScrollDelegate','$timeout',\n  function(APP_CONFIG, Store,AppUtil,$ionicLoading,MCMTracker, $ionicScrollDelegate,$timeout){\n    var cls = Class.extend({\n      logos: {\n        '13': 'img/store-logo-united.png',\n        '14': 'img/store-logo-mktstreet.png',\n        '22': 'img/store-logo-mktstreet.png',\n        '23': 'img/store-logo-Albertsons.png',\n        '15': 'img/store-logo-amigos.png'\n      },\n      init: function($scope,$state,$stateParams,$ionicSideMenuDelegate){\n        var self = this;\n        this.$scope = $scope;\n        $scope.mode= APP_CONFIG.MapMode.map;// 'map'; /*map, list*/\n        $scope.selectedTab='favorite'; /*map, list*/\n        $scope.sc = {\n          keyword: '',\n        }\n        $scope.map = {};\n\n        //var myLatlng = new google.maps.LatLng( APP_CONFIG.StoreMapCenterPointDefault[0], APP_CONFIG.StoreMapCenterPointDefault[1]);\n        //$scope.mapcenter= myLatlng;\n\n        $scope.lat = APP_CONFIG.StoreMapCenterPointDefault[0], $scope.lng = APP_CONFIG.StoreMapCenterPointDefault[1]; \n        //console.log('APP_CONFIG.StoreMapZoomDefault');\n        //console.log($scope.map.center);\n        $scope.map.zoom = APP_CONFIG.StoreMapZoomDefault;\n        //console.log('APP_CONFIG.StoreMapZoomDefault');\n        //console.log(APP_CONFIG.StoreMapZoomDefault);\n        //$scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };\n        //  $scope.map.bounds= {};\n      \n        //$scope.gmap = new google.maps.Map(document.getElementById(\"mainGmap\"));\n        $scope.showHere = false;\n        $scope.hereKey = 'here';\n        $scope.hereTitle = 'Here i am';\n        $scope.stores = null;\n        \n        //public methodP\n        $scope.getLogo =  function(store){\n          return self.logos[store.CS_BannerID+''];\n        }\n        $scope.goTo = function(link, params){\n           $state.go(link, params);\n           $ionicSideMenuDelegate.toggleLeft(false);\n        }\n        $scope.switchMode = this.switchMode.bind(this);\n        $scope.switchStoreType = this.switchStoreType.bind(this);\n       \n        $scope.nearBy = this.nearBy.bind(this);\n        $scope.searchStore = function(){\n          self.loadData($scope.sc.keyword);\n        };\n        $scope.info = function(store){\n          //console.log(store);\n          $scope.goTo('app.storeinfo', {id: store.StoreID})\n        };\n        //this.loadData($scope.keyword);\n        //MCMTracker.trackView('StoreLocator');\n       //  alert(\"You have Map Instance of\" + this.$scope.map.control.getGMap().toString());\n\n      },//init\n      loadData: function(keyword,cat, pos){\n        console.log('loadData keyword');\n        //console.log(cat);\n        var self = this;\n        $ionicLoading.show();\n        this.$scope.showHere = false;\n        var catId = cat;\n        \n        Store.searchStore(keyword,catId,pos).then(this._sucessLoadData.bind(this))//\n        .then(function(){\n          \n          var sumlat = 0, \n            sumlng = 0,\n            stores = self.$scope.stores,\n            length = stores.length;\n          if(length <=0){\n            return;\n          }\n          //console.log('load stores');\n          console.log(stores);\n          _.forEach(stores, function(store){\n            sumlat += store.Latitude;\n            sumlng += store.Longitude;\n          });\n          // cal map center\n         // self.$scope.map.center = {\n          //  latitude: sumlat/length,\n          //  longitude: sumlng/length,\n          //}          \n          // self.addMarkers(self.$scope,stores);\n        });\n        \n      },\n\n      \n      addMarkers : function(scope,stores) {   \n           \n        //console.log(map);\n           /* var bounds = new google.maps.LatLngBounds();\n\n            for (var i = 0; i < stores.length; i++) {\n              //console.log(stores[i]);\n               var latlng = new google.maps.LatLng(stores[i].Latitude, stores[i].Longitude);\n                bounds.extend(latlng);\n                //map.bounds.push(bounds);\n            }\n            */\n            //map.bounds = bounds;\n          \n        \n        /*scope.$on('mapInitialized', function(event, map) {\n          console.log(map);\n                map.setCenter(bounds.getCenter());\n                map.fitBounds(bounds);\n          });\n        */\n           // map.bounds = bounds;\n\n            //console.log(map.bounds);\n            \n            //console.log( bounds.getCenter());\n           // console.log(google.maps);\n           // var amap = new google.maps.Map(document.getElementById('mainGmap'));\n            //amap.fitBounds(bounds);\n           // map.center = bounds.getCenter();\n            //map.fitBounds(bounds);\n            //remove one zoom level to ensure no marker is on the edge.\n           //map.zoom = (map.zoom - 1);\n\n            // set a minimum zoom\n            // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n            if (scope.map.zoom > 15) {\n                scope.map.zoom = 15;\n            }\n        },\n\n      nearBy: function(){\n        $ionicLoading.show();\n        AppUtil.getCurrentPosition().then(function(res){\n          var latlgn = res.data.latitude+','+res.data.longitude;\n          this.$scope.map.center=res.data;\n          this.$scope.showHere  = true;\n          //$ionicLoading.show();\n          Store.searchNearByStore(latlgn).then(this._sucessLoadData.bind(this));\n\n        }.bind(this), function(error){\n          $ionicLoading.hide();\n          if(error){\n            alert(error.message);\n          }\n          else {\n            alert('Please enable location service.');\n          }\n          \n        });\n      },\n      _sucessLoadData: function(res){\n        console.log('_sucessLoadData');\n        //console.log(res);\n        var self = this;\n        //console.log(res);\n        var stores = res.data;\n     \n        _.forEach(stores, function(store){\n          store.selectStore = self.onSelectStore;\n          store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];\n          if(store.PharmacyPhone){\n            var match = store.PharmacyPhone.match(/\\d+/g);\n            if(match == null){\n              store.PharmacyPhone = null;\n            }\n          }\n          //store.logo = self.[store.CS_BannerID+'']\n\n        });\n\n        this.$scope.stores = stores;\n        console.log(  this.$scope.stores);\n        $ionicLoading.hide();\n      },\n      onSelectStore: function(store){\n        //console.log('lam gi the lam');\n      },\n      switchMode: function(mode){\n        this.$scope.mode = mode;\n        $timeout(function(){\n          $ionicScrollDelegate.scrollTop(true);\n        }, 500);  \n      },\n      switchStoreType: function(type){\n        this.$scope.mode = APP_CONFIG.MapMode.list;\n        this.$scope.selectedTab = type;\n        $timeout(function(){\n          $ionicScrollDelegate.scrollTop(true);\n        }, 500);  \n      }\n    });\n    \n    return cls;\n  },\n  \n])\n.controller('RegisterStoreCtrl', ['$scope','$state', '$stateParams','APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','CacheUtil',\n  function($scope, $state,$stateParams, APP_CONFIG, Store,BaseStoreLocatorCtrl, security, CacheUtil) {  \n    var controllerCls = BaseStoreLocatorCtrl.extend({\n      onSelectStore: function(store){\n        delete store.selectStore;\n        //security.setCurrentStore(store);\n        CacheUtil.getAppCache().put('/register/store', store);\n        $state.go('app.register', {step: 2});\n      }\n    });\n    var controller = new controllerCls($scope);\n  }\n])\n.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil',\n  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil) {  \n    var controllerCls = BaseStoreLocatorCtrl.extend({\n      onSelectStore: function(){\n        //console.log('onSelectStore');\n        //goTo('app.storeinfo', {id: storeID})\n        //delete store.selectStore;\n        //security.setCurrentStore(store);\n        //$state.go('app.weeklyad');\n      },\n      \n    });\n    //console.log('init controllerCls');\n    var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);\n    //$scope.onSelectStore = controller.onSelectStore;\n    //var store ={};\n    $scope.onSelectStore = function(storeID) {\n      //console.log('onSelectStore');\n      //console.log('onSelectStore');\n      $scope.goTo('app.storeinfo', {id: storeID, reload:true})\n    }\n    var onload = function(markerID) {\n      //console.log('onload');\n      //console.log($scope.stores);\n      $scope.$apply(function(){\n          var element = document.getElementById(\"map-infoWindo_\"+markerID);\n          //console.log('element:'+\"map-infoWindo_\"+markerID);\n          //console.log(element);\n          $compile(element)($scope)\n      });\n    }\n    $scope.showStore = function(evt,storeID) {\n\n      //console.log(markers);\n      //console.log(evt);\n      //console.log(id);\n      //console.log('this showStore');\n      self = this;\n      //console.log(self.id);\n      //console.log(self)\n      var selectStore = null;\n      var stores = $scope.stores\n      //console.log(stores);\n      _.forEach(stores, function(store){\n         if(store.StoreID == storeID)\n         {\n            //console.log('this showStore:'+store.StoreID);\n            //console.log(store);\n            selectStore = store;\n            //break;\n         } \n      });\n      \n      //console.log('showStore selectStore');\n      //console.log(selectStore);\n      //console.log(AppUtil.trim(selectStore.Content));\n      // $scope.store = $scope.stores[0];\n      // $scope.showInfoWindow.apply(this, [evt, 'bar']); \n      infoWindow.close(map);\n     \n      infoWindow = new google.maps.InfoWindow({\n        content:'<div id=\"map-infoWindo_'+this.id+'\" class=\"MapStoreInfo\"  >'\n        //+'<span ng-click=\"onSelectStore()\">Click me to test data-ng-click</span>' \n        //+'<span ng-click=\"showNativeMaps()\">Click me to test data-ng-click</span>' \n        +'<h3>'          \n        +selectStore.Name+'</h3>'+selectStore.Address+'<br/>'+selectStore.DistrictName+', '\n        +selectStore.CityName+'<br/><div>'+ ((typeof(selectStore.Content) != 'undefined' && AppUtil.trim(selectStore.Content)!= '')?'Post: '+selectStore.Content+'...':'')+' <a data-ng-click=\"onSelectStore(\\''+selectStore.StoreID+'\\')\">Details</a></div></div>'\n      \n\n      });\n     // infoWindow.className = 'custom-marker';\n      //console.log('addListener');\n      google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {\n             // self.className = 'custom-marker';\n             //document.querySelector('#app-content');\n            \n               angular.element( document.querySelector('.gm-style-iw').parentNode).addClass('custom-iw');\n               onload(self.id);\n      });\n\n      console.log(infoWindow.content);\n      infoWindow.open(map, self);\n      \n    };\n\n    $scope.showNativeMaps = function() {\n      alert('showNativeMaps');\n    };  \n\n\n    var infoWindow = new google.maps.InfoWindow({\n        //content:'<div class=\"MapStoreInfo\" ><h3>'+store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '+store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a ng-click=\"info('+store+'\">Xem</a></div>'\n    });\n\n   \n    ionic.Platform.ready(function(){\n      // will execute when device is ready, or immediately if the device is already ready.\n      //var mainContent = angular.element(document.querySelectorAll(\"ion-content\")[1]);\n      var mainContent = angular.element(document.querySelector('#app-content'));\n\n      console.log('mainContent');\n      console.log(mainContent);\n      $scope.gestureMenu(mainContent);\n      // $ionicGesture.on('tap', onContentTap, mainContent);\n    });\n    /*\n    $scope.showInfoWindow = function() {\n    // close window if not undefined\n    if (infoWindow !== void 0) {\n        infoWindow.close();\n    }\n    // create new window\n    var infoWindowOptions = {\n        content: content\n    };\n    infoWindow = new google.maps.InfoWindow(infoWindowOptions);    \n    infoWindow.open(map, marker);\n    }\n\n    */\n    var map, markers;\n\n    /*\n\n    var infoWindow = new google.maps.InfoWindow({\n    content:'Hi<br/>I am an infowindow'\n    });\n    $scope.showInfoWindow = function() {\n    console.log('showInfoWindow');\n    console.log(map);\n    console.log(map.markers);\n    infoWindow.open(map, map.markers[0]);\n    }\n    */\n\n    $scope.$on('mapInitialized', function(event, evtMap) {\n      map = evtMap, markers = map.markers;\n    \n    // var markers = map.markers;\n    /*\n    console.log('mapInitialized store');\n    console.log(markers);\n    console.log('mapInitialized store.'+markers.length);\n    for (var i = 0; i < markers.length; i++) \n    {\n        marker = markers[i];\n        console.log(marker);\n       google.maps.event.addListener(marker, 'click', function () {\n                // close window if not undefined\n                if (infoWindow !== void 0) {\n                    infoWindow.close();\n                }\n                 console.log('click store');\n                // create new window\n                var infoWindowOptions = {\n                    content: 'mapInitialized store'\n                };\n                infoWindow = new google.maps.InfoWindow(infoWindowOptions);\n                infoWindow.open(map, marker);\n            });\n\n    } */\n    });\n\n    $scope.keyword = $stateParams.keyword;\n    $scope.cat = $stateParams.catId;\n    console.log(' $scope.cat');\n    console.log( $stateParams);\n    console.log( $scope.cat);\n    console.log('$scope.keyword');\n    console.log($scope.keyword);\n    centerOnMe = function(keyword,catId){\n      $scope.positions = [];\n       console.log('centerOnMe');\n      /*$ionicLoading.show({\n          template: 'Loading...'\n      });\n      */\n      console.log( 'navigator');\n      console.log( navigator);\n      console.log( navigator.geolocation.getCurrentPosition);\n      navigator.geolocation.getCurrentPosition(function(position) {\n          console.log('getCurrentPosition');\n          console.log(position);\n          var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);\n          $scope.positions.push({lat: pos.k,lng: pos.B});\n          console.log('pos');\n          console.log(pos);\n\n          //console.log( $scope.map);\n          // $scope.map.setZoom(pos);\n          //$scope.map.setCenter(pos);\n          //$ionicLoading.hide();\n\n          controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});\n          // $scope.map.center = {lat: position.coords.latitude,lng: position.coords.longitude};\n          //  $scope.map.zoom = 12;\n\n          //$scope.map.center = {\n          //  latitude:position.coords.latitude,\n          //  longitude: position.coords.longitude\n          //};\n          //console.log('reset $setCenter');\n          //$scope.lat = position.coords.latitude;\n          //$scope.lng = position.coords.longitude; \n\n          //if(typeof($scope.map.setCenter) != 'undefined')\n          //{\n          //   console.log('$setCenter');\n          //  $scope.map.setCenter(pos);\n          //}\n          //  console.log('$scope.mapcenter');\n          //   console.log($scope.mapcenter);\n          //  console.log($scope.map.center);\n        });\n    }\n\n\n\n    //$scope.centerOnMe = centerOnMe();\n\n    //console.log('call centerOnMe');\n    centerOnMe($scope.keyword,$scope.cat);\n        \n\n    //controller.loadData();\n    //console.log($scope.stores);\n    /*$scope.onMarkerClicked =  function (marker) {\n        console.log('onMarkerClicked');\n        //console.log(marker);\n      \n         for (var i = 0; i < $scope.stores.length; i++) {\n           $scope.stores[i].ShowWindow = false;            \n          }\n          \n        //$scope.$evalAsync();\n       marker.ShowWindow = true;     \n        //$scope.$safeApply();   \n    }\n    */\n  }\n])\n.controller('SelectStoreCtrl', ['$scope',\n  function($scope) {  \n    $scope.selectStore = function(store){\n      store.selectStore(store);\n    }\n  }\n])\n\n\n.controller('StoreInfoCtrl',['$scope', '$state', '$stateParams', 'APP_CONFIG', 'security', 'Store','AppUtil','$ionicLoading','$ionicPopup','MCMTracker','$ionicScrollDelegate','$timeout','toaster',\n  function($scope, $state, $stateParams,APP_CONFIG, security, Store,AppUtil,$ionicLoading,$ionicPopup, MCMTracker, $ionicScrollDelegate,$timeout,toaster){\n\n    // private properties -------------------------------------------------------------\n    var id = $stateParams.id;\n    var logos =  {\n      '13': 'img/store-logo-united.png',\n      '14': 'img/store-logo-mktstreet.png',\n      '22': 'img/store-logo-mktstreet.png',\n      '23': 'img/store-logo-Albertsons.png',\n      '15': 'img/store-logo-amigos.png'\n    };\n    // scope properties -------------------------------------------------------------\n    \n    $scope.map ={\n        center: {\n          latitude:APP_CONFIG.StoreMapCenterPointDefault[0],\n          longitude: APP_CONFIG.StoreMapCenterPointDefault[1]\n        },\n        zoom: APP_CONFIG.StoreMapZoomDefault,\n        bounds: {},\n    };\n    $scope.store = {};\n    $scope.showP = false;\n    $scope.showS = false;\n    console.log('StoreInfoCtrl')\n    // private method -------------------------------------------------------------\n    function loadData(clearCache){\n\n      console.log('loadData StoreInfoCtrl')\n      $ionicLoading.show();\n      var req = Store.getStore(id,clearCache).then(function(res){\n\n        $ionicLoading.hide();\n        var store = res.data;\n        console.log(store);\n        store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];\n        store.mapLink = AppUtil.mapLink(store.Latitude, store.Longitude);\n        if(store.PharmacyPhone){\n          var match = store.PharmacyPhone.match(/\\d+/g);\n          if(match == null){\n            store.PharmacyPhone = null;\n          }\n        }\n        $scope.store = store;\n        $scope.map.center = {\n          latitude: $scope.store.Latitude,\n          longitude: $scope.store.Longitude\n        }\n        $scope.map.zoom = 18;\n\n      });\n      return req;\n    };\n    //public method -------------------------------------------------------------\n    $scope.goLocator = function(){\n      $scope.map.center = {\n        latitude: $scope.store.Latitude,\n        longitude: $scope.store.Longitude\n      \n      };\n      $ionicScrollDelegate.scrollTop();\n    };\n    $scope.getLogo =  function(store){\n      return logos[store.CS_BannerID+''];\n    };\n    $scope.toggle = function(field){\n      $scope[field] = !$scope[field];\n    };\n    $scope.select = function(store){\n      security.setCurrentStore(store);\n      $state.go('app.weeklyad');\n    }\n    $scope.ratingsObject = {\n      iconOn: 'ion-ios-star', //Optional\n      iconOff: 'ion-ios-star-outline',  //Optional\n      iconOnColor: 'rgb(200, 200, 100)',  //Optional\n      iconOffColor: 'rgb(200, 100, 100)', //Optional\n      rating: 5,  //Optional\n      minRating: 1, //Optional\n      readOnly:false, //Optional\n      callback: function(rating) {  //Mandatory    \n        $scope.ratingsCallback(rating);\n    }\n  };\n\n  $scope.ratingsCallback = function(rating) {\n    $scope.ratingsObject.rating = rating;\n   // console.log('Selected rating is : ', rating);\n  };\n  $scope.checkIn = function(store) {\n    //console.log(store);\n    $scope.rate = {}\n\n    // An elaborate, custom popup\n    var myPopup = $ionicPopup.show({\n      template: '<input type=\"text\" ng-model=\"rate.message\">  <ionic-ratings ratingsobj=\"ratingsObject\"></ionic-ratings>',\n      title: 'Check in with the status',\n      //subTitle: 'Please use normal things',\n      scope: $scope,\n      buttons: [\n        { text: 'Cancel' },\n        {\n          text: '<b>Submit</b>',\n          type: 'button-positive',\n          onTap: function(e) {\n            //console.log(e);\n            if (!$scope.rate.message) {\n              //don't allow the user to close unless he enters wifi password\n\n             toaster.pop('error','Error', 'Please enter your feedback.');\n              \n              e.preventDefault();\n            } else {\n              //console.log($scope.rate.message);\n              return $scope.rate.message;\n\n            }\n          }\n        }\n      ]\n    });\n    myPopup.then(function(res) {\n        if(!res){\n        return;\n       }\n        var checkin = {\n          StoreID: store.StoreID,\n          UserName:  security.getCurrentUserId(),\n          Message: res,\n          Rate: $scope.ratingsObject.rating,\n          act: 3\n        };\n        Store.addCheckIn(checkin);\n        loadData(true);\n        $scope.$safeApply();\n        toaster.pop('success','Success', 'Check-in this location successful.');\n      //console.log('Tapped!', res);\n    });\n\n    /*$timeout(function() {\n       myPopup.close(); //close the popup after 3 seconds for some reason\n    }, 3000);\n    */\n   };\n    \n\n    // Init -------------------------------------------------------------\n    loadData();\n  }\n]);\n",
-			"file": "platforms/ios/www/app/storelocator/storelocator.js",
-			"file_size": 21351,
-			"file_write_time": 1448630257000000,
+			"file": "scss/_search.scss",
 			"settings":
 			{
-				"buffer_size": 21569,
+				"buffer_size": 86,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/index.html",
+			"file": "scss/_menu.scss",
 			"settings":
 			{
-				"buffer_size": 8829,
+				"buffer_size": 2463,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/app/login/login.html",
+			"file": "www/templates/menu.html",
 			"settings":
 			{
-				"buffer_size": 3219,
+				"buffer_size": 6888,
 				"line_ending": "Unix"
 			}
 		}
@@ -147,11 +139,16 @@
 	},
 	"file_history":
 	[
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/config.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/config.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/index.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/login/login.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/login/login.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
 		"/D/Projects/RelationShop2015/Mobile/bigy2/ionic.project",
 		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
@@ -242,6 +239,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"centerOnMe",
+			"facebooklogin",
 			"cordova",
 			"console",
 			"amina",
@@ -373,7 +372,6 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
 				{
@@ -381,15 +379,19 @@
 					"file": "www/app/login/login.js",
 					"settings":
 					{
-						"buffer_size": 16025,
+						"buffer_size": 16485,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3135,
-								3127
+								3202,
+								3202
+							],
+							[
+								3321,
+								3323
 							]
 						],
 						"settings":
@@ -398,7 +400,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1111.0,
+						"translation.y": 5153.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -408,43 +410,15 @@
 					"file": "www/app/app.js",
 					"settings":
 					{
-						"buffer_size": 21781,
+						"buffer_size": 22178,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14211,
-								14211
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8130.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/app/config.js",
-					"settings":
-					{
-						"buffer_size": 4557,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3723,
-								3723
+								14346,
+								14371
 							]
 						],
 						"settings":
@@ -459,11 +433,39 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "platforms/ios/www/app/config.js",
+					"buffer": 2,
+					"file": "www/app/storelocator/storelocator.js",
 					"settings":
 					{
-						"buffer_size": 4557,
+						"buffer_size": 21388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15205,
+								15205
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6209.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "scss/_search.scss",
+					"settings":
+					{
+						"buffer_size": 86,
 						"regions":
 						{
 						},
@@ -476,90 +478,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1037.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/app/storelocator/storelocator.js",
-					"settings":
-					{
-						"buffer_size": 22593,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								886,
-								886
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6125.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "platforms/ios/www/app/storelocator/storelocator.js",
-					"settings":
-					{
-						"buffer_size": 21569,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								21569
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6112.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/index.html",
-					"settings":
-					{
-						"buffer_size": 8829,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								334,
-								339
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -568,19 +487,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "www/app/login/login.html",
+					"buffer": 4,
+					"file": "scss/_menu.scss",
 					"settings":
 					{
-						"buffer_size": 3219,
+						"buffer_size": 2463,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								728,
-								728
+								2103,
+								2103
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1599.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/templates/menu.html",
+					"settings":
+					{
+						"buffer_size": 6888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6216,
+								6216
 							]
 						],
 						"settings":
@@ -589,7 +535,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1551.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
