@@ -262,10 +262,10 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       //console.log('onload');
       //console.log($scope.stores);
       $scope.$apply(function(){
-          var element = document.getElementById("map-infoWindo_"+markerID);
+          //var element = document.getElementById("map-infoWindo_"+markerID);
           //console.log('element:'+"map-infoWindo_"+markerID);
           //console.log(element);
-          $compile(element)($scope)
+          //$compile(element)($scope)
       });
     }
     $scope.showStore = function(evt,storeID) {
