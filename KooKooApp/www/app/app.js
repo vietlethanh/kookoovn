@@ -469,7 +469,8 @@ angular.module('MCMRelationshop', [
 					controller: 'StoreLocatorCtrl',
 					templateUrl: "app/storelocator/storelocator.html"
 				}
-			}
+			},
+			cache: false
 		})
 		.state('app.storeinfo', {
 			url: "/storeinfo/:id",
@@ -532,61 +533,7 @@ angular.module('MCMRelationshop', [
 })
 .controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate','Store',
 	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate,Store) {
-		// Form data for the login modal
-		/*
-		$scope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
-			console.log(error);
-		});
-		*/
-		 /*$scope.$on('$ionicView.afterEnter', function(){
-    setTimeout(function(){
-      document.getElementById("custom-overlay").style.display = "none";      
-    }, 3000);
-  });  */
-		//var didIntro = CacheUtil.getAppCache().get('didIntro') || CacheUtil.getOfflineAppCache().get('didIntro');
-		/*if(navigator.splashscreen){
-			$timeout(function(){
-				navigator.splashscreen.hide();
-			}, 200);			
-		}
-		*/ 
-
-		//navigator.splashscreen.show()
-		//if(!didIntro && $state.current.name != 'app.shoppinglistview'){
-			//$state.go('app.intro');
-		//}
-		//else{
-			//CacheUtil.getOfflineAppCache().touch('didIntro');
-		//} 
-		//var deviceInformation = ionic.Platform.device();
-		//var isWebView = ionic.Platform.isWebView();
-		//var isIPad = ionic.Platform.isIPad();
-		//var isIOS = ionic.Platform.isIOS();
-		//var isAndroid = ionic.Platform.isAndroid();
-		//var isWindowsPhone = ionic.Platform.isWindowsPhone();
-
-		//var currentPlatform = ionic.Platform.platform();
-		//var currentPlatformVersion = ionic.Platform.version();
-		//var deviceInformation = ionic.Platform.device();
-		//console.log('deviceInformation');
-		//console.log(deviceInformation);
-		//var isIOS = ionic.Platform.isIOS();
-		//console.log(isIOS);
-		/*$scope.$on('$ionicView.enter', function() {
-		    	$timeout(function(){
-			    	if($stateParams.hidebar == "true")
-			    	{
-						//$ionicSideMenuDelegate.canDragContent(false);
-					}
-					else
-					{
-						//$ionicSideMenuDelegate.canDragContent(true);
-					}
-		    });
-		  });
-		*/
-		//$scope.drapmenu = true;
-		//$ionicSideMenuDelegate.canDragContent(false) ;
+		
 		//console.log('$scope.drapmenu');
         //console.log($scope.drapmenu);
         //console.log($stateParams);
@@ -656,7 +603,8 @@ angular.module('MCMRelationshop', [
 			 var catID = $scope.selectedCategory.ArticleTypeID;
 			 console.log('catID');
 			 console.log(catID);
-			 $state.go('app.storelocator', {keyword: keyword,catId: catID});
+			 $state.go('app.storelocator', {keyword: keyword,catId: catID},{ reload: true });
+			 //$state.reload();
 			 $ionicViewService.nextViewOptions({
 				disableBack: true
 			 });
@@ -664,6 +612,14 @@ angular.module('MCMRelationshop', [
 		        $ionicSideMenuDelegate.toggleLeft();
 		      });			 
 		}
+		/*
+		$scope.showStore = function(storeID) {
+			//console.log(markers);
+			//console.log(evt);
+			//console.log(id);
+			console.log('this showStore');
+			return;
+		}*/
 		$scope.goTo = function(link, params){
 			$state.go(link, params);
 			 $ionicSideMenuDelegate.toggleLeft();
@@ -678,35 +634,13 @@ angular.module('MCMRelationshop', [
 		$scope.gestureMenu = function(mainContent){
 			$ionicGesture.on('tap', onContentTap, mainContent);
 		}
-		// ionic.Platform.ready(function(){
-    // will execute when device is ready, or immediately if the device is already ready.
-    	//var mainContent = angular.element(document.querySelectorAll("ion-content")[1]);
-    	//var mainContent = angular.element(document.querySelector('#app-content'));
-
-	//	console.log('mainContent');
-	//	console.log(mainContent);
-		 // $ionicGesture.on('tap', onContentTap, mainContent);
-  //});
-
-	
-
-		//var buttonDrawerContent = angular.element(document.querySelectorAll(".button-drawer")[0]);
-		 //  $ionicGesture.on('tap', onDrawerContentTap, buttonDrawerContent);
-		$scope.$on('userLoggedIn', function(events, args){
-			/*
-			$state.transitionTo(state.current, null,{
-				reload: true,
-				inderit: false,
-				notify: true
-			});
-			*/
-			//console.log('event userLoggedIn'+args);
-			//$scope.socialWeb = args;			
+		
+		$scope.$on('userLoggedIn', function(events, args){			
 			$scope.isGuestMode = security.isGuestMode();
-			 $state.go('app.storelocator');
-			 $ionicViewService.nextViewOptions({
-  				disableBack: true
-   			 });
+			$state.go('app.storelocator');
+			$ionicViewService.nextViewOptions({
+				disableBack: true
+			 });
 		});
 
 		$scope.$on('mapInitialized', function(event, map) {
@@ -715,36 +649,7 @@ angular.module('MCMRelationshop', [
 			console.log($scope.map);
 			navigator.geolocation.getCurrentPosition(function(position) {
 				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');
-			});
-			
-			/*
-			//var myLatlng = new google.maps.LatLng( $scope.map.center.latitude,$scope.map.center.longitude);
-			console.log('mapInitialized $scope.map.center');
-			console.log($scope.map.center);
-			console.log( google.maps.event.addListener);
-			console.log( map.markers);
-			var markers = map.markers;
-
-			for (var i = 0; i < markers.length; i++) 
-			{
-					marker = markers[i];
-
-			   google.maps.event.addListener(marker, 'click', function () {
-			            // close window if not undefined
-			            if (infoWindow !== void 0) {
-			                infoWindow.close();
-			            }
-			            // create new window
-			            var infoWindowOptions = {
-			                content: content
-			            };
-			            infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-			            infoWindow.open(map, marker);
-			        });
-			} 
-			*/
-			//$scope.$safeApply();
-			//map.setCenter(myLatlng)   ; 
+			});			
 	    });
 		if(isOutdate){
 			$ionicPopup.alert({
@@ -753,77 +658,48 @@ angular.module('MCMRelationshop', [
 				template: "Please go to <a style=\"text-decoration: underline\" ng-click=\"openLink(appcfg.DowloadAppLink)\">here</a> for download lastest app."
 			})
 		};
-		 function setMarker(map, position, title, content) {
-				//console.log('setMarker');
+		//set market current possion
+		function setMarker(map, position, title, content) {
+			
+			//console.log('setMarker');
 
-				//console.log(map);
-				var marker;
-				var markerOptions = {
-				    position: position,
-				    map: map,
-				    title: title,
-				    icon: './img/my-location.png'
+			//console.log(map);
+			var marker;
+			var markerOptions = {
+			    position: position,
+			    map: map,
+			    title: title,
+			    icon: './img/my-location.png'
+			};
+
+			marker = new google.maps.Marker(markerOptions);
+			// markers.push(marker); // add marker to array
+			circle = new google.maps.Circle({
+			    map: map,
+			    clickable: false,
+			   	center: position,
+			    // metres
+			    radius: 300,
+			    fillColor: '#fff',
+			    fillOpacity: .6,
+			    strokeColor: '#313131',
+			    strokeOpacity: .4,
+			    strokeWeight: 0.1
+			});
+			// attach circle to marker
+			//circle.bindTo('center', marker, 'position');
+			google.maps.event.addListener(marker, 'click', function () {
+				// close window if not undefined
+				if (infoWindow !== void 0) {
+				    infoWindow.close();
+				}
+				// create new window
+				var infoWindowOptions = {
+				    content: content
 				};
-
-				marker = new google.maps.Marker(markerOptions);
-				// markers.push(marker); // add marker to array
-				circle = new google.maps.Circle({
-				    map: map,
-				    clickable: false,
-				   	center: position,
-				    // metres
-				    radius: 300,
-				    fillColor: '#fff',
-				    fillOpacity: .6,
-				    strokeColor: '#313131',
-				    strokeOpacity: .4,
-				    strokeWeight: 0.1
-				});
-				// attach circle to marker
-				//circle.bindTo('center', marker, 'position');
-				google.maps.event.addListener(marker, 'click', function () {
-					// close window if not undefined
-					if (infoWindow !== void 0) {
-					    infoWindow.close();
-					}
-					// create new window
-					var infoWindowOptions = {
-					    content: content
-					};
-					infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-					infoWindow.open(map, marker);
-				});
-		    }
-		/*
-		// Create the login modal that we will use later
-		$ionicModal.fromTemplateUrl('app/login/login.html', {
-			scope: $scope
-		}).then(function(modal) {
-			$scope.modal = modal;
-		});
-		
-		// Triggered in the login modal to close it
-		$scope.closeLogin = function() {
-			$scope.modal.hide();
-		};
-		// Open the login modal
-		$scope.login = function() {
-			$scope.modal.show();
-		};
-		
-		// Perform the login action when the user submits the login form
-		$scope.doLogin = function() {
-			console.log('Doing login', $scope.loginData);
-
-			// Simulate a login delay. Remove this and replace with your login
-			// code if using a login system
-			$timeout(function() {
-				$scope.closeLogin();
-			}, 1000);
-		};
-		*/
-		
-		
-		
+				infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+				infoWindow.open(map, marker);
+			});
+		}
 	}
 ]);

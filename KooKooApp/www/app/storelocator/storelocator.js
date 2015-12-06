@@ -100,58 +100,20 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           if(length <=0){
             return;
           }
-          //console.log('load stores');
+          console.log('load stores');
           console.log(stores);
           _.forEach(stores, function(store){
             sumlat += store.Latitude;
             sumlng += store.Longitude;
           });
-          // cal map center
-         // self.$scope.map.center = {
-          //  latitude: sumlat/length,
-          //  longitude: sumlng/length,
-          //}          
-          // self.addMarkers(self.$scope,stores);
+          
+          
         });
         
       },
 
       
       addMarkers : function(scope,stores) {   
-           
-        //console.log(map);
-           /* var bounds = new google.maps.LatLngBounds();
-
-            for (var i = 0; i < stores.length; i++) {
-              //console.log(stores[i]);
-               var latlng = new google.maps.LatLng(stores[i].Latitude, stores[i].Longitude);
-                bounds.extend(latlng);
-                //map.bounds.push(bounds);
-            }
-            */
-            //map.bounds = bounds;
-          
-        
-        /*scope.$on('mapInitialized', function(event, map) {
-          console.log(map);
-                map.setCenter(bounds.getCenter());
-                map.fitBounds(bounds);
-          });
-        */
-           // map.bounds = bounds;
-
-            //console.log(map.bounds);
-            
-            //console.log( bounds.getCenter());
-           // console.log(google.maps);
-           // var amap = new google.maps.Map(document.getElementById('mainGmap'));
-            //amap.fitBounds(bounds);
-           // map.center = bounds.getCenter();
-            //map.fitBounds(bounds);
-            //remove one zoom level to ensure no marker is on the edge.
-           //map.zoom = (map.zoom - 1);
-
-            // set a minimum zoom
             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.
             if (scope.map.zoom > 15) {
                 scope.map.zoom = 15;
@@ -239,6 +201,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 ])
 .controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil','$cordovaGeolocation',
   function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil,$cordovaGeolocation) {  
+    console.log('Load StoreLocatorCtrl');
     var controllerCls = BaseStoreLocatorCtrl.extend({
       onSelectStore: function(){
         //console.log('onSelectStore');
@@ -273,7 +236,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       //console.log(markers);
       //console.log(evt);
       //console.log(id);
-      //console.log('this showStore');
+      console.log('this showStore');
+      //return;
       self = this;
       //console.log(self.id);
       //console.log(self)
@@ -303,11 +267,14 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         //+'<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' 
         +'<h3>'          
         +selectStore.Name+'</h3>'+selectStore.Address+'<br/>'+selectStore.DistrictName+', '
-        +selectStore.CityName+'<br/><div>'+ ((typeof(selectStore.Content) != 'undefined' && AppUtil.trim(selectStore.Content)!= '')?'Post: '+selectStore.Content+'...':'')+' <a data-ng-click="onSelectStore(\''+selectStore.StoreID+'\')">Details</a></div></div>'
-      
+        +selectStore.CityName+'<br/><div>'
+        + ((typeof(selectStore.Content) != 'undefined' && AppUtil.trim(selectStore.Content)!= '')
+          ?'Post: '+selectStore.Content+'...':'')+' <a data-ng-click="onSelectStore(\''+
+          selectStore.StoreID+'\')">Details</a></div></div>'     
 
       });
-     // infoWindow.className = 'custom-marker';
+     
+      // infoWindow.className = 'custom-marker';
       //console.log('addListener');
       google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
              // self.className = 'custom-marker';
@@ -316,8 +283,9 @@ angular.module('MCMRelationshop.StoreLocator', function(){
                angular.element( document.querySelector('.gm-style-iw').parentNode).addClass('custom-iw');
                onload(self.id);
       });
-
-      console.log(infoWindow.content);
+      
+      //console.log(infoWindow.content);
+      
       infoWindow.open(map, self);
       
     };
@@ -342,63 +310,12 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       $scope.gestureMenu(mainContent);
       // $ionicGesture.on('tap', onContentTap, mainContent);
     });
-    /*
-    $scope.showInfoWindow = function() {
-    // close window if not undefined
-    if (infoWindow !== void 0) {
-        infoWindow.close();
-    }
-    // create new window
-    var infoWindowOptions = {
-        content: content
-    };
-    infoWindow = new google.maps.InfoWindow(infoWindowOptions);    
-    infoWindow.open(map, marker);
-    }
-
-    */
+   
     var map, markers;
 
-    /*
-
-    var infoWindow = new google.maps.InfoWindow({
-    content:'Hi<br/>I am an infowindow'
-    });
-    $scope.showInfoWindow = function() {
-    console.log('showInfoWindow');
-    console.log(map);
-    console.log(map.markers);
-    infoWindow.open(map, map.markers[0]);
-    }
-    */
-
+  
     $scope.$on('mapInitialized', function(event, evtMap) {
       map = evtMap, markers = map.markers;
-    
-    // var markers = map.markers;
-    /*
-    console.log('mapInitialized store');
-    console.log(markers);
-    console.log('mapInitialized store.'+markers.length);
-    for (var i = 0; i < markers.length; i++) 
-    {
-        marker = markers[i];
-        console.log(marker);
-       google.maps.event.addListener(marker, 'click', function () {
-                // close window if not undefined
-                if (infoWindow !== void 0) {
-                    infoWindow.close();
-                }
-                 console.log('click store');
-                // create new window
-                var infoWindowOptions = {
-                    content: 'mapInitialized store'
-                };
-                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-                infoWindow.open(map, marker);
-            });
-
-    } */
     });
 
     $scope.keyword = $stateParams.keyword;
@@ -420,8 +337,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
               //console.log('cordovaGeolocation');
               //console.log(position);
 
-               var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-              $scope.positions.push({lat: pos.k,lng: pos.B});
+              var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              //$scope.positions.push({lat: pos.k,lng: pos.B});
               //console.log('pos');
               //console.log(pos);
               controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});
@@ -440,7 +357,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           //console.log('getCurrentPosition');
           //console.log(position);
           var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          $scope.positions.push({lat: pos.k,lng: pos.B});
+          //$scope.positions.push({lat: pos.k,lng: pos.B});
           //console.log('pos');
           //console.log(pos);
           controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});        
@@ -465,7 +382,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     }
     //$scope.centerOnMe = centerOnMe();
 
-    //console.log('call centerOnMe');
+    console.log('call centerOnMe');
     centerOnMe($scope.keyword,$scope.cat);
   }
 ])

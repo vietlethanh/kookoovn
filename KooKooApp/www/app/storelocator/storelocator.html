@@ -1,5 +1,5 @@
 
-<ion-view title="Store Locator"  id="StoreLocator">
+<ion-view title="Store Locator"  id="StoreLocator" cache-view="false">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
         <!--button ng-click="openDrawer()" class="button-drawer button button-icon icon ion-navicon" ng-show="false">Open</button-->
@@ -10,40 +10,11 @@
     </ion-nav-buttons>
 
     <ion-content class="has-header " id="app-content">
-        <!--div class="list search">
-            <div class="item item-divider">
-                <form novalidate class="item-input-inset store-search-form " ng-submit="searchStore()">
-                    <button ng-click="nearBy()"class="button button-clear icon icon-right fa fa-angle-double-right nearby-btn" type="button">Nearby</button>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Search Zip or City" ng-model="sc.keyword"/>
-                    </label>
-                    <button class="button button-clear icon fa fa-angle-double-right search-btn" type="submit"></button>
-                </form>
-            </div>
-        </div-->    
         
         <div style="width: 100%; height: 100%" data-tap-disabled="true" ng-if="mode == 'map'"> 
             <map id="mainGmap" draggable="true" center="[{{lat}}, {{lng}}]" zoom="{{map.zoom}}" zoom-to-include-markers="auto"  >
-                    <marker ng-repeat="store in stores" class="store-info" position="{{store.Latitude}},{{store.Longitude}}" icon= '{url:    "img/logo_small.png" }'   id='m{{store.StoreID}}' on-click="showStore({{store.StoreID}})"><!--on-click="showInfoWindow('i{{store.StoreID}}')"-->
-                    <!--ng-controller=""-->                     
-                    </marker>
-                     <!--marker ng-repeat="store in stores" class="store-info" position="{{store.Latitude}},{{store.Longitude}}" icon="{path:'CIRCLE', scale: 1}"   id='m{{store.StoreID}}' on-click="showStore({{store.StoreID}})">                                 
-                    </marker-->
-                     <!--info-window ng-repeat="store in stores" id="i{{store.StoreID}}"  visible-on-marker="m{{store.StoreID}}">
-                            <div class="MapStoreInfo" >
-                                <h3>{{store.Name}}</h3>
-                                {{store.Address}}<br/>
-                                {{store.DistrictName}}, {{store.CityName}}<br/>
-                                <div>Post:Tặng quà khi mua hàng...</div>
-                                <a ng-click="info({{store}})">Xem</a>
-                            </div>
-                       </info-window>
-                        <info-window id="bar">
-                          <div ng-non-bindable="" >
-                            {{store.Name}}<br/>
-                            <a href="#" ng-click="clicked()">Click Here</a>
-                          </div>
-                        </info-window-->
+                <marker ng-repeat="store in stores" class="store-info" position="{{store.Latitude}},{{store.Longitude}}" icon= '{url:    "img/logo_small.png" }'   id='m{{store.StoreID}}' on-click="showStore({{store.StoreID}})">               
+                    </marker>                 
                     
             </map>
         </div>    
