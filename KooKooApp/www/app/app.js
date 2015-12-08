@@ -601,8 +601,8 @@ angular.module('MCMRelationshop', [
 		$scope.globalSearchStore = function(){
 			 var keyword = $scope.globalKeyword.Keyword;
 			 var catID = $scope.selectedCategory.ArticleTypeID;
-			 console.log('catID');
-			 console.log(catID);
+			 //console.log('catID');
+			 //console.log(catID);
 			 $state.go('app.storelocator', {keyword: keyword,catId: catID},{ reload: true });
 			 //$state.reload();
 			 $ionicViewService.nextViewOptions({

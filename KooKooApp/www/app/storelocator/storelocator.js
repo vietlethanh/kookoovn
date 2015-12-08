@@ -4,13 +4,15 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     return [
       'uiGmapgoogle-maps',
       'MCMRelationshop.Resource.Store',
-      'MCMRelationshop.Utils'
+      'MCMRelationshop.Utils',
+      'MCMRelationshop.Services'
     ]
   }
   else {
     return [
       'MCMRelationshop.Resource.Store',
-      'MCMRelationshop.Utils'
+      'MCMRelationshop.Utils',
+       'MCMRelationshop.Services'
     ]
   }
 }()
@@ -395,8 +397,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 ])
 
 
-.controller('StoreInfoCtrl',['$scope', '$state', '$stateParams', 'APP_CONFIG', 'security', 'Store','AppUtil','$ionicLoading','$ionicPopup','MCMTracker','$ionicScrollDelegate','$timeout','toaster',
-  function($scope, $state, $stateParams,APP_CONFIG, security, Store,AppUtil,$ionicLoading,$ionicPopup, MCMTracker, $ionicScrollDelegate,$timeout,toaster){
+.controller('StoreInfoCtrl',['$scope', '$state', '$stateParams', 'APP_CONFIG', 'security', 'Store','AppUtil','$ionicLoading','$ionicPopup','MCMTracker','$ionicScrollDelegate','$timeout','toaster','TrackingGPS',
+  function($scope, $state, $stateParams,APP_CONFIG, security, Store,AppUtil,$ionicLoading,$ionicPopup, MCMTracker, $ionicScrollDelegate,$timeout,toaster,TrackingGPS){
 
     // private properties -------------------------------------------------------------
     var id = $stateParams.id;
@@ -484,6 +486,10 @@ angular.module('MCMRelationshop.StoreLocator', function(){
   $scope.ratingsCallback = function(rating) {
     $scope.ratingsObject.rating = rating;
    // console.log('Selected rating is : ', rating);
+  };
+  $scope.trackingGPS = function() {   
+        console.log('begin trackingGPS');
+        TrackingGPS.startTrack();
   };
   $scope.checkIn = function(store) {
     //console.log(store);

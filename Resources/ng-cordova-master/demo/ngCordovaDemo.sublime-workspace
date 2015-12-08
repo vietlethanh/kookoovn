@@ -1,0 +1,472 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ca",
+				"catID"
+			],
+			[
+				"Article",
+				"ArticleTypeID"
+			],
+			[
+				"login",
+				"loginForm"
+			],
+			[
+				"hide",
+				"hidebar"
+			],
+			[
+				"info",
+				"infoWindow"
+			],
+			[
+				"sc",
+				"scope"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"load",
+				"loadData"
+			],
+			[
+				"store",
+				"storeid"
+			],
+			[
+				"con",
+				"controlMap"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "www/app/geolocation/geolocation.ctrl.js",
+			"settings":
+			{
+				"buffer_size": 1286,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Desktop/KooKooApp/Resources/ng-cordova-master/demo",
+		"/D/Desktop/KooKooApp/Resources/ng-cordova-master/demo/www",
+		"/D/Desktop/KooKooApp/Resources/ng-cordova-master/demo/www/app",
+		"/D/Desktop/KooKooApp/Resources/ng-cordova-master/demo/www/app/geolocation"
+	],
+	"file_history":
+	[
+		"/D/Desktop/KooKooApp/Resources/ng-cordova-master/demo/ngCordovaDemo",
+		"/D/Desktop/KooKooApp/Resources/Cordova-Examples-master/geoalert/www/js/new 1",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/security.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/index.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/templates/menu.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_menu.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-cookies/angular-cookies.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
+		"/D/Projects/RelationShop2015/Mobile/bigy/www/common/resources/loyalty.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.js",
+		"/D/Projects/RelationShop2015/Mobile/bigy/www/app/rewardsprogram/rewardsprogram.js",
+		"/D/Projects/RelationShop2015/Mobile/bigy/ionic.project",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/ads.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/home/home.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/config.js",
+		"/D/Projects/RelationShop2015/Mobile/bigy2/ionic.project",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - Copy.html",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_storelocator.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/info.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/utils/utils.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/config.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storedetail.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/search/searchcoupons.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/recipe.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/digitalcoupon.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/registercard.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/register.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/home/home.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/intro/intro.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/register.js",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/ionic.app.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/interceptor.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/smartreward.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/user.js",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_info.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_intro.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/scss/_base.scss",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglists.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/shoppinglist/shoppinglist.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipedetail.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipelist.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipe.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/retryQueue.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/setting.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.html",
+		"/D/Desktop/KooKooApp/KooKooApp/config.xml",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe/recipesearch.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator_sample/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/build/intermediates/assets/debug/www/lib/angular-google-maps/example/example.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator_sample.rar",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator_sample/storelocator.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storeinfo.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/example/example.html",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/dist/angular-google-maps.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-google-maps/angular-google-maps.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - 20150901.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/utils/utils.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/resources/shoppinglist.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/resources/ads.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/services/analytic.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/js/app.js",
+		"/D/Desktop/KooKooApp/KooKooApp/platforms/android/assets/www/common/security/interceptor.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
+			"D:\\Projects\\RelationShop2015\\Mobile\\bigy\\www",
+			"D:\\Projects\\RelationShop2015\\Mobile\\bigy",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator_sample",
+			"",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www",
+			"",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app,D:\\Desktop\\KooKooApp\\KooKooApp\\www\\common",
+			"D:\\Desktop\\KooKooApp\\KooKooApp\\www\\app",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			");\n",
+			"minDistance",
+			"timeout",
+			"app.storelocator",
+			"ipcookie",
+			"angular.js",
+			"ng-cor",
+			"ng-co",
+			"connect.facebook.net",
+			"sdk.js",
+			"FB",
+			"('security'",
+			"'security'",
+			"router",
+			"ui.router",
+			"angular-data",
+			"cordovaOauth",
+			"ipCookie",
+			"toas",
+			"isonline",
+			"apiKey",
+			"apikey",
+			"cache",
+			"DSCacheFactory",
+			"angular-data",
+			"demographic",
+			"MCMRelationshop.controllers",
+			"MCMRelationshop.Con",
+			"MCMRelationshop.Controller",
+			"ipcoo",
+			"ApplicationId",
+			"gethome",
+			"token",
+			"storeinfo",
+			"117244345278368",
+			"header-item",
+			"para",
+			"login",
+			" $state.go",
+			"loadData",
+			"keywor",
+			"getDigitalCoupons",
+			"mapInitialized ",
+			"setMarker",
+			"splash",
+			"drag",
+			"logg\nlogg\nlogg",
+			"isOffline",
+			"isOnline",
+			"addInfoWindow",
+			"login",
+			"apply",
+			"ready",
+			"logon",
+			"login",
+			"Platform",
+			"no-header",
+			"home",
+			"plash",
+			"back",
+			"oncontentTap",
+			"var onContentTap = function(e) {\n			    if ($scope.ShowDrawer){\n			      $scope.closeDrawer();\n			      e.gesture.srcEvent.preventDefault();\n			    }\n		  }",
+			"ionicSideMenuDelegate",
+			"toggle",
+			"sync",
+			"showInfoWindow",
+			"map.center",
+			"map",
+			"lodash",
+			"setZoom",
+			"_sucessLoadData",
+			"userLoggedIn",
+			"Back",
+			"back",
+			"loadData",
+			" $ionicPopup.",
+			"getCurrentUserId",
+			"ionic.bundle",
+			"ionicons",
+			"rate",
+			"back-button",
+			"ion-navicon",
+			"track",
+			"trac",
+			"track by",
+			">\n",
+			"popup",
+			"uiGmapgoogle-maps",
+			"openAddForm",
+			"popup",
+			"StoreInfoCtrl",
+			"StoreLocatorCtrl",
+			"email =",
+			"StoreInfoCtrl",
+			"clr",
+			";\n",
+			".Host",
+			"'HttpUtil'",
+			"option",
+			"HttpUtil",
+			"					clearCache: ['/users/'+user.UserID,'/users?un='+user.Email]\nisGuestMode",
+			"isGuestMode",
+			"token",
+			"ngFB",
+			"account load data",
+			"Facebook error: undefined",
+			"userLoggedIn",
+			"ionicSideMenuDelegate",
+			"AppCtrl",
+			"goTo",
+			"goto",
+			"track",
+			"recipedetail",
+			"onMarkerClicked",
+			"init",
+			"google.maps.Map",
+			"oogle.maps.Map",
+			"BaseStoreLocatorCtrl",
+			"marker",
+			"lati",
+			"lat",
+			"gMarker.key ",
+			"'keyword'",
+			"keyword",
+			"$scope.stores",
+			" $http.",
+			"DistributeHost",
+			"HttpUtil"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "www/app/geolocation/geolocation.ctrl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								460,
+								460
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ngCordovaDemo.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 244.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

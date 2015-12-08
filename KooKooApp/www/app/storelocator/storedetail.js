@@ -4,13 +4,15 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     return [
       'uiGmapgoogle-maps',
       'MCMRelationshop.Resource.Store',
-      'MCMRelationshop.Utils'
+      'MCMRelationshop.Utils',
+      'MCMRelationshop.Services'
     ]
   }
   else {
     return [
       'MCMRelationshop.Resource.Store',
-      'MCMRelationshop.Utils'
+      'MCMRelationshop.Utils',
+      'MCMRelationshop.Services'      
     ]
   }
 }()
@@ -60,6 +62,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         $scope.switchStoreType = this.switchStoreType.bind(this);
         $scope.onMarkerClicked = this.onMarkerClicked;
         $scope.nearBy = this.nearBy.bind(this);
+       
+        
         $scope.searchStore = function(){
           self.loadData($scope.sc.keyword);
         };
@@ -107,7 +111,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           marker.showWindow = true;
           $scope.$apply();
       },
-      
+
       addMarkers : function(scope,stores) {   
            
         //console.log(map);
@@ -150,21 +154,24 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 
       nearBy: function(){
         $ionicLoading.show();
-        AppUtil.getCurrentPosition().then(function(res){
-          var latlgn = res.data.latitude+','+res.data.longitude;
-          this.$scope.map.center=res.data;
-          this.$scope.showHere  = true;
-          //$ionicLoading.show();
-          Store.searchNearByStore(latlgn).then(this._sucessLoadData.bind(this));
+        AppUtil.getCurrentPosition().then(
+          function(res){
+            var latlgn = res.data.latitude+','+res.data.longitude;
+            this.$scope.map.center=res.data;
+            this.$scope.showHere  = true;
+            //$ionicLoading.show();
+            Store.searchNearByStore(latlgn).then(this._sucessLoadData.bind(this));
 
-        }.bind(this), function(error){
-          $ionicLoading.hide();
-          if(error){
-            alert(error.message);
-          }
-          else {
-            alert('Please enable location service.');
-          }
+          }.bind(this)
+          , 
+          function(error){
+            $ionicLoading.hide();
+            if(error){
+              alert(error.message);
+            }
+            else {
+              alert('Please enable location service.');
+            }
           
         });
       },
