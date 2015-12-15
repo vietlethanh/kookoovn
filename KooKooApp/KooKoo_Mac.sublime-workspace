@@ -67,41 +67,23 @@
 			"file": "www/app/storelocator/storelocator.js",
 			"settings":
 			{
-				"buffer_size": 18668,
+				"buffer_size": 19005,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 0 files for \"marker\"\n\n0 matches across 0 files\n\n\nSearching 0 files for \"marker\"\n\n0 matches across 0 files\n\n\nSearching 51 files for \"marker\"\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js:\n  717: 				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');\n  725: 			console.log( map.markers);\n  726: 			var markers = map.markers;\n  728: 			for (var i = 0; i < markers.length; i++) \n  730: 					marker = markers[i];\n  732: 			   google.maps.event.addListener(marker, 'click', function () {\n  742: 			            infoWindow.open(map, marker);\n  756: 		 function setMarker(map, position, title, content) {\n  757: 				//console.log('setMarker');\n  760: 				var marker;\n  761: 				var markerOptions = {\n  768: 				marker = new google.maps.Marker(markerOptions);\n  769: 				// markers.push(marker); // add marker to array\n  782: 				// attach circle to marker\n  783: 				//circle.bindTo('center', marker, 'position');\n  784: 				google.maps.event.addListener(marker, 'click', function () {\n  794: 					infoWindow.open(map, marker);\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/info.html:\n   27: 				<ui-gmap-marker coords=\"{latitude: store.Latitude,longitude: store.Longitude}\" idkey=\"store.StoreID || 'store'\" icon=\"store.StoreIconURL\" >\n   28: 				</marker>\n   31: 				<marker  class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\"   id='m{{store.StoreID}}' ></marker>\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storedetail.js:\n   61:         $scope.onMarkerClicked = this.onMarkerClicked;\n  100:           // self.addMarkers(self.$scope,stores);\n  105:       onMarkerClicked : function(marker) {   \n  106:           console.log('onMarkerClicked');\n  107:           marker.showWindow = true;\n  111:       addMarkers : function(scope,stores) {   \n  141:             //remove one zoom level to ensure no marker is on the edge.\n  145:             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.html:\n   26:             <map id=\"mainGmap\" draggable=\"true\" center=\"[{{lat}}, {{lng}}]\" zoom=\"{{map.zoom}}\" zoom-to-include-markers=\"auto\"  >\n   27:                     <marker ng-repeat=\"store in stores\" class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\" icon= '{url:    \"img/logo_small.png\" }'   id='m{{store.StoreID}}' on-click=\"showStore({{store.StoreID}})\"><!--on-click=\"showInfoWindow('i{{store.StoreID}}')\"-->\n   29:                     </marker>\n   30:                      <!--marker ng-repeat=\"store in stores\" class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\" icon=\"{path:'CIRCLE', scale: 1}\"   id='m{{store.StoreID}}' on-click=\"showStore({{store.StoreID}})\">                                 \n   31:                     </marker-->\n   32:                      <!--info-window ng-repeat=\"store in stores\" id=\"i{{store.StoreID}}\"  visible-on-marker=\"m{{store.StoreID}}\">\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js:\n  114:           // self.addMarkers(self.$scope,stores);\n  120:       addMarkers : function(scope,stores) {   \n  151:             //remove one zoom level to ensure no marker is on the edge.\n  155:             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n  261:     var onload = function(markerID) {\n  265:           //var element = document.getElementById(\"map-infoWindo_\"+markerID);\n  266:           //console.log('element:'+\"map-infoWindo_\"+markerID);\n  273:       //console.log(markers);\n  310:      // infoWindow.className = 'custom-marker';\n  313:              // self.className = 'custom-marker';\n  356:     infoWindow.open(map, marker);\n  360:     var map, markers;\n  370:     console.log(map.markers);\n  371:     infoWindow.open(map, map.markers[0]);\n  376:       map = evtMap, markers = map.markers;\n  378:     // var markers = map.markers;\n  381:     console.log(markers);\n  382:     console.log('mapInitialized store.'+markers.length);\n  383:     for (var i = 0; i < markers.length; i++) \n  385:         marker = markers[i];\n  386:         console.log(marker);\n  387:        google.maps.event.addListener(marker, 'click', function () {\n  398:                 infoWindow.open(map, marker);\n\n71 matches across 5 files\n\n\nSearching 51 files for \"marker\"\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js:\n  717: 				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');\n  725: 			console.log( map.markers);\n  726: 			var markers = map.markers;\n  728: 			for (var i = 0; i < markers.length; i++) \n  730: 					marker = markers[i];\n  732: 			   google.maps.event.addListener(marker, 'click', function () {\n  742: 			            infoWindow.open(map, marker);\n  756: 		 function setMarker(map, position, title, content) {\n  757: 				//console.log('setMarker');\n  760: 				var marker;\n  761: 				var markerOptions = {\n  768: 				marker = new google.maps.Marker(markerOptions);\n  769: 				// markers.push(marker); // add marker to array\n  782: 				// attach circle to marker\n  783: 				//circle.bindTo('center', marker, 'position');\n  784: 				google.maps.event.addListener(marker, 'click', function () {\n  794: 					infoWindow.open(map, marker);\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/info.html:\n   27: 				<ui-gmap-marker coords=\"{latitude: store.Latitude,longitude: store.Longitude}\" idkey=\"store.StoreID || 'store'\" icon=\"store.StoreIconURL\" >\n   28: 				</marker>\n   31: 				<marker  class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\"   id='m{{store.StoreID}}' ></marker>\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storedetail.js:\n   61:         $scope.onMarkerClicked = this.onMarkerClicked;\n  100:           // self.addMarkers(self.$scope,stores);\n  105:       onMarkerClicked : function(marker) {   \n  106:           console.log('onMarkerClicked');\n  107:           marker.showWindow = true;\n  111:       addMarkers : function(scope,stores) {   \n  141:             //remove one zoom level to ensure no marker is on the edge.\n  145:             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.html:\n   26:             <map id=\"mainGmap\" draggable=\"true\" center=\"[{{lat}}, {{lng}}]\" zoom=\"{{map.zoom}}\" zoom-to-include-markers=\"auto\"  >\n   27:                     <marker ng-repeat=\"store in stores\" class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\" icon= '{url:    \"img/logo_small.png\" }'   id='m{{store.StoreID}}' on-click=\"showStore({{store.StoreID}})\"><!--on-click=\"showInfoWindow('i{{store.StoreID}}')\"-->\n   29:                     </marker>\n   30:                      <!--marker ng-repeat=\"store in stores\" class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\" icon=\"{path:'CIRCLE', scale: 1}\"   id='m{{store.StoreID}}' on-click=\"showStore({{store.StoreID}})\">                                 \n   31:                     </marker-->\n   32:                      <!--info-window ng-repeat=\"store in stores\" id=\"i{{store.StoreID}}\"  visible-on-marker=\"m{{store.StoreID}}\">\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js:\n  114:           // self.addMarkers(self.$scope,stores);\n  120:       addMarkers : function(scope,stores) {   \n  151:             //remove one zoom level to ensure no marker is on the edge.\n  155:             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n  261:     var onload = function(markerID) {\n  265:           //var element = document.getElementById(\"map-infoWindo_\"+markerID);\n  266:           //console.log('element:'+\"map-infoWindo_\"+markerID);\n  273:       //console.log(markers);\n  310:      // infoWindow.className = 'custom-marker';\n  313:              // self.className = 'custom-marker';\n  356:     infoWindow.open(map, marker);\n  360:     var map, markers;\n  370:     console.log(map.markers);\n  371:     infoWindow.open(map, map.markers[0]);\n  376:       map = evtMap, markers = map.markers;\n\n61 matches across 5 files\n\n\nSearching 51 files for \"marker\"\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js:\n  717: 				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');\n  725: 			console.log( map.markers);\n  726: 			var markers = map.markers;\n  728: 			for (var i = 0; i < markers.length; i++) \n  730: 					marker = markers[i];\n  732: 			   google.maps.event.addListener(marker, 'click', function () {\n  742: 			            infoWindow.open(map, marker);\n  756: 		 function setMarker(map, position, title, content) {\n  757: 				//console.log('setMarker');\n  760: 				var marker;\n  761: 				var markerOptions = {\n  768: 				marker = new google.maps.Marker(markerOptions);\n  769: 				// markers.push(marker); // add marker to array\n  782: 				// attach circle to marker\n  783: 				//circle.bindTo('center', marker, 'position');\n  784: 				google.maps.event.addListener(marker, 'click', function () {\n  794: 					infoWindow.open(map, marker);\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/info.html:\n   27: 				<ui-gmap-marker coords=\"{latitude: store.Latitude,longitude: store.Longitude}\" idkey=\"store.StoreID || 'store'\" icon=\"store.StoreIconURL\" >\n   28: 				</marker>\n   31: 				<marker  class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\"   id='m{{store.StoreID}}' ></marker>\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storedetail.js:\n   61:         $scope.onMarkerClicked = this.onMarkerClicked;\n  100:           // self.addMarkers(self.$scope,stores);\n  105:       onMarkerClicked : function(marker) {   \n  106:           console.log('onMarkerClicked');\n  107:           marker.showWindow = true;\n  111:       addMarkers : function(scope,stores) {   \n  141:             //remove one zoom level to ensure no marker is on the edge.\n  145:             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.html:\n   26:             <map id=\"mainGmap\" draggable=\"true\" center=\"[{{lat}}, {{lng}}]\" zoom=\"{{map.zoom}}\" zoom-to-include-markers=\"auto\"  >\n   27:                     <marker ng-repeat=\"store in stores\" class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\" icon= '{url:    \"img/logo_small.png\" }'   id='m{{store.StoreID}}' on-click=\"showStore({{store.StoreID}})\"><!--on-click=\"showInfoWindow('i{{store.StoreID}}')\"-->\n   29:                     </marker>\n   30:                      <!--marker ng-repeat=\"store in stores\" class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\" icon=\"{path:'CIRCLE', scale: 1}\"   id='m{{store.StoreID}}' on-click=\"showStore({{store.StoreID}})\">                                 \n   31:                     </marker-->\n   32:                      <!--info-window ng-repeat=\"store in stores\" id=\"i{{store.StoreID}}\"  visible-on-marker=\"m{{store.StoreID}}\">\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js:\n  114:           // self.addMarkers(self.$scope,stores);\n  120:       addMarkers : function(scope,stores) {   \n  121:             // if you got only 1 marker or all markers are on the same address map will be zoomed too much.\n  227:     var onload = function(markerID) {\n  231:           //var element = document.getElementById(\"map-infoWindo_\"+markerID);\n  232:           //console.log('element:'+\"map-infoWindo_\"+markerID);\n  239:       //console.log(markers);\n  276:      // infoWindow.className = 'custom-marker';\n  279:              // self.className = 'custom-marker';\n  322:     infoWindow.open(map, marker);\n  326:     var map, markers;\n  336:     console.log(map.markers);\n  337:     infoWindow.open(map, map.markers[0]);\n  342:       map = evtMap, markers = map.markers;\n\n60 matches across 5 files\n\n\nSearching 51 files for \"reload\"\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js:\n  589: 			$state.go('app.login',{reload: true,hidebar:true});\n  606: 			 $state.go('app.storelocator', {keyword: keyword,catId: catID},{reload: true});\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.js:\n  331: 							reload: true,\n  338: 							reload: true,\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/register/register.js:\n  250: 							reload: true,\n  275: 			$state.go('app.register', {step: stepNumber, back: true}, { reload: true });\n  321: 							reload: true,\n  328: 							reload: true,\n  343: 		      reload: true, inherit: false, notify: false \n  477: 							reload: true,\n  484: 							reload: true,\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.html:\n  447: 								<p>Qualifying purchases exclude tobacco, fuel, money orders, FTD wires, catering rentals, Western Union, lottery; United, Albertsons, Peet's, Visa, Mastercard and American Express gift cards; Greendot, Netspend, Paypower, Reload it and Univision pre-paid cards.</p>\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.js:\n  330: 			return $scope.goTo('app.rewardsprogram', {open: 'kcShow'}, {reload: true});\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js:\n  220:       $scope.goTo('app.storeinfo', {id: storeID, reload:true})\n\n14 matches across 6 files\n\n\nSearching 51 files for \"refresh\"\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.html:\n    6: 		<button class=\"button button-icon icon ion-refresh\" ng-click=\"refresh()\"></button>\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.js:\n  184: 		$scope.refresh = function(){\n\n3 matches across 2 files\n\n\nSearching 51 files for \"$state.go\"\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/account/account.js:\n   62: 			$state.go('app.editaccount',{part:part})\n   65: 			$state.go('app.info')\n   68: 			$state.go('app.changestore');\n   97: 					$state.go('app.account');\n  168: 			$state.go('app.account');\n  179: 					$state.go('app.account');\n  198: 					$state.go('app.account');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js:\n  589: 			$state.go('app.login',{reload: true,hidebar:true});\n  606: 			 $state.go('app.storelocator', {keyword: keyword,catId: catID},{reload: true, inherit: false});\n  624: 			$state.go(link, params);\n  640: 			$state.go('app.storelocator');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/digitalcoupon/digitalcoupon.js:\n   45: 			$state.go('app.sortcoupons');\n   48: 			$state.go('app.searchcoupons');\n   72: 			$state.go('app.digitalcoupons', {catId: cat.CS_CategoryId + ''});\n   75: 			$state.go('app.digitalcoupons', {sortBy: type + ''});\n   78: 			$state.go('app.searchcoupons');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/info/info.js:\n   14: 			$state.go('app.support');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/intro/intro.js:\n   14: 			$state.go('app.home');\n   22: 			$state.go('app.home');\n   30: 			$state.go('app.home');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.js:\n   35: 						 $state.go('app.storelocator');\n  165: 	                   // $state.go('dashboard');\n  294: 	                    //$state.go('dashboard');\n  353: 			$state.go('app.register', {step: 1});\n  356: 			$state.go('app.forgot');\n  370: 					$state.go('app.home');\n  383: 							//$state.go('app.home');\n  464: 			  $state.go('app.home');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/recipe/recipe.js:\n   24: 		$state.go('app.recipelist',{catid: cat.CS_CategoryId});\n   27: 		$state.go('app.recipesearch');\n   93: 		$state.go('app.recipedetail', {id: recipe.CS_RecipeID});\n  184: 		$state.go('app.recipedetail', {id: recipe.CS_RecipeID});\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/recipebox/recipebox.js:\n   31: 		$state.go('app.recipedetail', {id: recipe.CS_RecipeID, inbox: 'true'});\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/register/register.js:\n  197: 			$state.go('app.registerstore');\n  275: 			$state.go('app.register', {step: stepNumber, back: true}, { reload: true });\n  342: 			$state.go('app.register', {step: stepNumber}, { \n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/search/search.js:\n   43: 			$state.go('app.recipedetail', {id: recipe.CS_RecipeID});\n   62: 			$state.go('app.search_storelocator');\n   77: 				$state.go('app.search');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/shoppinglist/shoppinglist.js:\n  419: 			$state.go('app.editshoppinglist', {id: userShoppingListId});\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storedetail.js:\n  222:         $state.go('app.register', {step: 2});\n  234:         $state.go('app.weeklyad');\n  310:       $state.go('app.weeklyad');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js:\n   66:            $state.go(link, params);\n  196:         $state.go('app.register', {step: 2});\n  210:         //$state.go('app.weeklyad');\n  468:       $state.go('app.weeklyad');\n\n/Users/vietle/Projects/KooKoo/KooKooApp/www/app/weeklyad/weeklyad.js:\n  167: 			$state.go('app.weeklyaddepts');\n  190: 			$state.go('app.storelocator');\n  239: 			$state.go('app.weeklyad');\n  242: 			$state.go('app.weeklyad', {dept: item.CS_CategoryId});\n  396: 			$state.go('app.weeklyaddepts');\n  440: 			$state.go('app.storelocator');\n\n53 matches across 14 files\n",
+			"file": "www/common/services/services.js",
 			"settings":
 			{
-				"buffer_size": 17554,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "www/app/rewardsprogram/rewardsprogram.js",
-			"settings":
-			{
-				"buffer_size": 12856,
+				"buffer_size": 2062,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/app/app.js",
+			"file": "www/common/utils/utils.js",
 			"settings":
 			{
-				"buffer_size": 18257,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/index.html",
-			"settings":
-			{
-				"buffer_size": 8794,
+				"buffer_size": 10621,
 				"line_ending": "Unix"
 			}
 		},
@@ -109,31 +91,7 @@
 			"file": "www/app/storelocator/info.html",
 			"settings":
 			{
-				"buffer_size": 2039,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/app/storelocator/storelocator.html",
-			"settings":
-			{
-				"buffer_size": 3115,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/menu.html",
-			"settings":
-			{
-				"buffer_size": 6864,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/app/rewardsprogram/rewardsprogram.html",
-			"settings":
-			{
-				"buffer_size": 29115,
+				"buffer_size": 2075,
 				"line_ending": "Unix"
 			}
 		}
@@ -162,18 +120,22 @@
 	},
 	"file_history":
 	[
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/info.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/templates/menu.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/app.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/scss/_search.scss",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/scss/_menu.scss",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/templates/menu.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/config.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/config.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/index.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/login/login.html",
@@ -249,7 +211,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/Users/vietle/Projects/KooKoo/KooKooApp/www/app",
@@ -412,7 +374,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -420,15 +382,15 @@
 					"file": "www/app/storelocator/storelocator.js",
 					"settings":
 					{
-						"buffer_size": 18668,
+						"buffer_size": 19005,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8296,
-								8296
+								17335,
+								17335
 							]
 						],
 						"settings":
@@ -438,1112 +400,52 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3222.0,
+						"translation.y": 7260.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "www/common/services/services.js",
 					"settings":
 					{
-						"buffer_size": 17554,
+						"buffer_size": 2062,
 						"regions":
 						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										221,
-										227
-									],
-									[
-										357,
-										363
-									],
-									[
-										381,
-										387
-									],
-									[
-										395,
-										401
-									],
-									[
-										434,
-										440
-									],
-									[
-										468,
-										474
-									],
-									[
-										477,
-										483
-									],
-									[
-										532,
-										538
-									],
-									[
-										606,
-										612
-									],
-									[
-										637,
-										643
-									],
-									[
-										706,
-										712
-									],
-									[
-										731,
-										737
-									],
-									[
-										754,
-										760
-									],
-									[
-										783,
-										789
-									],
-									[
-										808,
-										814
-									],
-									[
-										815,
-										821
-									],
-									[
-										845,
-										851
-									],
-									[
-										858,
-										864
-									],
-									[
-										874,
-										880
-									],
-									[
-										921,
-										927
-									],
-									[
-										965,
-										971
-									],
-									[
-										1027,
-										1033
-									],
-									[
-										1091,
-										1097
-									],
-									[
-										1193,
-										1199
-									],
-									[
-										1337,
-										1343
-									],
-									[
-										1357,
-										1363
-									],
-									[
-										1463,
-										1469
-									],
-									[
-										1573,
-										1579
-									],
-									[
-										1596,
-										1602
-									],
-									[
-										1639,
-										1645
-									],
-									[
-										1683,
-										1689
-									],
-									[
-										1708,
-										1714
-									],
-									[
-										1753,
-										1759
-									],
-									[
-										1787,
-										1793
-									],
-									[
-										1829,
-										1835
-									],
-									[
-										1923,
-										1929
-									],
-									[
-										1986,
-										1992
-									],
-									[
-										2000,
-										2006
-									],
-									[
-										2261,
-										2267
-									],
-									[
-										2307,
-										2313
-									],
-									[
-										2601,
-										2607
-									],
-									[
-										2641,
-										2647
-									],
-									[
-										2907,
-										2913
-									],
-									[
-										3025,
-										3031
-									],
-									[
-										3161,
-										3167
-									],
-									[
-										3206,
-										3212
-									],
-									[
-										3300,
-										3306
-									],
-									[
-										3363,
-										3369
-									],
-									[
-										3377,
-										3383
-									],
-									[
-										3471,
-										3477
-									],
-									[
-										3557,
-										3563
-									],
-									[
-										3627,
-										3633
-									],
-									[
-										3665,
-										3671
-									],
-									[
-										3721,
-										3727
-									],
-									[
-										3778,
-										3784
-									],
-									[
-										3819,
-										3825
-									],
-									[
-										3848,
-										3854
-									],
-									[
-										3884,
-										3890
-									],
-									[
-										3930,
-										3936
-									],
-									[
-										3970,
-										3976
-									],
-									[
-										3984,
-										3990
-									],
-									[
-										4011,
-										4017
-									],
-									[
-										4025,
-										4031
-									],
-									[
-										4057,
-										4063
-									],
-									[
-										4114,
-										4120
-									],
-									[
-										4162,
-										4168
-									],
-									[
-										4199,
-										4205
-									],
-									[
-										4208,
-										4214
-									],
-									[
-										4247,
-										4253
-									],
-									[
-										4300,
-										4306
-									],
-									[
-										4375,
-										4381
-									],
-									[
-										4516,
-										4522
-									],
-									[
-										4652,
-										4658
-									],
-									[
-										4676,
-										4682
-									],
-									[
-										4690,
-										4696
-									],
-									[
-										4729,
-										4735
-									],
-									[
-										4763,
-										4769
-									],
-									[
-										4772,
-										4778
-									],
-									[
-										4827,
-										4833
-									],
-									[
-										4901,
-										4907
-									],
-									[
-										4932,
-										4938
-									],
-									[
-										5001,
-										5007
-									],
-									[
-										5026,
-										5032
-									],
-									[
-										5049,
-										5055
-									],
-									[
-										5078,
-										5084
-									],
-									[
-										5103,
-										5109
-									],
-									[
-										5110,
-										5116
-									],
-									[
-										5140,
-										5146
-									],
-									[
-										5153,
-										5159
-									],
-									[
-										5169,
-										5175
-									],
-									[
-										5216,
-										5222
-									],
-									[
-										5260,
-										5266
-									],
-									[
-										5322,
-										5328
-									],
-									[
-										5386,
-										5392
-									],
-									[
-										5488,
-										5494
-									],
-									[
-										5632,
-										5638
-									],
-									[
-										5652,
-										5658
-									],
-									[
-										5758,
-										5764
-									],
-									[
-										5868,
-										5874
-									],
-									[
-										5891,
-										5897
-									],
-									[
-										5934,
-										5940
-									],
-									[
-										5978,
-										5984
-									],
-									[
-										6003,
-										6009
-									],
-									[
-										6048,
-										6054
-									],
-									[
-										6082,
-										6088
-									],
-									[
-										6124,
-										6130
-									],
-									[
-										6218,
-										6224
-									],
-									[
-										6281,
-										6287
-									],
-									[
-										6295,
-										6301
-									],
-									[
-										6556,
-										6562
-									],
-									[
-										6602,
-										6608
-									],
-									[
-										6896,
-										6902
-									],
-									[
-										6936,
-										6942
-									],
-									[
-										7202,
-										7208
-									],
-									[
-										7320,
-										7326
-									],
-									[
-										7456,
-										7462
-									],
-									[
-										7501,
-										7507
-									],
-									[
-										7595,
-										7601
-									],
-									[
-										7658,
-										7664
-									],
-									[
-										7672,
-										7678
-									],
-									[
-										7766,
-										7772
-									],
-									[
-										7852,
-										7858
-									],
-									[
-										7922,
-										7928
-									],
-									[
-										7960,
-										7966
-									],
-									[
-										8016,
-										8022
-									],
-									[
-										8073,
-										8079
-									],
-									[
-										8114,
-										8120
-									],
-									[
-										8143,
-										8149
-									],
-									[
-										8179,
-										8185
-									],
-									[
-										8225,
-										8231
-									],
-									[
-										8265,
-										8271
-									],
-									[
-										8279,
-										8285
-									],
-									[
-										8420,
-										8426
-									],
-									[
-										8556,
-										8562
-									],
-									[
-										8580,
-										8586
-									],
-									[
-										8594,
-										8600
-									],
-									[
-										8633,
-										8639
-									],
-									[
-										8667,
-										8673
-									],
-									[
-										8676,
-										8682
-									],
-									[
-										8731,
-										8737
-									],
-									[
-										8805,
-										8811
-									],
-									[
-										8836,
-										8842
-									],
-									[
-										8905,
-										8911
-									],
-									[
-										8930,
-										8936
-									],
-									[
-										8953,
-										8959
-									],
-									[
-										8982,
-										8988
-									],
-									[
-										9007,
-										9013
-									],
-									[
-										9014,
-										9020
-									],
-									[
-										9044,
-										9050
-									],
-									[
-										9057,
-										9063
-									],
-									[
-										9073,
-										9079
-									],
-									[
-										9120,
-										9126
-									],
-									[
-										9164,
-										9170
-									],
-									[
-										9226,
-										9232
-									],
-									[
-										9290,
-										9296
-									],
-									[
-										9392,
-										9398
-									],
-									[
-										9536,
-										9542
-									],
-									[
-										9556,
-										9562
-									],
-									[
-										9662,
-										9668
-									],
-									[
-										9772,
-										9778
-									],
-									[
-										9795,
-										9801
-									],
-									[
-										9838,
-										9844
-									],
-									[
-										9882,
-										9888
-									],
-									[
-										9907,
-										9913
-									],
-									[
-										9952,
-										9958
-									],
-									[
-										9986,
-										9992
-									],
-									[
-										10028,
-										10034
-									],
-									[
-										10122,
-										10128
-									],
-									[
-										10185,
-										10191
-									],
-									[
-										10199,
-										10205
-									],
-									[
-										10460,
-										10466
-									],
-									[
-										10506,
-										10512
-									],
-									[
-										10800,
-										10806
-									],
-									[
-										10840,
-										10846
-									],
-									[
-										11106,
-										11112
-									],
-									[
-										11224,
-										11230
-									],
-									[
-										11360,
-										11366
-									],
-									[
-										11405,
-										11411
-									],
-									[
-										11483,
-										11489
-									],
-									[
-										11497,
-										11503
-									],
-									[
-										11591,
-										11597
-									],
-									[
-										11677,
-										11683
-									],
-									[
-										11747,
-										11753
-									],
-									[
-										11785,
-										11791
-									],
-									[
-										11841,
-										11847
-									],
-									[
-										11898,
-										11904
-									],
-									[
-										11939,
-										11945
-									],
-									[
-										11968,
-										11974
-									],
-									[
-										12004,
-										12010
-									],
-									[
-										12050,
-										12056
-									],
-									[
-										12090,
-										12096
-									],
-									[
-										12104,
-										12110
-									],
-									[
-										12264,
-										12270
-									],
-									[
-										12367,
-										12373
-									],
-									[
-										12462,
-										12468
-									],
-									[
-										12490,
-										12496
-									],
-									[
-										12589,
-										12595
-									],
-									[
-										12673,
-										12679
-									],
-									[
-										12704,
-										12710
-									],
-									[
-										12732,
-										12738
-									],
-									[
-										12761,
-										12767
-									],
-									[
-										12820,
-										12826
-									],
-									[
-										12848,
-										12854
-									],
-									[
-										13184,
-										13190
-									],
-									[
-										13381,
-										13387
-									],
-									[
-										13532,
-										13538
-									],
-									[
-										13745,
-										13752
-									],
-									[
-										13764,
-										13771
-									],
-									[
-										13884,
-										13891
-									],
-									[
-										14048,
-										14057
-									],
-									[
-										14099,
-										14108
-									],
-									[
-										14131,
-										14140
-									],
-									[
-										14173,
-										14182
-									],
-									[
-										14209,
-										14218
-									],
-									[
-										14247,
-										14256
-									],
-									[
-										14285,
-										14294
-									],
-									[
-										14378,
-										14387
-									],
-									[
-										14441,
-										14450
-									],
-									[
-										14546,
-										14555
-									],
-									[
-										14581,
-										14590
-									],
-									[
-										14703,
-										14712
-									],
-									[
-										14743,
-										14752
-									],
-									[
-										14785,
-										14794
-									],
-									[
-										14861,
-										14870
-									],
-									[
-										14925,
-										14934
-									],
-									[
-										15030,
-										15039
-									],
-									[
-										15131,
-										15140
-									],
-									[
-										15164,
-										15173
-									],
-									[
-										15197,
-										15206
-									],
-									[
-										15299,
-										15308
-									],
-									[
-										15360,
-										15369
-									],
-									[
-										15414,
-										15423
-									],
-									[
-										15448,
-										15457
-									],
-									[
-										15496,
-										15505
-									],
-									[
-										15533,
-										15542
-									],
-									[
-										15572,
-										15581
-									],
-									[
-										15607,
-										15616
-									],
-									[
-										15706,
-										15715
-									],
-									[
-										15771,
-										15780
-									],
-									[
-										15811,
-										15820
-									],
-									[
-										15877,
-										15886
-									],
-									[
-										16016,
-										16025
-									],
-									[
-										16169,
-										16178
-									],
-									[
-										16211,
-										16220
-									],
-									[
-										16298,
-										16307
-									],
-									[
-										16424,
-										16433
-									],
-									[
-										16491,
-										16500
-									],
-									[
-										16540,
-										16549
-									],
-									[
-										16654,
-										16663
-									],
-									[
-										16808,
-										16817
-									],
-									[
-										16861,
-										16870
-									],
-									[
-										16901,
-										16910
-									],
-									[
-										17025,
-										17034
-									],
-									[
-										17065,
-										17074
-									],
-									[
-										17120,
-										17129
-									],
-									[
-										17160,
-										17169
-									],
-									[
-										17268,
-										17277
-									],
-									[
-										17310,
-										17319
-									],
-									[
-										17351,
-										17360
-									],
-									[
-										17388,
-										17397
-									],
-									[
-										17453,
-										17462
-									],
-									[
-										17495,
-										17504
-									]
-								],
-								"scope": ""
-							}
 						},
 						"selection":
 						[
 							[
-								13574,
-								13574
+								1315,
+								1315
 							]
 						],
 						"settings":
 						{
-							"detect_indentation": false,
-							"output_tag": 8,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3661.0,
+						"translation.y": 269.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "www/app/rewardsprogram/rewardsprogram.js",
+					"file": "www/common/utils/utils.js",
 					"settings":
 					{
-						"buffer_size": 12856,
+						"buffer_size": 10621,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4841,
-								4841
+								8682,
+								8682
 							]
 						],
 						"settings":
@@ -1552,78 +454,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1493.0,
+						"translation.y": 3328.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "www/app/app.js",
-					"settings":
-					{
-						"buffer_size": 18257,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15909,
-								15909
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 8120.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/index.html",
-					"settings":
-					{
-						"buffer_size": 8794,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6297,
-								6297
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1551.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "www/app/storelocator/info.html",
 					"settings":
 					{
-						"buffer_size": 2039,
+						"buffer_size": 2075,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								568,
-								568
+								1718,
+								1718
 							]
 						],
 						"settings":
@@ -1632,89 +481,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 159.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/app/storelocator/storelocator.html",
-					"settings":
-					{
-						"buffer_size": 3115,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1281,
-								1281
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "www/templates/menu.html",
-					"settings":
-					{
-						"buffer_size": 6864,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5340,
-								5340
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1697.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "www/app/rewardsprogram/rewardsprogram.html",
-					"settings":
-					{
-						"buffer_size": 29115,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								736,
-								736
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 10670.0,
+						"translation.y": 286.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

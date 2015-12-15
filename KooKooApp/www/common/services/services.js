@@ -6,7 +6,7 @@ angular.module('MCMRelationshop.Services', [
 		var watch = null;
 		var curentPos = null;
 		var r = {
-			startTrack: function(lat,long){
+			startTrack: function(desPos){
 				var watchOptions = {
 				frequency: 1000,
 				timeout : 3000,
@@ -28,16 +28,22 @@ angular.module('MCMRelationshop.Services', [
 					function(position) {
 						var lat  = position.coords.latitude;
 						var long = position.coords.longitude;
+						console.log('curentPos');
+						console.log(curentPos);  
 						if (typeof(curentPos)!= 'undefined' && curentPos!=null) {
-							var distance = AppUtil.calculateDistance(curentPos, position.coords);
-							console.log('distance');
+							var speed = AppUtil.calculateDistance(curentPos, position.coords);
+							console.log('speed');
 							console.log(distance);
+
 						}		
 						curentPos = position.coords;	
 
 						console.log('watchPosition');
 						console.log(position.coords);  
-						if(lat==37.33233141)
+						var distance = AppUtil.calculateDistance(desPos, position.coords);
+						console.log('distance');
+						console.log(distance);
+						if(distance<= 0.05)
 						{
 							console.log('You arrived');
 							//watch.clearWatch(watch.watchID);

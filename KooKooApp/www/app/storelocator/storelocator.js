@@ -487,9 +487,14 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     $scope.ratingsObject.rating = rating;
    // console.log('Selected rating is : ', rating);
   };
-  $scope.trackingGPS = function() {   
+  $scope.trackingGPS = function(latitue,longitude) {   
         console.log('begin trackingGPS');
-        TrackingGPS.startTrack();
+        var storePos = {
+        latitude: latitue,
+        longitude: longitude
+      
+      };
+        TrackingGPS.startTrack(storePos);
   };
   $scope.checkIn = function(store) {
     //console.log(store);

@@ -237,10 +237,10 @@ angular.module('MCMRelationshop.Utils', [
 		calculateDistance:function (starting, ending) {
 		  var KM_RATIO = 6371;
 		  try {      
-		    var dLat = toRad(ending.latitude - starting.latitude);
-		    var dLon = toRad(ending.longitude - starting.longitude);
-		    var lat1Rad = toRad(starting.latitude);
-		    var lat2Rad = toRad(ending.latitude);
+		    var dLat = this.toRad(ending.latitude - starting.latitude);
+		    var dLon = this.toRad(ending.longitude - starting.longitude);
+		    var lat1Rad = this.toRad(starting.latitude);
+		    var lat2Rad = this.toRad(ending.latitude);
 		    
 		    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
 		            Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1Rad) * Math.cos(lat2Rad);
@@ -248,6 +248,8 @@ angular.module('MCMRelationshop.Utils', [
 		    var d = KM_RATIO * c;
 		    return d;
 		  } catch(e) {
+		  	console.log('calculateDistance');
+		  	console.log(e);
 		    return -1;
 		  }
 		},
