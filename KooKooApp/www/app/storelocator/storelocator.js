@@ -487,11 +487,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     $scope.ratingsObject.rating = rating;
    // console.log('Selected rating is : ', rating);
   };
-  $scope.trackingGPS = function(latitue,longitude) {   
-        console.log('begin trackingGPS');
-        var storePos = {
-        latitude: latitue,
-        longitude: longitude
+  $scope.trackingGPS = function() {   
+       console.log('begin trackingGPS');
+      var storePos = {
+          latitude: $scope.store.Latitude,
+          longitude: $scope.store.Longitude
       
       };
         TrackingGPS.startTrack(storePos);

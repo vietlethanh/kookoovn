@@ -67,7 +67,7 @@
 			"file": "www/app/storelocator/storelocator.js",
 			"settings":
 			{
-				"buffer_size": 19005,
+				"buffer_size": 19016,
 				"line_ending": "Unix"
 			}
 		},
@@ -75,7 +75,7 @@
 			"file": "www/common/services/services.js",
 			"settings":
 			{
-				"buffer_size": 2062,
+				"buffer_size": 2129,
 				"line_ending": "Unix"
 			}
 		},
@@ -88,10 +88,13 @@
 			}
 		},
 		{
+			"contents": " <!-- path to ionic/angularjs js --> \n<style type=\"text/css\">\n.ionic_ratings .icon {\n  font-size:50px;\n}\n\n.ionic_ratings .read_only {\n  pointer-events:none;\n}\n.bar.bar-stable .ion-aquo-left\n{\n	border: none;\n}\n.bar .buttons span.back-text\n{\n	visibility: hidden;\n}\n</style>\n<ion-view title=\"Store Info\" id=\"StoreInfo\">\n  <ion-nav-buttons side=\"left\">\n	<!--button menu-toggle=\"left\" class=\"button button-icon icon ion-navicon\"></button-->\n  </ion-nav-buttons>\n  \n  <ion-content class=\"has-header\" >\n		<div style=\"width: 100%; height: 140px\" data-tap-disabled=\"true\"> \n			<map id=\"mainGmap\" draggable=\"true\" center=\"[{{store.Latitude}},{{store.Longitude}}]\" zoom=\"{{map.zoom}}\"   >\n				<marker  class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\"   id='m{{store.StoreID}}' ></marker>\n			</map>\n		</div>\n	\n		<ul class=\"list store-info-list\">\n			 \n			<li class=\"item check-in\" ng-show=\"true\">\n				<div></div>\n				<a class=\"tab-item button-checkin\"  ng-click=\"trackingGPS()\">\n		            <i class=\"icon icon-store-location\"></i>\n		            Check in\n       			</a>\n       			<span class=\"total-checkin\">Total {{store.CheckIn}}</span>\n        	</li>\n			<li class=\"item store-logo\">\n				<img ng-src=\"{{getLogo(store)}}\"/>\n			</li>\n			<li class=\"item\">\n				<div>{{store.Name}}</div>\n				<div class=\"sub\">{{store.StoreHours}}</div>\n			</li>\n			<li class=\"item item-icon-right\">\n				<div>{{store.Address}}</div>\n				<div ng-if=\"store.Address2\">{{store.Address2}}</div>\n				<div class=\"sub\">{{store.DistrictName}}, {{store.CityName}}</div>\n				<a ng-click=\"openLink(store.mapLink)\"><i class=\"icon icon-store-location\"></i></a>\n			</li>\n			<li class=\"item item-icon-right\">\n				<div>{{store.PhoneNumber}}</div>\n				<a href=\"tel:{{store.PhoneNumber}}\"><i class=\"icon icon-store-phone\"></i></a>\n			</li>\n			<li class=\"item\" >\n				<div class=\"sub\" >\n					<div ng-repeat=\"article in store.Articles\" ><p class=\"html-content\" ng-bind-html=\"article.Content\"></p></div>					\n				</div> \n			</li>			\n		</ul>		\n  </ion-content>\n</ion-view>\n",
 			"file": "www/app/storelocator/info.html",
+			"file_size": 2079,
+			"file_write_time": 1450189053000000,
 			"settings":
 			{
-				"buffer_size": 2075,
+				"buffer_size": 2037,
 				"line_ending": "Unix"
 			}
 		}
@@ -374,7 +377,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -382,15 +385,15 @@
 					"file": "www/app/storelocator/storelocator.js",
 					"settings":
 					{
-						"buffer_size": 19005,
+						"buffer_size": 19016,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17335,
-								17335
+								17089,
+								17089
 							]
 						],
 						"settings":
@@ -400,7 +403,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7260.0,
+						"translation.y": 7039.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -410,15 +413,15 @@
 					"file": "www/common/services/services.js",
 					"settings":
 					{
-						"buffer_size": 2062,
+						"buffer_size": 2129,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1315,
-								1315
+								291,
+								285
 							]
 						],
 						"settings":
@@ -427,7 +430,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 269.0,
+						"translation.y": 49.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -464,15 +467,15 @@
 					"file": "www/app/storelocator/info.html",
 					"settings":
 					{
-						"buffer_size": 2075,
+						"buffer_size": 2037,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1718,
-								1718
+								982,
+								982
 							]
 						],
 						"settings":
@@ -481,7 +484,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 286.0,
+						"translation.y": 113.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

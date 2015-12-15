@@ -33,14 +33,16 @@ angular.module('MCMRelationshop.Services', [
 						if (typeof(curentPos)!= 'undefined' && curentPos!=null) {
 							var speed = AppUtil.calculateDistance(curentPos, position.coords);
 							console.log('speed');
-							console.log(distance);
+							console.log(speed);
 
 						}		
 						curentPos = position.coords;	
+						var distance = AppUtil.calculateDistance(desPos, curentPos);
 
-						console.log('watchPosition');
+						console.log('current Position');
 						console.log(position.coords);  
-						var distance = AppUtil.calculateDistance(desPos, position.coords);
+						console.log('destionation position');
+						console.log(desPos);  
 						console.log('distance');
 						console.log(distance);
 						if(distance<= 0.05)
