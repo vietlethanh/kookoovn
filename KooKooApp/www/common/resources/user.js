@@ -71,7 +71,7 @@ angular.module('MCMRelationshop.Resource.User', [
 				var opts = HttpUtil.opts();
 				return $http.get('/user/' + userid + '/status-optin?type=' + type, opts);
 			}
-
+			
 		}
 		
 		return r;

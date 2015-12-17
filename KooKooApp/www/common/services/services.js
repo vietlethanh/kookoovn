@@ -1,12 +1,14 @@
 angular.module('MCMRelationshop.Services', [
-	'MCMRelationshop.Utils'
+	'MCMRelationshop.Utils',
+	'MCMRelationshop.Resource.Store',
+	'security.service'
 ])
-.factory('TrackingGPS', ['$http','HttpUtil','AppUtil','$cordovaGeolocation',
-	function($http,HttpUtil,AppUtil,$cordovaGeolocation){
+.factory('TrackingGPS', ['$http','HttpUtil','AppUtil','$cordovaGeolocation','Store','security',
+	function($http,HttpUtil,AppUtil,$cordovaGeolocation,Store,security){
 		var watch = null;
 		var curentPos = null;
 		var r = {
-			startTrack: function(desPos){
+			startTrack: function(storeID,userName, desPos){
 				var watchOptions = {
 				frequency: 1000,
 				timeout : 3000,
@@ -45,10 +47,17 @@ angular.module('MCMRelationshop.Services', [
 						console.log(desPos);  
 						console.log('distance');
 						console.log(distance);
-						if(distance<= 0.05)
-						{
+						//if(distance<= 0.05)
+						//{
+							var checkin = {
+							  StoreID: storeID,
+							  UserName:  userName,
+							  Message: 'checkin',							 
+							  act: 3
+							};
+							Store.addCheckIn(checkin);
 							console.log('You arrived');
-							//watch.clearWatch(watch.watchID);
+							watch.clearWatch(watch.watchID);
 							/*
 							function setSpeed(coords) {
 							  var KMS_TO_KMH = 3600;
@@ -62,7 +71,7 @@ angular.module('MCMRelationshop.Services', [
 							  prevCoord = coords;
 							}
 							*/
-						}
+						//}
 					},
 					watchOptions
 				);

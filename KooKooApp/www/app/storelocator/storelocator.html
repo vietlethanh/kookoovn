@@ -14,7 +14,7 @@
         <div style="width: 100%; height: 100%" data-tap-disabled="true" ng-if="mode == 'map'"> 
             <map id="mainGmap" draggable="true" center="[{{lat}}, {{lng}}]" zoom="{{map.zoom}}" zoom-to-include-markers="auto"  >
                 <marker ng-repeat="store in stores" class="store-info" position="{{store.Latitude}},{{store.Longitude}}" icon= '{url:    "img/logo_small.png" }'   id='m{{store.StoreID}}' on-click="showStore({{store.StoreID}})">               
-                    </marker>                 
+                    </marker>             
                     
             </map>
         </div>    
@@ -43,7 +43,7 @@
         </ul>
         
     </ion-content>
-    <div class="tabs tabs-icon-top " ng-show="false">
+    <div class="tabs tabs-icon-top " ng-show="true">
         <a class="tab-item"  ng-class="{selected: selectedTab == 'favorite'}" ng-click="switchStoreType('favorite')">
             <i class="icon ion-heart"></i>
             Favorite Brands

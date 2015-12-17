@@ -612,20 +612,13 @@ angular.module('MCMRelationshop', [
 		        $ionicSideMenuDelegate.toggleLeft();
 		      });			 
 		}
-		/*
-		$scope.showStore = function(storeID) {
-			//console.log(markers);
-			//console.log(evt);
-			//console.log(id);
-			console.log('this showStore');
-			return;
-		}*/
+	
 		$scope.goTo = function(link, params){
 			$state.go(link, params);
 			 $ionicSideMenuDelegate.toggleLeft();
 		}
 		var onContentTap = function(e) {
-					console.log('onContentTap');
+				console.log('onContentTap');
 			    if ($scope.ShowDrawer){
 			      $scope.closeDrawer();
 			      e.gesture.srcEvent.preventDefault();

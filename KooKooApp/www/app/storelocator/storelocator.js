@@ -148,9 +148,9 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         var self = this;
         //console.log(res);
         var stores = res.data;
-     
+        /*
         _.forEach(stores, function(store){
-          store.selectStore = self.onSelectStore;
+         store.selectStore = self.onSelectStore;
           store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];
           if(store.PharmacyPhone){
             var match = store.PharmacyPhone.match(/\d+/g);
@@ -158,10 +158,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
               store.PharmacyPhone = null;
             }
           }
+
           //store.logo = self.[store.CS_BannerID+'']
 
         });
-
+        */
         this.$scope.stores = stores;
         console.log(  this.$scope.stores);
         $ionicLoading.hide();
@@ -204,42 +205,26 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 .controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil','$cordovaGeolocation',
   function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil,$cordovaGeolocation) {  
     console.log('Load StoreLocatorCtrl');
-    var controllerCls = BaseStoreLocatorCtrl.extend({
-      onSelectStore: function(){
-        //console.log('onSelectStore');
-        //goTo('app.storeinfo', {id: storeID})
-        //delete store.selectStore;
-        //security.setCurrentStore(store);
-        //$state.go('app.weeklyad');
-      },
-      
+    var controllerCls = BaseStoreLocatorCtrl.extend({      
     });
     //console.log('init controllerCls');
     var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);
-    //$scope.onSelectStore = controller.onSelectStore;
+  
     //var store ={};
-    $scope.onSelectStore = function(storeID) {
-      //console.log('onSelectStore');
+    $scope.onSelectStore = function(storeID) {    
       //console.log('onSelectStore');
       $scope.goTo('app.storeinfo', {id: storeID, reload:true})
     }
     var onload = function(markerID) {
-      //console.log('onload');
-      //console.log($scope.stores);
+      //console.log('onload');     
       $scope.$apply(function(){
-          //var element = document.getElementById("map-infoWindo_"+markerID);
-          //console.log('element:'+"map-infoWindo_"+markerID);
-          //console.log(element);
-          //$compile(element)($scope)
+          var element = document.getElementById("map-infoWindo_"+markerID);
+        
+          $compile(element)($scope)
       });
     }
     $scope.showStore = function(evt,storeID) {
-
-      //console.log(markers);
-      //console.log(evt);
-      //console.log(id);
-      console.log('this showStore');
-      //return;
+     
       self = this;
       //console.log(self.id);
       //console.log(self)
@@ -264,9 +249,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       infoWindow.close(map);
      
       infoWindow = new google.maps.InfoWindow({
-        content:'<div id="map-infoWindo_'+this.id+'" class="MapStoreInfo"  >'
-        //+'<span ng-click="onSelectStore()">Click me to test data-ng-click</span>' 
-        //+'<span ng-click="showNativeMaps()">Click me to test data-ng-click</span>' 
+        content:'<div id="map-infoWindo_'+this.id+'" class="MapStoreInfo"  >'      
         +'<h3>'          
         +selectStore.Name+'</h3>'+selectStore.Address+'<br/>'+selectStore.DistrictName+', '
         +selectStore.CityName+'<br/><div>'
@@ -280,10 +263,9 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       //console.log('addListener');
       google.maps.event.addListener(infoWindow, 'domready', function(a,b,c,d) {
              // self.className = 'custom-marker';
-             //document.querySelector('#app-content');
-            
-               angular.element( document.querySelector('.gm-style-iw').parentNode).addClass('custom-iw');
-               onload(self.id);
+             //document.querySelector('#app-content');            
+             angular.element( document.querySelector('.gm-style-iw').parentNode).addClass('custom-iw');
+             onload(self.id);
       });
       
       //console.log(infoWindow.content);
@@ -292,13 +274,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       
     };
 
-    $scope.showNativeMaps = function() {
-      alert('showNativeMaps');
-    };  
-
-
-    var infoWindow = new google.maps.InfoWindow({
-        //content:'<div class="MapStoreInfo" ><h3>'+store.Name+'</h3>'+store.Address+'<br/>'+store.DistrictName+', '+store.CityName+'<br/><div>Post:Tặng quà khi mua hàng...</div><a ng-click="info('+store+'">Xem</a></div>'
+    var infoWindow = new google.maps.InfoWindow({      
     });
 
    
@@ -488,15 +464,16 @@ angular.module('MCMRelationshop.StoreLocator', function(){
    // console.log('Selected rating is : ', rating);
   };
   $scope.trackingGPS = function() {   
-       console.log('begin trackingGPS');
+      console.log('begin trackingGPS');
       var storePos = {
-          latitude: $scope.store.Latitude,
-          longitude: $scope.store.Longitude
-      
+        latitude: $scope.store.Latitude,
+        longitude: $scope.store.Longitude
+
       };
-        TrackingGPS.startTrack(storePos);
+      TrackingGPS.startTrack($scope.store.StoreID,security.getCurrentUserName(), storePos);
   };
-  $scope.checkIn = function(store) {
+
+  $scope.checkIn_old = function(store) {
     //console.log(store);
     $scope.rate = {}
 
@@ -530,11 +507,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     });
     myPopup.then(function(res) {
         if(!res){
-        return;
-       }
+          return;
+        }
         var checkin = {
           StoreID: store.StoreID,
-          UserName:  security.getCurrentUserId(),
+          UserName:  security.getCurrentUserName(),
           Message: res,
           Rate: $scope.ratingsObject.rating,
           act: 3
@@ -543,7 +520,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         loadData(true);
         $scope.$safeApply();
         toaster.pop('success','Success', 'Check-in this location successful.');
-      //console.log('Tapped!', res);
+        //console.log('Tapped!', res);
     });
 
     /*$timeout(function() {

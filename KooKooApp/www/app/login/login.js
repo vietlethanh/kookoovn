@@ -134,8 +134,9 @@ angular.module('MCMRelationshop.Login', [
 
 	        function getUserInfo() {
 	            // get basic info
-	            FB.api('/me', function (response) {
+	            FB.api('/me?fields=email,name', function (response) {
 	                console.log('Facebook Login RESPONSE: ' + angular.toJson(response));
+	                console.log(response);
 	                // get profile picture
 	                FB.api('/me/picture?type=normal', function (picResponse) {
 	                    console.log('Facebook Login RESPONSE: ' + picResponse.data.url);
@@ -151,12 +152,14 @@ angular.module('MCMRelationshop.Login', [
 	                    user.UserName = response.email;
 	                    user.Password = response.email;
 	                    if(response.gender) {
-	                        response.gender.toString().toLowerCase() === 'male' ? user.Sex = 'Male' : user.Sex = 'Female';
+	                        response.gender.toString().toLowerCase() === 'male' ? user.Sex = 1 : user.Sex = 0;
 	                    } else {
-	                        user.Sex = '';
+	                        user.Sex = '1';
 	                    }
 	                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
 	                    user.ProfilePic = picResponse.data.url;
+	                    console.log("FB getUserInfo");
+	                    console.log(user);
 	                    security.setCurrentUser(user);
 	                    user.act = 19;//create account
 	                    User.createUser(user);

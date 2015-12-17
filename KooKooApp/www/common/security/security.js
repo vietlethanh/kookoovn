@@ -111,6 +111,10 @@ angular.module('security.service', [
 				var user = this.getCurrentUser();
 				return user ? user.Email: 'guest';
 			},
+			getCurrentUserName: function(){
+				var user = this.getCurrentUser();
+				return user ? user.Email: 'guest';
+			},
 			getCurrentStore: function(){
 				return info.currentStore;
 			},
@@ -135,7 +139,7 @@ angular.module('security.service', [
 			},
 			getInfo: function(){
 				return info;
-			}			
+			}
 		};
 
 		return service;
