@@ -3,12 +3,12 @@ angular.module('MCMRelationshop.Services', [
 	'MCMRelationshop.Resource.Store',
 	'security.service'
 ])
-.factory('TrackingGPS', ['$http','HttpUtil','AppUtil','$cordovaGeolocation','Store','security',
-	function($http,HttpUtil,AppUtil,$cordovaGeolocation,Store,security){
+.factory('TrackingGPS', ['$http','HttpUtil','AppUtil','$cordovaGeolocation','Store','security','$ionicPopup','APP_CONFIG',
+	function($http,HttpUtil,AppUtil,$cordovaGeolocation,Store,security,$ionicPopup,APP_CONFIG){
 		var watch = null;
 		var curentPos = null;
 		var r = {
-			startTrack: function(storeID,userName, desPos){
+			startTrack: function(store,userName, desPos){
 				var watchOptions = {
 				frequency: 1000,
 				timeout : 3000,
@@ -47,16 +47,20 @@ angular.module('MCMRelationshop.Services', [
 						console.log(desPos);  
 						console.log('distance');
 						console.log(distance);
-						//if(distance<= 0.05)
-						//{
+						if( distance<= 0.05)
+						{
 							var checkin = {
-							  StoreID: storeID,
+							  StoreID: store.StoreID,
 							  UserName:  userName,
 							  Message: 'checkin',							 
 							  act: 3
 							};
 							Store.addCheckIn(checkin);
 							console.log('You arrived');
+							$ionicPopup.alert({
+									title: APP_CONFIG.AlertTitle,
+									template: 'You checked in '+store.Name+' successfully.'
+								});
 							watch.clearWatch(watch.watchID);
 							/*
 							function setSpeed(coords) {
@@ -71,7 +75,7 @@ angular.module('MCMRelationshop.Services', [
 							  prevCoord = coords;
 							}
 							*/
-						//}
+						}
 					},
 					watchOptions
 				);

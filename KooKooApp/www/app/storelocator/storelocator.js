@@ -470,7 +470,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         longitude: $scope.store.Longitude
 
       };
-      TrackingGPS.startTrack($scope.store.StoreID,security.getCurrentUserName(), storePos);
+      TrackingGPS.startTrack($scope.store,security.getCurrentUserName(), storePos);
   };
 
   $scope.checkIn_old = function(store) {
