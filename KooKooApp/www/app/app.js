@@ -463,7 +463,7 @@ angular.module('MCMRelationshop', [
 			}
 		})
 		.state('app.storelocator', {
-			url: "/storelocator?keyword&catId",
+			url: "/storelocator?keyword&catId&type&page",
 			views: {
 				'menuContent': {
 					controller: 'StoreLocatorCtrl',
@@ -598,19 +598,28 @@ angular.module('MCMRelationshop', [
 		$scope.openLink = AppUtil.openNewWindow;
 		$scope.appcfg = APP_CONFIG;
 		$scope.globalKeyword =  {};
-		$scope.globalSearchStore = function(){
-			 var keyword = $scope.globalKeyword.Keyword;
-			 var catID = $scope.selectedCategory.ArticleTypeID;
-			 //console.log('catID');
-			 //console.log(catID);
-			 $state.go('app.storelocator', {keyword: keyword,catId: catID},{ reload: true });
+		$scope.globalSearchStore = function(type){
+			 if(type== APP_CONFIG.EnumSys.TAB_HISTORY || type== APP_CONFIG.EnumSys.TAB_FAVORITE )
+			 {		 		
+				 $state.go('app.storelocator', {type: type,page: 1},{ reload: true });
+			 }
+			 else
+			 {
+		 		 var keyword = $scope.globalKeyword.Keyword;
+				 var catID = $scope.selectedCategory.ArticleTypeID;
+				 //console.log('catID');
+				 //console.log(catID);
+				 $state.go('app.storelocator', {keyword: keyword,catId: catID,type: '',page: 1},{ reload: true });
+				 ionic.Platform.ready(function(){
+		        	$ionicSideMenuDelegate.toggleLeft();
+		    	});	
+			 }
+			
 			 //$state.reload();
 			 $ionicViewService.nextViewOptions({
 				disableBack: true
 			 });
-			 ionic.Platform.ready(function(){
-		        $ionicSideMenuDelegate.toggleLeft();
-		      });			 
+					 
 		}
 	
 		$scope.goTo = function(link, params){
@@ -635,15 +644,26 @@ angular.module('MCMRelationshop', [
 				disableBack: true
 			 });
 		});
-
+		$scope.directionsService={};// = new google.maps.DirectionsService();
+		$scope.directionsDisplay={};// = new google.maps.DirectionsRenderer();
 		$scope.$on('mapInitialized', function(event, map) {
 			$scope.map = map;
 			console.log('mapInitialized map');
 			console.log($scope.map);
 			navigator.geolocation.getCurrentPosition(function(position) {
 				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');
-			});			
+			});		
+			directionsService = new google.maps.DirectionsService();
+			var rendererOptions = {
+			  map: map,
+			  suppressMarkers : true
+			};
+			console.log('rendererOptions map');
+			directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+			
+			
 	    });
+
 		if(isOutdate){
 			$ionicPopup.alert({
 				title: 'Your app is out date',
@@ -651,6 +671,10 @@ angular.module('MCMRelationshop', [
 				template: "Please go to <a style=\"text-decoration: underline\" ng-click=\"openLink(appcfg.DowloadAppLink)\">here</a> for download lastest app."
 			})
 		};
+
+		
+
+
 		//set market current possion
 		function setMarker(map, position, title, content) {
 			

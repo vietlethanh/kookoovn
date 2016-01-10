@@ -15,6 +15,18 @@
 {
 	visibility: hidden;
 }
+/*.big-map
+{
+	width: 100%; height: 90%;
+}
+.small-map
+{
+	width: 100%; height: 140px
+}
+map {
+  width: 100% !important;
+  height: 100% !important;
+}*/
 </style>
 <ion-view title="Store Info" id="StoreInfo">
   <ion-nav-buttons side="left">
@@ -23,7 +35,7 @@
   
   <ion-content class="has-header" >
 		<div style="width: 100%; height: 140px" data-tap-disabled="true"> 
-			<map id="mainGmap" draggable="true" center="[{{store.Latitude}},{{store.Longitude}}]" zoom="{{map.zoom}}"   >
+			<map id="mainGmap" draggable="true" center="[{{map.center.latitude}},{{map.center.longitude}}]" zoom="{{map.zoom}}"  >
 				<marker  class="store-info" position="{{store.Latitude}},{{store.Longitude}}"   id='m{{store.StoreID}}' ></marker>
 			</map>
 		</div>
@@ -32,11 +44,14 @@
 			 
 			<li class="item check-in" ng-show="true">
 				<div></div>
-				<a class="tab-item button-checkin"  ng-click="trackingGPS('{{store.Latitude}}','{{store.Longitude}}')">
+				<a class="tab-item button-checkin"  ng-click="addFavorite()" ng-if="!tracked">
 		            <i class="icon icon-store-location"></i>
-		            Check in
+		            Add to Favorite
        			</a>
-       			<span class="total-checkin">Total {{store.CheckIn}}</span>
+       			<p class="button-checkin" style="font-size: 1em;color: orange;"  ng-if="tracked">		           
+		            Added to Favorite
+       			</p>
+       			<span class="total-checkin" ng-show="false">Total {{store.CheckIn}}</span>
         	</li>
 			<li class="item store-logo">
 				<img ng-src="{{getLogo(store)}}"/>

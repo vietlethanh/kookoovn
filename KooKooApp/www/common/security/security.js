@@ -109,14 +109,15 @@ angular.module('security.service', [
 			},
 			getCurrentUserId: function(){
 				var user = this.getCurrentUser();
-				return user ? user.Email: 'guest';
+				console.log(user);
+				return user ? user.UserID: 'guest';
 			},
 			getCurrentUserName: function(){
 				var user = this.getCurrentUser();
 				return user ? user.Email: 'guest';
 			},
 			getCurrentStore: function(){
-				return info.currentStore;
+				return info.currentStore;				
 			},
 			setCurrentStore: function(store){
 				info.currentStore = store;

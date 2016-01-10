@@ -60,92 +60,10 @@
 	"buffers":
 	[
 		{
-			"file": "www/app/storelocator/storelocator.js",
-			"settings":
-			{
-				"buffer_size": 18029,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/common/services/push.js",
-			"settings":
-			{
-				"buffer_size": 3468,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "www/common/services/services.js",
 			"settings":
 			{
-				"buffer_size": 2418,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/common/security/security.js",
-			"settings":
-			{
-				"buffer_size": 3936,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/app/login/login.js",
-			"settings":
-			{
-				"buffer_size": 16858,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/app/login/login.html",
-			"settings":
-			{
-				"buffer_size": 3290,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/common/resources/user.js",
-			"settings":
-			{
-				"buffer_size": 2390,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/common/resources/store.js",
-			"settings":
-			{
-				"buffer_size": 4958,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 1041 files for \"addCheckIn\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator.js:\n  516            act: 3\n  517          };\n  518:         Store.addCheckIn(checkin);\n  519          loadData(true);\n  520          $scope.$safeApply();\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\store.js:\n   50  				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=5');\n   51  			},\n   52: 			addCheckIn: function(checkin){			\n   53  			\n   54  				var opts = HttpUtil.opts({\n\n2 matches across 2 files\n\n\nSearching 1041 files for \"Account load data\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\account\\account.js:\n   22  			//console.log($scope.socialWeb);\n   23  			var user = security.getCurrentUser();\n   24: 			console.log(\"Account load data\");\n   25  			console.log(user);\n   26  			$scope.socialWeb = user.SocialWeb\n   ..\n   32  		    		}).then(\n   33  					        function (user) {\n   34: 					        	console.log(\"Account load data ngFB.api\");\n   35  					        	$ionicLoading.hide();\n   36  					            $scope.user = {\n\n2 matches in 1 file\n",
-			"settings":
-			{
-				"buffer_size": 1075,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "www/app/account/account.js",
-			"settings":
-			{
-				"buffer_size": 8760,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/common/resources/tracker.js",
-			"settings":
-			{
-				"buffer_size": 531,
+				"buffer_size": 2610,
 				"line_ending": "Windows"
 			}
 		},
@@ -153,7 +71,73 @@
 			"file": "www/app/storelocator/storelocator.html",
 			"settings":
 			{
-				"buffer_size": 3110,
+				"buffer_size": 3071,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/storelocator/storelocator.js",
+			"settings":
+			{
+				"buffer_size": 19641,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/common/security/security.js",
+			"settings":
+			{
+				"buffer_size": 3937,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 1041 files for \"getCurrentUserId\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipe\\recipe.js:\n   35  	// private properties -------------------------------------------------------------\n   36  	var catParam = $stateParams.catid;\n   37: 	var userId = security.getCurrentUserId(); \n   38  	// public properties -------------------------------------------------------------\n   39  	// scope properties -------------------------------------------------------------\n   ..\n  126  	// private properties -------------------------------------------------------------\n  127  	var catParam = $stateParams.catid;\n  128: 	var userId = security.getCurrentUserId(); \n  129  	//var sp = $location.search();\n  130  	// public properties -------------------------------------------------------------\n  ...\n  225  	var recipeId = $stateParams.id,\n  226  		inbox = $stateParams.inbox,\n  227: 		userId = security.getCurrentUserId(),\n  228  		currentUser = security.getCurrentUser();\n  229  	// public properties -------------------------------------------------------------\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipebox\\recipebox.js:\n    6  function($scope, $state, $stateParams, security, RecipeBox, CacheUtil, $ionicLoading,MCMTracker,AppUtil,APP_CONFIG){\n    7  	// private properties -------------------------------------------------------------\n    8: 	var userId = security.getCurrentUserId();\n    9  	// public properties -------------------------------------------------------------\n   10  	// scope properties -------------------------------------------------------------\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\shoppinglist\\shoppinglist.js:\n    8  		var vm = this;\n    9  		// private properties -------------------------------------------------------------\n   10: 		var userId = security.getCurrentUserId(),\n   11  			currentUser = security.getCurrentUser(),\n   12  			shoppinglist = [];\n   ..\n  351  		var currentUser = security.getCurrentUser();\n  352  		var shoppinglistGateWay = ShoppingList.getGateway(),\n  353: 			currentUserId = security.getCurrentUserId(),\n  354  			currentUserName = currentUser.Email;\n  355  		// public properties -------------------------------------------------------------\n  ...\n  476  		var createShoppinglist = function(){\n  477  			$ionicLoading.show();\n  478: 			var createReq = shoppinglistGateWay.createShoppingList($scope.shoppinglist, security.getCurrentUserId());\n  479  			createReq.then(function(){\n  480  				$ionicLoading.hide();\n  ...\n  560  		var sharedUserId = $stateParams.uid;\n  561  		var shoppinglistGateWay = ShoppingList.getGateway();\n  562: 		var userId = security.getCurrentUserId();\n  563  		// public properties -------------------------------------------------------------\n  564  		$scope.cats = null;\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\digitalcoupon.js:\n    9  				var opts = HttpUtil.opts(),\n   10  					user = security.getCurrentUser(),\n   11: 					userid = security.getCurrentUserId(),\n   12  					params = {\n   13  						cpn: 'DigitalCoupon',\n   ..\n   19  			redeemDigitalCoupon: function(cId){\n   20  				var user = security.getCurrentUser(),\n   21: 					userid = security.getCurrentUserId(),\n   22  					opts = HttpUtil.opts({\n   23  						clearCache: ['/shoppinglists/user-items?username='+userid]\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\smartreward.js:\n   21  			redeemDigitalCoupon: function(cid){\n   22  				var user = security.getCurrentUser(), \n   23: 				userid = security.getCurrentUserId(),\n   24  				opts = HttpUtil.opts({\n   25  					clearCache: [\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\security\\security.js:\n  108  \n  109  			},\n  110: 			getCurrentUserId: function(){\n  111  				var user = this.getCurrentUser();\n  112  				return user ? user.UserID: 'guest';\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\services\\analytic.js:\n   20  					defaultObj = {\n   21  						Udid: window.device.uuid,\n   22: 						UserName: security.getCurrentUserId(),\n   23  						AppName: APP_CONFIG.AppName,\n   24  						AppVersion: APP_CONFIG.AppVersion,\n\n13 matches across 7 files\n",
+			"settings":
+			{
+				"buffer_size": 4077,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "www/common/resources/store.js",
+			"settings":
+			{
+				"buffer_size": 5301,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/app.js",
+			"settings":
+			{
+				"buffer_size": 18502,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/storelocator/info.html",
+			"settings":
+			{
+				"buffer_size": 2236,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/lib/ngmap/build/docs/index.html",
+			"settings":
+			{
+				"buffer_size": 19998,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/app/storelocator/storedetail.js",
+			"settings":
+			{
+				"buffer_size": 10581,
 				"line_ending": "Windows"
 			}
 		}
@@ -193,34 +177,37 @@
 		"/D/Desktop/KooKooApp/KooKooApp",
 		"/D/Desktop/KooKooApp/KooKooApp/www",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/intro",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/login",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/directive",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/filter",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/security",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/utils"
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security"
 	],
 	"file_history":
 	[
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/services/push.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/security.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/user.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/ionic/js/ionic.bundle.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/lib/ionic/js/ionic-angular.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/tracker.js",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/services/services.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/utils/utils.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storedetail.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/info.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/services/services",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/templates/menu.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/login.html",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_login.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/services/analytic.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/security.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/index.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator.js",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_menu.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/www/lib/angular-cookies/angular-cookies.js",
 		"/D/Projects/RelationShop2015/Mobile/bigy/www/common/resources/loyalty.js",
@@ -232,13 +219,11 @@
 		"/D/Projects/RelationShop2015/Mobile/bigy2/ionic.project",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator/storelocator - Copy.html",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_storelocator.scss",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/store.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/login/config.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/search/searchcoupons.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/recipe.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/shoppinglist.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/digitalcoupon.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/account/account.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/registercard.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/register/register.html",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/home/home.html",
@@ -249,7 +234,6 @@
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/security/interceptor.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/smartreward.js",
-		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources/user.js",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_info.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_intro.scss",
 		"/D/Desktop/KooKooApp/KooKooApp/scss/_base.scss",
@@ -282,7 +266,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -308,6 +292,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getCurrentUserId",
+			"checkin",
+			"switchStoreType",
+			"calcRoute",
+			"');\n",
+			"$scope.map",
+			"onSelectStore",
+			"selectStore",
+			"selectstore",
+			"loadData",
+			"selectstore",
+			"Zoom",
+			"setCenter",
+			"center",
+			"apply",
+			"cen",
+			"goto",
+			"setMarker",
+			"switchMode",
+			"apply",
+			"switchMode",
+			"alert",
+			"showmessage",
+			"showConfirm",
+			"showAlert",
+			"dialog",
 			"Account load data",
 			"addCheckIn",
 			"_apiCirular2WeeklyAd",
@@ -409,33 +419,7 @@
 			"popup",
 			"StoreInfoCtrl",
 			"StoreLocatorCtrl",
-			"email =",
-			"StoreInfoCtrl",
-			"clr",
-			";\n",
-			".Host",
-			"'HttpUtil'",
-			"option",
-			"HttpUtil",
-			"					clearCache: ['/users/'+user.UserID,'/users?un='+user.Email]\nisGuestMode",
-			"isGuestMode",
-			"token",
-			"ngFB",
-			"account load data",
-			"Facebook error: undefined",
-			"userLoggedIn",
-			"ionicSideMenuDelegate",
-			"AppCtrl",
-			"goTo",
-			"goto",
-			"track",
-			"recipedetail",
-			"onMarkerClicked",
-			"init",
-			"google.maps.Map",
-			"oogle.maps.Map",
-			"BaseStoreLocatorCtrl",
-			"marker"
+			"email ="
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -454,83 +438,24 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/app/storelocator/storelocator.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18029,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								16294,
-								16294
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8161.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/common/services/push.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3468,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "www/common/services/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2418,
+						"buffer_size": 2610,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1581,
-								1581
+								2052,
+								2052
 							]
 						],
 						"settings":
@@ -538,293 +463,28 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 383.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/common/security/security.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3936,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3303,
-								3303
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2268.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/app/login/login.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16858,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5376,
-								5376
-							],
-							[
-								5667,
-								5667
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2484.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/app/login/login.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 3290,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								251,
-								251
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/common/resources/user.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2390,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								75,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "www/common/resources/store.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4958,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2429,
-								2429
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 632.0,
+						"translation.x": 51.0,
+						"translation.y": 810.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1075,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										171,
-										181
-									],
-									[
-										415,
-										425
-									],
-									[
-										745,
-										762
-									],
-									[
-										941,
-										958
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								936,
-								936
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 2,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 324.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "www/app/account/account.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8760,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1316,
-								1316
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1155.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "www/common/resources/tracker.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 531,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								303,
-								303
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
+					"buffer": 1,
 					"file": "www/app/storelocator/storelocator.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3110,
+						"buffer_size": 3071,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1211,
-								1211
+								2750,
+								2765
 							]
 						],
 						"settings":
@@ -834,10 +494,310 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 594.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/app/storelocator/storelocator.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19641,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6013,
+								6031
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2972.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/common/security/security.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3937,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3073,
+								3089
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1748.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4077,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										267,
+										283
+									],
+									[
+										640,
+										656
+									],
+									[
+										901,
+										917
+									],
+									[
+										1372,
+										1388
+									],
+									[
+										1791,
+										1807
+									],
+									[
+										2048,
+										2064
+									],
+									[
+										2386,
+										2402
+									],
+									[
+										2622,
+										2638
+									],
+									[
+										2949,
+										2965
+									],
+									[
+										3158,
+										3174
+									],
+									[
+										3479,
+										3495
+									],
+									[
+										3655,
+										3671
+									],
+									[
+										3940,
+										3956
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								3729,
+								3729
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/common/resources/store.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1646,
+								1646
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "www/app/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18502,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16851,
+								16851
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11252.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "www/app/storelocator/info.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2236,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								831,
+								831
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/lib/ngmap/build/docs/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5959,
+								5959
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2389.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "www/app/storelocator/storedetail.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10581,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4108,
+								4145
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2037.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
 					"type": "text"
 				}
 			]

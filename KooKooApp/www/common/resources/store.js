@@ -42,6 +42,29 @@ angular.module('MCMRelationshop.Resource.Store', [
 					HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'?pos.lat:0})+'&'+
 					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?pos.lng:0}));
 			},
+			getCheckedInStores: function(userName,page){					
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});
+				
+				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=20&'+ 
+					HttpUtil.encodeUrl({UserName: userName})+'&'+
+					HttpUtil.encodeUrl({page: page}));
+			},
+			loadFavoriteStores: function(userName,page){					
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});
+				
+				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=21&'+ 
+					HttpUtil.encodeUrl({UserName: userName})+'&'+
+					HttpUtil.encodeUrl({type: APP_CONFIG.TrackType.FAVORITE})+'&'+
+					HttpUtil.encodeUrl({page: page}));
+			},
+
+
 			getCategory: function(){					
 				var opts = HttpUtil.opts({
 					intercetorParams: {api: false}
@@ -56,6 +79,22 @@ angular.module('MCMRelationshop.Resource.Store', [
 					
 				});
 				return $http.post( APP_CONFIG.KooKooAPI+'/store.php',checkin, opts);					
+			},
+			getTracker: function(tracker){		
+			
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});
+				return $http.post( APP_CONFIG.KooKooAPI+'/tracker.php',tracker, opts);					
+			},
+			addTracker: function(tracker){		
+			
+				var opts = HttpUtil.opts({
+					intercetorParams: {api: false}
+					
+				});
+				return $http.post( APP_CONFIG.KooKooAPI+'/tracker.php',tracker, opts);					
 			},
 			searchNearByStore: function(latlng){
 				var opts = HttpUtil.opts();

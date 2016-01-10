@@ -53,6 +53,19 @@ var socialAppID =
 					GoogleAppID:'1026812135759-eikn3a5n8qut3du9ujov51onc3p8h68a.apps.googleusercontent.com', //vvietlethanh.dev@gmail.com
 
 				}
+
+var enumsys = {
+	TAB_FAVORITE: 'favorite',
+	TAB_LUCKY: 'lucky',
+	TAB_HISTORY: 'history'
+};
+
+var trackType = {
+	FAVORITE: 'favorite',
+	CLICK: 'click'
+	
+};
+
 var unitedAppCfg = {
 	ShowSmartReward : true,
 	FeedBackType : 'Mobile Web',
@@ -84,7 +97,10 @@ var unitedAppCfg = {
 	SocialAppID: socialAppID,
 	MapMode: mapMode,
 	SocialWeb : socialWeb,
-	KooKooAPI: 'http://kookoo.vn'
+	EnumSys:enumsys,
+	TrackType: trackType,
+	//KooKooAPI: 'http://kookoo.vn'
+	KooKooAPI: 'http://kookoo.local:8080'
 }
 
 var matchedCodes = {
@@ -93,6 +109,7 @@ var matchedCodes = {
 	VALIDATE_MATCHED_CARD: 2,
 	VALIDATE_MATCHED_INVALID_MULTI: 3
 };
+
 
 var env = {};
 env.localweb = angular.extend({}, localserver, unitedAppCfg, {IsWeb: true, enable_local: false}, matchedCodes);
