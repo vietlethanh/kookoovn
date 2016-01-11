@@ -467,7 +467,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         }
         $scope.map.zoom = 18;
         $scope.tracked = false;
-        //$scope.trackingGPS();
+        $scope.trackingGPS();
         var tracker = {   
           UserName:  security.getCurrentUserName(),       
           StoreID: $scope.store.StoreID,      

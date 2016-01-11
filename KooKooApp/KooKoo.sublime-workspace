@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"App",
+				"APP_CONFIG"
+			],
+			[
 				"res",
 				"response"
 			],
@@ -76,10 +80,26 @@
 			}
 		},
 		{
+			"file": "www/app/recipe/recipedetail.html",
+			"settings":
+			{
+				"buffer_size": 3202,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/digitalcoupon/digitalcoupon.html",
+			"settings":
+			{
+				"buffer_size": 3423,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "www/app/storelocator/storelocator.js",
 			"settings":
 			{
-				"buffer_size": 19641,
+				"buffer_size": 21537,
 				"line_ending": "Windows"
 			}
 		},
@@ -87,25 +107,41 @@
 			"file": "www/common/security/security.js",
 			"settings":
 			{
-				"buffer_size": 3937,
+				"buffer_size": 3964,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Searching 1041 files for \"getCurrentUserId\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipe\\recipe.js:\n   35  	// private properties -------------------------------------------------------------\n   36  	var catParam = $stateParams.catid;\n   37: 	var userId = security.getCurrentUserId(); \n   38  	// public properties -------------------------------------------------------------\n   39  	// scope properties -------------------------------------------------------------\n   ..\n  126  	// private properties -------------------------------------------------------------\n  127  	var catParam = $stateParams.catid;\n  128: 	var userId = security.getCurrentUserId(); \n  129  	//var sp = $location.search();\n  130  	// public properties -------------------------------------------------------------\n  ...\n  225  	var recipeId = $stateParams.id,\n  226  		inbox = $stateParams.inbox,\n  227: 		userId = security.getCurrentUserId(),\n  228  		currentUser = security.getCurrentUser();\n  229  	// public properties -------------------------------------------------------------\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipebox\\recipebox.js:\n    6  function($scope, $state, $stateParams, security, RecipeBox, CacheUtil, $ionicLoading,MCMTracker,AppUtil,APP_CONFIG){\n    7  	// private properties -------------------------------------------------------------\n    8: 	var userId = security.getCurrentUserId();\n    9  	// public properties -------------------------------------------------------------\n   10  	// scope properties -------------------------------------------------------------\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\shoppinglist\\shoppinglist.js:\n    8  		var vm = this;\n    9  		// private properties -------------------------------------------------------------\n   10: 		var userId = security.getCurrentUserId(),\n   11  			currentUser = security.getCurrentUser(),\n   12  			shoppinglist = [];\n   ..\n  351  		var currentUser = security.getCurrentUser();\n  352  		var shoppinglistGateWay = ShoppingList.getGateway(),\n  353: 			currentUserId = security.getCurrentUserId(),\n  354  			currentUserName = currentUser.Email;\n  355  		// public properties -------------------------------------------------------------\n  ...\n  476  		var createShoppinglist = function(){\n  477  			$ionicLoading.show();\n  478: 			var createReq = shoppinglistGateWay.createShoppingList($scope.shoppinglist, security.getCurrentUserId());\n  479  			createReq.then(function(){\n  480  				$ionicLoading.hide();\n  ...\n  560  		var sharedUserId = $stateParams.uid;\n  561  		var shoppinglistGateWay = ShoppingList.getGateway();\n  562: 		var userId = security.getCurrentUserId();\n  563  		// public properties -------------------------------------------------------------\n  564  		$scope.cats = null;\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\digitalcoupon.js:\n    9  				var opts = HttpUtil.opts(),\n   10  					user = security.getCurrentUser(),\n   11: 					userid = security.getCurrentUserId(),\n   12  					params = {\n   13  						cpn: 'DigitalCoupon',\n   ..\n   19  			redeemDigitalCoupon: function(cId){\n   20  				var user = security.getCurrentUser(),\n   21: 					userid = security.getCurrentUserId(),\n   22  					opts = HttpUtil.opts({\n   23  						clearCache: ['/shoppinglists/user-items?username='+userid]\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\smartreward.js:\n   21  			redeemDigitalCoupon: function(cid){\n   22  				var user = security.getCurrentUser(), \n   23: 				userid = security.getCurrentUserId(),\n   24  				opts = HttpUtil.opts({\n   25  					clearCache: [\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\security\\security.js:\n  108  \n  109  			},\n  110: 			getCurrentUserId: function(){\n  111  				var user = this.getCurrentUser();\n  112  				return user ? user.UserID: 'guest';\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\services\\analytic.js:\n   20  					defaultObj = {\n   21  						Udid: window.device.uuid,\n   22: 						UserName: security.getCurrentUserId(),\n   23  						AppName: APP_CONFIG.AppName,\n   24  						AppVersion: APP_CONFIG.AppVersion,\n\n13 matches across 7 files\n",
+			"contents": "Searching 1041 files for \"getCurrentUserId\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipe\\recipe.js:\n   35  	// private properties -------------------------------------------------------------\n   36  	var catParam = $stateParams.catid;\n   37: 	var userId = security.getCurrentUserId(); \n   38  	// public properties -------------------------------------------------------------\n   39  	// scope properties -------------------------------------------------------------\n   ..\n  126  	// private properties -------------------------------------------------------------\n  127  	var catParam = $stateParams.catid;\n  128: 	var userId = security.getCurrentUserId(); \n  129  	//var sp = $location.search();\n  130  	// public properties -------------------------------------------------------------\n  ...\n  225  	var recipeId = $stateParams.id,\n  226  		inbox = $stateParams.inbox,\n  227: 		userId = security.getCurrentUserId(),\n  228  		currentUser = security.getCurrentUser();\n  229  	// public properties -------------------------------------------------------------\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipebox\\recipebox.js:\n    6  function($scope, $state, $stateParams, security, RecipeBox, CacheUtil, $ionicLoading,MCMTracker,AppUtil,APP_CONFIG){\n    7  	// private properties -------------------------------------------------------------\n    8: 	var userId = security.getCurrentUserId();\n    9  	// public properties -------------------------------------------------------------\n   10  	// scope properties -------------------------------------------------------------\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\shoppinglist\\shoppinglist.js:\n    8  		var vm = this;\n    9  		// private properties -------------------------------------------------------------\n   10: 		var userId = security.getCurrentUserId(),\n   11  			currentUser = security.getCurrentUser(),\n   12  			shoppinglist = [];\n   ..\n  351  		var currentUser = security.getCurrentUser();\n  352  		var shoppinglistGateWay = ShoppingList.getGateway(),\n  353: 			currentUserId = security.getCurrentUserId(),\n  354  			currentUserName = currentUser.Email;\n  355  		// public properties -------------------------------------------------------------\n  ...\n  476  		var createShoppinglist = function(){\n  477  			$ionicLoading.show();\n  478: 			var createReq = shoppinglistGateWay.createShoppingList($scope.shoppinglist, security.getCurrentUserId());\n  479  			createReq.then(function(){\n  480  				$ionicLoading.hide();\n  ...\n  560  		var sharedUserId = $stateParams.uid;\n  561  		var shoppinglistGateWay = ShoppingList.getGateway();\n  562: 		var userId = security.getCurrentUserId();\n  563  		// public properties -------------------------------------------------------------\n  564  		$scope.cats = null;\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\digitalcoupon.js:\n    9  				var opts = HttpUtil.opts(),\n   10  					user = security.getCurrentUser(),\n   11: 					userid = security.getCurrentUserId(),\n   12  					params = {\n   13  						cpn: 'DigitalCoupon',\n   ..\n   19  			redeemDigitalCoupon: function(cId){\n   20  				var user = security.getCurrentUser(),\n   21: 					userid = security.getCurrentUserId(),\n   22  					opts = HttpUtil.opts({\n   23  						clearCache: ['/shoppinglists/user-items?username='+userid]\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\resources\\smartreward.js:\n   21  			redeemDigitalCoupon: function(cid){\n   22  				var user = security.getCurrentUser(), \n   23: 				userid = security.getCurrentUserId(),\n   24  				opts = HttpUtil.opts({\n   25  					clearCache: [\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\security\\security.js:\n  108  \n  109  			},\n  110: 			getCurrentUserId: function(){\n  111  				var user = this.getCurrentUser();\n  112  				return user ? user.UserID: 'guest';\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\services\\analytic.js:\n   20  					defaultObj = {\n   21  						Udid: window.device.uuid,\n   22: 						UserName: security.getCurrentUserId(),\n   23  						AppName: APP_CONFIG.AppName,\n   24  						AppVersion: APP_CONFIG.AppVersion,\n\n13 matches across 7 files\n\n\nSearching 1041 files for \"FacebookAppID\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\app.js:\n   84  		MCMTracker.startTrackerWithId(APP_CONFIG.AccountTrackerID);\n   85  		\n   86: 		ngFB.init({appId: APP_CONFIG.SocialAppID.FacebookAppID});\n   87  	});\n   88  })\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\config.js:\n   48  var socialAppID =\n   49  				{\n   50: 					FacebookAppID:'871963922911532', //vietlethanh1988@yahoo.com\n   51  					TwitterAppID:'5Z9AGmXCunGKxt3iq3dexDGzu', //vietlethanh.dev@gmail.com\n   52  					TwitterSecretKey:\"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO\",//vietlethanh.dev@gmail.com\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\login\\login.js:\n  202  	    //Login FB with oauth2\n  203  	    $scope.facebooklogin = function() {\n  204: 	        $cordovaOauth.facebook(APP_CONFIG.SocialAppID.FacebookAppID, [\"email\", \"read_stream\", \"user_website\", \"user_location\", \"user_relationships\"]).then(function(result) {\n  205  	            //$localStorage.accessToken = result.access_token;\n  206  	            //$location.path(\"/profile\");\n\n3 matches across 3 files\n\n\nSearching 1041 files for \"toaster\"\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\app.js:\n    9  	'ionic',\n   10  	'ngCordova',\n   11: 	'toaster',\n   12  	'ngOpenFB',\n   13  	'ngMap',\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\recipe\\recipe.js:\n   31  	MCMTracker.trackView('RecipeCats')\n   32  }])\n   33: .controller('RecipeListCtrl',['$scope', '$state', '$stateParams', 'Recipe','RecipeBox', 'CacheUtil','$ionicLoading','security','toaster','MCMTracker','AppUtil','APP_CONFIG',\n   34: function($scope, $state, $stateParams, Recipe, RecipeBox, CacheUtil, $ionicLoading, security,toaster,MCMTracker,AppUtil,APP_CONFIG){\n   35  	// private properties -------------------------------------------------------------\n   36  	var catParam = $stateParams.catid;\n   ..\n  110  			//$ionicLoading.hide();\n  111  			recipe.isLoading = false;\n  112: 			toaster.pop('success','Success', 'The item is added.')\n  113  		})\n  114  	}\n  ...\n  122  }\n  123  ])\n  124: .controller('RecipeSearchCtrl',['$scope', '$state', '$stateParams', '$location', 'Recipe','RecipeBox', 'CacheUtil','$ionicLoading','security','toaster','AppUtil','APP_CONFIG','$ionicViewService',\n  125: function($scope, $state, $stateParams, $location, Recipe, RecipeBox, CacheUtil, $ionicLoading, security,toaster,AppUtil,APP_CONFIG,$ionicViewService){\n  126  	// private properties -------------------------------------------------------------\n  127  	var catParam = $stateParams.catid;\n  ...\n  196  			//$ionicLoading.hide();\n  197  			recipe.isLoading = false;\n  198: 			toaster.pop('success','Success', 'The item is added.')\n  199  		})\n  200  	}\n  ...\n  219  }\n  220  ])\n  221: .controller('RecipeDetailCtrl', ['$scope', '$stateParams','$q', 'Recipe','RecipeBox', 'CacheUtil','ShoppingList','security','$ionicLoading','$ionicPopup','APP_CONFIG','toaster','MCMTracker','AppUtil',\n  222: function($scope, $stateParams, $q, Recipe, RecipeBox, CacheUtil, ShoppingList, security,$ionicLoading,$ionicPopup, APP_CONFIG, toaster,MCMTracker,AppUtil){\n  223  	var vm = this;\n  224  	// private properties -------------------------------------------------------------\n  ...\n  332  			//$ionicLoading.hide();\n  333  			recipe.isLoading = false;\n  334: 			toaster.pop('success','Success', 'The item is added.')\n  335  		})\n  336  \n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\register\\register.js:\n    6  	'MCMRelationshop.Directive.Compile'\n    7  ])\n    8: .controller('RegisterCtrl', ['$q', '$rootScope', '$scope','$state', '$stateParams', 'AppUtil','CacheUtil','User','Setting', '$ionicLoading','$ionicPopup','APP_CONFIG','security','MCMTracker','toaster','$ionicViewService', '$ionicScrollDelegate', 'GuestShoppingList', 'UserShoppingList',\n    9: 	function($q, $rootScope, $scope, $state, $stateParams ,AppUtil, CacheUtil, User, Setting, $ionicLoading,$ionicPopup, APP_CONFIG, security, MCMTracker, toaster, $ionicViewService, $ionicScrollDelegate, GuestShoppingList, UserShoppingList) {\n   10  		// private properties -------------------------------------------------------------\n   11  		var back = $stateParams.return;\n   ..\n  229  				// login\n  230  				$ionicLoading.show();\n  231: 				toaster.pop('success','Success', 'Thank you for creating an account.')\n  232  				security.login($scope.user.Email, $scope.user.Password).then(function(res){\n  233  					$ionicLoading.hide();\n  ...\n  395  	}\n  396  ])\n  397: .controller('RegisterCardCtrl', ['$scope','$state', '$stateParams', 'AppUtil','CacheUtil','User','$ionicLoading','$ionicPopup','APP_CONFIG','security','MCMTracker','toaster','$ionicViewService',\n  398: 	function($scope, $state, $stateParams ,AppUtil, CacheUtil, User,$ionicLoading,$ionicPopup, APP_CONFIG, security, MCMTracker, toaster, $ionicViewService) {  \n  399  		// private properties -------------------------------------------------------------\n  400  		var back = $stateParams.return,\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\rewardsprogram\\rewardsprogram.js:\n    5  	'MCMRelationshop.BarcodeDirective'\n    6  ])\n    7: .controller('RewardsProgramCtrl', ['$scope','$stateParams','$q', 'security', 'SmartRewards','Store', 'Setting', '$ionicLoading','$ionicPopup','$ionicScrollDelegate','$filter','APP_CONFIG','MCMTracker','toaster','$timeout',\n    8: 	function($scope,$stateParams, $q, security, SmartRewards, Store, Setting, $ionicLoading, $ionicPopup, $ionicScrollDelegate, $filter, APP_CONFIG,MCMTracker,toaster, $timeout ) {  \n    9  		//console.log('dang thu trang')\n   10  		// private properties -------------------------------------------------------------\n   ..\n  223  				var data = res.data;\n  224  				$ionicLoading.hide();\n  225: 				toaster.pop('success','Success', 'Update success.');\n  226  			});\n  227  \n  ...\n  285  	}\n  286  ])\n  287: .controller('KidClubAddChildCtrl', ['$stateParams','$scope','$q', 'security','$filter', 'SmartRewards','Store', 'Setting', '$ionicLoading','$ionicPopup','APP_CONFIG','MCMTracker','toaster','$timeout',\n  288: 	function($stateParams,$scope, $q, security, $filter, SmartRewards, Store, Setting, $ionicLoading, $ionicPopup, APP_CONFIG,MCMTracker,toaster, $timeout ) {  \n  289  		// private properties -------------------------------------------------------------\n  290  		var currentUser = security.getCurrentUser(),\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\search\\search.js:\n    4  	'MCMRelationshop.ShoppingList'\n    5  ])\n    6: .controller('SearchCtrl', ['$scope', '$state', '$stateParams', 'security','Setting','ShoppingList', '$ionicLoading','$ionicPopup','APP_CONFIG','CacheUtil','toaster','MCMTracker','$ionicViewService','$location',\n    7: 	function($scope, $state, $stateParams, security, Setting, ShoppingList, $ionicLoading,$ionicPopup, APP_CONFIG, CacheUtil,toaster,MCMTracker, $ionicViewService, $location) {  \n    8  		//console.log('dang thu trang')\n    9  		// private properties -------------------------------------------------------------\n   ..\n   48  			ShoppingList.getGateway().addItem(item, userId).then(function(data){\n   49  				$ionicLoading.hide();\n   50: 				toaster.pop('success','Success', 'The item is added.')\n   51  			});\n   52  		};\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\shoppinglist\\shoppinglist.js:\n    4  	'MCMRelationshop.Push'\n    5  ])\n    6: .controller('ShoppingListCtrl', ['$q','$scope', 'security', 'ShoppingList','CheckedShoppingItem','$ionicLoading','$ionicPopup','APP_CONFIG','$Sheet','$ionicModal','MCMTracker','$ionicScrollDelegate','$timeout','phone', 'toaster',\n    7: 	function($q,$scope, security, ShoppingList,CheckedShoppingItem , $ionicLoading,$ionicPopup, APP_CONFIG, $Sheet, $ionicModal,MCMTracker, $ionicScrollDelegate,$timeout, phone, toaster){\n    8  		var vm = this;\n    9  		// private properties -------------------------------------------------------------\n   ..\n  211  						$ionicLoading.hide();\n  212  						if(res.data == true || res.data == 'true'){\n  213: 							toaster.pop('success','Success', 'Sharing your shopping list is successful.');\n  214  						}else\n  215  						{\n  216  \n  217: 							toaster.pop('error','Error', 'Sharing your shopping list have an error.');\n  218  						}\n  219  		    		}, function(res){\n  220  						$ionicLoading.hide();\n  221: 						toaster.pop('error','Error', 'Sharing your shopping list have an error.');\n  222  \n  223  		    		});\n  ...\n  345  	}\n  346  ])\n  347: .controller('ShoppingListsCtrl', ['$scope', '$q', 'security', 'ShoppingList','APP_CONFIG', '$ionicLoading', '$ionicPopup', '$state', 'toaster',\n  348: 	function($scope, $q, security, ShoppingList, APP_CONFIG, $ionicLoading, $ionicPopup, $state, toaster) {  \n  349  		//console.log('dang thu trang')\n  350  		// private properties -------------------------------------------------------------\n  ...\n  432  						{\n  433  							loadData();\n  434: 							toaster.pop('success','Success', 'Delete your shopping list is successful.');\n  435  						}else\n  436  						{\n  437: 							toaster.pop('error','Error', 'Delete your shopping list is an error.');\n  438  						}\n  439  					}, function(){\n  440  						$ionicLoading.hide();\n  441: 						toaster.pop('error','Error', 'Delete your shopping list is an error.');\n  442  					});\n  443  		       }\n  ...\n  502  	}\n  503  ])\n  504: .controller('EditShoppingListCtrl', ['$scope', '$q', 'security', 'ShoppingList','APP_CONFIG', '$ionicLoading', '$ionicPopup', '$stateParams', '$state', 'toaster',\n  505: 	function($scope, $q, security, ShoppingList, APP_CONFIG, $ionicLoading, $ionicPopup, $stateParams, $state, toaster) {\n  506  		$ionicLoading.show();\n  507  		// public properties -------------------------------------------------------------\n  ...\n  538  				$ionicLoading.hide();\n  539  				if(res.data == true || res.data == 'true'){\n  540: 					toaster.pop('success','Success', 'Save your shopping list is successful.');\n  541  					$scope.goTo('app.shoppinglists');\n  542  				}else\n  543  				{\n  544: 					toaster.pop('error','Error', 'Save your shopping list have an error.');\n  545  				}\n  546  			}, function(){\n  547  				$ionicLoading.hide();\n  548: 				toaster.pop('error','Error', 'Save your shopping list have an error.');\n  549  			});\n  550  		};\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\storelocator\\storelocator.js:\n  399  \n  400  \n  401: .controller('StoreInfoCtrl',['$scope', '$state', '$stateParams', 'APP_CONFIG', 'security', 'Store','AppUtil','$ionicLoading','$ionicPopup','MCMTracker','$ionicScrollDelegate','$timeout','toaster','TrackingGPS',\n  402:   function($scope, $state, $stateParams,APP_CONFIG, security, Store,AppUtil,$ionicLoading,$ionicPopup, MCMTracker, $ionicScrollDelegate,$timeout,toaster,TrackingGPS){\n  403  \n  404      // private properties -------------------------------------------------------------\n  ...\n  564      Store.addTracker(tracker);  \n  565      $scope.tracked = true;\n  566:     toaster.pop('success','Success', 'Check-in this location successful.');\n  567    }\n  568    $scope.checkIn_old = function(store) {\n  ...\n  586                //don't allow the user to close unless he enters wifi password\n  587  \n  588:              toaster.pop('error','Error', 'Please enter your feedback.');\n  589                \n  590                e.preventDefault();\n  ...\n  612          loadData(true);\n  613          $scope.$safeApply();\n  614:         toaster.pop('success','Success', 'Check-in this location successful.');\n  615          //console.log('Tapped!', res);\n  616      });\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\app\\weeklyad\\weeklyad.js:\n    3  	'MCMRelationshop.Resource.ShoppingList'\n    4  ])\n    5: .controller('WeeklyAdCtrl', ['$scope','$state','$stateParams', '$q', 'security', 'Store','ShoppingList','DSCacheFactory','$ionicLoading', 'toaster','MCMTracker','$ionicPopup','APP_CONFIG','$ionicViewService','$timeout',\n    6: 	function($scope, $state, $stateParams, $q, security, store,shoppinglist, DSCacheFactory, $ionicLoading, toaster, MCMTracker, $ionicPopup,APP_CONFIG, $ionicViewService,$timeout\n    7  	 ) {  \n    8  		//Store.ge\n    .\n  174  			shoppinglist.getGateway().addItem(item, userId).then(function(data){\n  175  				$ionicLoading.hide();\n  176: 				//toaster.pop('success','Success', 'The item is added.')\n  177  				item.IsAdded = true;				\n  178  			});\n  ...\n  246  	}\n  247  ])\n  248: .controller('WeeklyAdFlyerCtrl', ['$scope','$state','$stateParams', '$q', 'security', 'Store','ShoppingList','DSCacheFactory','$ionicLoading', 'toaster','MCMTracker','$ionicPopup','APP_CONFIG','$ionicViewService','$ionicScrollDelegate','$ionicSlideBoxDelegate',\n  249: 	function($scope, $state, $stateParams, $q, security, store,shoppinglist, DSCacheFactory, $ionicLoading, toaster, MCMTracker, $ionicPopup,APP_CONFIG, $ionicViewService,  $ionicScrollDelegate,$ionicSlideBoxDelegate ) {  \n  250  		//Store.ge\n  251  		var vm = this;\n  ...\n  403  			shoppinglist.getGateway().addItem(item, userId).then(function(data){\n  404  				$ionicLoading.hide();\n  405: 				//toaster.pop('success','Success', 'The item is added.')\n  406  				item.IsAdded = true;\n  407  				\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\services\\analytic.js:\n    2  	'MCMRelationshop.Utils'\n    3  ])\n    4: .factory('MCMAnalytics', ['$rootScope','security','$http','APP_CONFIG','AppUtil','toaster',\n    5: 	function($rootScope, security, $http, APP_CONFIG, AppUtil,toaster){\n    6  		var r = {\n    7  			_send: function(obj){\n    8  				//alert('_send');\n    9  				return $http.post(APP_CONFIG.DistributeHost+'/mobiles', obj).then(function(res){\n   10: 					//toaster.pop('success','Success', 'register device success')\n   11  				}, \n   12  					function(res){\n   13: 						toaster.pop('error','Error', res.data.message);\n   14  					}\n   15  				);\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\common\\services\\push.js:\n    1  angular.module('MCMRelationshop.Push', [\n    2: 	'toaster',\n    3  	'MCMRelationshop.Utils'\n    4  ])\n    .\n    9  	};\n   10  })\n   11: .factory('push', ['$rootScope','$state','$location', 'AppUtil', 'phone','$http','APP_CONFIG','$ionicPopup','toaster','$timeout',\n   12: function($rootScope, $state, $location, AppUtil, phone, $http, APP_CONFIG,$ionicPopup, toaster, $timeout){\n   13  	var r = {\n   14  		registerPush: function(fn) {\n   ..\n   43  					if(event.alert){						\n   44  						$timeout(function(){\n   45: 							toaster.pop('success','Notification',event.alert , null, null, function(){\n   46  								handleUrl(event.url);\n   47  							});\n   ..\n   88  							{						\n   89  								$timeout(function(){\n   90: 									toaster.pop('success','Notification', event.payload.message , null, null, function(){\n   91  										handleUrl(event.payload.url);\n   92  									});\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\index.html:\n   15  	<!-- compiled css output -->\n   16  	<link href=\"lib/components-font-awesome/css/font-awesome.min.css\" rel=\"stylesheet\">\n   17: 	<link href=\"lib/AngularJS-Toaster/toaster.css\" rel=\"stylesheet\">\n   18  	<link href=\"css/ionic.app.css\" rel=\"stylesheet\">\n   19  	 <link href=\"css/ionicons.min.css\" rel=\"stylesheet\">\n   ..\n   50  	<script src=\"lib/angular-sanitize/angular-sanitize.min.js\"></script>\n   51  	<script src=\"lib/angular-ui-router/release/angular-ui-router.min.js\"></script>\n   52: 	<script src=\"lib/AngularJS-Toaster/toaster.js\"></script>\n   53  \n   54  	<script src=\"lib/angular-ui-utils/index.js\"></script>\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\.bower.json:\n    1  {\n    2:   \"name\": \"AngularJS-Toaster\",\n    3    \"version\": \"0.4.15\",\n    4    \"main\": [\n    5:     \"toaster.js\",\n    6:     \"toaster.css\"\n    7    ],\n    8    \"ignore\": [\n    .\n   15      \"angular-animate\": \">1.2.8\"\n   16    },\n   17:   \"homepage\": \"https://github.com/jirikavi/AngularJS-Toaster\",\n   18    \"_release\": \"0.4.15\",\n   19    \"_resolution\": {\n   ..\n   22      \"commit\": \"e7fcb31589151b130d1a51567ff0de5ed2f92441\"\n   23    },\n   24:   \"_source\": \"git://github.com/jirikavi/AngularJS-Toaster.git\",\n   25    \"_target\": \"~0.4.8\",\n   26:   \"_originalSource\": \"AngularJS-Toaster\"\n   27  }\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\bower.json:\n    1  {\n    2:   \"name\": \"AngularJS-Toaster\",\n    3    \"version\": \"0.4.15\",\n    4    \"main\": [\n    5:     \"toaster.js\",\n    6:     \"toaster.css\"\n    7    ],\n    8    \"ignore\": [\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\index.js:\n    1: require(\"./toaster.js\");\n    2: module.exports = \"toaster\";\n    3  \n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\package.json:\n    1  {\n    2:   \"name\": \"angularjs-toaster\",\n    3    \"version\": \"0.4.15\",\n    4:   \"description\": \"AngularJS Toaster is a customized version of toastr non-blocking notification javascript library\",\n    5    \"scripts\": {\n    6      \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n    .\n   10    \"repository\": {\n   11      \"type\": \"git\",\n   12:     \"url\": \"https://github.com/jirikavi/AngularJS-Toaster.git\"\n   13    },\n   14    \"dependencies\": {\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\README.md:\n    1: AngularJS-Toaster\n    2  =================\n    3  \n    4: **AngularJS Toaster** is an AngularJS port of the **toastr** non-blocking notification jQuery library. It requires AngularJS v1.2.6 or higher and angular-animate for the CSS3 transformations. \n    5  (I would suggest to use /1.2.8/angular-animate.js, there is a weird blinking in newer versions.)\n    6  \n    .\n   18  Optionally: to install with bower, use:\n   19  ```\n   20: bower install --save angularjs-toaster\n   21  ```\n   22  or with npm :\n   23  ```\n   24: npm install --save angularjs-toaster\n   25  ```\n   26  * Link scripts:\n   27  \n   28  ```html\n   29: <link href=\"https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css\" rel=\"stylesheet\" />\n   30  <script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js\" ></script>\n   31  <script src=\"https://code.angularjs.org/1.2.0/angular-animate.min.js\" ></script>\n   32: <script src=\"https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js\"></script>\n   33  ```\n   34  \n   35: * Add toaster container directive: \n   36  \n   37  ```html\n   38: <toaster-container></toaster-container>\n   39  ```\n   40  \n   41: * Prepare the call of toaster method:\n   42  \n   43  ```js\n   44  // Display an info toast with no title\n   45: angular.module('main', ['toaster', 'ngAnimate'])\n   46: 	.controller('myController', function($scope, toaster) {\n   47  	    $scope.pop = function(){\n   48: 	        toaster.pop('success', \"title\", \"text\");\n   49  	    };\n   50  	});\n   ..\n   55  ```html\n   56  <div ng-controller=\"myController\">\n   57:     <button ng-click=\"pop()\">Show a Toaster</button>\n   58  </div>\n   59  ```\n   ..\n   65  * Globally in the config for all toast types:\n   66  ```html\n   67: <toaster-container toaster-options=\"'close-button': true\"></toaster-container>\n   68  ```\n   69  \n   ..\n   71  By passing the close-button configuration as an object instead of a boolean, you can specify the global behavior an info-class type should have.\n   72  ```html\n   73: <toaster-container toaster-options=\"\n   74      {'close-button':{ 'toast-warning': true, 'toast-error': false } }\">\n   75: </toaster-container>\n   76  ```\n   77  If a type is not defined and specified, the default behavior for that type is false.\n   78  \n   79: * Per toast constructed via toaster.pop('success', \"title\", \"text\"):\n   80  ```html\n   81: toaster.pop({\n   82                  type: 'error',\n   83                  title: 'Title text',\n   ..\n   97  	If the html can be successfully parsed, it will be bound to the toast via `ng-bind-html`.  If it cannot be parsed as \"trustable\" html, an exception will be thrown.	\n   98  \n   99:  - template:  Will use the `toast.body` if passed as an argument, else it will fallback to the template bound to the `'body-template': 'toasterBodyTmpl.html'` configuration option.\n  100   \n  101   - templateWithData: \n  102: 	 - Will use the `toast.body` if passed as an argument, else it will fallback to the template bound to the `'body-template': 'toasterBodyTmpl.html'` configuration option.\n  103  	 - Assigns any data associated with the template to the toast.\n  104  \n  ...\n  107   - Globally:\n  108  ```html\n  109: <toaster-container toaster-options=\"'body-output-type': 'template'\"></toaster-container>\n  110  ```\n  111   - Per toast:\n  112    \n  113  ```js\n  114: toaster.pop({\n  115              type: 'error',\n  116              title: 'Title text',\n  ...\n  124  \n  125  ```js\n  126: toaster.pop({\n  127              title: 'A toast',\n  128  		    body: 'with a callback',\n  129  			onHideCallback: function () { \n  130: 			    toaster.pop({\n  131  			        title: 'A toast',\n  132  				    body: 'invoked as a callback'\n  ...\n  141  ```html\n  142  // Change display position\n  143: <toaster-container toaster-options=\"{'position-class': 'toast-top-full-width'}\"></toaster-container>\n  144  ```\n  145  \n  146  ### Animations\n  147: Unlike toastr, this library relies on ngAnimate and CSS3 transformations for optional animations.  To include and use animations, add a reference to angular-animate.min.js (as described in Getting started - Link scripts) and add ngAnimate as a dependency alongside toaster. \n  148  \n  149  ```js\n  150  // Inject ngAnimate to enable animations\n  151: angular.module('main', ['toaster', 'ngAnimate']);\n  152  ```\n  153  If you do not want to use animations, you can safely remove the angular-animate.min.js reference as well as the injection of ngAnimate.  Toasts will be displayed without animations.\n  ...\n  164  \n  165  ## License \n  166: AngularJS-Toaster is under MIT license - http://www.opensource.org/licenses/mit-license.php\n  167  \n  168  ##Changes Log\n  169  ## v0.4.13\n  170: - Add option in function toaster.pop() , `toastId` to define 'uid', use the function 'toaster.clear ()'\n  171  \n  172  ```js\n  173: var _toaster = {\n  174                      type:      null,\n  175                      title:     null,\n  176                      body:      null,\n  177                      timeout:   null,\n  178:                     toasterId: 'CategoryMenu',\n  179                      toastId:   'CategoryMenuAlert'\n  180                  }\n  181  ```\n  182  \n  183: - Add option in function toaster.clear()\n  184:  * toaster.clear(); --> clearAll with ToasterId = undefined;\n  185:  * toaster.clear('*'); -> ClearAll()\n  186:  * toaster.clear('clearID'); -> clearAll() with toaster have ToasterId = 'clearID'\n  187: * toaster.clear('clearID', 'toastID'); -> Just clearAll with toasts have uid = 'toastID' in  ToasterId = 'clearID'.\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\toaster.css:\n  216  \n  217   /*\n  218:   * AngularJS-Toaster\n  219    * Version 0.3\n  220   */\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\toaster.js:\n    4  \n    5      /*\n    6:      * AngularJS Toaster\n    7       * Version: 0.4.15\n    8       *\n    .\n   16       */\n   17  \n   18:     angular.module('toaster', []).constant(\n   19:         'toasterConfig', {\n   20              'limit': 0,                   // limits max number of toasts\n   21              'tap-to-dismiss': true,\n   ..\n   45              },\n   46              'body-output-type': '', // Options: '', 'trustedHtml', 'template', 'templateWithData'\n   47:             'body-template': 'toasterBodyTmpl.html',\n   48              'icon-class': 'toast-info',\n   49              'position-class': 'toast-top-right', // Options (see CSS):\n   ..\n   57          }\n   58      ).service(\n   59:         'toaster', [\n   60:             '$rootScope', 'toasterConfig', function ($rootScope, toasterConfig) {\n   61:                 this.pop = function (type, title, body, timeout, bodyOutputType, clickHandler, toasterId, showCloseButton, toastId, onHideCallback) {\n   62                      if (angular.isObject(type)) {\n   63                          var params = type; // Enable named parameters as pop argument\n   ..\n   74                          };\n   75                          toastId = params.toastId;\n   76:                         toasterId = params.toasterId;\n   77                      } else {\n   78                          this.toast = {\n   ..\n   88                          };\n   89                      }\n   90:                     $rootScope.$emit('toaster-newToast', toasterId, toastId);\n   91                  };\n   92  \n   93:                 this.clear = function (toasterId, toastId) {\n   94:                     $rootScope.$emit('toaster-clearToasts', toasterId, toastId);\n   95                  };\n   96  \n   97:                 // Create one method per icon class, to allow to call toaster.info() and similar\n   98:                 for (var type in toasterConfig['icon-classes']) {\n   99:                     this[type] = (function (toasterType) {\n  100:                         return function (title, body, timeout, bodyOutputType, clickHandler, toasterId, showCloseButton, toastId,onHideCallback) {\n  101                              if (angular.isString(title)) {\n  102                                  this.pop(\n  103:                                     toasterType,\n  104                                      title,\n  105                                      body,\n  ...\n  107                                      bodyOutputType,\n  108                                      clickHandler,\n  109:                                     toasterId,\n  110                                      showCloseButton,\n  111                                      toastId,\n  ...\n  113                                  );\n  114                              } else { // 'title' is actually an object with options\n  115:                                 this.pop(angular.extend(title, { type: toasterType }));\n  116                              }\n  117                          };\n  ...\n  120              }]\n  121      ).factory(\n  122:         'toasterEventRegistry', [\n  123              '$rootScope', function ($rootScope) {\n  124:                 var deregisterNewToast = null, deregisterClearToasts = null, newToastEventSubscribers = [], clearToastsEventSubscribers = [], toasterFactory;\n  125  \n  126:                 toasterFactory = {\n  127                      setup: function () {\n  128                          if (!deregisterNewToast) {\n  129                              deregisterNewToast = $rootScope.$on(\n  130:                                 'toaster-newToast', function (event, toasterId, toastId) {\n  131                                      for (var i = 0, len = newToastEventSubscribers.length; i < len; i++) {\n  132:                                         newToastEventSubscribers[i](event, toasterId, toastId);\n  133                                      }\n  134                                  }\n  ...\n  138                          if (!deregisterClearToasts) {\n  139                              deregisterClearToasts = $rootScope.$on(\n  140:                                 'toaster-clearToasts', function (event, toasterId, toastId) {\n  141                                      for (var i = 0, len = clearToastsEventSubscribers.length; i < len; i++) {\n  142:                                         clearToastsEventSubscribers[i](event, toasterId, toastId);\n  143                                      }\n  144                                  }\n  ...\n  177                  };\n  178                  return {\n  179:                     setup: toasterFactory.setup,\n  180:                     subscribeToNewToastEvent: toasterFactory.subscribeToNewToastEvent,\n  181:                     subscribeToClearToastsEvent: toasterFactory.subscribeToClearToastsEvent,\n  182:                     unsubscribeToNewToastEvent: toasterFactory.unsubscribeToNewToastEvent,\n  183:                     unsubscribeToClearToastsEvent: toasterFactory.unsubscribeToClearToastsEvent\n  184                  };\n  185              }]\n  186      ).directive(\n  187:         'toasterContainer', [\n  188:             '$parse', '$rootScope', '$interval', '$sce', 'toasterConfig', 'toaster', 'toasterEventRegistry',\n  189:             function ($parse, $rootScope, $interval, $sce, toasterConfig, toaster, toasterEventRegistry) {\n  190                  return {\n  191                      replace: true,\n  ...\n  196  \n  197                          // Merges configuration set in directive with default one\n  198:                         mergedConfig = angular.extend({}, toasterConfig, scope.$eval(attrs.toasterOptions));\n  199  \n  200                          scope.config = {\n  201:                             toasterId: mergedConfig['toaster-id'],\n  202                              position: mergedConfig['position-class'],\n  203                              title: mergedConfig['title-class'],\n  ...\n  211                          scope.$on(\n  212                              \"$destroy\", function () {\n  213:                                 toasterEventRegistry.unsubscribeToNewToastEvent(scope._onNewToast);\n  214:                                 toasterEventRegistry.unsubscribeToClearToastsEvent(scope._onClearToasts);\n  215                              }\n  216                          );\n  ...\n  241                                  // Prevent adding duplicate toasts if it's set\n  242                                  if (isUndefinedOrNull(toastId)) {\n  243:                                     if (scope.toasters.length > 0 && scope.toasters[scope.toasters.length - 1].body === toast.body) {\n  244                                          return;\n  245                                      }\n  246                                  } else {\n  247                                      var i, len;\n  248:                                     for (i = 0, len = scope.toasters.length; i < len; i++) {\n  249:                                         if (scope.toasters[i].uid === toastId) {\n  250                                              removeToast(i);\n  251                                              // update loop\n  252                                              i--;\n  253:                                             len = scope.toasters.length;\n  254                                          }\n  255                                      }\n  ...\n  304                              scope.configureTimer(toast);\n  305                              if (mergedConfig['newest-on-top'] === true) {\n  306:                                 scope.toasters.unshift(toast);\n  307:                                 if (mergedConfig['limit'] > 0 && scope.toasters.length > mergedConfig['limit']) {\n  308:                                     scope.toasters.pop();\n  309                                  }\n  310                              } else {\n  311:                                 scope.toasters.push(toast);\n  312:                                 if (mergedConfig['limit'] > 0 && scope.toasters.length > mergedConfig['limit']) {\n  313:                                     scope.toasters.shift();\n  314                                  }\n  315                              }\n  ...\n  318                          scope.removeToast = function (id) {\n  319                              var i, len, toast;\n  320:                             for (i = 0, len = scope.toasters.length; i < len; i++) {\n  321:                                 if (scope.toasters[i].id === id) {\n  322                                      removeToast(i);\n  323                                      break;\n  ...\n  327  \n  328                          function removeToast(toastIndex) {\n  329:                             var toast = scope.toasters[toastIndex];\n  330                              if (toast) {\n  331                                  if (toast.timeoutPromise) {\n  332                                      $interval.cancel(toast.timeoutPromise);\n  333                                  }\n  334:                                 scope.toasters.splice(toastIndex, 1);\n  335                                  \n  336                                  if (angular.isFunction(toast.onHideCallback)) {\n  ...\n  341  \n  342                          function removeAllToasts(toastId) {\n  343:                             for (var i = scope.toasters.length - 1; i >= 0; i--) {\n  344                                  if (isUndefinedOrNull(toastId)) {\n  345                                      removeToast(i);\n  346                                  } else {\n  347:                                     if (scope.toasters[i].uid == toastId) {\n  348                                          removeToast(i);\n  349                                      }\n  ...\n  352                          }\n  353  \n  354:                         scope.toasters = [];\n  355  \n  356                          function isUndefinedOrNull(val) {\n  ...\n  358                          }\n  359  \n  360:                         scope._onNewToast = function (event, toasterId, toastId) {\n  361:                             // Compatibility: if toaster has no toasterId defined, and if call to display\n  362                              // hasn't either, then the request is for us\n  363  \n  364:                             if ((isUndefinedOrNull(scope.config.toasterId) && isUndefinedOrNull(toasterId)) || (!isUndefinedOrNull(scope.config.toasterId) && !isUndefinedOrNull(toasterId) && scope.config.toasterId == toasterId)) {\n  365:                                 addToast(toaster.toast, toastId);\n  366                              }\n  367                          };\n  368:                         scope._onClearToasts = function (event, toasterId, toastId) {\n  369:                             // Compatibility: if toaster has no toasterId defined, and if call to display\n  370                              // hasn't either, then the request is for us\n  371:                             if (toasterId == '*' || (isUndefinedOrNull(scope.config.toasterId) && isUndefinedOrNull(toasterId)) || (!isUndefinedOrNull(scope.config.toasterId) && !isUndefinedOrNull(toasterId) && scope.config.toasterId == toasterId)) {\n  372                                  removeAllToasts(toastId);\n  373                              }\n  374                          };\n  375  \n  376:                         toasterEventRegistry.setup();\n  377  \n  378:                         toasterEventRegistry.subscribeToNewToastEvent(scope._onNewToast);\n  379:                         toasterEventRegistry.subscribeToClearToastsEvent(scope._onClearToasts);\n  380                      },\n  381                      controller: [\n  ...\n  411                                              removeToast = $scope.$parent.$eval(toast.clickHandler)(toast, isCloseButton);\n  412                                          } else {\n  413:                                             console.log(\"TOAST-NOTE: Your click handler is not inside a parent scope of toaster-container.\");\n  414                                          }\n  415                                      }\n  ...\n  420                              };\n  421                          }],\n  422:                     template: '<div id=\"toast-container\" ng-class=\"[config.position, config.animation]\">' + '<div ng-repeat=\"toaster in toasters\" class=\"toast\" ng-class=\"toaster.type\" ng-click=\"click(toaster)\" ng-mouseover=\"stopTimer(toaster)\" ng-mouseout=\"restartTimer(toaster)\">' + '<button type=\"button\" class=\"toast-close-button\" ng-show=\"toaster.showCloseButton\" ng-click=\"click(toaster, true)\">&times;</button>' + '<div ng-class=\"config.title\">{{toaster.title}}</div>' + '<div ng-class=\"config.message\" ng-switch on=\"toaster.bodyOutputType\">' + '<div ng-switch-when=\"trustedHtml\" ng-bind-html=\"toaster.html\"></div>' + '<div ng-switch-when=\"template\"><div ng-include=\"toaster.bodyTemplate\"></div></div>' + '<div ng-switch-when=\"templateWithData\"><div ng-include=\"toaster.bodyTemplate\"></div></div>' + '<div ng-switch-default >{{toaster.body}}</div>' + '</div>' + '</div>' + '</div>'\n  423                  };\n  424              }]\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\toaster.min.js:\n    1  /*\n    2:  * AngularJS Toaster\n    3   * Version: 0.4.14\n    4   *\n    .\n   11   * Related to project of John Papa, Hans Fjällemark and Nguyễn Thiện Hùng (thienhung1989)\n   12   */\n   13: !function(){\"use strict\";angular.module(\"toaster\",[]).constant(\"toasterConfig\",{limit:0,\"tap-to-dismiss\":!0,\"close-button\":!1,\"newest-on-top\":!0,\"time-out\":5e3,\"icon-classes\":{error:\"toast-error\",info:\"toast-info\",wait:\"toast-wait\",success:\"toast-success\",warning:\"toast-warning\"},\"body-output-type\":\"\",\"body-template\":\"toasterBodyTmpl.html\",\"icon-class\":\"toast-info\",\"position-class\":\"toast-top-right\",\"title-class\":\"toast-title\",\"message-class\":\"toast-message\",\"prevent-duplicates\":!1,\"mouseover-timer-stop\":!0}).service(\"toaster\",[\"$rootScope\",\"toasterConfig\",function(t,e){this.pop=function(e,o,s,n,i,a,r,l,c,u){if(angular.isObject(e)){var d=e;this.toast={type:d.type,title:d.title,body:d.body,timeout:d.timeout,bodyOutputType:d.bodyOutputType,clickHandler:d.clickHandler,showCloseButton:d.showCloseButton,uid:d.toastId,onHideCallback:d.onHideCallback},c=d.toastId,r=d.toasterId}else this.toast={type:e,title:o,body:s,timeout:n,bodyOutputType:i,clickHandler:a,showCloseButton:l,uid:c,onHideCallback:u};t.$emit(\"toaster-newToast\",r,c)},this.clear=function(e,o){t.$emit(\"toaster-clearToasts\",e,o)};for(var o in e[\"icon-classes\"])this[o]=function(t){return function(e,o,s,n,i,a,r,l,c){angular.isString(e)?this.pop(t,e,o,s,n,i,a,r,l,c):this.pop(angular.extend(e,{type:t}))}}(o)}]).factory(\"toasterEventRegistry\",[\"$rootScope\",function(t){var e,o=null,s=null,n=[],i=[];return e={setup:function(){o||(o=t.$on(\"toaster-newToast\",function(t,e,o){for(var s=0,i=n.length;i>s;s++)n[s](t,e,o)})),s||(s=t.$on(\"toaster-clearToasts\",function(t,e,o){for(var s=0,n=i.length;n>s;s++)i[s](t,e,o)}))},subscribeToNewToastEvent:function(t){n.push(t)},subscribeToClearToastsEvent:function(t){i.push(t)},unsubscribeToNewToastEvent:function(t){var e=n.indexOf(t);e>=0&&n.splice(e,1),0===n.length&&(o(),o=null)},unsubscribeToClearToastsEvent:function(t){var e=i.indexOf(t);e>=0&&i.splice(e,1),0===i.length&&(s(),s=null)}},{setup:e.setup,subscribeToNewToastEvent:e.subscribeToNewToastEvent,subscribeToClearToastsEvent:e.subscribeToClearToastsEvent,unsubscribeToNewToastEvent:e.unsubscribeToNewToastEvent,unsubscribeToClearToastsEvent:e.unsubscribeToClearToastsEvent}}]).directive(\"toasterContainer\",[\"$parse\",\"$rootScope\",\"$interval\",\"$sce\",\"toasterConfig\",\"toaster\",\"toasterEventRegistry\",function(t,e,o,s,n,i,a){return{replace:!0,restrict:\"EA\",scope:!0,link:function(e,r,l){function c(t,s){t.timeoutPromise=o(function(){e.removeToast(t.id)},s,1)}function u(o,n){if(o.type=f[\"icon-classes\"][o.type],o.type||(o.type=f[\"icon-class\"]),f[\"prevent-duplicates\"]===!0)if(m(n)){if(e.toasters.length>0&&e.toasters[e.toasters.length-1].body===o.body)return}else{var i,a;for(i=0,a=e.toasters.length;a>i;i++)e.toasters[i].uid===n&&(d(i),i--,a=e.toasters.length)}o.id=++b,m(n)||(o.uid=n);var r=f[\"close-button\"];if(\"boolean\"==typeof o.showCloseButton);else if(\"boolean\"==typeof r)o.showCloseButton=r;else if(\"object\"==typeof r){var l=r[o.type];\"undefined\"!=typeof l&&null!==l&&(o.showCloseButton=l)}else o.showCloseButton=!1;switch(o.bodyOutputType=o.bodyOutputType||f[\"body-output-type\"],o.bodyOutputType){case\"trustedHtml\":o.html=s.trustAsHtml(o.body);break;case\"template\":o.bodyTemplate=o.body||f[\"body-template\"];break;case\"templateWithData\":var c=t(o.body||f[\"body-template\"]),u=c(e);o.bodyTemplate=u.template,o.data=u.data}e.configureTimer(o),f[\"newest-on-top\"]===!0?(e.toasters.unshift(o),f.limit>0&&e.toasters.length>f.limit&&e.toasters.pop()):(e.toasters.push(o),f.limit>0&&e.toasters.length>f.limit&&e.toasters.shift())}function d(t){var s=e.toasters[t];s&&(s.timeoutPromise&&o.cancel(s.timeoutPromise),e.toasters.splice(t,1),angular.isFunction(s.onHideCallback)&&s.onHideCallback())}function p(t){for(var o=e.toasters.length-1;o>=0;o--)m(t)?d(o):e.toasters[o].uid==t&&d(o)}function m(t){return angular.isUndefined(t)||null===t}var f,b=0;f=angular.extend({},n,e.$eval(l.toasterOptions)),e.config={toasterId:f[\"toaster-id\"],position:f[\"position-class\"],title:f[\"title-class\"],message:f[\"message-class\"],tap:f[\"tap-to-dismiss\"],closeButton:f[\"close-button\"],animation:f[\"animation-class\"],mouseoverTimer:f[\"mouseover-timer-stop\"]},e.$on(\"$destroy\",function(){a.unsubscribeToNewToastEvent(e._onNewToast),a.unsubscribeToClearToastsEvent(e._onClearToasts)}),e.configureTimer=function(t){var e=angular.isNumber(t.timeout)?t.timeout:f[\"time-out\"];\"object\"==typeof e&&(e=e[t.type]),e>0&&c(t,e)},e.removeToast=function(t){var o,s;for(o=0,s=e.toasters.length;s>o;o++)if(e.toasters[o].id===t){d(o);break}},e.toasters=[],e._onNewToast=function(t,o,s){(m(e.config.toasterId)&&m(o)||!m(e.config.toasterId)&&!m(o)&&e.config.toasterId==o)&&u(i.toast,s)},e._onClearToasts=function(t,o,s){(\"*\"==o||m(e.config.toasterId)&&m(o)||!m(e.config.toasterId)&&!m(o)&&e.config.toasterId==o)&&p(s)},a.setup(),a.subscribeToNewToastEvent(e._onNewToast),a.subscribeToClearToastsEvent(e._onClearToasts)},controller:[\"$scope\",\"$element\",\"$attrs\",function(t){t.stopTimer=function(e){t.config.mouseoverTimer===!0&&e.timeoutPromise&&(o.cancel(e.timeoutPromise),e.timeoutPromise=null)},t.restartTimer=function(e){t.config.mouseoverTimer===!0?e.timeoutPromise||t.configureTimer(e):null===e.timeoutPromise&&t.removeToast(e.id)},t.click=function(e,o){if(t.config.tap===!0||e.showCloseButton===!0&&o===!0){var s=!0;e.clickHandler&&(angular.isFunction(e.clickHandler)?s=e.clickHandler(e,o):angular.isFunction(t.$parent.$eval(e.clickHandler))?s=t.$parent.$eval(e.clickHandler)(e,o):console.log(\"TOAST-NOTE: Your click handler is not inside a parent scope of toaster-container.\")),s&&t.removeToast(e.id)}}}],template:'<div id=\"toast-container\" ng-class=\"[config.position, config.animation]\"><div ng-repeat=\"toaster in toasters\" class=\"toast\" ng-class=\"toaster.type\" ng-click=\"click(toaster)\" ng-mouseover=\"stopTimer(toaster)\" ng-mouseout=\"restartTimer(toaster)\"><button type=\"button\" class=\"toast-close-button\" ng-show=\"toaster.showCloseButton\" ng-click=\"click(toaster, true)\">&times;</button><div ng-class=\"config.title\">{{toaster.title}}</div><div ng-class=\"config.message\" ng-switch on=\"toaster.bodyOutputType\"><div ng-switch-when=\"trustedHtml\" ng-bind-html=\"toaster.html\"></div><div ng-switch-when=\"template\"><div ng-include=\"toaster.bodyTemplate\"></div></div><div ng-switch-when=\"templateWithData\"><div ng-include=\"toaster.bodyTemplate\"></div></div><div ng-switch-default >{{toaster.body}}</div></div></div></div>'}}])}(window,document);\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\lib\\AngularJS-Toaster\\toaster.scss:\n   28  $toast: #030303 !default;\n   29  $toastSuccess: #51a351 !default;\n   30: $toastError: #bd362f !default;\n   31  $toastInfo: #2f96b4 !default;\n   32  $toastWarning: #f89406 !default;\n   ..\n  219  \n  220  .toast-error {\n  221:   background-color: $toastError;\n  222  }\n  223  \n  ...\n  265  \n  266  /*\n  267:  * AngularJS-Toaster\n  268   * Version 0.3\n  269  */\n\nD:\\Desktop\\KooKooApp\\KooKooApp\\www\\templates\\menu.html:\n    1: <toaster-container toaster-options=\"{'time-out': 3000, 'close-button':false, tab: true}\"></toaster-container>\n    2  <drawer side=\"left\" ng-show=\"false\">\n    3     \n\n299 matches across 21 files\n",
 			"settings":
 			{
-				"buffer_size": 4077,
+				"buffer_size": 47338,
 				"line_ending": "Windows",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
+			"file": "www/app/register/register.js",
+			"settings":
+			{
+				"buffer_size": 16110,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/recipe/recipe.js",
+			"settings":
+			{
+				"buffer_size": 12402,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/common/resources/store.js",
 			"settings":
 			{
-				"buffer_size": 5301,
+				"buffer_size": 6044,
 				"line_ending": "Windows"
 			}
 		},
@@ -113,7 +149,15 @@
 			"file": "www/app/app.js",
 			"settings":
 			{
-				"buffer_size": 18502,
+				"buffer_size": 18750,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "www/app/config.js",
+			"settings":
+			{
+				"buffer_size": 4796,
 				"line_ending": "Windows"
 			}
 		},
@@ -121,7 +165,7 @@
 			"file": "www/app/storelocator/info.html",
 			"settings":
 			{
-				"buffer_size": 2236,
+				"buffer_size": 2386,
 				"line_ending": "Windows"
 			}
 		},
@@ -177,7 +221,8 @@
 		"/D/Desktop/KooKooApp/KooKooApp",
 		"/D/Desktop/KooKooApp/KooKooApp/www",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app",
-		"/D/Desktop/KooKooApp/KooKooApp/www/app/login",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/digitalcoupon",
+		"/D/Desktop/KooKooApp/KooKooApp/www/app/recipe",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/storelocator",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common",
 		"/D/Desktop/KooKooApp/KooKooApp/www/common/resources",
@@ -292,6 +337,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"toaster",
+			"trackinggps",
+			"trach",
+			"goTo",
+			"nextViewOptions",
+			"goto",
+			"FacebookAppID",
+			"getCurrentUserName",
+			"getCurrentUser",
 			"getCurrentUserId",
 			"checkin",
 			"switchStoreType",
@@ -410,16 +464,7 @@
 			"back-button",
 			"ion-navicon",
 			"track",
-			"trac",
-			"track by",
-			">\n",
-			"popup",
-			"uiGmapgoogle-maps",
-			"openAddForm",
-			"popup",
-			"StoreInfoCtrl",
-			"StoreLocatorCtrl",
-			"email ="
+			"trac"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -438,7 +483,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 9,
 			"sheets":
 			[
 				{
@@ -467,7 +512,7 @@
 						"translation.y": 810.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -483,8 +528,8 @@
 						"selection":
 						[
 							[
-								2750,
-								2765
+								2919,
+								2926
 							]
 						],
 						"settings":
@@ -494,27 +539,85 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 594.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "www/app/storelocator/storelocator.js",
+					"file": "www/app/recipe/recipedetail.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19641,
+						"buffer_size": 3202,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6013,
-								6031
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/app/digitalcoupon/digitalcoupon.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 3423,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "www/app/storelocator/storelocator.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6158,
+								6176
 							]
 						],
 						"settings":
@@ -524,27 +627,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2972.0,
+						"translation.y": 2946.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "www/common/security/security.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3937,
+						"buffer_size": 3964,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3073,
-								3089
+								3213,
+								3231
 							]
 						],
 						"settings":
@@ -553,18 +656,18 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1748.0,
+						"translation.y": 1550.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4077,
+						"buffer_size": 47338,
 						"regions":
 						{
 							"match":
@@ -623,6 +726,1214 @@
 									[
 										3940,
 										3956
+									],
+									[
+										4297,
+										4310
+									],
+									[
+										4437,
+										4450
+									],
+									[
+										4891,
+										4904
+									],
+									[
+										5290,
+										5297
+									],
+									[
+										5584,
+										5591
+									],
+									[
+										5730,
+										5737
+									],
+									[
+										5991,
+										5998
+									],
+									[
+										6243,
+										6250
+									],
+									[
+										6407,
+										6414
+									],
+									[
+										6675,
+										6682
+									],
+									[
+										6952,
+										6959
+									],
+									[
+										7119,
+										7126
+									],
+									[
+										7349,
+										7356
+									],
+									[
+										7739,
+										7746
+									],
+									[
+										7993,
+										8000
+									],
+									[
+										8286,
+										8293
+									],
+									[
+										8676,
+										8683
+									],
+									[
+										8839,
+										8846
+									],
+									[
+										9341,
+										9348
+									],
+									[
+										9525,
+										9532
+									],
+									[
+										9765,
+										9772
+									],
+									[
+										10053,
+										10060
+									],
+									[
+										10215,
+										10222
+									],
+									[
+										10656,
+										10663
+									],
+									[
+										10840,
+										10847
+									],
+									[
+										11157,
+										11164
+									],
+									[
+										11576,
+										11583
+									],
+									[
+										11768,
+										11775
+									],
+									[
+										12007,
+										12014
+									],
+									[
+										12142,
+										12149
+									],
+									[
+										12313,
+										12320
+									],
+									[
+										12582,
+										12589
+									],
+									[
+										12693,
+										12700
+									],
+									[
+										12901,
+										12908
+									],
+									[
+										13027,
+										13034
+									],
+									[
+										13189,
+										13196
+									],
+									[
+										13481,
+										13488
+									],
+									[
+										13606,
+										13613
+									],
+									[
+										13846,
+										13853
+									],
+									[
+										14010,
+										14017
+									],
+									[
+										14164,
+										14171
+									],
+									[
+										14542,
+										14549
+									],
+									[
+										14718,
+										14725
+									],
+									[
+										14934,
+										14941
+									],
+									[
+										15183,
+										15190
+									],
+									[
+										15395,
+										15402
+									],
+									[
+										15794,
+										15801
+									],
+									[
+										15987,
+										15994
+									],
+									[
+										16225,
+										16232
+									],
+									[
+										16507,
+										16514
+									],
+									[
+										16737,
+										16744
+									],
+									[
+										17027,
+										17034
+									],
+									[
+										17322,
+										17329
+									],
+									[
+										17398,
+										17405
+									],
+									[
+										17594,
+										17601
+									],
+									[
+										17709,
+										17716
+									],
+									[
+										17903,
+										17910
+									],
+									[
+										18097,
+										18104
+									],
+									[
+										18212,
+										18219
+									],
+									[
+										18377,
+										18384
+									],
+									[
+										18587,
+										18594
+									],
+									[
+										18951,
+										18958
+									],
+									[
+										18959,
+										18966
+									],
+									[
+										19313,
+										19320
+									],
+									[
+										19321,
+										19328
+									],
+									[
+										19521,
+										19528
+									],
+									[
+										19592,
+										19599
+									],
+									[
+										19617,
+										19624
+									],
+									[
+										19780,
+										19787
+									],
+									[
+										19986,
+										19993
+									],
+									[
+										20069,
+										20076
+									],
+									[
+										20194,
+										20201
+									],
+									[
+										20265,
+										20272
+									],
+									[
+										20290,
+										20297
+									],
+									[
+										20422,
+										20429
+									],
+									[
+										20461,
+										20468
+									],
+									[
+										20588,
+										20595
+									],
+									[
+										20663,
+										20670
+									],
+									[
+										20953,
+										20960
+									],
+									[
+										21091,
+										21098
+									],
+									[
+										21151,
+										21158
+									],
+									[
+										21546,
+										21553
+									],
+									[
+										21633,
+										21640
+									],
+									[
+										21766,
+										21773
+									],
+									[
+										21780,
+										21787
+									],
+									[
+										22075,
+										22082
+									],
+									[
+										22089,
+										22096
+									],
+									[
+										22147,
+										22154
+									],
+									[
+										22208,
+										22215
+									],
+									[
+										22228,
+										22235
+									],
+									[
+										22295,
+										22302
+									],
+									[
+										22410,
+										22417
+									],
+									[
+										22487,
+										22494
+									],
+									[
+										22551,
+										22558
+									],
+									[
+										22725,
+										22732
+									],
+									[
+										22849,
+										22856
+									],
+									[
+										22867,
+										22874
+									],
+									[
+										22908,
+										22915
+									],
+									[
+										23127,
+										23134
+									],
+									[
+										23145,
+										23152
+									],
+									[
+										23251,
+										23258
+									],
+									[
+										23416,
+										23423
+									],
+									[
+										23479,
+										23486
+									],
+									[
+										23905,
+										23912
+									],
+									[
+										24121,
+										24128
+									],
+									[
+										24294,
+										24301
+									],
+									[
+										24312,
+										24319
+									],
+									[
+										24363,
+										24370
+									],
+									[
+										24444,
+										24451
+									],
+									[
+										24566,
+										24573
+									],
+									[
+										24710,
+										24717
+									],
+									[
+										24868,
+										24875
+									],
+									[
+										24886,
+										24893
+									],
+									[
+										24949,
+										24956
+									],
+									[
+										25281,
+										25288
+									],
+									[
+										25392,
+										25399
+									],
+									[
+										25667,
+										25674
+									],
+									[
+										25828,
+										25835
+									],
+									[
+										25889,
+										25896
+									],
+									[
+										25940,
+										25947
+									],
+									[
+										26155,
+										26162
+									],
+									[
+										26316,
+										26323
+									],
+									[
+										26342,
+										26349
+									],
+									[
+										26377,
+										26384
+									],
+									[
+										26410,
+										26417
+									],
+									[
+										26454,
+										26461
+									],
+									[
+										26499,
+										26506
+									],
+									[
+										26512,
+										26519
+									],
+									[
+										26543,
+										26550
+									],
+									[
+										26634,
+										26641
+									],
+									[
+										26768,
+										26775
+									],
+									[
+										26926,
+										26933
+									],
+									[
+										27034,
+										27041
+									],
+									[
+										27074,
+										27081
+									],
+									[
+										27385,
+										27392
+									],
+									[
+										27594,
+										27601
+									],
+									[
+										27640,
+										27647
+									],
+									[
+										27678,
+										27685
+									],
+									[
+										27797,
+										27804
+									],
+									[
+										28130,
+										28137
+									],
+									[
+										28149,
+										28156
+									],
+									[
+										28356,
+										28363
+									],
+									[
+										28375,
+										28382
+									],
+									[
+										28476,
+										28483
+									],
+									[
+										28543,
+										28550
+									],
+									[
+										28565,
+										28572
+									],
+									[
+										28697,
+										28704
+									],
+									[
+										28764,
+										28771
+									],
+									[
+										28848,
+										28855
+									],
+									[
+										28963,
+										28970
+									],
+									[
+										29175,
+										29182
+									],
+									[
+										29452,
+										29459
+									],
+									[
+										29791,
+										29798
+									],
+									[
+										29945,
+										29952
+									],
+									[
+										30176,
+										30183
+									],
+									[
+										30223,
+										30230
+									],
+									[
+										30460,
+										30467
+									],
+									[
+										30496,
+										30503
+									],
+									[
+										30714,
+										30721
+									],
+									[
+										31003,
+										31010
+									],
+									[
+										31042,
+										31049
+									],
+									[
+										31266,
+										31273
+									],
+									[
+										31471,
+										31478
+									],
+									[
+										31546,
+										31553
+									],
+									[
+										31643,
+										31650
+									],
+									[
+										31742,
+										31749
+									],
+									[
+										31843,
+										31850
+									],
+									[
+										31976,
+										31983
+									],
+									[
+										32062,
+										32069
+									],
+									[
+										32079,
+										32086
+									],
+									[
+										32090,
+										32097
+									],
+									[
+										32179,
+										32186
+									],
+									[
+										32194,
+										32201
+									],
+									[
+										32203,
+										32210
+									],
+									[
+										32469,
+										32476
+									],
+									[
+										32502,
+										32509
+									],
+									[
+										32611,
+										32618
+									],
+									[
+										32636,
+										32643
+									],
+									[
+										32946,
+										32953
+									],
+									[
+										33053,
+										33060
+									],
+									[
+										33416,
+										33423
+									],
+									[
+										33445,
+										33452
+									],
+									[
+										33460,
+										33467
+									],
+									[
+										33774,
+										33781
+									],
+									[
+										33864,
+										33871
+									],
+									[
+										34147,
+										34154
+									],
+									[
+										34454,
+										34461
+									],
+									[
+										34557,
+										34564
+									],
+									[
+										34649,
+										34656
+									],
+									[
+										34795,
+										34802
+									],
+									[
+										34895,
+										34902
+									],
+									[
+										34987,
+										34994
+									],
+									[
+										35269,
+										35276
+									],
+									[
+										35351,
+										35358
+									],
+									[
+										35618,
+										35625
+									],
+									[
+										35924,
+										35931
+									],
+									[
+										36218,
+										36225
+									],
+									[
+										36487,
+										36494
+									],
+									[
+										36709,
+										36716
+									],
+									[
+										36912,
+										36919
+									],
+									[
+										36990,
+										36997
+									],
+									[
+										37005,
+										37012
+									],
+									[
+										37206,
+										37213
+									],
+									[
+										37238,
+										37245
+									],
+									[
+										37286,
+										37293
+									],
+									[
+										37319,
+										37326
+									],
+									[
+										37346,
+										37353
+									],
+									[
+										37359,
+										37366
+									],
+									[
+										37421,
+										37428
+									],
+									[
+										37588,
+										37595
+									],
+									[
+										37666,
+										37673
+									],
+									[
+										37681,
+										37688
+									],
+									[
+										37842,
+										37849
+									],
+									[
+										37894,
+										37901
+									],
+									[
+										37926,
+										37933
+									],
+									[
+										37974,
+										37981
+									],
+									[
+										38007,
+										38014
+									],
+									[
+										38034,
+										38041
+									],
+									[
+										38047,
+										38054
+									],
+									[
+										38236,
+										38243
+									],
+									[
+										38305,
+										38312
+									],
+									[
+										38402,
+										38409
+									],
+									[
+										38863,
+										38870
+									],
+									[
+										39190,
+										39197
+									],
+									[
+										39201,
+										39208
+									],
+									[
+										39235,
+										39242
+									],
+									[
+										39265,
+										39272
+									],
+									[
+										39299,
+										39306
+									],
+									[
+										39335,
+										39342
+									],
+									[
+										39408,
+										39415
+									],
+									[
+										39449,
+										39456
+									],
+									[
+										39517,
+										39524
+									],
+									[
+										39588,
+										39595
+									],
+									[
+										39665,
+										39672
+									],
+									[
+										39738,
+										39745
+									],
+									[
+										39833,
+										39840
+									],
+									[
+										39898,
+										39905
+									],
+									[
+										40105,
+										40112
+									],
+									[
+										40311,
+										40318
+									],
+									[
+										40334,
+										40341
+									],
+									[
+										40590,
+										40597
+									],
+									[
+										40794,
+										40801
+									],
+									[
+										40818,
+										40825
+									],
+									[
+										41143,
+										41150
+									],
+									[
+										41285,
+										41292
+									],
+									[
+										41343,
+										41350
+									],
+									[
+										41560,
+										41567
+									],
+									[
+										41678,
+										41685
+									],
+									[
+										41771,
+										41778
+									],
+									[
+										42428,
+										42435
+									],
+									[
+										42489,
+										42496
+									],
+									[
+										42505,
+										42512
+									],
+									[
+										42515,
+										42522
+									],
+									[
+										42823,
+										42830
+									],
+									[
+										42844,
+										42851
+									],
+									[
+										42855,
+										42862
+									],
+									[
+										42920,
+										42927
+									],
+									[
+										42946,
+										42953
+									],
+									[
+										42981,
+										42988
+									],
+									[
+										43611,
+										43618
+									],
+									[
+										43644,
+										43651
+									],
+									[
+										43671,
+										43678
+									],
+									[
+										43690,
+										43697
+									],
+									[
+										43720,
+										43727
+									],
+									[
+										43747,
+										43754
+									],
+									[
+										43787,
+										43794
+									],
+									[
+										43850,
+										43857
+									],
+									[
+										43955,
+										43962
+									],
+									[
+										43994,
+										44001
+									],
+									[
+										44115,
+										44122
+									],
+									[
+										44142,
+										44149
+									],
+									[
+										44155,
+										44162
+									],
+									[
+										44678,
+										44685
+									],
+									[
+										44707,
+										44714
+									],
+									[
+										44742,
+										44749
+									],
+									[
+										44796,
+										44803
+									],
+									[
+										44826,
+										44833
+									],
+									[
+										44854,
+										44861
+									],
+									[
+										44936,
+										44943
+									],
+									[
+										44966,
+										44973
+									],
+									[
+										44994,
+										45001
+									],
+									[
+										45759,
+										45766
+									],
+									[
+										45907,
+										45914
+									],
+									[
+										45918,
+										45925
+									],
+									[
+										45952,
+										45959
+									],
+									[
+										45982,
+										45989
+									],
+									[
+										46016,
+										46023
+									],
+									[
+										46052,
+										46059
+									],
+									[
+										46120,
+										46127
+									],
+									[
+										46161,
+										46168
+									],
+									[
+										46224,
+										46231
+									],
+									[
+										46290,
+										46297
+									],
+									[
+										46362,
+										46369
+									],
+									[
+										46430,
+										46437
+									],
+									[
+										46520,
+										46527
+									],
+									[
+										46580,
+										46587
+									],
+									[
+										46796,
+										46803
+									],
+									[
+										46967,
+										46974
+									],
+									[
+										47040,
+										47047
+									],
+									[
+										47145,
+										47152
+									],
+									[
+										47163,
+										47170
+									],
+									[
+										47235,
+										47242
 									]
 								],
 								"scope": ""
@@ -631,15 +1942,15 @@
 						"selection":
 						[
 							[
-								3729,
-								3729
+								8323,
+								8323
 							]
 						],
 						"settings":
 						{
 							"detect_indentation": false,
 							"line_numbers": false,
-							"output_tag": 1,
+							"output_tag": 3,
 							"result_base_dir": "",
 							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
 							"result_line_regex": "^ +([0-9]+):",
@@ -647,27 +1958,114 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1080.0,
+						"translation.y": 2952.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "www/app/register/register.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16110,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8406,
+								8406
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3837.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/app/recipe/recipe.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12402,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3962,
+								3962
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2289.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "www/common/resources/store.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6044,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2043,
+								2043
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 655.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "www/common/resources/store.js",
+					"buffer": 10,
+					"file": "www/app/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5301,
+						"buffer_size": 18750,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1646,
-								1646
+								15406,
+								15406
 							]
 						],
 						"settings":
@@ -676,27 +2074,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 702.0,
+						"translation.y": 10622.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "www/app/app.js",
+					"buffer": 11,
+					"file": "www/app/config.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18502,
+						"buffer_size": 4796,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16851,
-								16851
+								2676,
+								2684
 							]
 						],
 						"settings":
@@ -705,27 +2103,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 11252.0,
+						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 12,
 					"file": "www/app/storelocator/info.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2236,
+						"buffer_size": 2386,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								831,
-								831
+								1280,
+								1280
 							]
 						],
 						"settings":
@@ -734,14 +2132,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 162.0,
+						"translation.y": 594.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 13,
 					"file": "www/lib/ngmap/build/docs/index.html",
 					"semi_transient": false,
 					"settings":
@@ -767,11 +2165,11 @@
 						"translation.y": 2389.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 14,
 					"file": "www/app/storelocator/storedetail.js",
 					"semi_transient": false,
 					"settings":
@@ -797,7 +2195,7 @@
 						"translation.y": 2037.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 13,
 					"type": "text"
 				}
 			]
