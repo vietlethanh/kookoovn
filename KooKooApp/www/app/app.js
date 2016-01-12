@@ -470,7 +470,7 @@ angular.module('MCMRelationshop', [
 					templateUrl: "app/storelocator/storelocator.html"
 				}
 			},
-			cache: false
+			//cache: false
 		})
 		.state('app.storeinfo', {
 			url: "/storeinfo/:id",

@@ -3,13 +3,14 @@ angular.module('MCMRelationshop.Info', [
 ])
 .controller('InfoCtrl', ['$scope','$state','APP_CONFIG','MCMTracker',
 	function($scope, $state,APP_CONFIG, MCMTracker) {  
-		//console.log('dang thu trang')
+		console.log('InfoCtrl');
 		// private properties -------------------------------------------------------------
 		// public properties -------------------------------------------------------------
 		// scope properties -------------------------------------------------------------
 		$scope.cfg = APP_CONFIG;
 		// private method -------------------------------------------------------------
 		//public method -------------------------------------------------------------
+		
 		$scope.goSupport = function(){
 			$state.go('app.support');
 		}
@@ -29,6 +30,7 @@ angular.module('MCMRelationshop.Info', [
 			BannerID: curentUser ? curentUser.BannerID: 13, // default is united banner
 			Body: ''
 		}
+		$scope.cfg = null;
 		// private method -------------------------------------------------------------
 		//public method -------------------------------------------------------------
 		$scope.send = function(){

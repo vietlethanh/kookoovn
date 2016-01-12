@@ -35,7 +35,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       init: function($scope,$state,$stateParams,$ionicSideMenuDelegate){
         var self = this;
         this.$scope = $scope;
-        $scope.mode= APP_CONFIG.MapMode.map;// 'map'; /*map, list*/
+        console.log('init BaseStoreLocatorCtrl');
+           
         //$scope.selectedTab='favorite'; /*map, list*/
         $scope.sc = {
           keyword: '',
@@ -155,6 +156,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         var self = this;
         //console.log(res);
         var stores = res.data;
+        console.log(stores);
         /*
         _.forEach(stores, function(store){
          store.selectStore = self.onSelectStore;
@@ -188,14 +190,14 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 
 
       switchMode: function(mode){
-        this.$scope.mode = mode;
+        this.$scope.mapmode = mode;
         $timeout(function(){
           $ionicScrollDelegate.scrollTop(true);
         }, 500);  
       },
       switchStoreType: function(type){
         $ionicLoading.show();
-        this.$scope.mode = APP_CONFIG.MapMode.list;
+        this.$scope.mapmode = APP_CONFIG.MapMode.list;
         this.$scope.selectedTab = type;
         if(type== APP_CONFIG.EnumSys.TAB_HISTORY || type== APP_CONFIG.EnumSys.TAB_FAVORITE)
         {  
@@ -229,18 +231,28 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     var controller = new controllerCls($scope);
   }
 ])
-.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil','$cordovaGeolocation','$ionicViewService',
-  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil,$cordovaGeolocation,$ionicViewService) {  
+.controller('StoreLocatorCtrl', ['$scope','$state','$stateParams', '$ionicSideMenuDelegate', 'APP_CONFIG','Store', 'BaseStoreLocatorCtrl','security','$ionicGesture','$compile','AppUtil','$cordovaGeolocation','$ionicHistory',
+  function($scope, $state,$stateParams, $ionicSideMenuDelegate,APP_CONFIG, Store,BaseStoreLocatorCtrl, security, $ionicGesture,$compile,AppUtil,$cordovaGeolocation,$ionicHistory) {  
     console.log('Load StoreLocatorCtrl');
     var controllerCls = BaseStoreLocatorCtrl.extend({      
     });
     //console.log('init controllerCls');
     var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);
-  
+    console.log($scope.mapmode);
+    if($scope.mapmode == null)
+    {
+       $scope.mapmode= APP_CONFIG.MapMode.map;// 'map'; /*map, list*/
+    }    
+    console.log($scope.mapmode);
     //var store ={};
     $scope.onSelectStore = function(storeID) {    
       //console.log('onSelectStore');
-      $scope.goTo('app.storeinfo', {id: storeID, reload:true})
+      //$scope.goTo('app.storeinfo', {id: storeID})
+      $state.go('app.storeinfo', {id: storeID});
+      $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+        disableBack: false
+      });
     }
     var onload = function(markerID) {
       //console.log('onload');     
@@ -386,15 +398,17 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     //get Paramenter
     $scope.keyword = $stateParams.keyword;
     $scope.cat = $stateParams.catId;
-    $scope.type = $stateParams.type;
+    $scope.selectedTab = $stateParams.type;
     $scope.page = $stateParams.page;
-    console.log('call centerOnMe');
-    if($scope.type == APP_CONFIG.EnumSys.TAB_HISTORY)
+    //console.log('call centerOnMe');
+    if($scope.selectedTab == APP_CONFIG.EnumSys.TAB_HISTORY)
     {
+        $scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; /*map, list*/
         $scope.loadCheckedInStores();
     }
-    else if($scope.type == APP_CONFIG.EnumSys.TAB_FAVORITE)
+    else if($scope.selectedTab == APP_CONFIG.EnumSys.TAB_FAVORITE)
     {
+        $scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; /*map, list*/
         $scope.loadFavoriteStores();
     }
     else
