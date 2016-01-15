@@ -598,10 +598,12 @@ angular.module('MCMRelationshop', [
 		$scope.openLink = AppUtil.openNewWindow;
 		$scope.appcfg = APP_CONFIG;
 		$scope.globalKeyword =  {};
+
 		$scope.globalSearchStore = function(type){
 			 if(type== APP_CONFIG.EnumSys.TAB_HISTORY || type== APP_CONFIG.EnumSys.TAB_FAVORITE )
 			 {		 		
 				 $state.go('app.storelocator', {type: type,page: 1},{ reload: true });
+				 //$state.reload();
 			 }
 			 else
 			 {
@@ -609,7 +611,9 @@ angular.module('MCMRelationshop', [
 				 var catID = $scope.selectedCategory.ArticleTypeID;
 				 //console.log('catID');
 				 //console.log(catID);
-				 $state.go('app.storelocator', {keyword: keyword,catId: catID,type: '',page: 1},{ reload: true });
+				 //$scope.centerOnMe(keyword,catID);
+				 $state.go('app.storelocator', {keyword: keyword,catId: catID,type: '',page: new Date().getTime()});
+
 				 ionic.Platform.ready(function(){
 		        	$ionicSideMenuDelegate.toggleLeft();
 		    	});	

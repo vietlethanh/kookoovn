@@ -29,7 +29,9 @@ angular.module('MCMRelationshop.Resource.Store', [
 			searchStore: function(keyword,catId,pos){				
 				keyword = keyword == undefined ? '': keyword;
 				var opts = HttpUtil.opts({
-					intercetorParams: {api: false}
+					intercetorParams: {api: false},
+					cache: true	,
+					offcache: true	
 					
 				});
 				console.log('searchStore pos');
@@ -40,7 +42,7 @@ angular.module('MCMRelationshop.Resource.Store', [
 					HttpUtil.encodeUrl({keyword: keyword})+'&'+
 					HttpUtil.encodeUrl({cat: catId})+'&'+ 
 					HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'?pos.lat:0})+'&'+
-					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?pos.lng:0}));
+					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?pos.lng:0}),opts);
 			},
 			getCheckedInStores: function(userName,page){					
 				var opts = HttpUtil.opts({
@@ -52,16 +54,17 @@ angular.module('MCMRelationshop.Resource.Store', [
 					HttpUtil.encodeUrl({UserName: userName})+'&'+
 					HttpUtil.encodeUrl({page: page}));
 			},
-			loadFavoriteStores: function(userName,page){					
+			loadFavoriteStores: function(userName,page,clearCache){					
 				var opts = HttpUtil.opts({
-					intercetorParams: {api: false}
-					
+					intercetorParams: {	api: false,	},
+					cache: !clearCache	,
+					offcache: !clearCache			
 				});
 				
 				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=21&'+ 
 					HttpUtil.encodeUrl({UserName: userName})+'&'+
 					HttpUtil.encodeUrl({type: APP_CONFIG.TrackType.FAVORITE})+'&'+
-					HttpUtil.encodeUrl({page: page}));
+					HttpUtil.encodeUrl({page: page}),opts);
 			},
 
 
