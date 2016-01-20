@@ -50,11 +50,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         //console.log('APP_CONFIG.StoreMapZoomDefault');
         //console.log($scope.map.center);
         $scope.map.zoom = APP_CONFIG.StoreMapZoomDefault;
-        //console.log('APP_CONFIG.StoreMapZoomDefault');
-        //console.log(APP_CONFIG.StoreMapZoomDefault);
-        //$scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
-        //  $scope.map.bounds= {};
-      
+        
         //$scope.gmap = new google.maps.Map(document.getElementById("mainGmap"));
         $scope.showHere = false;
         $scope.hereKey = 'here';
@@ -76,8 +72,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         $scope.searchStore = function(){
           self.loadData($scope.sc.keyword);
         };
-        $scope.loadCheckedInStores = function(){
-          self.loadCheckedInStores();
+        $scope.loadCheckedInStores = function(clearCache){
+          self.loadCheckedInStores(clearCache);
         };
         $scope.loadFavoriteStores = function(clearCache){
           self.loadFavoriteStores(clearCache);
@@ -87,6 +83,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           //console.log(store);
           $scope.goTo('app.storeinfo', {id: store.StoreID})
         };
+        
         //this.loadData($scope.keyword);
         //MCMTracker.trackView('StoreLocator');
        //  alert("You have Map Instance of" + this.$scope.map.control.getGMap().toString());
@@ -129,7 +126,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
                 scope.map.zoom = 15;
             }
         },
-
+      //set market current possion
+     
       nearBy: function(){
         $ionicLoading.show();
         AppUtil.getCurrentPosition().then(function(res){
@@ -157,21 +155,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         //console.log(res);
         var stores = res.data;
         console.log(stores);
-        /*
-        _.forEach(stores, function(store){
-         store.selectStore = self.onSelectStore;
-          store.PharmacyHourArray = store.PharmacyHours ? store.PharmacyHours.split(',') : [];
-          if(store.PharmacyPhone){
-            var match = store.PharmacyPhone.match(/\d+/g);
-            if(match == null){
-              store.PharmacyPhone = null;
-            }
-          }
-
-          //store.logo = self.[store.CS_BannerID+'']
-
-        });
-        */
+       
         this.$scope.stores = stores;
         console.log(  this.$scope.stores);
         $ionicLoading.hide();
@@ -179,10 +163,10 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       onSelectStore: function(store){
         //console.log('lam gi the lam');
       },
-      loadCheckedInStores: function()
+      loadCheckedInStores: function(clearCache)
       {
-         $ionicLoading.show();
-        Store.getCheckedInStores(security.getCurrentUserName(),1).then(this._sucessLoadData.bind(this));
+          $ionicLoading.show();
+          Store.getCheckedInStores(security.getCurrentUserName(),1,clearCache).then(this._sucessLoadData.bind(this));
       },
       loadFavoriteStores: function(clearCache)
       {
@@ -203,18 +187,15 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         this.$scope.selectedTab = type;
         if(type== APP_CONFIG.EnumSys.TAB_HISTORY || type== APP_CONFIG.EnumSys.TAB_FAVORITE)
         {  
-          //this.$scope.globalSearchStore(type);
+          this.$scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; /*map, list*/
+          
           if(type == APP_CONFIG.EnumSys.TAB_HISTORY)
-          {
-              this.$scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; /*map, list*/
-              this.$scope.loadCheckedInStores();
+          {              
+              this.$scope.loadCheckedInStores(clearCache);
           }
           //this.$scope.globalSearchStore(type);
           if(type == APP_CONFIG.EnumSys.TAB_FAVORITE)
-          {
-             
-              //$scope.loadFavoriteStores(clearCache);
-              this.$scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; /*map, list*/
+          {                 
               this.$scope.loadFavoriteStores(clearCache);
              
           }
@@ -252,8 +233,76 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     console.log('Load StoreLocatorCtrl');
     var controllerCls = BaseStoreLocatorCtrl.extend({      
     });
+     var map, markers;
     //console.log('init controllerCls');
     var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);
+    $scope.$on('mapInitialized', function(event, evtmap) {
+          map = evtmap, markers = map.markers;
+          $scope.map = evtmap;
+          
+          console.log('mapInitialized map');
+          console.log($scope.map);
+          if(typeof($rootScope.currentPos) == 'undefined')
+          {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              $rootScope.currentPos = position;
+              setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');
+            });  
+          } 
+          else
+          {
+            setMarker(map, new google.maps.LatLng($rootScope.currentPos.coords.latitude, $rootScope.currentPos.coords.longitude), 'My Location', '');
+          }
+          directionsService = new google.maps.DirectionsService();
+          var rendererOptions = {
+            map: map,
+            suppressMarkers : true
+          };
+          console.log('rendererOptions map');
+          directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+          function setMarker  (map, position, title, content) {
+        
+            //console.log('setMarker');
+
+            //console.log(map);
+            var marker;
+            var markerOptions = {
+                position: position,
+                map: map,
+                title: title,
+                icon: './img/my-location.png'
+            };
+
+            marker = new google.maps.Marker(markerOptions);
+            // markers.push(marker); // add marker to array
+            circle = new google.maps.Circle({
+                map: map,
+                clickable: false,
+                center: position,
+                // metres
+                radius: 300,
+                fillColor: '#fff',
+                fillOpacity: .6,
+                strokeColor: '#313131',
+                strokeOpacity: .4,
+                strokeWeight: 0.1
+            });
+            // attach circle to marker
+            //circle.bindTo('center', marker, 'position');
+            google.maps.event.addListener(marker, 'click', function () {
+              // close window if not undefined
+              if (infoWindow !== void 0) {
+                  infoWindow.close();
+              }
+              // create new window
+              var infoWindowOptions = {
+                  content: content
+              };
+              infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+              infoWindow.open(map, marker);
+            });
+          }          
+    });
     console.log($scope.mapmode);
     if($scope.mapmode == null)
     {
@@ -261,24 +310,43 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     }    
     console.log($scope.mapmode);
     //var store ={};
-    $scope.onSelectStore = function(storeID) {    
+    $scope.onSelectStore = function(storeID,type) {    
       //console.log('onSelectStore');
       //$scope.goTo('app.storeinfo', {id: storeID})
-      $state.go('app.storeinfo', {id: storeID});
+      $state.go('app.storeinfo', {id: storeID, type:type});
       $ionicHistory.nextViewOptions({
         disableAnimate: true,
         disableBack: false
       });
     }
-
+    
     $scope.swithTab = function(type) {    
-      var clearCache =  $rootScope.refreshFav ;
+     
+      var clearCache = false;
+      
+      if(type == APP_CONFIG.EnumSys.TAB_HISTORY)
+      {
+          clearCache = $rootScope.refreshHistory;
+      }
+      else  if(type== APP_CONFIG.EnumSys.TAB_FAVORITE)
+      {
+          clearCache = $rootScope.refreshFavorite;
+      } 
+
       if(typeof(clearCache) == 'undefined')
       {
         clearCache =false;
       }
       $scope.switchStoreType(type,clearCache)
-      $rootScope.refreshFav = false;
+      
+      if(type = APP_CONFIG.EnumSys.TAB_HISTORY)
+      {
+          $rootScope.refreshHistory = false;
+      }
+      else  if(type== APP_CONFIG.EnumSys.TAB_FAVORITE)
+      {
+          $rootScope.refreshFavorite = false;
+      } 
     }
 
     var onload = function(markerID) {
@@ -305,13 +373,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
             selectStore = store;
             //break;
          } 
-      });
-      
-      //console.log('showStore selectStore');
-      //console.log(selectStore);
-      //console.log(AppUtil.trim(selectStore.Content));
-      // $scope.store = $scope.stores[0];
-      // $scope.showInfoWindow.apply(this, [evt, 'bar']); 
+      });      
+  
       infoWindow.close(map);
      
       infoWindow = new google.maps.InfoWindow({
@@ -321,7 +384,9 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         +selectStore.CityName+'<br/><div>'
         + ((typeof(selectStore.Content) != 'undefined' && AppUtil.trim(selectStore.Content)!= '')
           ?'Post: '+selectStore.Content+'...':'')+' <a data-ng-click="onSelectStore(\''+
-          selectStore.StoreID+'\')">Details</a></div></div>'     
+          selectStore.StoreID+'\',\'info\')">More</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+          '<a style="float:right" data-ng-click="onSelectStore(\''+
+          selectStore.StoreID+'\',\'direct\')">Go To</a></div></div>'     
 
       });
      
@@ -354,31 +419,18 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       $scope.gestureMenu(mainContent);
       // $ionicGesture.on('tap', onContentTap, mainContent);
     });
-   
-    var map, markers;
-
-  
-    $scope.$on('mapInitialized', function(event, evtMap) {
-      map = evtMap, markers = map.markers;
-    });
-
-    //console.log(' $scope.cat');
-    //console.log( $stateParams);
-    //console.log( $scope.cat);
-    //console.log('$scope.keyword');
-    //console.log($scope.keyword);
 
     var centerCurrentPositionCordova = function(keyword,catId){
 
         var posOptions = {timeout: 10000, enableHighAccuracy: false};
         $cordovaGeolocation.getCurrentPosition(posOptions)
             .then(function (position) {
-              var lat  = position.coords.latitude;
-              var long = position.coords.longitude;
+              //var lat  = position.coords.latitude;
+              //var long = position.coords.longitude;
               //console.log('cordovaGeolocation');
               //console.log(position);
 
-              var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              //var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
               //$scope.positions.push({lat: pos.k,lng: pos.B});
               //console.log('pos');
               //console.log(pos);
@@ -430,22 +482,9 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     $scope.cat = $stateParams.catId;
     $scope.selectedTab = $stateParams.type;
     $scope.page = $stateParams.page;
-   
-    //console.log('call centerOnMe');
-    /*if($scope.selectedTab == APP_CONFIG.EnumSys.TAB_HISTORY)
-    {
-        $scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; map, list
-        $scope.loadCheckedInStores();
-    }
-    else if($scope.selectedTab == APP_CONFIG.EnumSys.TAB_FAVORITE)
-    {
-        $scope.mapmode= APP_CONFIG.MapMode.list;// 'map'; map, list
-       
-    }
-    else*/
-    {
-      centerOnMe($scope.keyword,$scope.cat);
-    }    
+      
+    centerOnMe($scope.keyword,$scope.cat);
+        
   }
 ])
 .controller('SelectStoreCtrl', ['$scope',
@@ -460,8 +499,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 .controller('StoreInfoCtrl',['$scope','$rootScope', '$state', '$stateParams', 'APP_CONFIG', 'security', 'Store','AppUtil','$ionicLoading','$ionicPopup','MCMTracker','$ionicScrollDelegate','$timeout','toaster','TrackingGPS',
   function($scope,$rootScope, $state, $stateParams,APP_CONFIG, security, Store,AppUtil,$ionicLoading,$ionicPopup, MCMTracker, $ionicScrollDelegate,$timeout,toaster,TrackingGPS){
 
+     var map, markers;
+    console.log('StoreInfoCtrl')
     // private properties -------------------------------------------------------------
     var id = $stateParams.id;
+    var type = $stateParams.type;
     var logos =  {
       '13': 'img/store-logo-united.png',
       '14': 'img/store-logo-mktstreet.png',
@@ -470,21 +512,101 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       '15': 'img/store-logo-amigos.png'
     };
     // scope properties -------------------------------------------------------------
-    
-    $scope.map ={
-        center: {
+    $scope.map = {};
+    $scope.mapcenter= {
           latitude:APP_CONFIG.StoreMapCenterPointDefault[0],
           longitude: APP_CONFIG.StoreMapCenterPointDefault[1]
-        },
-        zoom: APP_CONFIG.StoreMapZoomDefault,
-        bounds: {},
     };
+    $scope.mapzoom= APP_CONFIG.StoreMapZoomDefault;
+    $scope.$on('mapInitialized', function(event, evtmap) {
+         map = evtmap, markers = map.markers;
+        $scope.map = evtmap;
+         
+        /*$scope.map.center= {
+          latitude:APP_CONFIG.StoreMapCenterPointDefault[0],
+          longitude: APP_CONFIG.StoreMapCenterPointDefault[1]
+        };
+        $scope.map.zoom= APP_CONFIG.StoreMapZoomDefault;
+        */
+        //$scope.map.bounds= {};
+        
+        console.log('mapInitialized map');
+        console.log($scope.map);
+        //map.setZoom(10);
+        if(typeof($rootScope.currentPos) == 'undefined')
+        {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            $rootScope.currentPos = position;
+            setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');
+          });   
+        }
+        else
+        {
+          setMarker(map, new google.maps.LatLng($rootScope.currentPos.coords.latitude, $rootScope.currentPos.coords.longitude), 'My Location', '');
+        }
+
+        directionsService = new google.maps.DirectionsService();
+        var rendererOptions = {
+          map: map,
+          suppressMarkers : true
+        };
+        console.log('rendererOptions map');
+        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+        function setMarker  (map, position, title, content) {
+      
+          //console.log('setMarker');
+
+          //console.log(map);
+          var marker;
+          var markerOptions = {
+              position: position,
+              map: map,
+              title: title,
+              icon: './img/my-location.png'
+          };
+
+          marker = new google.maps.Marker(markerOptions);
+          // markers.push(marker); // add marker to array
+          circle = new google.maps.Circle({
+              map: map,
+              clickable: false,
+              center: position,
+              // metres
+              radius: 300,
+              fillColor: '#fff',
+              fillOpacity: .6,
+              strokeColor: '#313131',
+              strokeOpacity: .4,
+              strokeWeight: 0.1
+          });
+          // attach circle to marker
+          //circle.bindTo('center', marker, 'position');
+          google.maps.event.addListener(marker, 'click', function () {
+            // close window if not undefined
+            if (infoWindow !== void 0) {
+                infoWindow.close();
+            }
+            // create new window
+            var infoWindowOptions = {
+                content: content
+            };
+            infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+            infoWindow.open(map, marker);
+          });
+        }          
+    });
     $scope.store = {};
     $scope.showP = false;
     $scope.showS = false;
-    $scope.mapSize = "small-map";
+    $scope.directed = false;
+    $scope.showMap = false;
+    if(type === 'direct')
+    {
+         $scope.showMap = true;
+    }
     
-    console.log('StoreInfoCtrl')
+    $scope.mapSize = "small-map";
+  
     // private method -------------------------------------------------------------
     function loadData(clearCache){
 
@@ -512,8 +634,39 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           longitude: $scope.store.Longitude
         }
         $scope.map.zoom = 18;
+        $scope.currentPos= {};
         $scope.tracked = false;
-        $scope.trackingGPS();
+
+         if(typeof($rootScope.currentPos) == 'undefined')
+         {
+            navigator.geolocation.getCurrentPosition(function(position) {         
+              var start =  new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+              var end = new google.maps.LatLng(  $scope.store.Latitude, $scope.store.Longitude);
+              console.log('begin getCurrentPosition');
+              console.log(position);
+              $rootScope.currentPos = position
+             
+              if($scope.showMap)
+              {
+                $scope.directStore();
+              }
+             
+            },
+            function(err)
+            {
+                console.log('err calcRoute');
+                console.log(err);
+            });
+        }
+        else
+        {
+          if($scope.showMap)
+          {
+            $scope.directStore();
+          }
+        }
+        //$scope.trackingGPS();
+       
         var tracker = {   
           UserName:  security.getCurrentUserName(),       
           StoreID: $scope.store.StoreID,      
@@ -522,36 +675,19 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         Store.getTracker(tracker).then(function(res){
          
           var trackData= res.data;
-           console.log('getTracker');
+          console.log('getTracker');
           console.log(trackData);
           if(res!= null && trackData.TrackType == APP_CONFIG.TrackType.FAVORITE)
           {
             $scope.tracked = true;
           }
         });
-        navigator.geolocation.getCurrentPosition(function(position) {         
-          var start =  new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-          var end = new google.maps.LatLng(  $scope.store.Latitude, $scope.store.Longitude);
-          
-          calcRoute(start,end);
-           
-          /*$scope.map.center = {
-            latitude: position.coords.latitude,
-            longitude:  position.coords.longitude
-          }
-           //$scope.$safeApply();
-           $scope.$apply(function(){
-              var element = document.getElementById("mainGmap");
-            
-              $compile(element)($scope)
-          });
-          google.maps.event.trigger($scope.map, 'resize');
-          */
-        });
+        
       });
       return req;
     };
-   function calcRoute (start, end) {       
+   function calcRoute (start, end) {   
+      console.log('start calcRoute');
       var request = {
         origin:start,
         destination:end,
@@ -565,6 +701,18 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           directionsDisplay.setDirections(response);
         }
       });
+      $scope.trackingGPS();
+    }
+    $scope.directStore = function() {    
+     
+      if( $scope.directed==false)
+      {
+        //$scope.trackingGPS();      
+        var start =  new google.maps.LatLng($rootScope.currentPos.coords.latitude,$rootScope.currentPos.coords.longitude)
+        var end = new google.maps.LatLng(  $scope.store.Latitude, $scope.store.Longitude);
+        setTimeout(function() { calcRoute(start,end);}, 500);  
+        $scope.directed = true;    
+      }
     }
     //public method -------------------------------------------------------------
     $scope.goLocator = function(){
@@ -610,7 +758,11 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         longitude: $scope.store.Longitude
 
       };
-      TrackingGPS.startTrack($scope.store,security.getCurrentUserName(), storePos);
+      TrackingGPS.startTrack($scope.store,security.getCurrentUserName(), storePos,function(){
+        $rootScope.refreshHistory = true;
+        console.log('$rootScope.refreshHistory');
+        console.log($rootScope.refreshHistory);
+      });
   };
   $scope.addFavorite = function(storeId)
   {
@@ -623,8 +775,8 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     };
     Store.addTracker(tracker);  
     $scope.tracked = true;
-    $rootScope.refreshFav = true;
-    toaster.pop('success','Success', 'Check-in this location successful.');
+    $rootScope.refreshFavorite = true;    
+    toaster.pop('success','Success', 'Added this location successful.');
   }
   $scope.checkIn_old = function(store) {
     //console.log(store);

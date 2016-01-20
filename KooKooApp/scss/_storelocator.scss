@@ -111,7 +111,7 @@ map
 		}
 	}
 	.info {
-		text-align: center;
+		text-align: right;
 		padding-left: 5px;
 		.button-small {
 			margin-top: 10px;
@@ -205,13 +205,17 @@ map
  	}
  }
  
- 
+ .custom-iw 
+ {
+	opacity:0.7;
+ }
  
  
 .custom-iw .gm-style-iw {
  /* top:15px !important;
   left:0 !important;*/
   /*border-radius:2px;*/
+  
 } 
 .custom-iw>div:first-child>div:nth-child(2) {
   display:none;

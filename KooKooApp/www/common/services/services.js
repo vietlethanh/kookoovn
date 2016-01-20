@@ -8,11 +8,11 @@ angular.module('MCMRelationshop.Services', [
 		var watch = null;
 		var curentPos = null;
 		var r = {
-			startTrack: function(store,userName, desPos){
+			startTrack: function(store,userName, desPos,successFunc){
 				var watchOptions = {
-				frequency: 1000,
-				timeout : 3000,
-				enableHighAccuracy: true // may cause errors if true
+						frequency: 1000,
+						timeout : 3000,
+						enableHighAccuracy: false // may cause errors if true
 				};
 
 				watch = $cordovaGeolocation.watchPosition();
@@ -62,6 +62,8 @@ angular.module('MCMRelationshop.Services', [
 									template: 'You checked in '+store.Name+' successfully.'
 								});
 							watch.clearWatch(watch.watchID);
+							successFunc();
+							
 							/*
 							function setSpeed(coords) {
 							  var KMS_TO_KMH = 3600;
@@ -76,8 +78,7 @@ angular.module('MCMRelationshop.Services', [
 							}
 							*/
 						}
-					},
-					watchOptions
+					},watchOptions
 				);
 				watchId = watch.watchID;
 			},

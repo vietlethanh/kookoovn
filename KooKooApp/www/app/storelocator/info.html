@@ -28,14 +28,28 @@ map {
   height: 100% !important;
 }*/
 </style>
+<style>
+    .gmnoprint
+    {
+        visibility: hidden;
+    }
+    .gmnoprint + div
+    {
+        visibility: hidden;
+    }
+    .gm-style-cc
+    {
+    	visibility: hidden;
+    }
+</style>
 <ion-view title="Store Info" id="StoreInfo">
   <ion-nav-buttons side="left">
 	<!--button menu-toggle="left" class="button button-icon icon ion-navicon"></button-->
   </ion-nav-buttons>
   
   <ion-content class="has-header" >
-		<div style="width: 100%; height: 70%" data-tap-disabled="true"> 
-			<map id="mainGmap" draggable="true" center="[{{map.center.latitude}},{{map.center.longitude}}]" zoom="{{map.zoom}}"  >
+		<div style="width: 100%; height: 80%" data-tap-disabled="true" > 
+			<map id="mainGmap" draggable="true" center="[{{mapcenter.latitude}},{{mapcenter.longitude}}]" zoom="{{mapzoom}}"  >
 				<marker  class="store-info" position="{{store.Latitude}},{{store.Longitude}}"   id='m{{store.StoreID}}' ></marker>
 			</map>
 		</div>
@@ -64,7 +78,8 @@ map {
 				<div>{{store.Address}}</div>
 				<div ng-if="store.Address2">{{store.Address2}}</div>
 				<div class="sub">{{store.DistrictName}}, {{store.CityName}}</div>
-				<a ng-click="openLink(store.mapLink)"><i class="icon icon-store-location"></i></a>
+				<!--a ng-click="openLink(store.mapLink)"><i class="icon icon-store-location"></i></a-->
+				<a ng-click="directStore(store.StoreID,'direct')"><i class="icon icon-store-location"></i></a>
 			</li>
 			<li class="item item-icon-right">
 				<div>{{store.PhoneNumber}}</div>

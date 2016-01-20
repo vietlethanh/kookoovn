@@ -473,7 +473,7 @@ angular.module('MCMRelationshop', [
 			//cache: false
 		})
 		.state('app.storeinfo', {
-			url: "/storeinfo/:id",
+			url: "/storeinfo?id&type",
 			views: {
 				'menuContent': {
 					controller: 'StoreInfoCtrl',
@@ -534,7 +534,7 @@ angular.module('MCMRelationshop', [
 .controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate','Store',
 	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate,Store) {
 		
-		//console.log('$scope.drapmenu');
+		console.log('init app');
         //console.log($scope.drapmenu);
         //console.log($stateParams);
 		//console.log('$state');
@@ -650,23 +650,7 @@ angular.module('MCMRelationshop', [
 		});
 		$scope.directionsService={};// = new google.maps.DirectionsService();
 		$scope.directionsDisplay={};// = new google.maps.DirectionsRenderer();
-		$scope.$on('mapInitialized', function(event, map) {
-			$scope.map = map;
-			console.log('mapInitialized map');
-			console.log($scope.map);
-			navigator.geolocation.getCurrentPosition(function(position) {
-				setMarker(map, new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 'My Location', '');
-			});		
-			directionsService = new google.maps.DirectionsService();
-			var rendererOptions = {
-			  map: map,
-			  suppressMarkers : true
-			};
-			console.log('rendererOptions map');
-			directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
-			
-			
-	    });
+		
 
 		if(isOutdate){
 			$ionicPopup.alert({
@@ -679,48 +663,6 @@ angular.module('MCMRelationshop', [
 		
 
 
-		//set market current possion
-		function setMarker(map, position, title, content) {
-			
-			//console.log('setMarker');
-
-			//console.log(map);
-			var marker;
-			var markerOptions = {
-			    position: position,
-			    map: map,
-			    title: title,
-			    icon: './img/my-location.png'
-			};
-
-			marker = new google.maps.Marker(markerOptions);
-			// markers.push(marker); // add marker to array
-			circle = new google.maps.Circle({
-			    map: map,
-			    clickable: false,
-			   	center: position,
-			    // metres
-			    radius: 300,
-			    fillColor: '#fff',
-			    fillOpacity: .6,
-			    strokeColor: '#313131',
-			    strokeOpacity: .4,
-			    strokeWeight: 0.1
-			});
-			// attach circle to marker
-			//circle.bindTo('center', marker, 'position');
-			google.maps.event.addListener(marker, 'click', function () {
-				// close window if not undefined
-				if (infoWindow !== void 0) {
-				    infoWindow.close();
-				}
-				// create new window
-				var infoWindowOptions = {
-				    content: content
-				};
-				infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-				infoWindow.open(map, marker);
-			});
-		}
+		
 	}
 ]);

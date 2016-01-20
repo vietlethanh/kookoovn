@@ -12,10 +12,10 @@ angular.module('MCMRelationshop.Resource.Store', [
 					offcache: true,
 					intercetorParams: {api: false}
 				})
-				if(clearCache){
+				if(typeof(clearCache) != 'undefined' && clearCache) {
 					CacheUtil.clearKey([APP_CONFIG.KooKooAPI+'/store.php?act=2&id='+storeid]);
 				}
-				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=2&id='+storeid);
+				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=2&id='+storeid,opts);
 				/*var p  = $http.get('http://kookoo.local:8080/store.php?id='+storeid, opts).then(function(res){
 					if(!res.data.Services){
 						return res;
@@ -41,18 +41,19 @@ angular.module('MCMRelationshop.Resource.Store', [
 				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=1&distance=1&'+ 
 					HttpUtil.encodeUrl({keyword: keyword})+'&'+
 					HttpUtil.encodeUrl({cat: catId})+'&'+ 
-					HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'?pos.lat:0})+'&'+
-					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?pos.lng:0}),opts);
+					HttpUtil.encodeUrl({lat: typeof(pos) != 'undefined'? AppUtil.setDecimal(pos.lat,4):0})+'&'+
+					HttpUtil.encodeUrl({lng: typeof(pos) != 'undefined'?AppUtil.setDecimal(pos.lng,4):0}),opts);
 			},
-			getCheckedInStores: function(userName,page){					
+			getCheckedInStores: function(userName,page,clearCache){					
 				var opts = HttpUtil.opts({
-					intercetorParams: {api: false}
-					
+					intercetorParams: {	api: false,	},
+					cache: !clearCache	,
+					offcache: !clearCache			
 				});
 				
 				return $http.get(APP_CONFIG.KooKooAPI+'/store.php?act=20&'+ 
 					HttpUtil.encodeUrl({UserName: userName})+'&'+
-					HttpUtil.encodeUrl({page: page}));
+					HttpUtil.encodeUrl({page: page}),opts);
 			},
 			loadFavoriteStores: function(userName,page,clearCache){					
 				var opts = HttpUtil.opts({

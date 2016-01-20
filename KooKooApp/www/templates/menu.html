@@ -9,7 +9,7 @@
 		<ion-content class="has-header">
 			
 			<ion-list>
-				<ion-item nav-clear menu-close href="#/app/home" class="icon icon-left">
+				<ion-item nav-clear menu-close href="#/app/home" class="icon icon-left" ng-show="false">
 					<i class='icon icon-menu-home'></i>Home
 				</ion-item>				
 				<div class="item item-input-inset item-search">
@@ -88,7 +88,7 @@
 		<ion-content class="has-header">
 			
 			<ion-list>
-				<ion-item nav-clear  class="icon icon-left">
+				<ion-item nav-clear  class="icon icon-left" ng-show="false">
 					<i class='icon ion-ios-home'></i>Home
 				</ion-item>
 				<!--ion-item nav-clear menu-close href="#/app/weeklyad">
@@ -109,7 +109,13 @@
 				<ion-item nav-clear menu-close href="#/app/recipebox">
 					<i class='icon icon-menu-recipebox'></i> My Recipe Box
 				</ion-item-->
+				
 			
+				
+				<div class="item ">
+				</div>
+				<div class="item ">
+				</div>
 				<div class="item item-input-inset item-filter item-select">
 					
 						<select ng-options="cat as cat.ArticleTypeName for cat in categories" 

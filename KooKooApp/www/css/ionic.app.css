@@ -9452,7 +9452,8 @@ div.tabs a.selected {
   .menu .item {
     color: white;
     border: none;
-    background-color: #2A2A32; }
+    background-color: #2A2A32;
+    margin: 10px 0px; }
     .menu .item .item-input {
       -webkit-border-radius: 0px;
       border-radius: 0px; }
@@ -9640,30 +9641,33 @@ ion-side-menu ion-item.log-in {
         width: 100%;
         height: 40px;
         position: relative;
+        max-width: 410px;
         -webkit-animation: fadeOutFaceBookLogin 2s ease 1;
         -moz-animation: fadeOutFaceBookLogin 2s ease 1;
         -ms-animation: fadeOutFaceBookLogin 2s ease 1;
         -o-animation: fadeOutFaceBookLogin 2s ease 1;
         animation: fadeOutFaceBookLogin 2s ease 1; }
     #Login .login-social div.col.google-login {
-      text-align: center; }
+      text-align: right; }
       #Login .login-social div.col.google-login img {
         cursor: pointer;
         width: 100%;
         height: 40px;
         position: relative;
+        max-width: 200px;
         -webkit-animation: fadeOutGoogleLogin 2s ease 1;
         -moz-animation: fadeOutGoogleLogin 2s ease 1;
         -ms-animation: fadeOutGoogleLogin 2s ease 1;
         -o-animation: fadeOutGoogleLogin 2s ease 1;
         animation: fadeOutGoogleLogin 2s ease 1; }
     #Login .login-social div.col.twitter-login {
-      text-align: center; }
+      text-align: left; }
       #Login .login-social div.col.twitter-login img {
         cursor: pointer;
         width: 100%;
         height: 40px;
         position: relative;
+        max-width: 200px;
         -webkit-animation: fadeOutTwitterLogin 2s ease 1;
         -moz-animation: fadeOutTwitterLogin 2s ease 1;
         -ms-animation: fadeOutTwitterLogin 2s ease 1;
@@ -11298,7 +11302,7 @@ map {
     .store-list .image h3.title {
       white-space: normal; }
   .store-list .info {
-    text-align: center;
+    text-align: right;
     padding-left: 5px; }
     .store-list .info .button-small {
       margin-top: 10px;
@@ -11364,6 +11368,9 @@ map {
 #StoreInfo .store-services-list .store-service {
   float: left;
   width: 50%; }
+
+.custom-iw {
+  opacity: 0.7; }
 
 .custom-iw .gm-style-iw {
   /* top:15px !important;
