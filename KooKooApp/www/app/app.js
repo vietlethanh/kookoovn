@@ -83,7 +83,7 @@ angular.module('MCMRelationshop', [
 		// register event when app online, offline
 		MCMTracker.startTrackerWithId(APP_CONFIG.AccountTrackerID);
 		
-		ngFB.init({appId: APP_CONFIG.SocialAppID.FacebookAppID});
+		//ngFB.init({appId: APP_CONFIG.SocialAppID.FacebookAppID});
 	});
 })
 .config(function($stateProvider, $urlRouterProvider) {
