@@ -37,7 +37,22 @@ gulp.task('install', ['git-check'], function() {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
+//iPad
+gulp.task('copy-lib3rd', function(){
+    return gulp.src(cfg.vendor3rd_files,  { cwd : './lib3rd/**'})
+    .pipe(gulp.dest('./www/lib'));
+});
+gulp.task('_copy-lib', function(){
+    return gulp.src(cfg.vendor_files,  { cwd : './lib/**'})
+    .pipe(gulp.dest('./www/lib'));
+});
 
+gulp.task('copy-lib',['clean-lib','_copy-lib', 'copy-lib3rd']);
+
+gulp.task('clean-lib', function(){
+    return del(['www/lib/**']);
+});
+//End iPad
 gulp.task('git-check', function(done) {
   if (!sh.which('git')) {
     console.log(
