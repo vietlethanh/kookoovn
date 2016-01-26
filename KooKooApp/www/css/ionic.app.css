@@ -9445,10 +9445,15 @@ div.tabs a.selected {
     float: left;
     margin-top: 3px; }
   .menu .item-content {
-    line-height: 29px;
-    font-size: 20px;
+    line-height: 58px;
+    font-size: 25px;
     padding: 2px 49px 2px 20px;
-    background-color: #2A2A32; }
+    background-color: #2A2A32;
+    vertical-align: middle; }
+    .menu .item-content img {
+      max-width: 40px;
+      vertical-align: middle;
+      margin-right: 11px; }
   .menu .item {
     color: white;
     border: none;
@@ -9467,6 +9472,18 @@ div.tabs a.selected {
         color: #fff; }
     .menu .item .button-clear {
       color: #151518; }
+  .menu .item-avatar {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 120px; }
+    .menu .item-avatar img {
+      max-width: 100px;
+      max-height: 100px;
+      position: initial; }
+    .menu .item-avatar .item-label {
+      word-break: break-word;
+      display: block; }
   .menu .item-filter {
     padding: 15px;
     margin: 10px 51px 10px 11px;
@@ -11222,6 +11239,9 @@ map {
   width: 100%;
   height: 100%; }
 
+.button-mapview img {
+  max-width: 37px; }
+
 .marrker-labels {
   color: red;
   background-color: white;
@@ -11274,10 +11294,17 @@ map {
 #StoreLocator ::-webkit-input-placeholder {
   color: white; }
 
+#StoreLocator .tabs {
+  background-color: #2A2A32; }
+  #StoreLocator .tabs .tab-item img {
+    max-width: 35px;
+    margin: 7px; }
+
 .store-list {
   font-size: 12px;
   line-height: 18px;
-  white-space: normal; }
+  white-space: normal;
+  padding: 2px 8px; }
   .store-list .label {
     font-weight: bold;
     margin-top: 5px; }
@@ -11305,8 +11332,8 @@ map {
     text-align: right;
     padding-left: 5px; }
     .store-list .info .button-small {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 2px;
+      margin-bottom: 2px;
       width: 65px; }
 
 .MapStoreInfo {

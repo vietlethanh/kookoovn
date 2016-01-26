@@ -21,6 +21,12 @@ map
 	height: 100%;
 
 }
+.button-mapview
+{	
+	img{
+		max-width:37px;
+	}
+}
 .marrker-labels {
 	color: red;
 	background-color: white;
@@ -81,12 +87,22 @@ map
 	::-webkit-input-placeholder{
 		color: white;
 	}
+	.tabs{
+		background-color:$bgmenu;
+		.tab-item{
+			img{
+				max-width:35px;
+				margin: 7px;
+			}
+		}
+	}
+	
 }
  .store-list{
 	font-size: 12px;
 	line-height: 18px;
 	white-space: normal;
-	
+	padding: 2px 8px;
 	.label{
 		font-weight: bold;
 		margin-top: 5px;
@@ -114,11 +130,12 @@ map
 		text-align: right;
 		padding-left: 5px;
 		.button-small {
-			margin-top: 10px;
-			margin-bottom: 10px;
+			margin-top: 2px;
+			margin-bottom: 2px;
 			width: 65px;
 		}
 	}
+	
  }
  .MapStoreInfo {
 	font-size: 12px;

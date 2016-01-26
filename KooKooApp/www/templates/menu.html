@@ -112,10 +112,15 @@
 				
 			
 				
-				<div class="item ">
+				<div class="item item-avatar">
+					<img src="img/avatar.png"   />
+					 <label class="item-label">
+				    	 My Name
+				    </label>
+					
 				</div>
-				<div class="item ">
-				</div>
+				<!--div class="item ">
+				</div-->
 				<div class="item item-input-inset item-filter item-select">
 					
 						<select ng-options="cat as cat.ArticleTypeName for cat in categories" 
@@ -143,7 +148,9 @@
 				    </button>
 				</div>
 				<ion-item nav-clear menu-close href="#/app/storelocator">
-					<i class='icon ion-android-locate'></i>NearBy
+					<!--i class='icon ion-android-locate'></i-->
+					<img src="img/icon-nearby.png"   />
+					NearBy
 				</ion-item>  
 				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
 					<i class='icon ion-heart'></i>Favorite Brands
@@ -157,12 +164,13 @@
 				<ion-item nav-clear menu-close ng-click="login()" class="log-in" ng-if="isGuestMode">
 					<i class='icon ion-log-in'></i>Log In
 				</ion-item> 
-				<ion-item nav-clear menu-close href="#/app/account" ng-if="!isGuestMode">
+				<ion-item nav-clear menu-close href="#/app/account" ng-show="false" ng-if="!isGuestMode">
 					<i class='icon ion-person'></i>Account
 				</ion-item>
 			
 				<ion-item nav-clear menu-close  href="" ng-if="!isGuestMode" ng-click="logout()">
-					<i class='icon ion-log-out'></i>Logout
+					<img src="img/icon-logout.png"   />
+					<!--i class='icon ion-log-out'></i-->Logout
 				</ion-item> 
 				
 				<!--ion-item nav-clear menu-close href="#/app/search">
@@ -172,7 +180,8 @@
 					<i class='icon icon-menu-fullstie'></i>Full site
 				</ion-item--> 
 				<ion-item nav-clear menu-close  href="#/app/info">
-					<i class='icon icon-menu-info ion-information-circled'></i>Info
+					<img src="img/icon-info.png"   />
+					<!--i class='icon icon-menu-info ion-information-circled'></i-->Info
 				</ion-item>  
 
 			</ion-list>

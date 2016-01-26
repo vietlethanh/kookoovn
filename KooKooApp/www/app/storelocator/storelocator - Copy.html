@@ -7,6 +7,7 @@
     {
         visibility: hidden;
     }
+
 </style>
 <ion-view title="Store Locator"  id="StoreLocator" >
     <ion-nav-buttons side="left">
@@ -14,20 +15,18 @@
         <!--button ng-click="openDrawer()" class="button-drawer button button-icon icon ion-navicon" ng-show="false">Open</button-->
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon button-mapview icon " ng-click="switchMode('map')" >
-             <img src="img/icon-map.png"   />
-        </button>
+        <button class="button button-icon icon ion-map" ng-click="switchMode('map')" ></button>
         <button class="button button-icon icon ion-grid" ng-click="switchMode('list')" ></button>
     </ion-nav-buttons>
 
     <ion-content class="has-header " id="app-content">
         
-        <div style="width: 100%; height: 95%" data-tap-disabled="true" ng-if="mapmode == 'map'"> 
-            <map id="mainGmap" draggable="true" center="[{{lat}}, {{lng}}]" zoom="{{map.zoom}}" zoom-to-include-markers="auto" map-type-control="false" styles="[{featureType:'poi',elementType:'all',stylers:[{visibility:'off'}]}]"  >
-                <marker ng-repeat="storeMap in stores" class="store-info" position="{{storeMap.Latitude}},{{storeMap.Longitude}}" icon= '{url:    "img/logo_small.png" }'   id='m{{storeMap.StoreID}}' on-click="showStore({{storeMap.StoreID}})">               
+        <div id="Gmap" style="width: 100%; height: 95%" data-tap-disabled="true" ng-show="mapmode == 'map'"> 
+            <!--map id="mainGmap" draggable="true" center="[{{lat}}, {{lng}}]" zoom="{{map.zoom}}" zoom-to-include-markers="auto" map-type-control="false" styles="[{featureType:'poi',elementType:'all',stylers:[{visibility:'off'}]}]"  >
+                <marker ng-repeat="storeMap in stores" class="store-info"  position="{{storeMap.Latitude}},{{storeMap.Longitude}}" icon= "{{icon}}"   id='m{{storeMap.StoreID}}' on-click="showStore({{storeMap.StoreID}})">               
                     </marker>             
                     
-            </map>
+            </map-->
           
         </div>    
         <ul class="list" ng-if="mapmode == 'list'">
@@ -42,11 +41,8 @@
                         <button class="button button-small  button-positive" ng-click="onSelectStore(store.StoreID)" ng-show="false">
                             Select Store
                         </button>
-                        <button class="button button-small  button-positive" ng-click="onSelectStore(store.StoreID,'info')">
+                        <button class="button button-small  button-positive" ng-click="goTo('app.storeinfo', {id: store.StoreID})">
                             More Info
-                        </button>
-                         <button class="button button-small  button-positive" ng-click="onSelectStore(store.StoreID,'direct')">
-                            Go To
                         </button>
                     </div>
                 </div>
@@ -62,17 +58,16 @@
     </ion-content>
     <div class="tabs tabs-icon-top " ng-show="true">
         <a class="tab-item"  ng-class="{selected: selectedTab == 'favorite'}" ng-click="swithTab('favorite')">
-           <img src="img/icon-loved.png"  ng-if="selectedTab != 'favorite'" />
-           <img src="img/icon-loved-selected.png"   ng-if="selectedTab == 'favorite'"/>
-           
+            <i class="icon ion-heart"></i>
+            Favorite Brands
         </a>
         <a class="tab-item" ng-class="{selected: selectedTab == 'lucky'}" ng-click="swithTab('lucky')">
-                <img src="img/icon-lucky.png"  ng-if="selectedTab != 'lucky'" />
-                <img src="img/icon-lucky-selected.png" ng-if="selectedTab == 'lucky'"  />
+            <i class="icon ion-star"></i>
+            Lucky Day
         </a>
         <a class="tab-item" ng-class="{selected: selectedTab == 'history'}" ng-click="swithTab('history')">
-               <img src="img/icon-history.png"   ng-if="selectedTab != 'history'"/>
-               <img src="img/icon-history-selected.png"   ng-if="selectedTab == 'history'"/>
+            <i class="icon ion-clock" ></i>
+            Histories
         </a>
     </div>
 </ion-view>
