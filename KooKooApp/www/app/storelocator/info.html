@@ -59,7 +59,7 @@ map {
 			<li class="item check-in" ng-show="true">
 				<div></div>
 				<a class="tab-item button-checkin"  ng-click="addFavorite()" ng-if="!tracked">
-		            <i class="icon icon-store-location"></i>
+		            <i class="icon icon-store-location" ng-show="false"></i>
 		            Add to Favorite
        			</a>
        			<p class="button-checkin" style="font-size: 1em;color: orange;"  ng-if="tracked">		           
@@ -67,7 +67,7 @@ map {
        			</p>
        			<span class="total-checkin" ng-show="false">Total {{store.CheckIn}}</span>
         	</li>
-			<li class="item store-logo">
+			<li class="item store-logo" ng-show="false">
 				<img ng-src="{{getLogo(store)}}"/>
 			</li>
 			<li class="item">
