@@ -638,7 +638,8 @@ angular.module('MCMRelationshop', [
 			 $state.go('app.storelocator', {keyword: keyword,catId: catID,type: '',page: new Date().getTime()});
 
 			 ionic.Platform.ready(function(){
-	        	$ionicSideMenuDelegate.toggleLeft();
+			 	if($ionicSideMenuDelegate.isOpenLeft())
+	        		$ionicSideMenuDelegate.toggleLeft();
 	    	});	
 			
 			 //$state.reload();
@@ -662,13 +663,16 @@ angular.module('MCMRelationshop', [
 			$ionicGesture.on('tap', onContentTap, mainContent);
 		}
 		
-		$scope.$on('userLoggedIn', function(events, args){			
+		$scope.$on('userLoggedIn', function(events, args){		
+
 			$scope.isGuestMode = security.isGuestMode();
 			$scope.currentUser = security.getCurrentUser();
-			$state.go('app.storelocator');
+			$scope.searchNearBy();
+			/*$state.go('app.storelocator');
 			$ionicViewService.nextViewOptions({
 				disableBack: true
 			 });
+			*/
 		});
 		$scope.directionsService={};// = new google.maps.DirectionsService();
 		$scope.directionsDisplay={};// = new google.maps.DirectionsRenderer();
