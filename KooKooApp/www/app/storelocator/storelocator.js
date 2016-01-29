@@ -441,28 +441,38 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     });
 
     var centerCurrentPositionCordova = function(keyword,catId){
+         if(typeof($rootScope.storeMap)!='undefined' && typeof($rootScope.storeMap.getCenter)!='undefined')
+         {
+             console.log(' map.getCenter().lat()');
+            console.log(  $rootScope.storeMap.getCenter().lat());
+            console.log( $rootScope.storeMap.getCenter().lng());
+            controller.loadData(keyword,catId,{lat: $rootScope.storeMap.getCenter().lat(),lng: $rootScope.storeMap.getCenter().lng()});        
 
-        var posOptions = {timeout: 10000, enableHighAccuracy: false};
-        $cordovaGeolocation.getCurrentPosition(posOptions)
-            .then(function (position) {
-              //var lat  = position.coords.latitude;
-              //var long = position.coords.longitude;
-              //console.log('cordovaGeolocation');
-              //console.log(position);
+         }
+         else
+         {
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            $cordovaGeolocation.getCurrentPosition(posOptions)
+                .then(function (position) {
+                  //var lat  = position.coords.latitude;
+                  //var long = position.coords.longitude;
+                  //console.log('cordovaGeolocation');
+                  //console.log(position);
 
-              //var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-              //$scope.positions.push({lat: pos.k,lng: pos.B});
-              //console.log('pos');
-              //console.log(pos);
-              controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});
+                  //var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                  //$scope.positions.push({lat: pos.k,lng: pos.B});
+                  //console.log('pos');
+                  //console.log(pos);
+                  controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});
 
-            }, 
-            function(err) {
-              // error
-              console.log('err centerCurrentPositionCordova');
-              console.log(err);
-            }
-          );
+                }, 
+                function(err) {
+                  // error
+                  console.log('err centerCurrentPositionCordova');
+                  console.log(err);
+                }
+              );
+          }
     }
     var centerCurrentPositionAPI = function(keyword,catId){
         

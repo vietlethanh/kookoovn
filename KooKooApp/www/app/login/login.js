@@ -158,7 +158,7 @@ angular.module('MCMRelationshop.Login', [
 	                    }
 	                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
 	                    user.ProfilePic = '';
-	                    if(typeof(picResponse.data.url)!='undefined')
+	                    if(typeof(picResponse.data.url)!='undefined' && picResponse.data.url != null)
 	                    {
 	                    	user.ProfilePic = picResponse.data.url;
 	                    }
@@ -326,6 +326,8 @@ angular.module('MCMRelationshop.Login', [
 		var facebookCordovaSignIn = function() {
 
 			facebookConnectPlugin.getLoginStatus(function(success){
+				console.log('facebookConnectPlugin');
+				console.log(success);
 				if(success.status === 'connected'){
 					// the user is logged in and has authenticated your app, and response.authResponse supplies
 					// the user's ID, a valid access token, a signed request, and the time the access token
@@ -359,7 +361,12 @@ angular.module('MCMRelationshop.Login', [
 		                        user.Sex = '';
 		                    }
 		                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
-		                    user.ProfilePic = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
+	                     	user.ProfilePic = '';
+		                    if(typeof(response.picture)!='undefined' && typeof(response.picture.data)!='undefined' && typeof(response.picture.data.url)!='undefined' && response.picture.data.url != null)
+		                    {
+		                    	user.ProfilePic = response.picture.data.url;
+		                    }
+		                    //user.ProfilePic = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
 		                    security.setCurrentUser(user);
 		                    user.act = 19;//create account
 		                    User.createUser(user);
@@ -391,7 +398,7 @@ angular.module('MCMRelationshop.Login', [
 		var getFacebookProfileInfo = function (authResponse) {
 			var info = $q.defer();
 
-			facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
+			facebookConnectPlugin.api('/me?fields=email,name,picture&access_token=' + authResponse.accessToken, null,
 				function (response) {
 					console.log(response);
 				info.resolve(response);
