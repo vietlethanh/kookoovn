@@ -64,37 +64,66 @@
 	"buffers":
 	[
 		{
+			"file": "www/app/app.js",
+			"settings":
+			{
+				"buffer_size": 17916,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 8919,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 1387,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/css/ionic.app.css",
+			"settings":
+			{
+				"buffer_size": 276589,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "platforms/ios/www/index.html",
+			"settings":
+			{
+				"buffer_size": 8974,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/app/login/login.js",
+			"settings":
+			{
+				"buffer_size": 15938,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "platforms/ios/www/app/login/login.js",
+			"settings":
+			{
+				"buffer_size": 15581,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/app/storelocator/storelocator.js",
 			"settings":
 			{
-				"buffer_size": 19016,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/common/services/services.js",
-			"settings":
-			{
-				"buffer_size": 2129,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/common/utils/utils.js",
-			"settings":
-			{
-				"buffer_size": 10621,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": " <!-- path to ionic/angularjs js --> \n<style type=\"text/css\">\n.ionic_ratings .icon {\n  font-size:50px;\n}\n\n.ionic_ratings .read_only {\n  pointer-events:none;\n}\n.bar.bar-stable .ion-aquo-left\n{\n	border: none;\n}\n.bar .buttons span.back-text\n{\n	visibility: hidden;\n}\n</style>\n<ion-view title=\"Store Info\" id=\"StoreInfo\">\n  <ion-nav-buttons side=\"left\">\n	<!--button menu-toggle=\"left\" class=\"button button-icon icon ion-navicon\"></button-->\n  </ion-nav-buttons>\n  \n  <ion-content class=\"has-header\" >\n		<div style=\"width: 100%; height: 140px\" data-tap-disabled=\"true\"> \n			<map id=\"mainGmap\" draggable=\"true\" center=\"[{{store.Latitude}},{{store.Longitude}}]\" zoom=\"{{map.zoom}}\"   >\n				<marker  class=\"store-info\" position=\"{{store.Latitude}},{{store.Longitude}}\"   id='m{{store.StoreID}}' ></marker>\n			</map>\n		</div>\n	\n		<ul class=\"list store-info-list\">\n			 \n			<li class=\"item check-in\" ng-show=\"true\">\n				<div></div>\n				<a class=\"tab-item button-checkin\"  ng-click=\"trackingGPS()\">\n		            <i class=\"icon icon-store-location\"></i>\n		            Check in\n       			</a>\n       			<span class=\"total-checkin\">Total {{store.CheckIn}}</span>\n        	</li>\n			<li class=\"item store-logo\">\n				<img ng-src=\"{{getLogo(store)}}\"/>\n			</li>\n			<li class=\"item\">\n				<div>{{store.Name}}</div>\n				<div class=\"sub\">{{store.StoreHours}}</div>\n			</li>\n			<li class=\"item item-icon-right\">\n				<div>{{store.Address}}</div>\n				<div ng-if=\"store.Address2\">{{store.Address2}}</div>\n				<div class=\"sub\">{{store.DistrictName}}, {{store.CityName}}</div>\n				<a ng-click=\"openLink(store.mapLink)\"><i class=\"icon icon-store-location\"></i></a>\n			</li>\n			<li class=\"item item-icon-right\">\n				<div>{{store.PhoneNumber}}</div>\n				<a href=\"tel:{{store.PhoneNumber}}\"><i class=\"icon icon-store-phone\"></i></a>\n			</li>\n			<li class=\"item\" >\n				<div class=\"sub\" >\n					<div ng-repeat=\"article in store.Articles\" ><p class=\"html-content\" ng-bind-html=\"article.Content\"></p></div>					\n				</div> \n			</li>			\n		</ul>		\n  </ion-content>\n</ion-view>\n",
-			"file": "www/app/storelocator/info.html",
-			"file_size": 2079,
-			"file_write_time": 1450189053000000,
-			"settings":
-			{
-				"buffer_size": 2037,
+				"buffer_size": 31557,
 				"line_ending": "Unix"
 			}
 		}
@@ -123,20 +152,22 @@
 	},
 	"file_history":
 	[
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/common/services/services.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/common/utils/utils.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/info.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/config.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/templates/menu.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/app.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/scss/_search.scss",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/scss/_menu.scss",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/config.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/config.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.html",
@@ -382,18 +413,71 @@
 			[
 				{
 					"buffer": 0,
-					"file": "www/app/storelocator/storelocator.js",
+					"file": "www/app/app.js",
 					"settings":
 					{
-						"buffer_size": 19016,
+						"buffer_size": 17916,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17089,
-								17089
+								17916,
+								17916
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11586.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/index.html",
+					"settings":
+					{
+						"buffer_size": 8919,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								819,
+								819
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2660.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "gulpfile.js",
+					"settings":
+					{
+						"buffer_size": 1387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -403,88 +487,143 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7039.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/common/services/services.js",
-					"settings":
-					{
-						"buffer_size": 2129,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								291,
-								285
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 49.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/common/utils/utils.js",
-					"settings":
-					{
-						"buffer_size": 10621,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8682,
-								8682
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3328.0,
+						"translation.y": 246.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "www/app/storelocator/info.html",
+					"file": "www/css/ionic.app.css",
 					"settings":
 					{
-						"buffer_size": 2037,
+						"buffer_size": 276589,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								982,
-								982
+								1883,
+								1883
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "platforms/ios/www/index.html",
+					"settings":
+					{
+						"buffer_size": 8974,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/app/login/login.js",
+					"settings":
+					{
+						"buffer_size": 15938,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15938,
+								15938
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 18.0,
+						"translation.y": 5928.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "platforms/ios/www/app/login/login.js",
+					"settings":
+					{
+						"buffer_size": 15581,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11452,
+								11452
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 113.0,
+						"translation.y": 5722.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "www/app/storelocator/storelocator.js",
+					"settings":
+					{
+						"buffer_size": 31557,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1136,
+								1136
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7476.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
