@@ -157,7 +157,13 @@ angular.module('MCMRelationshop.Login', [
 	                        user.Sex = '1';
 	                    }
 	                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
-	                    user.ProfilePic = picResponse.data.url;
+	                    user.ProfilePic = '';
+	                    if(typeof(picResponse.data.url)!='undefined')
+	                    {
+	                    	user.ProfilePic = picResponse.data.url;
+	                    }
+	                    
+	                    
 	                    console.log("FB getUserInfo");
 	                    console.log(user);
 	                    security.setCurrentUser(user);

@@ -154,10 +154,18 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         var self = this;
         //console.log(res);
         var stores = res.data;
-        console.log(stores);
-       
-        this.$scope.stores = stores;
-        console.log(  this.$scope.stores);
+        if(typeof(res.data) === 'string'  && res.data.trim()=='')
+        {
+            this.$scope.stores = [];
+            this.$scope.mapmode= APP_CONFIG.MapMode.list;
+            
+        }
+        else
+        {
+            console.log(stores);         
+            this.$scope.stores = stores;
+            console.log(  this.$scope.stores);
+        }
         $ionicLoading.hide();
       },
       onSelectStore: function(store){

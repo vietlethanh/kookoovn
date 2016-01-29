@@ -551,6 +551,8 @@ angular.module('MCMRelationshop', [
 		$scope.selectedCategory = {};
   		
 		$scope.currentUser = security.getCurrentUser();
+		console.log('$scope.currentUser' );
+		console.log($scope.currentUser );
 		Store.getCategory().then(function(res){
 				$scope.categories = res.data;
 				$scope.categories.unshift({ArticleTypeID:"0" , ArticleTypeName: "Choose a Category"})
@@ -643,6 +645,7 @@ angular.module('MCMRelationshop', [
 		
 		$scope.$on('userLoggedIn', function(events, args){			
 			$scope.isGuestMode = security.isGuestMode();
+			$scope.currentUser = security.getCurrentUser();
 			$state.go('app.storelocator');
 			$ionicViewService.nextViewOptions({
 				disableBack: true

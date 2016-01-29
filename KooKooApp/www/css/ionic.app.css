@@ -9478,9 +9478,12 @@ div.tabs a.selected {
     text-align: center;
     min-height: 120px; }
     .menu .item-avatar img {
-      max-width: 100px;
-      max-height: 100px;
-      position: initial; }
+      max-width: 120px;
+      max-height: 120px;
+      position: initial;
+      border-color: #35D8DE;
+      border-style: solid;
+      border-width: 5px; }
     .menu .item-avatar .item-label {
       word-break: break-word;
       display: block; }

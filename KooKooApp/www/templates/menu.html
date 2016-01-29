@@ -113,9 +113,10 @@
 			
 				
 				<div class="item item-avatar">
-					<img src="img/avatar.png"   />
+					<img src="{{currentUser.ProfilePic}}" ng-if="currentUser.ProfilePic!='' "   />
+					<img src="img/avatar.png" ng-if="currentUser.ProfilePic ==''"   />
 					 <label class="item-label">
-				    	 My Name
+				    	 {{currentUser.FullName}}
 				    </label>
 					
 				</div>
