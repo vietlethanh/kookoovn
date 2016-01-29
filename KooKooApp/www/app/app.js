@@ -531,8 +531,8 @@ angular.module('MCMRelationshop', [
 			
 	
 })
-.controller('AppCtrl', ['$scope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate','Store',
-	function($scope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate,Store) {
+.controller('AppCtrl', ['$scope','$rootScope','$state','$stateParams', '$ionicModal', '$timeout', 'security', 'Store','AppUtil','APP_CONFIG','apiKey', 'currentUser','currentStore','CacheUtil','$ionicViewService','$timeout','isOutdate','$ionicPopup','$ionicSideMenuDelegate','$ionicGesture','$ionicNavBarDelegate','Store',
+	function($scope,$rootScope,$state, $stateParams, $ionicModal, $timeout, security, Store,AppUtil, APP_CONFIG, apiKey, currentUser, currentStore, CacheUtil, $ionicViewService, $timeout, isOutdate, $ionicPopup, $ionicSideMenuDelegate,$ionicGesture,$ionicNavBarDelegate,Store) {
 		
 		console.log('init app');
         //console.log($scope.drapmenu);
@@ -627,7 +627,26 @@ angular.module('MCMRelationshop', [
 			 });
 					 
 		}
-	
+		$scope.searchNearBy = function(){
+			
+	 		 var keyword = $scope.globalKeyword.Keyword;
+			 var catID = $scope.selectedCategory.ArticleTypeID;
+			 $rootScope.storeMap = undefined;
+			 //console.log('catID');
+			 //console.log(catID);
+			 //$scope.centerOnMe(keyword,catID);
+			 $state.go('app.storelocator', {keyword: keyword,catId: catID,type: '',page: new Date().getTime()});
+
+			 ionic.Platform.ready(function(){
+	        	$ionicSideMenuDelegate.toggleLeft();
+	    	});	
+			
+			 //$state.reload();
+			 $ionicViewService.nextViewOptions({
+				disableBack: true
+			 });
+					 
+		}
 		$scope.goTo = function(link, params){
 			$state.go(link, params);
 			 $ionicSideMenuDelegate.toggleLeft();

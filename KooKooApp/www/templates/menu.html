@@ -148,10 +148,13 @@
 				    	ng-click="globalSearchStore()">				      
 				    </button>
 				</div>
-				<ion-item nav-clear menu-close href="#/app/storelocator">
+				<ion-item nav-clear menu-close ng-click="searchNearBy()" class="item item-complex"  >
 					<!--i class='icon ion-android-locate'></i-->
-					<img src="img/icon-nearby.png"   />
-					NearBy
+					<span class="item-content">
+						<img src="img/icon-nearby.png"   />	NearBy
+					</span>
+					
+
 				</ion-item>  
 				<ion-item nav-clear menu-close href="#/app/storelocator" ng-show="false">
 					<i class='icon ion-heart'></i>Favorite Brands

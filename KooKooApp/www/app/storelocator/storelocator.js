@@ -246,10 +246,22 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     var controller = new controllerCls($scope,$state,$stateParams,$ionicSideMenuDelegate);
     $scope.$on('mapInitialized', function(event, evtmap) {
           map = evtmap, markers = map.markers;
-          $scope.map = evtmap;
+        
+          //console.log( 'map.getCenter()');
           
+         
+          $scope.map = evtmap;
+          $rootScope.storeMap = evtmap;
           console.log('mapInitialized map');
           console.log($scope.map);
+
+          //create custom control
+          var searchHereCtrl = document.createElement('div');
+          searchHere(searchHereCtrl, evtmap);
+
+          searchHereCtrl.index = 1;
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchHereCtrl);
+
           if(typeof($rootScope.currentPos) == 'undefined')
           {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -453,19 +465,31 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           );
     }
     var centerCurrentPositionAPI = function(keyword,catId){
+        
+         if(typeof($rootScope.storeMap)!='undefined' && typeof($rootScope.storeMap.getCenter)!='undefined')
+         {
+             console.log(' map.getCenter().lat()');
+            console.log(  $rootScope.storeMap.getCenter().lat());
+            console.log( $rootScope.storeMap.getCenter().lng());
+            controller.loadData(keyword,catId,{lat: $rootScope.storeMap.getCenter().lat(),lng: $rootScope.storeMap.getCenter().lng()});        
 
-        navigator.geolocation.getCurrentPosition(function(position) {
-          console.log('getCurrentPosition');
-          console.log(position);
-          var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          //$scope.positions.push({lat: pos.k,lng: pos.B});
-          //console.log('pos');
-          //console.log(pos);
-          controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});        
-        }, function(e)
-        {
-          console.log(e);
-        });
+         }
+         else
+         {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              //console.log('getCurrentPosition');
+              //console.log(position);
+              //var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+              //var pos = new google.maps.LatLng(map.getCenter().lat(), map.getCenter().lng());
+              //$scope.positions.push({lat: pos.k,lng: pos.B});
+              //console.log('pos');
+              //console.log(pos);
+              controller.loadData(keyword,catId,{lat: position.coords.latitude,lng: position.coords.longitude});        
+            }, function(e)
+            {
+              console.log(e);
+            });
+        }
     }  
     
     var centerOnMe = function(keyword,catId){
@@ -484,6 +508,40 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           centerCurrentPositionAPI(keyword,catId);   
       } 
     }
+
+    var searchHere = function (controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '1px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.style.opacity = '0.5';
+        controlUI.title = 'Click to search this area';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '12px';
+        controlText.style.lineHeight = '18px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Search Here';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+          centerOnMe($scope.keyword,$scope.cat);
+        });
+
+    }
+
     //$scope.centerOnMe = centerOnMe();
     //get Paramenter
     $scope.keyword = $stateParams.keyword;
@@ -494,6 +552,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     centerOnMe($scope.keyword,$scope.cat);
         
   }
+
 ])
 .controller('SelectStoreCtrl', ['$scope',
   function($scope) {  
