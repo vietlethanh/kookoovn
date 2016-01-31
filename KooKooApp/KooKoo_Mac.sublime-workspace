@@ -91,7 +91,7 @@
 			"file": "www/css/ionic.app.css",
 			"settings":
 			{
-				"buffer_size": 276589,
+				"buffer_size": 277302,
 				"line_ending": "Unix"
 			}
 		},
@@ -99,7 +99,7 @@
 			"file": "platforms/ios/www/index.html",
 			"settings":
 			{
-				"buffer_size": 8974,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -107,7 +107,7 @@
 			"file": "www/app/login/login.js",
 			"settings":
 			{
-				"buffer_size": 15938,
+				"buffer_size": 15912,
 				"line_ending": "Unix"
 			}
 		},
@@ -115,7 +115,7 @@
 			"file": "platforms/ios/www/app/login/login.js",
 			"settings":
 			{
-				"buffer_size": 15581,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -124,6 +124,14 @@
 			"settings":
 			{
 				"buffer_size": 31557,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/app/config.js",
+			"settings":
+			{
+				"buffer_size": 4796,
 				"line_ending": "Unix"
 			}
 		}
@@ -408,7 +416,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -497,15 +505,15 @@
 					"file": "www/css/ionic.app.css",
 					"settings":
 					{
-						"buffer_size": 276589,
+						"buffer_size": 277302,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1883,
-								1883
+								0,
+								0
 							]
 						],
 						"settings":
@@ -525,7 +533,7 @@
 					"file": "platforms/ios/www/index.html",
 					"settings":
 					{
-						"buffer_size": 8974,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -551,15 +559,15 @@
 					"file": "www/app/login/login.js",
 					"settings":
 					{
-						"buffer_size": 15938,
+						"buffer_size": 15912,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15938,
-								15938
+								0,
+								0
 							]
 						],
 						"settings":
@@ -568,7 +576,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 18.0,
-						"translation.y": 5928.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -578,15 +586,15 @@
 					"file": "platforms/ios/www/app/login/login.js",
 					"settings":
 					{
-						"buffer_size": 15581,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11452,
-								11452
+								0,
+								0
 							]
 						],
 						"settings":
@@ -624,6 +632,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 7476.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/app/config.js",
+					"settings":
+					{
+						"buffer_size": 4796,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3922,
+								3922
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1371.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
