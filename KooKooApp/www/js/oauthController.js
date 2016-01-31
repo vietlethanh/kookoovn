@@ -35,7 +35,7 @@ oauthApp.controller('oauthCtrl', function ($scope, $state, $cookieStore) {
                     } else {
                         user.gender = '';
                     }
-                    user.profilePic = picResponse.data.url;
+                    user.Avatar = picResponse.data.url;
                     $cookieStore.put('userInfo', user);
                     $state.go('dashboard');
 
@@ -81,7 +81,7 @@ oauthApp.controller('oauthCtrl', function ($scope, $state, $cookieStore) {
                     } else {
                         user.gender = '';
                     }
-                    user.profilePic = resp.image.url;
+                    user.Avatar = resp.image.url;
                     $cookieStore.put('userInfo', user);
                     $state.go('dashboard');
                 });
