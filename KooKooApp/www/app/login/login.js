@@ -157,10 +157,10 @@ angular.module('MCMRelationshop.Login', [
 	                        user.Sex = '1';
 	                    }
 	                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
-	                    user.ProfilePic = '';
+	                    user.Avatar = '';
 	                    if(typeof(picResponse.data.url)!='undefined' && picResponse.data.url != null)
 	                    {
-	                    	user.ProfilePic = picResponse.data.url;
+	                    	user.Avatar = picResponse.data.url;
 	                    }
 	                    
 	                    
@@ -249,9 +249,9 @@ angular.module('MCMRelationshop.Login', [
 	                        user.gender = '';
 	                    }
 	                 
-	                     user.SocialWeb = APP_CONFIG.SocialWeb.Google;
-	                    user.ProfilePic = resp.image.url;
-	                     security.setCurrentUser(user);
+	                    user.SocialWeb = APP_CONFIG.SocialWeb.Google;
+	                    user.Avatar = resp.image.url;
+	                    security.setCurrentUser(user);
 	                   // $cookieStore.put('userInfo', user);
 	                   $rootScope.$broadcast('userLoggedIn');
 	                    //$cookieStore.put('userInfo', user);
@@ -361,12 +361,12 @@ angular.module('MCMRelationshop.Login', [
 		                        user.Sex = '';
 		                    }
 		                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
-	                     	user.ProfilePic = '';
+	                     	user.Avatar = '';
 		                    if(typeof(response.picture)!='undefined' && typeof(response.picture.data)!='undefined' && typeof(response.picture.data.url)!='undefined' && response.picture.data.url != null)
 		                    {
-		                    	user.ProfilePic = response.picture.data.url;
+		                    	user.Avatar = response.picture.data.url;
 		                    }
-		                    //user.ProfilePic = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
+		                    //user.Avatar = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
 		                    security.setCurrentUser(user);
 		                    user.act = 19;//create account
 		                    User.createUser(user);
