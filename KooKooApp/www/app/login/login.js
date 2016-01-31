@@ -333,9 +333,9 @@ angular.module('MCMRelationshop.Login', [
 					// the user's ID, a valid access token, a signed request, and the time the access token
 					// and signed request each expire
 					console.log('getLoginStatus', success.status);
-					$state.go('app.home');
 					
-						getFacebookProfileInfo(success.authResponse)
+					$state.go('app.home');
+					getFacebookProfileInfo(success.authResponse)
 						.then(function(response) {
 							/*responseof this example I will store user data on local storage
 							UserService.setUser({
@@ -376,10 +376,11 @@ angular.module('MCMRelationshop.Login', [
 						}, function(fail){
 							//fail get profile info
 							console.log('profile info fail', fail);
-						});
+					});
 					
 
 				} else {
+						$state.go('app.home');
 						//if (success.status === 'not_authorized') the user is logged in to Facebook, but has not authenticated your app
 						//else The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
 						console.log('getLoginStatus', success.status);
@@ -412,32 +413,45 @@ angular.module('MCMRelationshop.Login', [
 		};
 
 		//This is the success callback from the login method
-		var fbLoginSuccess = function(response) {
-			if (!response.authResponse){
+		var fbLoginSuccess = function(success) {
+			console.log('Start fbLoginSuccess');
+			if (!success.authResponse){
 			  fbLoginError("Cannot find the authResponse");
 			  return;
-			}
+			}			
 
-			var authResponse = response.authResponse;
+			getFacebookProfileInfo(success.authResponse)
+						.then(function(response) {
+							
+							var user = {};
+		                    user.ExternalID = response.id;
+		                    user.ExternalType = APP_CONFIG.SocialWeb.Facebook;
+		                    user.FullName = response.name;
+		                    user.Email = response.email;
+		                    user.UserName = response.email;
+		                    user.Password = response.email;
+		                    if(response.gender) {
+		                        response.gender.toString().toLowerCase() === 'male' ? user.Sex = 'Male' : user.Sex = 'Female';
+		                    } else {
+		                        user.Sex = '';
+		                    }
+		                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
+	                     	user.Avatar = '';
+		                    if(typeof(response.picture)!='undefined' && typeof(response.picture.data)!='undefined' && typeof(response.picture.data.url)!='undefined' && response.picture.data.url != null)
+		                    {
+		                    	user.Avatar = response.picture.data.url;
+		                    }
+		                    //user.Avatar = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
+		                    security.setCurrentUser(user);
+		                    user.act = 19;//create account
+		                    User.createUser(user);
+		                   // $cookieStore.put('userInfo', user);
+		                   $rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
 
-			getFacebookProfileInfo(authResponse)
-			.then(function(profileInfo) {
-			  /*//for the purpose of this example I will store user data on local storage
-			  UserService.setUser({
-			    authResponse: authResponse,
-						userID: profileInfo.id,
-						name: profileInfo.name,
-						email: profileInfo.email,
-			    picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
-			  });*/
-
-			  $ionicLoading.hide();
-			  $state.go('app.home');
-
-			}, function(fail){
-			  //fail get profile info
-			  console.log('profile info fail', fail);
-			});
+						}, function(fail){
+							//fail get profile info
+							console.log('profile info fail', fail);
+				});
 		};
 
 
