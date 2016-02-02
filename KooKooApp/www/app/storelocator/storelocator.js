@@ -68,7 +68,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
         $scope.switchMode = this.switchMode.bind(this);
         $scope.switchStoreType = this.switchStoreType.bind(this);
        
-        $scope.nearBy = this.nearBy.bind(this);
+        //$scope.nearBy = this.nearBy.bind(this);
         $scope.searchStore = function(){
           self.loadData($scope.sc.keyword);
         };
@@ -105,6 +105,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
             stores = self.$scope.stores,
             length = stores.length;
           if(length <=0){
+            self.$scope.mapmode= APP_CONFIG.MapMode.list;
             return;
           }
           console.log('load stores');
@@ -127,7 +128,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
             }
         },
       //set market current possion
-     
+      /*
       nearBy: function(){
         $ionicLoading.show();
         AppUtil.getCurrentPosition().then(function(res){
@@ -148,6 +149,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
           
         });
       },
+      */
       _sucessLoadData: function(res){
         console.log('_sucessLoadData');
         //console.log(res);
@@ -323,12 +325,12 @@ angular.module('MCMRelationshop.StoreLocator', function(){
             });
           }          
     });
-    console.log($scope.mapmode);
+    //console.log($scope.mapmode);
     if($scope.mapmode == null)
     {
        $scope.mapmode= APP_CONFIG.MapMode.map;// 'map'; /*map, list*/
     }    
-    console.log($scope.mapmode);
+    //console.log($scope.mapmode);
     //var store ={};
     $scope.onSelectStore = function(storeID,type) {    
       //console.log('onSelectStore');
@@ -434,23 +436,25 @@ angular.module('MCMRelationshop.StoreLocator', function(){
       //var mainContent = angular.element(document.querySelectorAll("ion-content")[1]);
       var mainContent = angular.element(document.querySelector('#app-content'));
 
-      console.log('mainContent');
-      console.log(mainContent);
+      //console.log('mainContent');
+      //console.log(mainContent);
       $scope.gestureMenu(mainContent);
       // $ionicGesture.on('tap', onContentTap, mainContent);
     });
 
     var centerCurrentPositionCordova = function(keyword,catId){
+        //search by area
          if(typeof($rootScope.storeMap)!='undefined' && typeof($rootScope.storeMap.getCenter)!='undefined')
          {
-             console.log(' map.getCenter().lat()');
-            console.log(  $rootScope.storeMap.getCenter().lat());
-            console.log( $rootScope.storeMap.getCenter().lng());
+            //console.log(' map.getCenter().lat()');
+            //console.log(  $rootScope.storeMap.getCenter().lat());
+            //console.log( $rootScope.storeMap.getCenter().lng());
             controller.loadData(keyword,catId,{lat: $rootScope.storeMap.getCenter().lat(),lng: $rootScope.storeMap.getCenter().lng()});        
 
          }
          else
          {
+            //search current location
             var posOptions = {timeout: 10000, enableHighAccuracy: false};
             $cordovaGeolocation.getCurrentPosition(posOptions)
                 .then(function (position) {
@@ -476,16 +480,18 @@ angular.module('MCMRelationshop.StoreLocator', function(){
     }
     var centerCurrentPositionAPI = function(keyword,catId){
         
+         //search by area
          if(typeof($rootScope.storeMap)!='undefined' && typeof($rootScope.storeMap.getCenter)!='undefined')
          {
-             console.log(' map.getCenter().lat()');
-            console.log(  $rootScope.storeMap.getCenter().lat());
-            console.log( $rootScope.storeMap.getCenter().lng());
+            //console.log(' map.getCenter().lat()');
+            //console.log(  $rootScope.storeMap.getCenter().lat());
+            //console.log( $rootScope.storeMap.getCenter().lng());
             controller.loadData(keyword,catId,{lat: $rootScope.storeMap.getCenter().lat(),lng: $rootScope.storeMap.getCenter().lng()});        
 
          }
          else
          {
+            //search current location
             navigator.geolocation.getCurrentPosition(function(position) {
               //console.log('getCurrentPosition');
               //console.log(position);

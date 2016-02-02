@@ -13,8 +13,8 @@
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
         <!--button ng-click="openDrawer()" class="button-drawer button button-icon icon ion-navicon" ng-show="false">Open</button-->
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon button-mapview icon " ng-click="switchMode('map')" >
+    <ion-nav-buttons side="right"> 
+        <button class="button button-icon button-mapview icon " ng-click="switchMode('map')" ng-show="stores && stores.length > 0" >
              <img src="img/icon-map.png"   />
         </button>
         <button class="button button-icon icon ion-grid" ng-click="switchMode('list')" ></button>
