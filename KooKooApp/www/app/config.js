@@ -47,11 +47,13 @@ var socialWeb =
 			}
 var socialAppID =
 				{
+					//see init in index.html
 					FacebookAppID:'871963922911532', //vietlethanh1988@yahoo.com
 					TwitterAppID:'5Z9AGmXCunGKxt3iq3dexDGzu', //vietlethanh.dev@gmail.com
 					TwitterSecretKey:"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO",//vietlethanh.dev@gmail.com
-					GoogleAppID:'1026812135759-eikn3a5n8qut3du9ujov51onc3p8h68a.apps.googleusercontent.com', //vvietlethanh.dev@gmail.com
-
+					//search: Google API 
+					//see init in index.html
+					GoogleAppID:'1070103978451-pqgroa727omt4ie3p9k58thqir7irrd1.apps.googleusercontent.com', //kookoovn@gmail.com
 				}
 
 var enumsys = {

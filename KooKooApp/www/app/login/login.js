@@ -177,152 +177,7 @@ angular.module('MCMRelationshop.Login', [
 	            });
 	        }
 	    };
-	
-	    //Login Google with oauth2
-	    $scope.googleLogin = function() {
-	    	alert('googleLogin');
-	        $cordovaOauth.google(APP_CONFIG.SocialAppID.GoogleAppID,
-	         ["https://www.googleapis.com/auth/urlshortener", 
-	         "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
-	            
-	            console.log(JSON.stringify(result));
-	        }, function(error) {
-	        	console.log('Error googleLogin');
-	            console.log(error);
-	        });
-    	}
-    	
-    	//Login Twitter with oauth2
-	    $scope.twitterlogin = function() {
-	    	//alert('twitterlogin');
-	     	$cordovaOauth.twitter(APP_CONFIG.SocialAppID.TwitterAppID, 
-	     		APP_CONFIG.SocialAppID.TwitterSecretKey).then(function(result) {
-                  
-                    oauth_token = result.oauth_token;
-                    oauth_token_secret = result.oauth_token_secret;
-                    user_id = result.user_id;
-                    screen_name = result.screen_name;
-                    
-                    alert(screen_name);
-                    alert(user_id);
-                    alert(oauth_token);
-                    alert(oauth_token_secret);
-                }, function(error) {
-                    alert("Error: " + error);
-                });
-	 	}
-	    // END FB Login
-
-	    // Google Plus Login
-	    $scope.gplusLogin = function () {
-	        //console.log('gplusLogin');
-	        var myParams = {
-	            // Replace client id with yours
-	            'clientid': '1026812135759-8te78kmpleomk3ooup2k2h2k8d2orf83.apps.googleusercontent.com',
-	            'cookiepolicy': 'single_host_origin',
-	            'callback': loginCallback,
-	            'approvalprompt': 'force',
-	            'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
-	        };
-	        gapi.auth.signIn(myParams);
-
-	        function loginCallback(result) {
-	            if (result['status']['signed_in']) {
-	                var request = gapi.client.plus.people.get({'userId': 'me'});
-	                request.execute(function (resp) {
-	                    console.log('Google+ Login RESPONSE: ' + angular.toJson(resp));
-	                    var userEmail;
-	                    if (resp['emails']) {
-	                        for (var i = 0; i < resp['emails'].length; i++) {
-	                            if (resp['emails'][i]['type'] == 'account') {
-	                                userEmail = resp['emails'][i]['value'];
-	                            }
-	                        }
-	                    }
-	                    // store data to DB
-	                    var user = {};
-	                    user.Name = resp.displayName;
-	                    user.Email = userEmail;
-	                    if(resp.gender) {
-	                        resp.gender.toString().toLowerCase() === 'male' ? user.Gender = 'M' : user.Gender = 'F';
-	                    } else {
-	                        user.gender = '';
-	                    }
-	                 
-	                    user.SocialWeb = APP_CONFIG.SocialWeb.Google;
-	                    user.Avatar = resp.image.url;
-	                    security.setCurrentUser(user);
-	                   // $cookieStore.put('userInfo', user);
-	                   $rootScope.$broadcast('userLoggedIn');
-	                    //$cookieStore.put('userInfo', user);
-	                    //$state.go('dashboard');
-	                });
-	            }
-	        }
-	    };
-	    // END Google Plus Login
-
-		vm.login = function(form){
-			if(form.$invalid){
-				vm.showInvalid = true;
-				return;
-			}
-			$ionicLoading.show();
-			security.login(vm.userName, vm.password).then(function(res){
-				$ionicLoading.hide();
-				if(!res.data.IsSuccess){
-					var msg = {
-						Invalid_UserNamePassword: 'Invalid User Name or Password',
-				        User_Not_Active: 'User not active',
-				        User_LockedOut: 'User locked out'
-					};
-					$ionicPopup.alert({
-						title: 'Login Fail',
-						template: msg[res.data.FailCode]
-					});
-					return;
-				}
-				$rootScope.$broadcast('userLoggedIn');
-				mergeShoppingList(res.data.UserName);
-				$q.all([handleCurrentStore(res.data.User)]).then(function(){
-					$ionicLoading.hide();
-					GuestShoppingList.clear();					
-					$ionicViewService.nextViewOptions({
-						disableBack: true
-					});
-					if(back){
-						$state.transitionTo(back, null,{
-							reload: true,
-							inderit: false,
-							notify: true
-						});
-					}
-					else {
-						$state.transitionTo('app.home', null,{
-							reload: true,
-							inderit: false,
-							notify: true
-						});
-					}
-				});
-				// success
-				
-			}, function(res){
-				$ionicLoading.hide();
-				//console.log(res);
-			})
-			
-		}
-		vm.register = function(){
-			$state.go('app.register', {step: 1});
-		}
-		vm.goForgot = function(){
-			$state.go('app.forgot');
-		}
-		MCMTracker.trackView('Login');
-		
-		
-		//This method is executed when the user press the "Login with facebook" button
+	    //This method is executed when the user press the "Login with facebook" button
 		var facebookCordovaSignIn = function() {
 
 			facebookConnectPlugin.getLoginStatus(function(success){
@@ -460,5 +315,122 @@ angular.module('MCMRelationshop.Login', [
 			console.log('fbLoginError', error);
 			$ionicLoading.hide();
 		};
+		// END FB Login
+	   
+    	
+    	//Login Twitter with oauth2
+	    $scope.twitterlogin = function() {
+	    	//alert('twitterlogin');
+	     	$cordovaOauth.twitter(APP_CONFIG.SocialAppID.TwitterAppID, 
+	     		APP_CONFIG.SocialAppID.TwitterSecretKey).then(function(result) {
+                  
+                    oauth_token = result.oauth_token;
+                    oauth_token_secret = result.oauth_token_secret;
+                    user_id = result.user_id;
+                    screen_name = result.screen_name;
+                    
+                    alert(screen_name);
+                    alert(user_id);
+                    alert(oauth_token);
+                    alert(oauth_token_secret);
+                }, function(error) {
+                    alert("Error: " + error);
+                });
+	 	}
+	    
+
+	    // Google Plus Login
+	    $scope.GoogleLoginA = function()
+		{
+			console.log('GoogleLoginA');
+		    //$scope.loaderShow('Google');
+		    window.plugins.googleplus.login({},function (response)
+		    {
+		    	console.log(response);
+		    	
+		        var user = {};
+                user.ExternalID = response.userId;
+                user.ExternalType = APP_CONFIG.SocialWeb.Google;
+                user.FullName = response.displayName;
+                user.Email = response.email;
+                user.UserName = response.email;
+                user.Password = response.email;
+                
+                    user.Sex = '';
+                
+                user.SocialWeb = APP_CONFIG.SocialWeb.Google;
+                user.Avatar = '';
+                if(typeof(response.imageUrl)!='undefined' && response.imageUrl != null)
+                {
+                	user.Avatar = response.imageUrl;
+                }
+                
+                
+                console.log("google getUserInfo");
+                console.log(user);
+                security.setCurrentUser(user);
+                user.act = 19;//create account
+                User.createUser(user);
+               // $cookieStore.put('userInfo', user);
+               $rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Google);
+		        //$scope.loaderHide();
+		        //$state.go('app.dashboard');
+		    },
+		    function (msg)
+		    {
+		    	console.log(msg);
+		        //$scope.showAlert('Google signin Error<br/>'+msg);
+		        //$scope.loaderHide();
+		    });
+		}
+	    $scope.gplusLogin = function () {
+	        //console.log('gplusLogin');
+	        var myParams = {
+	            // Replace client id with yours
+	            'clientid': '1026812135759-8te78kmpleomk3ooup2k2h2k8d2orf83.apps.googleusercontent.com',
+	            'cookiepolicy': 'single_host_origin',
+	            'callback': loginCallback,
+	            'approvalprompt': 'force',
+	            'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+	        };
+	        gapi.auth.signIn(myParams);
+
+	        function loginCallback(result) {
+	            if (result['status']['signed_in']) {
+	                var request = gapi.client.plus.people.get({'userId': 'me'});
+	                request.execute(function (resp) {
+	                    console.log('Google+ Login RESPONSE: ' + angular.toJson(resp));
+	                    var userEmail;
+	                    if (resp['emails']) {
+	                        for (var i = 0; i < resp['emails'].length; i++) {
+	                            if (resp['emails'][i]['type'] == 'account') {
+	                                userEmail = resp['emails'][i]['value'];
+	                            }
+	                        }
+	                    }
+	                    // store data to DB
+	                    var user = {};
+	                    user.Name = resp.displayName;
+	                    user.Email = userEmail;
+	                    if(resp.gender) {
+	                        resp.gender.toString().toLowerCase() === 'male' ? user.Gender = 'M' : user.Gender = 'F';
+	                    } else {
+	                        user.gender = '';
+	                    }
+	                 
+	                    user.SocialWeb = APP_CONFIG.SocialWeb.Google;
+	                    user.Avatar = resp.image.url;
+	                    security.setCurrentUser(user);
+	                   // $cookieStore.put('userInfo', user);
+	                   $rootScope.$broadcast('userLoggedIn');
+	                    //$cookieStore.put('userInfo', user);
+	                    //$state.go('dashboard');
+	                });
+	            }
+	        }
+	    };
+	    // END Google Plus Login
+
+		
 	}
 ])
