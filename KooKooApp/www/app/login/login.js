@@ -118,12 +118,12 @@ angular.module('MCMRelationshop.Login', [
      		}
      		else
      		{     	    			
-     			facebooAPILogin();  
+     			facebooWebLogin();  
      		}
      	} 	
 	    // FB Login
-	    var facebooAPILogin = function () {
-	        console.log('FB.login');
+	    var facebooWebLogin = function () {
+	        //console.log('FB.login');
 	        FB.login(function (response) {
 	            if (response.authResponse) {
 	                getUserInfo();
@@ -177,7 +177,81 @@ angular.module('MCMRelationshop.Login', [
 	            });
 	        }
 	    };
-	
+
+	    //This method is executed when the user press the "Login with facebook" button
+		var facebookCordovaSignIn = function() {
+
+			facebookConnectPlugin.getLoginStatus(function(success){
+				//console.log('facebookConnectPlugin');
+				//console.log(success);
+				if(success.status === 'connected'){
+					// the user is logged in and has authenticated your app, and response.authResponse supplies
+					// the user's ID, a valid access token, a signed request, and the time the access token
+					// and signed request each expire
+					//console.log('getLoginStatus', success.status);
+					
+					$state.go('app.home');
+					getFacebookProfileInfo(success.authResponse)
+						.then(function(response) {
+							/*responseof this example I will store user data on local storage
+							UserService.setUser({
+								authResponse: success.authResponse,
+								userID: profileInfo.id,
+								name: profileInfo.name,
+								email: profileInfo.email,
+								picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+							});
+							*/
+							//$state.go('app.home');
+
+							var user = {};
+		                    user.ExternalID = response.id;
+		                    user.ExternalType = APP_CONFIG.SocialWeb.Facebook;
+		                    user.FullName = response.name;
+		                    user.Email = response.email;
+		                    user.UserName = response.email;
+		                    user.Password = response.email;
+		                    if(response.gender) {
+		                        response.gender.toString().toLowerCase() === 'male' ? user.Sex = 'Male' : user.Sex = 'Female';
+		                    } else {
+		                        user.Sex = '';
+		                    }
+		                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
+	                     	user.Avatar = '';
+		                    if(typeof(response.picture)!='undefined' && typeof(response.picture.data)!='undefined' && typeof(response.picture.data.url)!='undefined' && response.picture.data.url != null)
+		                    {
+		                    	user.Avatar = response.picture.data.url;
+		                    }
+		                    //user.Avatar = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
+		                    security.setCurrentUser(user);
+		                    user.act = 19;//create account
+		                    User.createUser(user);
+		                   // $cookieStore.put('userInfo', user);
+		                   $rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
+
+						}, function(fail){
+							//fail get profile info
+							console.log('profile info fail', fail);
+					});
+					
+
+				} else {
+						$state.go('app.home');
+						//if (success.status === 'not_authorized') the user is logged in to Facebook, but has not authenticated your app
+						//else The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
+						console.log('getLoginStatus', success.status);
+
+						$ionicLoading.show({
+							template: 'Logging in...'
+						});
+
+						//ask the permissions you need. You can learn more about FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
+						facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+				}
+			});
+		};
+
+		/*
 	    //Login Google with oauth2
 	    $scope.googleLogin = function() {
 	    	alert('googleLogin');
@@ -191,9 +265,32 @@ angular.module('MCMRelationshop.Login', [
 	            console.log(error);
 	        });
     	}
-    	$scope.GoogleLoginA = function()
-		{
-			console.log('GoogleLoginA');
+    	*/
+
+    	/**
+     	* SOCIAL LOGIN
+     	* Google
+     	*/
+     	$scope.googleLogin = function () {
+
+     		var isWebView = ionic.Platform.isWebView();
+     		//console.log('isWebView');
+     		//console.log(isWebView);
+     		//console.log(ionic.Platform.platform());
+
+     		if(isWebView)
+     		{
+     			googleCordovaLogin();   				
+     		}
+     		else
+     		{     	    			
+     			googleWebLogin();  
+     		}
+     	} 	
+
+    	var googleCordovaLogin = function()	{
+
+			//console.log('GoogleLoginA');
 		    //$scope.loaderShow('Google');
 		    window.plugins.googleplus.login({},function (response)
 		    {
@@ -242,29 +339,9 @@ angular.module('MCMRelationshop.Login', [
 		        //$scope.loaderHide();
 		    });
 		}
-    	//Login Twitter with oauth2
-	    $scope.twitterlogin = function() {
-	    	//alert('twitterlogin');
-	     	$cordovaOauth.twitter(APP_CONFIG.SocialAppID.TwitterAppID, 
-	     		APP_CONFIG.SocialAppID.TwitterSecretKey).then(function(result) {
-                  
-                    oauth_token = result.oauth_token;
-                    oauth_token_secret = result.oauth_token_secret;
-                    user_id = result.user_id;
-                    screen_name = result.screen_name;
-                    
-                    alert(screen_name);
-                    alert(user_id);
-                    alert(oauth_token);
-                    alert(oauth_token_secret);
-                }, function(error) {
-                    alert("Error: " + error);
-                });
-	 	}
-	    // END FB Login
 
-	    // Google Plus Login
-	    $scope.gplusLogin = function () {
+		// Google Plus Login
+	    var googleWebLogin = function () {
 	        //console.log('gplusLogin');
 	        var myParams = {
 	            // Replace client id with yours
@@ -310,6 +387,29 @@ angular.module('MCMRelationshop.Login', [
 	            }
 	        }
 	    };
+
+    	//Login Twitter with oauth2
+	    $scope.twitterlogin = function() {
+	    	//alert('twitterlogin');
+	     	$cordovaOauth.twitter(APP_CONFIG.SocialAppID.TwitterAppID, 
+	     		APP_CONFIG.SocialAppID.TwitterSecretKey).then(function(result) {
+                  
+                    oauth_token = result.oauth_token;
+                    oauth_token_secret = result.oauth_token_secret;
+                    user_id = result.user_id;
+                    screen_name = result.screen_name;
+                    
+                    alert(screen_name);
+                    alert(user_id);
+                    alert(oauth_token);
+                    alert(oauth_token_secret);
+                }, function(error) {
+                    alert("Error: " + error);
+                });
+	 	}
+	    // END FB Login
+
+	    
 	    // END Google Plus Login
 
 		vm.login = function(form){
@@ -372,78 +472,7 @@ angular.module('MCMRelationshop.Login', [
 		MCMTracker.trackView('Login');
 		
 		
-		//This method is executed when the user press the "Login with facebook" button
-		var facebookCordovaSignIn = function() {
-
-			facebookConnectPlugin.getLoginStatus(function(success){
-				console.log('facebookConnectPlugin');
-				console.log(success);
-				if(success.status === 'connected'){
-					// the user is logged in and has authenticated your app, and response.authResponse supplies
-					// the user's ID, a valid access token, a signed request, and the time the access token
-					// and signed request each expire
-					console.log('getLoginStatus', success.status);
-					
-					$state.go('app.home');
-					getFacebookProfileInfo(success.authResponse)
-						.then(function(response) {
-							/*responseof this example I will store user data on local storage
-							UserService.setUser({
-								authResponse: success.authResponse,
-								userID: profileInfo.id,
-								name: profileInfo.name,
-								email: profileInfo.email,
-								picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
-							});
-							*/
-							//$state.go('app.home');
-
-							var user = {};
-		                    user.ExternalID = response.id;
-		                    user.ExternalType = APP_CONFIG.SocialWeb.Facebook;
-		                    user.FullName = response.name;
-		                    user.Email = response.email;
-		                    user.UserName = response.email;
-		                    user.Password = response.email;
-		                    if(response.gender) {
-		                        response.gender.toString().toLowerCase() === 'male' ? user.Sex = 'Male' : user.Sex = 'Female';
-		                    } else {
-		                        user.Sex = '';
-		                    }
-		                    user.SocialWeb = APP_CONFIG.SocialWeb.Facebook;
-	                     	user.Avatar = '';
-		                    if(typeof(response.picture)!='undefined' && typeof(response.picture.data)!='undefined' && typeof(response.picture.data.url)!='undefined' && response.picture.data.url != null)
-		                    {
-		                    	user.Avatar = response.picture.data.url;
-		                    }
-		                    //user.Avatar = "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large";
-		                    security.setCurrentUser(user);
-		                    user.act = 19;//create account
-		                    User.createUser(user);
-		                   // $cookieStore.put('userInfo', user);
-		                   $rootScope.$broadcast('userLoggedIn',APP_CONFIG.SocialWeb.Facebook);
-
-						}, function(fail){
-							//fail get profile info
-							console.log('profile info fail', fail);
-					});
-					
-
-				} else {
-						$state.go('app.home');
-						//if (success.status === 'not_authorized') the user is logged in to Facebook, but has not authenticated your app
-						//else The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
-						console.log('getLoginStatus', success.status);
-
-						$ionicLoading.show({
-							template: 'Logging in...'
-						});
-
-						//ask the permissions you need. You can learn more about FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
-						facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
-				}
-			});
-		};
+		
 
 		//this method is to get the user profile info from the facebook api
 		var getFacebookProfileInfo = function (authResponse) {
