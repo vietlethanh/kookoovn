@@ -72,58 +72,18 @@
 			}
 		},
 		{
-			"file": "www/index.html",
-			"settings":
-			{
-				"buffer_size": 8919,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "gulpfile.js",
-			"settings":
-			{
-				"buffer_size": 1387,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/ionic.app.css",
-			"settings":
-			{
-				"buffer_size": 277302,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "platforms/ios/www/index.html",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "www/app/login/login.js",
 			"settings":
 			{
-				"buffer_size": 15912,
+				"buffer_size": 19006,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "platforms/ios/www/app/login/login.js",
+			"file": "www/app/login/login.html",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/app/storelocator/storelocator.js",
-			"settings":
-			{
-				"buffer_size": 31557,
+				"buffer_size": 3292,
 				"line_ending": "Unix"
 			}
 		},
@@ -160,28 +120,31 @@
 	},
 	"file_history":
 	[
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/gulpfile.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/css/ionic.app.css",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/index.html",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/login/login.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/config.js",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/package.json",
+		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/app.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/common/services/services.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/common/utils/utils.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/info.html",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/config.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/index.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/storelocator/storelocator.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/templates/menu.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/rewardsprogram/rewardsprogram.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/app.js",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/scss/_search.scss",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/scss/_menu.scss",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/config.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/storelocator/storelocator.js",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/www/app/login/login.html",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/index.html",
 		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/login/login.html",
-		"/Users/vietle/Projects/KooKoo/KooKooApp/platforms/ios/www/app/login/login.js",
 		"/D/Desktop/KooKooApp/KooKooApp/www/app/app.js",
 		"/D/Projects/RelationShop2015/Mobile/bigy2/ionic.project",
 		"/D/Desktop/KooKooApp/KooKooApp/www/index.html",
@@ -416,7 +379,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -441,203 +404,67 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 11586.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "www/index.html",
+					"file": "www/app/login/login.js",
 					"settings":
 					{
-						"buffer_size": 8919,
+						"buffer_size": 19006,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								819,
-								819
+								0,
+								19006
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2660.0,
+						"translation.y": 3626.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "gulpfile.js",
+					"file": "www/app/login/login.html",
 					"settings":
 					{
-						"buffer_size": 1387,
+						"buffer_size": 3292,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1228,
+								1228
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 246.0,
+						"translation.y": 404.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "www/css/ionic.app.css",
-					"settings":
-					{
-						"buffer_size": 277302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "platforms/ios/www/index.html",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/app/login/login.js",
-					"settings":
-					{
-						"buffer_size": 15912,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 18.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "platforms/ios/www/app/login/login.js",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5722.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "www/app/storelocator/storelocator.js",
-					"settings":
-					{
-						"buffer_size": 31557,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1136,
-								1136
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 7476.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
 					"file": "www/app/config.js",
 					"settings":
 					{
@@ -648,8 +475,8 @@
 						"selection":
 						[
 							[
-								3922,
-								3922
+								2628,
+								2628
 							]
 						],
 						"settings":
@@ -658,7 +485,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1371.0,
+						"translation.y": 619.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
