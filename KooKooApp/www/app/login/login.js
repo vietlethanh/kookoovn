@@ -251,22 +251,6 @@ angular.module('MCMRelationshop.Login', [
 			});
 		};
 
-		/*
-	    //Login Google with oauth2
-	    $scope.googleLogin = function() {
-	    	alert('googleLogin');
-	        $cordovaOauth.google(APP_CONFIG.SocialAppID.GoogleAppID,
-	         ["https://www.googleapis.com/auth/urlshortener", 
-	         "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
-	            
-	            console.log(JSON.stringify(result));
-	        }, function(error) {
-	        	console.log('Error googleLogin');
-	            console.log(error);
-	        });
-    	}
-    	*/
-
     	/**
      	* SOCIAL LOGIN
      	* Google
@@ -295,15 +279,7 @@ angular.module('MCMRelationshop.Login', [
 		    window.plugins.googleplus.login({},function (response)
 		    {
 		    	console.log(response);
-		    	/*
-		        window.localStorage.setItem('signin', 'Google');
-		        window.localStorage.setItem('g_uid', obj.userId);
-		        window.localStorage.setItem('g_fname', obj.givenName);
-		        window.localStorage.setItem('g_lname', obj.familyName);
-		        window.localStorage.setItem('user_full_name', obj.displayName);
-		        window.localStorage.setItem('g_email', obj.email);
-		        window.localStorage.setItem('gotPdetails', 'false');
-				*/
+		    	
 		        var user = {};
                 user.ExternalID = response.userId;
                 user.ExternalType = APP_CONFIG.SocialWeb.Google;
@@ -387,9 +363,25 @@ angular.module('MCMRelationshop.Login', [
 	            }
 	        }
 	    };
+	    $scope.twitterlogin = function () {
+
+     		var isWebView = ionic.Platform.isWebView();
+     		//console.log('isWebView');
+     		//console.log(isWebView);
+     		//console.log(ionic.Platform.platform());
+
+     		if(isWebView)
+     		{
+     			twitterCordovaLogin();   				
+     		}
+     		else
+     		{     	    			
+     			twitterWebLogin();  
+     		}
+     	} 	
 
     	//Login Twitter with oauth2
-	    $scope.twitterlogin = function() {
+	    var twitterWebLogin = function() {
 	    	//alert('twitterlogin');
 	     	$cordovaOauth.twitter(APP_CONFIG.SocialAppID.TwitterAppID, 
 	     		APP_CONFIG.SocialAppID.TwitterSecretKey).then(function(result) {
@@ -407,62 +399,9 @@ angular.module('MCMRelationshop.Login', [
                     alert("Error: " + error);
                 });
 	 	}
-	    // END FB Login
+	    // END twitterWebLogin Login
 
 	    
-	    // END Google Plus Login
-
-		vm.login = function(form){
-			if(form.$invalid){
-				vm.showInvalid = true;
-				return;
-			}
-			$ionicLoading.show();
-			security.login(vm.userName, vm.password).then(function(res){
-				$ionicLoading.hide();
-				if(!res.data.IsSuccess){
-					var msg = {
-						Invalid_UserNamePassword: 'Invalid User Name or Password',
-				        User_Not_Active: 'User not active',
-				        User_LockedOut: 'User locked out'
-					};
-					$ionicPopup.alert({
-						title: 'Login Fail',
-						template: msg[res.data.FailCode]
-					});
-					return;
-				}
-				$rootScope.$broadcast('userLoggedIn');
-				mergeShoppingList(res.data.UserName);
-				$q.all([handleCurrentStore(res.data.User)]).then(function(){
-					$ionicLoading.hide();
-					GuestShoppingList.clear();					
-					$ionicViewService.nextViewOptions({
-						disableBack: true
-					});
-					if(back){
-						$state.transitionTo(back, null,{
-							reload: true,
-							inderit: false,
-							notify: true
-						});
-					}
-					else {
-						$state.transitionTo('app.home', null,{
-							reload: true,
-							inderit: false,
-							notify: true
-						});
-					}
-				});
-				// success
-				
-			}, function(res){
-				$ionicLoading.hide();
-				//console.log(res);
-			})
-			
-		}
 		vm.register = function(){
 			$state.go('app.register', {step: 1});
 		}

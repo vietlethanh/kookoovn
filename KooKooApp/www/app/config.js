@@ -123,4 +123,4 @@ env.liveapp = angular.extend({}, liveserver, unitedAppCfg, {IsWeb: false}, match
 env.liveappdev = angular.extend({}, livedev, unitedAppCfg, {IsWeb: false}, matchedCodes);
 
 angular.module('MCMRelationshop.Config', [])
-.constant('APP_CONFIG', env.qcweb);
+.constant('APP_CONFIG', env.localweb);
