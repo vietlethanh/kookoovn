@@ -542,6 +542,7 @@ angular.module('MCMRelationshop.StoreLocator', function(){
 
         // Set CSS for the control interior.
         var controlText = document.createElement('div');
+        controlText.style.visibility = 'visible';
         controlText.style.color = 'rgb(25,25,25)';
         controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
         controlText.style.fontSize = '12px';

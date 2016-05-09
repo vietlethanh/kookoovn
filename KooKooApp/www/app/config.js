@@ -101,7 +101,7 @@ var unitedAppCfg = {
 	SocialWeb : socialWeb,
 	EnumSys:enumsys,
 	TrackType: trackType,
-	//KooKooAPI: 'http://kookoo.vn'
+	//KooKooAPI: 'https://kookoo.vn'
 	KooKooAPI: 'http://kookoo.local:8080'
 }
 
