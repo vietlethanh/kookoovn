@@ -53,7 +53,11 @@ var socialAppID =
 					TwitterSecretKey:"zYMfsOWXYSgSQwb1m6ybWq5cfU0h1vi0668XMl0i0d80ZVcQQO",//vietlethanh.dev@gmail.com
 					//search: Google API 
 					//see init in index.html
-					GoogleAppID:'1070103978451-pqgroa727omt4ie3p9k58thqir7irrd1.apps.googleusercontent.com', //kookoovn@gmail.com
+					//Web App
+					//GoogleAppID:'1070103978451-pqgroa727omt4ie3p9k58thqir7irrd1.apps.googleusercontent.com', //kookoovn@gmail.com
+					//Native App.
+					//This config only for Navtive APP. API key for web. see in funct googleWebLogin of login.js
+					GoogleAppID:'1026812135759-r2agkgj72cbjln9j7fvpf4kbqdvem161.apps.googleusercontent.com', //vietlethanh.dev@gmail.com 
 				}
 
 var enumsys = {
